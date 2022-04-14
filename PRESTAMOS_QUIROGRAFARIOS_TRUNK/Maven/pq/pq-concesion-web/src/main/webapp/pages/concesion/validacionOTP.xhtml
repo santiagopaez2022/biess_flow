@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				template="/templates/base-panel-menu-vertical.xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<a4j:region id="regAceptacionValidacionOTP">
+			<h:form id="formAceptacionValidacionOTP">
+				<rich:panel>
+					<f:facet name="header">
+						<h:outputText value="#{concesionCredito.tituloValidacionOtp}" />
+					</f:facet>
+
+					<a4j:outputPanel id="aceptacionOTP">
+						<rich:panel>
+							<p>
+								<b><h:outputText value="#{labels['pq.aceptacion.servicio.otp']}" /></b>
+							</p>
+							<p>	<h:outputText value="#{labels['pq.aceptacion.mensaje1.otp']}" />
+								<b><h:outputText value="#{labels['pq.historia.laboral.otp']}" /></b>
+								<h:outputText value="#{labels['pq.aceptacion.mensaje2.otp']}" />
+							</p>
+
+							<p><h:outputText value="#{labels['pq.aceptacion.mensaje3.otp']}" /></p>
+							<h:panelGrid columns="2">
+								<h:outputText value="#{labels['pq.aceptacion.mensaje4.otp']}" />
+								<h:selectBooleanCheckbox value="#{concesionCredito.aceptaServicio}" disabled="#{concesionCredito.validaAceptaServicio}">
+									<a4j:support event="onchange" action="#{concesionCredito.confirmarAceptacion}"
+												 reRender="validacionOTP, errorMailOTP, formAceptacionValidacionOTP" />
+								</h:selectBooleanCheckbox>
+							</h:panelGrid>
+						</rich:panel>
+					</a4j:outputPanel>
+
+					<a4j:outputPanel id="errorMailOTP">
+						<rich:panel styleClass="errorPanel" style="margin:0px;"	id="pnlErrorMailOTP"
+									rendered="#{concesionCredito.mensajeEmail}">
+							<h:outputText value="#{labels['pq.validacion.email1.otp']}" />
+							<b><h:outputText value="#{labels['pq.historia.laboral.otp']}" /></b>
+							<h:outputText value="#{labels['pq.validacion.email2.otp']}" />
+							<br />
+						</rich:panel>
+					</a4j:outputPanel>
+
+
+
+					<a4j:outputPanel id="validacionOTP">
+						<rich:panel rendered="#{concesionCredito.presentaValidacion}">
+							<p>	<h:outputText value="#{concesionCredito.mensajeValidacionOtp}" escape="false" />
+							</p>
+							<p>
+								<b><h:outputText value="#{labels['pq.validacion.codigo.otp']}" /></b>
+							</p>
+							<p><h:outputText value="#{labels['pq.validacion.mensaje1.otp']}" /></p>
+							<p><h:outputText value="#{labels['pq.validacion.mensaje2.otp']}" /></p>
+
+							<a4j:region id="rgnValida">
+								<div align="center">
+									<h:panelGroup>
+										<h:panelGrid columns="2" columnClasses="50%,50%">
+											<h:panelGroup>
+												<rich:panel>
+													<f:facet name="header">
+														<h:outputText value="#{labels['pq.ingreso.codigo.otp']}" />
+													</f:facet>
+													<h:panelGrid columns="2">
+														<h:outputLabel style="width:150px;" for="txtCodigoOtpPq"
+																	   value="#{labels['pq.validacion.codigo.otp']}:" />
+														<h:panelGrid columns="1">
+															<h:inputText id="txtCodigoOtpPq"
+																		 style="text-transform: uppercase; width: 100px;"
+																		 maxlength="#{concesionCredito.longitudOTP}"
+																		 value="#{concesionCredito.codigoOtpIngresado}"
+																		 onkeypress="return soloNumeros(event, this)">
+															</h:inputText>
+														</h:panelGrid>
+													</h:panelGrid>
+													<h:panelGrid columns="1">
+														<h:outputText value="#{concesionCredito.mensajeTiempoOtp}" />
+													</h:panelGrid>
+													<a4j:outputPanel ajaxRendered="true">
+														<rich:panel id="errorIngresoDatosOtpPq"
+																	styleClass="errorPanel"
+																	style="margin:0px;min-height:20px;"
+																	rendered="#{null != concesionCredito.errorIngresoOtp}">
+															<h:outputText value="#{concesionCredito.errorIngresoOtp}" />
+														</rich:panel>
+													</a4j:outputPanel>
+													<div align="center">
+														<a4j:status for="rgnValida">
+															<f:facet name="start">
+																<rich:panel styleClass="panelInvisible">
+																	<h:graphicImage id="uiBlanco5"
+																					value="/img/ajax/cargando.gif" />
+																	<h:outputText value="#{messages['mensaje.pq.procesando.prestamo']}"></h:outputText>
+																</rich:panel>
+															</f:facet>
+														</a4j:status>
+
+														<h:panelGrid columns="5">
+
+															<a4j:jsFunction name="aceptarPtmoJSFunction"
+																			action="#{concesionCredito.aceptarPrestamo}" />
+
+															<a4j:jsFunction name="cancelarPtmoJSFunction"
+																			action="#{concesionCredito.cancelarPrestamo}"
+																			reRender="cmdAceptarValidacion,cmdAceptarValidacionFocalizado,cmdCerrarValidacion" />
+
+															<a4j:commandButton id="cmdAceptarValidacion"
+																			   value="Aceptar"
+																			   action="#{concesionCredito.validacionCodigoOTP}"
+																			   styleClass="boton" data="#{datos.respuesta}"
+																			   disabled="#{concesionCredito.continuaValidacionOTP}"
+																			   oncomplete="if (#{concesionCredito.error == null and  concesionCredito.continuaValidacionOTP}) {
+																					if (!confirm('#{labels['esta.seguro.crear.credito']}')) {
+																						cancelarPtmoJS();
+																						return false;
+																					} else {
+																						aceptarPtmoJS();
+																					}
+																				}"
+																			   rendered="#{concesionCredito.validaAceptaServicio and !concesionCredito.bloquearCreditoServicios and datos.categoriaTipoProductoPq != 'CAT_FOCALIZADOS'}"
+																			   reRender="cmdAceptarValidacion,cmdCerrarValidacion,errorIngresoDatosOtpPq">
+															</a4j:commandButton>
+															<h:graphicImage id="uiBlanco18" value="/img/blanco.jpg" />
+															<a4j:commandButton id="cmdAceptarValidacionFocalizado"
+																			   action="#{concesionCredito.validacionCodigoOTP}"
+																			   value="#{labels['button.crear.credito']}"
+																			   styleClass="boton"
+																			   disabled="#{concesionCredito.continuaValidacionOTP}"
+																			   oncomplete="if (#{concesionCredito.error == null and concesionCredito.continuaValidacionOTP}) {
+																	if (!confirm('#{labels['esta.seguro.crear.credito.focalizado']}')) {
+																		cancelarPtmoJS();
+																		return false;
+																	} else {
+																		aceptarPtmoJS();
+																	}
+																}"
+																			   reRender="cmdAceptarValidacionFocalizado,cmdCerrarValidacion,errorIngresoDatosOtpPq"
+																			   rendered="#{concesionCredito.validaAceptaServicio and datos.categoriaTipoProductoPq == 'CAT_FOCALIZADOS'}" />
+															<a4j:commandButton value="#{labels['button.regresar']}"
+																			   id="cmdCerrarValidacion"
+																			   action="#{concesionCredito.cancelarAutorizacion}"
+																			   disabled="#{concesionCredito.continuaValidacionOTP}"
+																			   styleClass="boton" />
+
+														</h:panelGrid>
+													</div>
+												</rich:panel>
+											</h:panelGroup>
+										</h:panelGrid>
+									</h:panelGroup>
+								</div>
+							</a4j:region>
+						</rich:panel>
+					</a4j:outputPanel>
+				</rich:panel>
+			</h:form>
+		</a4j:region>
+
+		<rich:modalPanel id="panelPopUpRegCivil" width="900" height="640"
+						 resizeable="false" moveable="false" headerClass="header_popup">
+			<f:facet name="header">
+				<h:outputText value="Confirmar datos Registro Civil" />
+			</f:facet>
+			<a4j:form id="formPanelPop">
+
+				<div align="left">
+
+					<a4j:region id="rgnRegCivil">
+
+						<h:panelGroup>
+							<rich:panel styleClass="messagePanel" style="margin:0px;">
+								<h:outputText value="#{labels['verrc.nota']}" />
+							</rich:panel>
+
+							<h:panelGrid columns="2" columnClasses="col500,col400">
+								<h:panelGroup>
+									<rich:panel>
+										<f:facet name="header">
+											<h:outputText value="Ingreso de datos" />
+										</f:facet>
+										<h:panelGrid columns="2">
+											<h:outputLabel style="width:130px;" for="txtHuella"
+														   value="1. #{labels['codigo.dactilar']}:" />
+											<h:panelGrid columns="1">
+												<h:inputText id="txtHuella"
+															 style="text-transform: uppercase; width: 100px;"
+															 maxlength="10" value="#{datos.codigoDactilar}"
+															 disabled="#{datos.aceptaDatos}">
+												</h:inputText>
+											</h:panelGrid>
+
+											<h:outputLabel style="width:130px;height:35px;"
+														   value="2. #{labels['fecha.expedicion']}:" />
+											<h:panelGrid columns="5">
+												<h:inputText id="anio" value="#{datos.anio}"
+															 style="width: 40px;" maxlength="4"
+															 onkeypress="return soloNumeros(event, this)" />
+												<h:outputLabel value=" - " style="width: 5px;" />
+												<h:inputText id="mes" value="#{datos.mes}"
+															 style="width: 20px;" maxlength="2"
+															 onkeypress="return soloNumeros(event, this)" />
+												<h:outputLabel value=" - " style="width: 5px;" />
+												<h:inputText id="dia" value="#{datos.dia}"
+															 style="width: 20px;" maxlength="2"
+															 onkeypress="return soloNumeros(event, this)" />
+												<h:outputLabel value="A&#241;o"
+															   style="width:40px;text-align:center;"
+															   styleClass="mensajeAyuda" />
+												<h:outputLabel value="" style="width: 5px;" />
+												<h:outputLabel value="Mes"
+															   style="width:40px;text-align:center;"
+															   styleClass="mensajeAyuda" />
+												<h:outputLabel value="" style="width: 5px;" />
+												<h:outputLabel value="D&#237;a"
+															   style="width:40px;text-align:center;"
+															   styleClass="mensajeAyuda" />
+											</h:panelGrid>
+										</h:panelGrid>
+
+										<a4j:outputPanel ajaxRendered="true">
+											<rich:panel id="errorIngresoDatos" styleClass="errorPanel"
+														style="margin:0px;min-height:20px;"
+														rendered="#{null != verificacionRegCivil.errorIngresoDatos}">
+												<h:outputText
+														value="#{verificacionRegCivil.errorIngresoDatos}" />
+											</rich:panel>
+										</a4j:outputPanel>
+									</rich:panel>
+
+									<rich:panel>
+										<f:facet name="header">
+											<h:outputText value="Confirmaci&#243;n de datos" />
+										</f:facet>
+										<h:panelGrid columns="2">
+											<h:outputLabel style="width:130px;" for="repTxtHuella"
+														   value="1. #{labels['codigo.dactilar']}:" />
+											<h:panelGrid columns="1">
+												<h:inputText id="repTxtHuella"
+															 style="text-transform: uppercase; width: 100px;"
+															 maxlength="10" value="#{datos.repCodigoDactilar}"
+															 disabled="#{datos.aceptaDatos}">
+												</h:inputText>
+											</h:panelGrid>
+											<h:outputLabel style="width:130px;height:35px;"
+														   value="2. #{labels['fecha.expedicion']}:" />
+											<h:panelGrid columns="5">
+												<h:inputText id="repAnio" value="#{datos.repAnio}"
+															 style="width: 40px;" maxlength="4"
+															 onkeypress="return soloNumeros(event, this)" />
+												<h:outputLabel value=" - " style="width: 5px;" />
+												<h:inputText id="repMes" value="#{datos.repMes}"
+															 style="width: 20px;" maxlength="2"
+															 onkeypress="return soloNumeros(event, this)" />
+												<h:outputLabel value=" - " style="width: 5px;" />
+												<h:inputText id="repDia" value="#{datos.repDia}"
+															 style="width: 20px;" maxlength="2"
+															 onkeypress="return soloNumeros(event, this)" />
+												<h:outputLabel value="A&#241;o"
+															   style="width:40px;text-align:center;"
+															   styleClass="mensajeAyuda" />
+												<h:outputLabel value="" style="width: 5px;" />
+												<h:outputLabel value="Mes"
+															   style="width:40px;text-align:center;"
+															   styleClass="mensajeAyuda" />
+												<h:outputLabel value="" style="width: 5px;" />
+												<h:outputLabel value="D&#237;a"
+															   style="width:40px;text-align:center;"
+															   styleClass="mensajeAyuda" />
+											</h:panelGrid>
+										</h:panelGrid>
+
+										<a4j:outputPanel ajaxRendered="true">
+											<rich:panel id="errorConfirmacionDatos"
+														styleClass="errorPanel" style="margin:0px;min-height:20px;"
+														rendered="#{null != verificacionRegCivil.errorConfirmacionDatos}">
+												<h:outputText
+														value="#{verificacionRegCivil.errorConfirmacionDatos}" />
+											</rich:panel>
+										</a4j:outputPanel>
+									</rich:panel>
+
+									<div style="height: 80px;">
+										<a4j:outputPanel ajaxRendered="true" style="margin:0px;">
+											<rich:panel id="rchPnlMsgRegCivil" styleClass="errorPanel"
+														rendered="#{!empty verificacionRegCivil.mensajeErrorRegCivil}">
+												<h:outputText for="lblMensajeRegCiv"
+															  value="#{verificacionRegCivil.mensajeErrorRegCivil}" />
+											</rich:panel>
+										</a4j:outputPanel>
+									</div>
+								</h:panelGroup>
+
+								<h:panelGrid columns="1">
+									<h:graphicImage value="/img-biess/ayuda_valrc.png" />
+								</h:panelGrid>
+							</h:panelGrid>
+
+							<h:panelGrid columns="3">
+								<a4j:commandButton id="cmdAceptarValidacion" value="Aceptar"
+												   binding="#{verificacionRegCivil.btnAceptar}"
+												   onclick="disablePopupRCButtons()"
+												   action="#{verificacionRegCivil.aceptarValidacion}"
+												   styleClass="boton" data="#{datos.respuesta}"
+												   oncomplete="if(data){document.forms[0].submit();}"
+												   reRender="rchPnlMsgRegCivil,cmdAceptarValidacion,cmdCerrarValidacion,errorConfirmacionDatos,errorIngresoDatos">
+								</a4j:commandButton>
+								<a4j:commandButton value="Cerrar" id="cmdCerrarValidacion"
+												   action="#{verificacionRegCivil.init}" styleClass="boton"
+												   oncomplete="document.forms[0].submit();" ajaxSingle="true"
+												   reRender="cmdAceptarValidacion,cmdAceptarValidacionFocalizado,cmdCerrarValidacion" />
+								<a4j:status for="rgnRegCivil">
+									<f:facet name="start">
+										<rich:panel styleClass="panelInvisible">
+											<h:graphicImage id="uiBlanco5" value="/img/ajax/cargando.gif" />
+											<h:outputText
+													value="#{messages['mensaje.pq.procesando.prestamo']}"></h:outputText>
+										</rich:panel>
+									</f:facet>
+								</a4j:status>
+							</h:panelGrid>
+						</h:panelGroup>
+					</a4j:region>
+				</div>
+			</a4j:form>
+		</rich:modalPanel>
+
+		<script type="text/javascript">
+
+		function aceptarPtmoJS() {
+			aceptarPtmoJSFunction();
+		}
+
+		function cancelarPtmoJS() {
+			cancelarPtmoJSFunction();
+		}
+
+		function disablePopupRCButtons() {
+			document.getElementById('formPanelPop:cmdAceptarValidacion').disabled = true;
+			document.getElementById('formPanelPop:cmdCerrarValidacion').disabled = true;
+		}
+
+  		window.onload = function() {
+  			document.getElementById('formPanelPop:txtHuella').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:txtHuella').oncopy = function(e) { return false; }	  			
+			document.getElementById('formPanelPop:anio').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:anio').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:mes').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:mes').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:dia').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:dia').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repTxtHuella').onpaste = function(e) { return false; }	  			
+  			document.getElementById('formPanelPop:repTxtHuella').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repAnio').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:repAnio').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repMes').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:repMes').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repDia').onpaste = function(e) { return false; }	  			
+  			document.getElementById('formPanelPop:repDia').oncopy = function(e) { return false; }
+  		}
+  		
+	</script>
+
+	</ui:define>
+</ui:composition>

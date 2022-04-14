@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+	
+
+	
+		<div class="text_mensaje_pagina" >
+		#{labels['titulo.resultado.liquidacion']}</div>
+
+	
+
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="${datos.solicitante!=null}">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			<h:panelGrid columns="2" styleClass="panelInvisible">
+				<h:outputLabel value="#{labels.cedula}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{datos.solicitante.datosPersonales.cedula}" />
+
+
+				<h:outputLabel value="#{labels.nombresApellidos}:" />
+				<h:outputLabel style="font-weight:bold"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+
+				<h:outputLabel value="#{labels['credito.producto']}:" />
+				<h:outputLabel style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.destinoComercial.descripcion}" />
+
+				<h:outputLabel value="#{labels['credito.numero']}:" />
+				<h:outputLabel style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.nut}" />
+
+
+				<h:outputLabel value="#{labels['credito.fecha.inicio']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.fecinipre}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{labels['credito.fecha.fin']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.fecfinpre}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{labels['credito.monto.abrev']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.mntpre}">
+					<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+						type="currency" />
+				</h:outputText>
+
+			
+
+			</h:panelGrid>
+
+			
+
+		</rich:panel>
+
+		<br />
+	<rich:panel styleClass="messagePanel" style="margin: 0px !important;">
+				<h:outputText style="color:#0060A9" value="#{messages['cruce.cuentas.mensaje']}" />
+		</rich:panel>
+		<h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['liquidacion.detalle']}
+				</f:facet>
+
+
+	<table class="recuadroValores" >
+					<tr>
+						<th>#{labels['liquidacion.valor.dividendos']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.capitalTotal}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+						</h:outputText></td>
+					</tr>
+					<tr>
+						<th>#{labels['liquidacion.valor.interes.mora']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.interesPorMora}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+						</h:outputText></td>
+					</tr>
+				    <a4j:outputPanel rendered="#{creditoAccion.calculoLiquidacion.interesGracia>0}">
+					<tr>
+						<th>#{labels['liquidacion.valor.interes.gracia']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.interesGracia}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+						</h:outputText></td>
+					</tr>
+					</a4j:outputPanel>
+					<tr>
+						<th>#{labels['liquidacion.valor.favor.seguro.saldos']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.seguroSaldos}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+						</h:outputText></td>
+					</tr>
+					<tr>
+						<th>#{labels['liquidacion.total.cancelar']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.valorPorCancelar}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+						</h:outputText></td>
+					</tr>
+				</table>
+
+			</rich:panel>
+			<br />
+			<input type="button" class="botonbarra"
+				value="#{labels['button.imprimir.liquidacion']}" id="imprimir"
+				onclick="window.print();" />
+			
+			<h:commandButton action="consultaCreditos" styleClass="boton"
+				value="#{labels['button.consulta.creditos']}"></h:commandButton>
+
+
+		</h:form>
+
+		<SCRIPT language="JavaScript">
+			alert('#{labels['confirmacion.liquidacion']}');
+		</SCRIPT> 		
+
+	</ui:define>
+</ui:composition>

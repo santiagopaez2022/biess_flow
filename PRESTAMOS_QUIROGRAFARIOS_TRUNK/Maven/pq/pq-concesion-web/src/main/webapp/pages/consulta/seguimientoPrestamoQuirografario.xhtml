@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				template="/templates/base-panel-menu-vertical.xhtml"
+				xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+				xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos" ajaxSingle="true" limitToList="true" />
+		</h:form>
+
+		<div class="text_mensaje_pagina">
+			#{labels['titulo.consulta.creditos']}
+			<a4j:status>
+				<f:facet name="start">
+					<rich:panel styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:panel>
+				</f:facet>
+			</a4j:status>
+		</div>
+
+		<!-- 
+		
+		<rich:panel styleClass="errorPanel"
+			rendered="#{seguimientoCredito.msjError!=null}">
+			<h:outputText value="#{seguimientoCredito.msjError}"></h:outputText>
+
+		</rich:panel>
+		
+		 -->
+		<a4j:outputPanel id="pnlDatosGenerales">
+			<rich:panel styleClass="panel" headerClass="pheader"
+						bodyClass="pbody" rendered="${datos.solicitante!=null}">
+				<f:facet name="header">
+					#{labels['datos.generales']}
+				</f:facet>
+
+				<h:panelGrid columns="2" styleClass="panelInvisible">
+					<h:outputLabel value="#{labels.cedula}:" />
+					<h:outputText style="font-weight:bold"
+								  value="#{datos.solicitante.datosPersonales.cedula}" />
+					<h:outputLabel value="#{labels.nombresApellidos}:" />
+					<h:outputText style="font-weight:bold"
+								  value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+				</h:panelGrid>
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:region id="regionTable">
+			<a4j:outputPanel id="pnlLista">
+				<h:form id="formListaSolicitantes"  rendered="${datos.solicitante!=null}">
+					<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody">
+						<f:facet name="header">#{labels['titulo.lista.creditos']}</f:facet>
+
+						<rich:panel styleClass="messagePanel" style="margin: 0px !important;">
+							<h:outputText value="#{labels['seleccione.un.credito']}" rendered="#{not empty consultaCredito.creditosVigentes}" />
+							<h:outputText value="Ud. no posee creditos" rendered="#{empty consultaCredito.creditosVigentes}" />
+						</rich:panel>
+
+						<h:messages styleClass="#{seguimientoCredito.estiloPanelInfoError}" globalOnly="true" showDetail="false" showSummary="true" />
+
+						<a4j:status>
+							<f:facet name="start">
+								<rich:panel styleClass="panelInvisible">
+									<h:graphicImage value="/img/ajax/cargando.gif" />
+									<h:outputText value="#{messages.cargando}"></h:outputText>
+								</rich:panel>
+							</f:facet>
+						</a4j:status>
+
+						<rich:dataTable id="tablaCreditos" var="item" rows="5"
+										value="#{consultaCredito.creVigenteAnulados}" styleClass="tablesinside"
+										headerClass="dt_header" rowClasses="prow1,prow2"
+										rendered="#{not empty consultaCredito.creVigenteAnulados}">
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.prestamo']}</f:facet>
+								<h:outputText value="#{item.clasePrestamo.descripcion}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.estado']}</f:facet>
+								<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.numero.solicitud']}</f:facet>
+								<h:outputText value="#{item.prestamoPk.numpreafi}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.plazo.meses']}</f:facet>
+								<h:outputText value="#{item.plzmes}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.fecha.concesion']}</f:facet>
+								<h:outputText value="#{item.fecpreafi}">
+									<f:convertDateTime pattern="dd-MMM-yyyy" timeZone="GMT-5"/>
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:right;">
+								<f:facet name="header">#{labels['credito.monto.abrev']}</f:facet>
+								<h:outputText value="#{item.valsalcap}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													 type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">
+									<rich:spacer />
+								</f:facet>
+								<!--
+									Ricardo Tituana: INC-5780
+									* se arreglo el boton para una mejor presentacion para el usuario
+								-->
+								<h:commandButton styleClass="boton"
+												 value="#{labels['button.ver']}"
+												 action="#{seguimientoCredito.seleccionar}">
+									<a4j:support event="onclick"
+												 reRender="outputPaneldetalleCredito" ajaxSingle="true"/>
+								</h:commandButton>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">
+									<rich:spacer />
+								</f:facet>
+								<a4j:commandButton styleClass="boton"
+												   value="#{labels['button.rechazar']}"
+												   onclick="javascript:Richfaces.showModalPanel('MPAnulacion');"
+												   rendered="#{item.estadoPrestamo.codestpre=='PAP' or item.permiteAnular}" reRender="PGAnulacion">
+									<f:setPropertyActionListener target="#{seguimientoCredito.prestamoSeleccionado}" value="#{item}" />
+								</a4j:commandButton>
+							</rich:column>
+							<f:facet name="footer">
+								<rich:datascroller id="dsPrestamoSeg" for="tablaCreditos"
+												   maxPages="10" />
+							</f:facet>
+						</rich:dataTable>
+						<br />
+						<!--  caso de uso: seguimiento  de prestamo Datos de prestamo -->
+
+						<!--  caso de uso: seguimiento  de prestamo Datos de prestamo -->
+					</rich:panel>
+
+					<!-- Detalle del Credito -->
+					<rich:panel id="idPanelImprimirFAT" styleClass="panel" headerClass="pheader"
+								bodyClass="pbody" rendered="#{seguimientoCredito.desplegarDetalle}">
+						<f:facet name="header">#{labels['titulo.detalle.creditos']}</f:facet>
+						<a4j:outputPanel id="outputPaneldetalleCredito">
+							<rich:panel id="pnlDatosPrestamo" styleClass="panel"
+										headerClass="pheader" bodyClass="pbody">
+								<f:facet name="header">
+									#{labels['seguimiento.label.titulo.datosprestamo']}
+								</f:facet>
+								<h:panelGrid columns="2" styleClass="panelInvisible">
+									<h:outputText
+											value="#{labels['seguimiento.label.cedulaafiliado']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.cedula}" />
+
+									<h:outputText
+											value="#{labels['seguimiento.label.nombreafiliado']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.nombre}" />
+
+									<h:outputText
+											value="#{labels['seguimiento.label.numeroprestamo']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.numeroPrestamo}" />
+
+									<h:outputText
+											value="#{labels['seguimiento.label.fechaprestamo']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.fechaRegistroPrestamo}" />
+
+									<h:outputText value="#{labels['seguimiento.label.banco']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.nombreInstitucionFinanciera}" />
+
+									<h:outputText value="#{labels['seguimiento.label.cuenta']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.numeroCuentaBancaria}" />
+
+									<h:outputText
+											value="#{labels['seguimiento.label.tipocuenta']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.tipoCuentaBancaria}" />
+
+									<h:outputText value="#{labels['seguimiento.label.valor']}:"  />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.valorTransferido}" >
+										<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+														 type="currency"/>
+									</h:outputText>
+
+									<h:outputText
+											value="#{labels['seguimiento.label.estadoprestamo']}:" />
+									<h:outputText
+											value="#{seguimientoCredito.detallePrestamo.estadoActualPrestamo}" />
+								</h:panelGrid>
+							</rich:panel>
+
+							<h:panelGroup rendered="#{seguimientoCredito.presentaMensajes}">
+								<!-- MENSAGE DE PARA LISTA DE OBSERVADOS -->
+								<rich:panel id="uiOKPEP" styleClass="messagePanelBottom"
+											rendered="#{seguimientoCredito.enListaControl}">
+									<rich:panel styleClass="notePanelBottom">
+										<h:outputText style="font-weight:bold" value="Advertencia" />
+										<br />
+									</rich:panel>
+									<h:panelGroup>
+										<br />#{seguimientoCredito.msjCreditoListaObservadosPep}<br />
+										<ul>
+											<li>#{messages['credito.datos.lista.observados.pep.mensaje.requerimiento1']}</li>
+											<li>#{messages['credito.datos.lista.observados.pep.mensaje.requerimiento2']}</li>
+											<li>#{messages['credito.datos.lista.observados.pep.mensaje.requerimiento3']}</li>
+										</ul>
+									</h:panelGroup>
+								</rich:panel>
+
+								<!-- MENSAGE DE PARA PENSIONES ALIMENTICIAS -->
+								<rich:panel headerClass="pheader" bodyClass="pbody"
+											styleClass="messagePanelBottom"
+											rendered="#{seguimientoCredito.reimpresionFAT}">
+									<rich:panel styleClass="notePanelBottom">
+										<h:outputText style="font-weight:bold" value="Advertencia" />
+										<br />
+									</rich:panel>
+									<fieldset id="fieldsetPensionAlimenticia">
+										<legend id="legendPensionAlimenticia">#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.titulo']}</legend>
+										<h:panelGrid columns="1">
+											<h:panelGroup>
+												<br />
+												<h:outputText
+														value="#{messages['pensiones.alimenticias.mensaje.reimpresion']}" />
+												<br />
+												<ul>
+													<li>#{messages['pensiones.alimenticias.mensaje.final.item0']}</li>
+													<li>#{messages['pensiones.alimenticias.mensaje.final.item1']}</li>
+													<li>#{messages['pensiones.alimenticias.mensaje.final.item2']}</li>
+													<li>#{messages['pensiones.alimenticias.mensaje.final.item3']}</li>
+													<li>#{messages['pensiones.alimenticias.mensaje.final.item4']}</li>
+												</ul>
+											</h:panelGroup>
+										</h:panelGrid>
+									</fieldset>
+
+								</rich:panel>
+							</h:panelGroup>
+
+							<rich:panel styleClass="panel" headerClass="pheader"
+										bodyClass="pbody"
+										rendered="#{seguimientoCredito.detallePrestamo!=null}">
+								<rich:panel styleClass="panel" headerClass="pheader"
+											bodyClass="pbody"
+											rendered="#{seguimientoCredito.detalleSeguimientoCreditoBeanList!=null}">
+									<f:facet name="header">
+										#{labels['seguimiento.label.titulo.detalleseguimientoprestamo']}
+									</f:facet>
+									<rich:dataTable id="tablaDetalleSeguimientoCreditos"
+													var="detalleSeguimiento"
+													value="#{seguimientoCredito.detalleSeguimientoCreditoBeanList}"
+													styleClass="tablesinside" headerClass="dt_header"
+													rowClasses="prow1,prow2"
+													rendered="#{not empty seguimientoCredito.detalleSeguimientoCreditoBeanList}">
+										<rich:column style="text-align:center;">
+											<f:facet name="header">#{labels['seguimiento.label.titulo.fechacambioestado']}</f:facet>
+											<h:outputText value="#{detalleSeguimiento.fechaCambioEstado}" />
+										</rich:column>
+										<rich:column style="text-align:center;">
+											<f:facet name="header">#{labels['seguimiento.label.titulo.estado']}</f:facet>
+											<h:outputText value="#{detalleSeguimiento.estado}" />
+										</rich:column>
+										<rich:column style="text-align:center;">
+											<f:facet name="header">#{labels['seguimiento.label.titulo.observacion']}</f:facet>
+											<h:outputText value="#{detalleSeguimiento.observacion}" />
+										</rich:column>
+									</rich:dataTable>
+									<br />
+								</rich:panel>
+							</rich:panel>
+
+							<h:panelGrid columns="2">
+								<a4j:commandButton styleClass="boton"
+												   value="#{labels['button.imprimir']}"
+												   onclick="window.showModalDialog('seguimientoIndividualPrestamo.jsf','','center:yes;resizable:1;dialogheight:600px');">
+								</a4j:commandButton>
+
+								<a4j:commandButton id="btnImprimirFAT"
+												   value="#{labels['button.reimprimir.fat']}" styleClass="botonbarra"
+												   reRender="panelImprimirFAT" action="#{seguimientoCredito.imprimirFAT}"
+												   oncomplete="if (#{seguimientoCredito.desplegarFAT}) {
+													Richfaces.showModalPanel('panelImprimirFAT', {top:'50px', left:'200px', width:'800px', height:'500px'})
+												} else {
+													return false;
+												}"
+												   rendered="#{seguimientoCredito.reimpresionFAT}"/>
+							</h:panelGrid>
+
+							<!-- INC-2129 Control en Generacion de Comprobantes - Modal Para Impresion -->
+							<rich:modalPanel id="panelImprimirFAT" autosized="true">
+								<f:facet name="header">
+									<h:panelGroup>
+										<h:outputText value="#{labels['formulario.fat.titulo']}"></h:outputText>
+									</h:panelGroup>
+								</f:facet>
+								<rich:panel styleClass="errorPanel"
+											rendered="#{seguimientoCredito.msjError!=null}">
+									<h:outputText value="#{seguimientoCredito.msjError}"></h:outputText>
+								</rich:panel>
+
+								<a4j:outputPanel id="pnlPrestamo">
+									<div id="divDestalleCredito"
+										 style="width: 800px; height: 550px; overflow: scroll;">
+
+										<rich:panel id="pnlDatosPrestamoFAT" styleClass="panel"
+													headerClass="pheader" bodyClass="pbody">
+											<img src="../../files/images/content/Biess-Ecuador.png" />
+											<h:outputText id="outputTextFAT"
+														  value="#{seguimientoCredito.textoFAT}" escape="false" />
+										</rich:panel>
+
+									</div>
+								</a4j:outputPanel>
+
+								<center>
+									<rich:panel styleClass="panel" headerClass="pheader"
+												bodyClass="pbody">
+										<h:panelGrid columns="2" styleClass="panelInvisible"
+													 id="panelGridBotones">
+
+											<input type="button" class="botonbarra"
+												   value="#{labels['button.imprimir']}" id="imprimirFAT_2"
+												   onclick="imprimirTextoSeleccionado('formListaSolicitantes:pnlDatosPrestamoFAT_body');" />
+
+											<input type="button" class="botonbarra"
+												   value="#{labels['button.cerrar']}" id="cerrar"
+												   onclick="Richfaces.hideModalPanel('panelImprimirFAT');" />
+
+										</h:panelGrid>
+									</rich:panel>
+								</center>
+
+							</rich:modalPanel>
+
+						</a4j:outputPanel>
+					</rich:panel>
+
+				</h:form>
+			</a4j:outputPanel>
+		</a4j:region>
+		<rich:modalPanel id="MPAnulacion" height="150" width="400"
+						 resizeable="false" moveable="false" headerClass="header_popup">
+			<f:facet name="header">
+				<h:outputText value="#{labels['titulo.confirmar.anulacion']}" />
+			</f:facet>
+			<a4j:form id="formMPAnulacion">
+				<h:panelGrid id="PGAnulacion" columns="2"
+							 columnClasses="col400,col500">
+					<h:outputText value="#{labels['credito.prestamo']}:" />
+					<h:outputText
+							value="#{seguimientoCredito.prestamoSeleccionado.clasePrestamo.descripcion}" />
+					<h:outputText value="#{labels['credito.numero']}:" />
+					<h:outputText
+							value="#{seguimientoCredito.prestamoSeleccionado.prestamoPk.numpreafi}" />
+					<h:outputText value="#{labels['credito.monto.abrev']}:" />
+					<h:outputText
+							value="#{seguimientoCredito.prestamoSeleccionado.valsalcap}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										 type="currency" />
+					</h:outputText>
+				</h:panelGrid>
+				<center>
+					<rich:separator height="2px" />
+					<h:panelGrid columns="2" border="0">
+						<a4j:commandButton styleClass="boton"
+										   value="#{labels['button.aceptar']}"
+										   action="#{seguimientoCredito.anular}"
+										   oncomplete="javascript:Richfaces.hideModalPanel('MPAnulacion');" reRender="pnlLista">
+						</a4j:commandButton>
+						<a4j:commandButton styleClass="boton"
+										   value="#{labels['button.cancelar']}"
+										   onclick="javascript:Richfaces.hideModalPanel('MPAnulacion');">
+						</a4j:commandButton>
+					</h:panelGrid>
+				</center>
+			</a4j:form>
+		</rich:modalPanel>
+
+		<script type="text/javascript">
+			verificarDatos();
+		</script>
+	</ui:define>
+</ui:composition>

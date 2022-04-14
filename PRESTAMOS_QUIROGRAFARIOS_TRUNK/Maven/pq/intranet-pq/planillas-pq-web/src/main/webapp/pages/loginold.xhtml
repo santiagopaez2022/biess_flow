@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><ui:insert name="titulo">INGRESO SISTEMA</ui:insert>
+</title>
+<link rel="stylesheet" type="text/css" href="../css/iess_RES2.css" />
+<link rel="stylesheet" type="text/css" href="../css/pq.css" />
+</head>
+<body>
+<f:view>
+	<ui:insert name="encabezado">
+		<div id="cabecera">
+		<div class="contenedor_logo"></div>
+		<div class="contenedor_titulo" style=" width : 196px; height : 37px;"></div>
+		<div class="contenedor_topder">
+		<h:form id="linksEncabezado">
+			<!-- TOP (MENU SUPERIOR DERECHO)  -->
+			<a style="cursor: help" href="mailto:ayudapq@iess.gov.ec">Ayuda</a>
+			<b>|</b>
+			<a href="#" onclick="window.close()">Salir</a>
+			<rich:spacer width="10px" />
+		</h:form></div>
+		<div class="contenedor_topizq" />
+		<div id="fecha" class="contenedor_fecha"><h:outputText
+			value="#{hoy}">
+			<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" />
+		</h:outputText></div>
+		</div>
+		<div class="contenedor_titsistema">MODULO
+		</div>
+		<div id="cont_subtitulo"></div>
+	</ui:insert>
+
+	<div id="contenido" style="height: 580px;" align="center">
+
+	<form id="form1" method="post" action="j_security_check">
+	<table cellpadding="0" cellspacing="0" border="0" width="384px">
+		<tr>
+			<td width="54px" class="top_left"></td>
+			<td width="306" class="top_center">Ingreso al Sistema</td>
+			<td width="19" class="top_right"></td>
+		</tr>
+		<tr>
+			<td class="back_left" height="80px"></td>
+			<td>
+			<table border="0" width="100%">
+				<tr>
+					<td class="etiqueta">Cedula:</td>
+					<td><input type="text" name="j_username" class="normal" value="1703185569"/></td>
+				</tr>
+				<tr>
+					<td class="etiqueta">Clave:</td>
+					<td width="204"><input type="password" name="j_password" class="normal"  value="12345678"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center"><input
+						type="submit" name="Submit" value="Aceptar" Class="boton2" /></td>
+				</tr>
+			</table>
+			</td>
+			<td class="back_right"></td>
+		</tr>
+		<tr>
+			<td class="botoom_left"></td>
+			<td class="botoom_center"></td>
+			<td class="botoom_right"></td>
+		</tr>
+	</table>
+	</form>
+	</div>
+	<!-- principal -->
+	<!--<div id="pie"><hr/>#{etiquetas['copyright']}</div>-->
+</f:view>
+</body>
+</html>

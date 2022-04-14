@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="consultarDia2">
+			<a4j:region id="busqueda2">
+				<div><h:messages globalOnly="true"></h:messages> <f:subview
+					rendered="#{funcionario.cedula==null}">
+					<div class="mensajeError">#{errores['datos.sesion']}</div>
+					<br />
+				</f:subview> <f:subview rendered="#{funcionario.cedula!=null}">
+					<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+						cellpadding="0" style="width:100%;">
+						<rich:panel>
+							<f:facet name="header">#{titulos['busqueda']}</f:facet>
+							<h:panelGrid columns="6"
+								columnClasses="etiqueta,info,info,info,info">
+								<b>#{etiquetas['orden.numero']}</b>
+								<h:inputText value="#{ordenes.numeroOrden}" required="false" />
+								<rich:spacer width="20" />
+								<rich:spacer width="20" />
+								<rich:spacer width="20" />
+								<rich:spacer width="20" />
+								<b>#{etiquetas['periodo']} #{etiquetas['fecha.desde']}</b>
+								<a4j:outputPanel id="fechaD" layout="block">
+									<rich:calendar value="#{ordenes.fechaConsultaDesde}"
+										popup="true" required="false" datePattern="dd-MM-yyyy"
+										immediate="true" showApplyButton="false"
+										requiredMessage="#{errores['fecha.requerido']}"
+										enableManualInput="true" showFooter="false" cellWidth="15px"
+										cellHeight="22px">
+									</rich:calendar>
+								</a4j:outputPanel>
+								<b>#{etiquetas['fecha.hasta']}</b>
+								<a4j:outputPanel id="fechaH" layout="block">
+									<rich:calendar value="#{ordenes.fechaConsultaHasta}"
+										popup="true" required="false" datePattern="dd-MM-yyyy"
+										immediate="true" showApplyButton="false"
+										requiredMessage="#{errores['fecha.requerido']}"
+										enableManualInput="true" showFooter="false" cellWidth="15px"
+										cellHeight="22px">
+									</rich:calendar>
+								</a4j:outputPanel>
+								<rich:spacer width="20" />
+								<a4j:commandButton reRender="datosSaldos2,mensajes,fecha,detalleOrden"
+									action="#{ordenes.obtenerOrdenesFecha}"
+									value="#{botones['consultar']}" styleClass="boton" />
+								<rich:spacer width="20" />#{etiquetas['formato']}<rich:spacer width="20" />#{etiquetas['formato']}
+							</h:panelGrid>
+						</rich:panel>
+					</h:panelGrid>
+					<br />
+					<a4j:outputPanel id="mensajes">
+						<h:messages />
+						<rich:panel rendered="#{ordenes.error != null}">
+							<div class="mensajeInfo"><h:outputText
+								value="#{ordenes.error}" /><br />
+							</div>
+						</rich:panel>
+					</a4j:outputPanel>
+				</f:subview></div>
+			</a4j:region>
+		</h:form>
+		<br />
+		<h:form id="actualizar2">
+			<div><f:subview>
+				<a4j:outputPanel id="datosSaldos2">
+					<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+						cellpadding="0" style="width:100%;"
+						rendered="#{not empty ordenes.listaOrdenesPorAprobar}">
+						<rich:panel>
+							<f:facet name="header">#{titulos['ordenes.aprobar']}</f:facet>
+							<h:panelGrid columns="1" columnClasses="info" width="100%">
+								<h:panelGroup>
+									<rich:dataTable binding="#{ordenes.tablaOrdenesPorAprobar}"
+										var="item"	value="#{ordenes.listaOrdenesPorAprobar}" width="100%"
+										rendered="#{not empty ordenes.listaOrdenesPorAprobar}">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column>#{etiquetas['orden.prestamo.num']}</rich:column>
+												<rich:column>#{etiquetas['orden.numero']}</rich:column>
+												<rich:column>#{etiquetas['orden.factura']}</rich:column>
+												<rich:column>#{etiquetas['orden.cedula']}</rich:column>
+												<rich:column>#{etiquetas['prestamo.fecha']}</rich:column>
+												<rich:column>#{etiquetas['prestamo.valor']}</rich:column>
+												<rich:column>#{etiquetas['orden.ver']}</rich:column>
+												<rich:column>
+													<rich:spacer width="10px" />
+												</rich:column>
+												<rich:column>
+													<rich:spacer width="10px" />
+												</rich:column>
+												<rich:column>#{etiquetas['orden.motivo']}</rich:column>
+											</rich:columnGroup>
+										</f:facet>
+										<rich:column>
+											<h:outputText value="#{item.prestamo.prestamoPk.numpreafi}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.ocCodOrdCompra}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.numFactura}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.prestamo.numafi}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.prestamo.fecpreafi}">
+												<f:convertDateTime pattern="dd/MM/yy" />
+											</h:outputText>
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.prestamo.mntpre}">
+												<f:convertNumber pattern="$###,###.##" />
+											</h:outputText>
+										</rich:column>
+
+										<rich:column style="text-align:center">
+											<a4j:commandLink action="#{ordenes.verDetalle}"
+												reRender="detalleOrden">
+												<h:graphicImage value="/img/iconospq/plus_icon.jpg"
+													style="border:0; width : 26px; height : 22px;" />
+											</a4j:commandLink>
+										</rich:column>
+										<rich:column style="text-align:center">
+											<a4j:commandButton value="#{botones['aprobar']}"
+												action="#{ordenes.aprobarOrden}" styleClass="boton"
+												rendered="#{item.detalleCatalogo.id.dcCodigo == 'ENT'}"
+												onclick="if(!confirm('#{etiquetas['aprobar.confirmar']}#{item.ocCodOrdCompra}')){return false}else{this.disabled = true};"
+												reRender="datosSaldos2,detalleOrden,mensajes">
+											</a4j:commandButton>
+										</rich:column>
+										<rich:column style="text-align:center">
+											<a4j:commandButton value="#{botones['rechazar']}"
+												action="#{ordenes.rechazarSaldo}" styleClass="boton"
+												onclick="if(!confirm('#{etiquetas['rechazar.confirmar']}#{item.ocCodOrdCompra}')){return false}else{this.disabled = true};"
+												rendered="#{item.detalleCatalogo.id.dcCodigo == 'ENT'}"
+												reRender="datosSaldos2,detalleOrden, mensajes">
+											</a4j:commandButton>
+										</rich:column>
+										<rich:column style="width:190px; text-align:center;">
+											<h:selectOneMenu value="#{item.observacionRechazo}"
+												style="width:170px; ">
+												<f:selectItem itemLabel="Factura no corresponde"
+													itemValue="Factura no corresponde" />
+												<f:selectItem
+													itemLabel="Valor de prestamo no corresponde con el valor de la factura"
+													itemValue="Valor de prestamo no corresponde con el valor de la factura" />
+											</h:selectOneMenu>
+										</rich:column>
+									</rich:dataTable>
+								</h:panelGroup>
+							</h:panelGrid>
+						</rich:panel>
+						<br />
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</f:subview> <f:subview>
+				<a4j:outputPanel id="detalleOrden">
+					<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+						cellpadding="0" style="width:100%;"
+						rendered="#{ordenes.detalleOrden != null}">
+						<rich:panel>
+							<f:facet name="header">#{titulos['ordenes.detalle']}</f:facet>
+							<h:panelGrid columns="4"
+								columnClasses="etiqueta2,info,etiqueta2,info">
+								#{etiquetas['orden.nombres']}:  <h:outputText
+									value="#{ordenes.detalleOrden.nombres}" />
+								<rich:spacer />
+								<rich:spacer />
+								#{etiquetas['orden.prestamo.numero']}: <h:outputText
+									value="#{ordenes.detalleOrden.prestamo.prestamoPk.numpreafi}" />
+								#{etiquetas['orden.numero']}: <h:outputText
+									value="#{ordenes.detalleOrden.ocCodOrdCompra}" />
+								#{etiquetas['prestamo.valor']}: <h:outputText
+									value="#{ordenes.detalleOrden.prestamo.mntpre}">
+									<f:convertNumber pattern="$###,###.##" />
+								</h:outputText>
+								<rich:spacer />
+								<rich:spacer />
+								#{etiquetas['prestamo.seguro']}: 
+								<h:outputText value="#{ordenes.detalleOrden.prestamo.valsegsal}">
+									<f:convertNumber pattern="$###,###.##" />
+								</h:outputText>
+								#{etiquetas['orden.proveedor.valor']}:	<h:outputText
+									value="#{ordenes.detalleOrden.ocValor}">
+									<f:convertNumber pattern="$###,###.##" />
+								</h:outputText>
+								
+								#{etiquetas['orden.plazo']}:	<h:outputText
+									value="#{ordenes.detalleOrden.prestamo.plzmes}" />
+								#{etiquetas['orden.fec.confirm']}:	<h:outputText
+									value="#{ordenes.detalleOrden.fecConfirmacion}">
+									<f:convertDateTime pattern="dd/MM/yy" />
+								</h:outputText>
+								#{etiquetas['orden.valor.multa']}:	<h:outputText
+									value="#{ordenes.detalleOrden.valorMulta}" />
+								#{etiquetas['orden.valor.multa.fecha']}:	<h:outputText
+									value="#{ordenes.detalleOrden.fecPlazoPago}">
+									<f:convertDateTime pattern="dd/MM/yy" />
+								</h:outputText>
+							</h:panelGrid>
+							<h:panelGrid>
+								<rich:dataTable var="detalle" width="100%"
+									value="#{ordenes.detalleOrden.ordenDetalle}"
+									rendered="#{not empty ordenes.detalleOrden.ordenDetalle}" style=" width : 700px;">
+									<f:facet name="header">
+										<rich:columnGroup>
+											<rich:column>
+													#{etiquetas['orden.proveedor.ruc']}
+												</rich:column>
+											<rich:column>
+													#{etiquetas['orden.proveedor.nombre']}
+												</rich:column>
+											<rich:column>
+													#{etiquetas['orden.proveedor.valor']}
+												</rich:column>
+										</rich:columnGroup>
+									</f:facet>
+									<rich:column>
+										<h:outputText value="#{detalle.proveedor.prRuc}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{detalle.proveedor.prNombre}" />
+									</rich:column>
+									<rich:column style="text-align:right;">
+										<h:outputText value="#{detalle.valorParcial}" >
+											<f:convertNumber pattern="$###,###.##" />
+										</h:outputText>
+									</rich:column>
+								</rich:dataTable>
+							</h:panelGrid>
+						</rich:panel>
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</f:subview></div>
+		</h:form>
+	</ui:define>
+</ui:composition>

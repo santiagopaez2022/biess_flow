@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<script type="text/javascript" language="Javascript"
+			src="../../js/utilitarios.js" />
+
+		<!-- Filtros de consulta -->
+		<h:form id="consultarDia">
+			<a4j:region id="busqueda">
+				<div>
+					<h:messages globalOnly="true"></h:messages>
+					<f:subview rendered="#{funcionario.cedula==null}">
+						<div class="mensajeError">#{errores['datos.sesion']}</div>
+						<br />
+					</f:subview>
+					<f:subview rendered="#{funcionario.cedula!=null}">
+
+						<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+							cellpadding="0" style="width:100%;">
+
+							<!-- muestra los mensajse que se generen en el backin bien aprobacionbean -->
+							<a4j:outputPanel id="mensajes">
+								<h:messages />
+								<rich:panel
+									rendered="#{consultaAfilidoRegistroCivilBean.mensaje != null}">
+									<div class="mensajeError">
+										<h:outputText
+											value="#{consultaAfilidoRegistroCivilBean.mensaje}" />
+										<br />
+									</div>
+								</rich:panel>
+							</a4j:outputPanel>
+
+							<a4j:outputPanel id="mensajesok">
+								<rich:panel
+									rendered="#{consultaAfilidoRegistroCivilBean.okmensaje != null}">
+									<div class="mensajeOK">
+										<h:outputText
+											value="#{consultaAfilidoRegistroCivilBean.okmensaje}" />
+										<br />
+									</div>
+								</rich:panel>
+							</a4j:outputPanel>
+
+							<a4j:outputPanel id="panelDatos">
+							<rich:panel>
+
+								<f:facet name="header">#{titulos['busqueda']} </f:facet>
+
+								<br />
+								<h:outputText value="#{mensajes['consulta.informacion']}" />
+								<br />
+
+								<h:panelGrid columns="2" cellpadding="0" cellspacing="2"
+									columnClasses="etiqueta,info,info,info,info" styleClass="">
+
+									<b>(*) #{etiquetas['consulta.cedula']}:</b>
+									<h:inputText value="#{consultaAfilidoRegistroCivilBean.cedula}"
+										id="campoCedula" maxlength="10"
+										onkeypress="return permitirValores(event, 'num')"
+										onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+										validatorMessage="#{mensajes['tamanio.cedula']}">
+										<f:validateLength maximum="10" minimum="10" />
+									</h:inputText>
+
+									<b>(*) #{etiquetas['consulta.codigoDactilar']}:</b>
+									<h:inputText
+										value="#{consultaAfilidoRegistroCivilBean.codigoDactilar}"
+										id="campoDactilar" maxlength="10" styleClass="mayusculas" />
+
+									<b>(*) #{etiquetas['consulta.fechaExpedicion']}:</b>
+									<h:panelGroup>
+										<table border="0" cellpadding="0" cellspacing="2">
+											<tr>
+												<td colspan="2"><h:inputText id="anio" maxlength="4"
+														size="3" onkeypress="return permitirValores(event, 'num')"
+														onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+														value="#{consultaAfilidoRegistroCivilBean.anio}">
+													</h:inputText></td>
+												<td colspan="2"><h:inputText id="mes" maxlength="2"
+														size="1" onkeypress="return permitirValores(event, 'num')"
+														onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+														value="#{consultaAfilidoRegistroCivilBean.mes}">
+													</h:inputText></td>
+												<td colspan="2"><h:inputText id="dia" maxlength="2"
+														size="1" onkeypress="return permitirValores(event, 'num')"
+														onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+														value="#{consultaAfilidoRegistroCivilBean.dia}">
+													</h:inputText></td>
+											</tr>
+											<tr>
+												<td colspan="2"><h:outputText value="año"
+														style="font-size:10px;" /></td>
+												<td colspan="2"><h:outputText value="mes"
+														style="font-size:10px;" /></td>
+												<td colspan="2"><h:outputText value="día"
+														style="font-size:10px;" /></td>
+											</tr>
+										</table>
+									</h:panelGroup>
+
+									<a4j:commandButton
+										reRender="resultadosolicitud, mensajes, mensajesok, panelResultados, msg1, msg2, msg3, msg4"
+										action="#{consultaAfilidoRegistroCivilBean.consultarInformacion}"
+										value="#{botones['consultar']}" styleClass="boton"
+										status="cargandoconsulta" />
+
+									<a4j:commandButton
+										reRender="mensajes, mensajesok, panelDatos, panelResultados" ajaxSingle="true"
+										action="#{consultaAfilidoRegistroCivilBean.limpiar}"
+										value="#{botones['limpiar']}" styleClass="boton"/>
+
+									<a4j:status id="cargandoconsulta">
+										<f:facet name="start">
+											<rich:panel style="height:20px; border-width:0px;">
+												<h:graphicImage value="/img/conexion.gif" />
+												<h:outputText value="#{mensajes.espere}"></h:outputText>
+											</rich:panel>
+										</f:facet>
+									</a4j:status>
+
+								</h:panelGrid>
+
+							</rich:panel>
+							</a4j:outputPanel>
+						</h:panelGrid>
+
+					</f:subview>
+
+					<f:subview id="resultados">
+
+						<a4j:outputPanel id="panelResultados">
+
+							<rich:panel
+								rendered="#{consultaAfilidoRegistroCivilBean.mostrarInformacion}">
+
+								<f:facet name="header">#{titulos['informacion']} </f:facet>
+
+								<h:panelGrid columns="2">
+
+									<b>#{etiquetas['consulta.nombre']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.nombre}" />
+									<b>#{etiquetas['consulta.fechaNacimiento']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.fechaNacimiento}" />
+									<b>#{etiquetas['consulta.genero']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.genero}" />
+									<b>#{etiquetas['consulta.estadoCivil']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.estadoCivil}" />
+									<b>#{etiquetas['consulta.nacionalidad']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.nacionalidad}" />
+									<b>#{etiquetas['consulta.lugarNacimiento']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.lugarNacimiento}" />
+									<b>#{etiquetas['consulta.instruccion']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.instruccion}" />
+									<b>#{etiquetas['consulta.fechaDefuncion']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.fechaDefuncion}" />
+									<b>#{etiquetas['consulta.conyugue']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.conyugue}" />
+									<b>#{etiquetas['consulta.direccionDomiciliaria']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.direccionDomiciliaria}" />
+									<b>#{etiquetas['consulta.profesion']}:</b>
+									<h:outputText
+										value="#{consultaAfilidoRegistroCivilBean.profesion}" />
+									<b>#{etiquetas['consulta.codigoDactilar']}:</b>
+									<h:panelGroup>
+										<a4j:outputPanel id="msg1"
+											rendered="#{consultaAfilidoRegistroCivilBean.errorCodigoDactilar}">
+											<img src="../../img/iconospq/eliminar.png" />
+										</a4j:outputPanel>
+
+										<a4j:outputPanel id="msg2"
+											rendered="#{!consultaAfilidoRegistroCivilBean.errorCodigoDactilar}">
+											<img src="../../img/yes.png" />
+										</a4j:outputPanel>
+									</h:panelGroup>
+
+									<b>#{etiquetas['consulta.fechaExpedicion']}:</b>
+									<h:panelGroup>
+										<a4j:outputPanel id="msg3"
+											rendered="#{consultaAfilidoRegistroCivilBean.errorFechaExpedicion}">
+											<img src="../../img/iconospq/eliminar.png" />
+										</a4j:outputPanel>
+
+										<a4j:outputPanel id="msg4"
+											rendered="#{!consultaAfilidoRegistroCivilBean.errorFechaExpedicion}">
+											<img src="../../img/yes.png" />
+										</a4j:outputPanel>
+									</h:panelGroup>
+								</h:panelGrid>
+
+							</rich:panel>
+						</a4j:outputPanel>
+
+
+					</f:subview>
+				</div>
+			</a4j:region>
+		</h:form>
+		<br />
+	</ui:define>
+</ui:composition>

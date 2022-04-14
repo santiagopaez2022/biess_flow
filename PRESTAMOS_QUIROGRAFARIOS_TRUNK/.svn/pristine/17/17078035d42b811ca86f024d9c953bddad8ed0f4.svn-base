@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+		<ui:define name="contenido">
+			<h:form id="idForm">
+				<script type="text/javascript"> 
+					function inhabilitar(){ 
+					   	return false 
+					} 
+					document.oncontextmenu=inhabilitar 
+				</script>
+				<rich:panel header="#{labels.conozcacliente_lbl_informacion}">
+					<rich:messages />
+				
+					<h:panelGrid columns="1" columnClasses="label, value" >
+						<!-- <h:outputText value="#{conozcaCliente.informativo1}"
+						cellpadding="10" cellspacing="10" /> -->
+						<h:outputText value="#{conozcaCliente.ingresoInfoObligatorio}" />
+						<br />
+						<br />
+						<h:outputText value="#{conozcaCliente.informativo2}" />
+						<br />
+						<br />
+						<h:outputText value="#{conozcaCliente.informativo3}" />
+						<div class="navPanel" style="width: 100%;">
+							<a4j:commandButton style="float:right" action="next" value="Siguiente &gt;&gt;" styleClass="boton" actionListener="#{conozcaCliente.regresarConfirmacion}" />
+						</div>
+					</h:panelGrid>
+				</rich:panel>
+			</h:form>
+		</ui:define>
+
+</ui:composition>

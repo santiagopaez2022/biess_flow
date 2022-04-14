@@ -1,0 +1,91 @@
+planillas-pq-core-ejb
+
+Version: 1.0.0  (lÃ­nea base)
+
+=============================
+Version: 1.0.1
+Requerimiento: INC-1800
+Cambios: 	
+clase	ec.gov.iess.planillaspq.modelo.persistencia.reportes.EstadoERC.java	(M)
+Fecha: 16/06/2014
+	
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilaciÃ³n de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE	
+(C)	XML		pom.xml
+(C)	Eclipse	.project
+(C)	Eclipse	.classpath
+(C)	Eclipse	.settings
+(C)	Carpeta	src
+(C)	Carpeta	src\main
+(C)	Carpeta	src\main\resources
+(C)	Carpeta	src\main\java
+(C)	Carpeta	src\main\java\ec
+(C)	Carpeta	src\main\java\ec\gov
+(C)	Carpeta	src\main\java\ec\gov\iess
+(C)	Carpeta	src\main\java\ec\gov\iess\planillaspq
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\dao
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\modelo
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\storeprocedure
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\ComprobantePagoHistoricoDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\ComprobantePagoPlaDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\DividendosDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\DividendosHistoricoDao.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\dao\impl
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\PagoParcialDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\PlanillaDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\PlanillaDetalleDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\PlanillaDetalleHostDao.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\ComprobantePagoDaoPlaImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\ComprobantePagoHistoricoDaoImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\DividendosDaoImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\DividendosHistoricoDaoImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\PagoParcialDaoImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\PlanillaDaoImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\PlanillaDetalleDaoImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\dao\impl\PlanillaDetalleHostDaoImpl.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\ComprobantePagoDetalle.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\ComprobantePagoHistorico.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\ComprobantePagoPla.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\Dividendos.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\DividendosHistorico.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\PagoParcial.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\PlanillaDetalleHost.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\PlanillaPrestamosDetalle.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\Planillas.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\reportes
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\ComprobantePagoDetallePK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\ComprobantePagoHistoricoPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\ComprobantePagoPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\DividendosHistoricoPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\DividendosPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\PagoParcialPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\PlanillaDetalleHostPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\PlanillaPrestamosDetallePK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\pk\PlanillasPK.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\modelo\persistencia\reportes\EstadoERC.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\AnulaPlanillaSpLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\AnulaPlanillaSpRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\CambioEstadoComprobanteParAnuSpLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\CambioEstadoComprobanteSpLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\CambioEstadoComprobanteSpRemote.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\storeprocedure\impl
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\impl\AnulaPlanillaSpImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\impl\CambioEstadoComprobanteParAnuSpImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\storeprocedure\impl\CambioEstadoComprobanteSpImpl.java
+(C)	Paquete	src\main\resources\META-INF
+(C)	XML		src\main\resources\META-INF\persistence.xml
+
+
+========*******************************************************************============
+Version: 2.0.1
+Requerimiento: INC-2794 / Implementación de Requerimiento logs de auditoria-Proceso de Préstamos Quirografarios
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase	    src/main/java/ec/gov/iess/planillaspq/dao/impl/ComprobantePagoDaoPlaImpl.java	      (M)
+Interface	src/main/java/ec/gov/iess/planillaspq/dao/ComprobantePagoPlaDao.java	              (M)
+Clase	    src/main/java/ec/gov/iess/planillaspq/modelo/persistencia/ComprobantePagoPla.java	  (M)
+	

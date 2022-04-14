@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+	#{titulos['depuracion.inicio']}
+	</ui:define>
+	<ui:define name="contenido">		
+		<h:panelGrid columns="1" width="100%">
+
+			<a4j:form>
+				<a4j:outputPanel layout="none">
+				
+				<f:subview>
+					<rich:panel bodyClass="rich-panel-body" headerClass="rich-panel-header" style="panel">
+						<f:facet name="header">
+					#{titulos['ajustehost']}
+						</f:facet>
+					<fieldset style="sizefielsdet">
+						<legend><h:outputText value="#{titulos['ingresodatos']}:" styleClass="etiqueta3"/></legend>
+					<rich:spacer height="10"  width="100%"/>
+						<table width="100%">
+						  <tr>
+						    <td width="15%">&nbsp;</td>
+						    <td width="70%"><table width="100%"  border="0">
+						      <tr>
+						        <td width="25%"><h:outputText value="#{etiquetas.ruc}" styleClass="etiqueta"/></td>
+						        <td width="25%">
+						        	<h:inputText id="ruc" value="#{planillahost.ruc}"  size="20" maxlength="13">
+										
+									</h:inputText>
+								</td>
+						        <td width="50%">
+						        	<a4j:outputPanel ajaxRendered="true">										
+									</a4j:outputPanel>
+						        </td>
+						      </tr>
+						      <tr>
+						        <td>
+						        	<h:outputText value="#{etiquetas.sucursal}" styleClass="etiqueta"/>
+								</td>
+						        <td>
+						        	<h:inputText id="suc" value="#{planillahost.suc}"   size="20" maxlength="4"/>
+								</td>
+						        <td>	
+						        	<a4j:outputPanel ajaxRendered="true">										
+									</a4j:outputPanel>
+								</td>
+						      </tr>
+						      <tr>
+						        <td>
+						        	<h:outputText value="#{etiquetas.anio}" styleClass="etiqueta"/>
+								</td>
+						        <td>
+						        	<h:inputText id="txtAnio" value="#{planillahost.anio}" size="20" maxlength="4" required="true" requiredMessage="#{mensajes['campo.requerido']}" onkeypress="return isNumberKey(event)" />
+						        </td>
+						        <td>
+									<a4j:outputPanel ajaxRendered="true">
+										<h:message errorClass="error" for="txtAnio" />
+									</a4j:outputPanel>      
+						        </td>
+						      </tr>
+						      <tr>
+						        <td>
+									<h:outputText value="#{etiquetas.mes}" styleClass="etiqueta"/>
+						        </td>
+						        <td>
+									<h:selectOneMenu value="#{planillahost.mes}" required="true" requiredMessage="#{mensajes['campo.requerido']}">
+										<f:selectItems  value="#{planillahost.meses}"/>
+									</h:selectOneMenu>        
+						        </td>
+						        <td>
+									<a4j:outputPanel ajaxRendered="true">
+										<h:message errorClass="error" for="mes" />
+									</a4j:outputPanel>						
+						        </td>
+						      </tr>
+						    </table></td>
+						    <td width="15%">&nbsp;</td>
+						  </tr>
+						</table>				
+						<div align="center">
+							<a4j:outputPanel id="errorConsulta">
+								<rich:panel id="exipla" rendered="#{planillahost.existeplanilla!=null}">
+									<div class="requerido"> <h:outputText
+										value="#{planillahost.existeplanilla}" styleClass="error" /></div>
+								</rich:panel>
+								<br />
+							</a4j:outputPanel>							
+							<a4j:commandButton id="botonGenerar"
+							action="#{planillahost.ConsultarPlanilla}" 
+							value="#{botones['consultar.planilla']}"
+							styleClass="boton1"
+							onclick="javascript:Richfaces.showModalPanel('panelPopUpGenerar');"
+							oncomplete="if (#{planillahost.verPopUpGenerar==true}) javascript:Richfaces.hideModalPanel('panelPopUpGenerar');" 
+							reRender="errorConsulta"/>
+							
+							<h:commandButton action="#{planillahost.Salir}" value="#{botones['cancelar']}" styleClass="boton1" immediate="true"/>
+						</div>	
+					</fieldset>
+					
+				</rich:panel>
+				</f:subview>
+			</a4j:outputPanel>
+		</a4j:form>
+		<rich:modalPanel id="panelPopUpGenerar" width="200" height="110"
+			resizeable="false" moveable="false">
+			<f:facet name="header">
+				<h:outputText value="#{mensajes['espere']}" />
+			</f:facet>
+			<a4j:form>
+				<div align="center"><h:panelGroup>
+					<h:graphicImage value="/img/conexion.gif" />
+					<rich:spacer width="10px" />
+					<b>#{mensajes['espere.mensaje']}</b>
+				</h:panelGroup></div>
+			</a4j:form>
+		</rich:modalPanel>
+	</h:panelGrid>
+
+	</ui:define>
+</ui:composition>

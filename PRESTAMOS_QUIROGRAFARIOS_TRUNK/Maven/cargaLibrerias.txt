@@ -1,0 +1,4 @@
+﻿mvn install:install-file -Dfile=D:\BRANCH_INC-2631\librerias\com.ibm.mq.jar -DgroupId=com.ibm -DartifactId=com.ibm.mq -Dversion=5.3.07 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\BRANCH_INC-2631\librerias\com.ibm.mqjms.jar -DgroupId=com.ibm -DartifactId=com.ibm.mqjms -Dversion=5.3.07 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\BRANCH_INC-2631\librerias\com.ibm.mq.jmqi.jar -DgroupId=com.ibm -DartifactId=com.ibm.mq.jmqi -Dversion=5.3.07 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\BRANCH_INC-2631\librerias\BiessShopWSClient.jar -DgroupId=ec.fin.biess -DartifactId=BiessShopWSClient -Dversion=2.0.0 -Dpackaging=jar

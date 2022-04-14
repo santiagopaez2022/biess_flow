@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/impresionFormulario.xhtml">
+
+	<ui:define name="contenido">
+		<rich:panel styleClass="errorPanel"
+			rendered="#{seguimientoCredito.msjError!=null}">
+			<h:outputText value="#{seguimientoCredito.msjError}"></h:outputText>
+		</rich:panel>
+
+		<a4j:outputPanel id="pnlPrestamo">
+
+			<a4j:outputPanel id="pnlDatosPrestamo">
+					<rich:panel id="pnlDatosPrestamoFAT" styleClass="panel"
+						headerClass="pheader" bodyClass="pbody">
+						<img src="../../files/images/content/Biess-Ecuador.png" />
+						<h:outputText id="outputTextFAT"
+							value="#{concesionCredito.textoFAT}" escape="false" />
+					</rich:panel>
+
+			</a4j:outputPanel>
+
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<h:panelGrid columns="2" styleClass="panelInvisible"
+					id="panelGridBotones">
+					<input type="button" class="botonbarra" 
+							value="#{labels['button.imprimir']}" id="imprimir"
+							onclick="window.print();" />
+							
+					<input type="button" class="botonbarra"
+						value="#{labels['button.cerrar']}" id="cerrar"
+						onclick="window.close();" />
+				</h:panelGrid>
+			</rich:panel>
+
+		</a4j:outputPanel>
+
+	</ui:define>
+</ui:composition>

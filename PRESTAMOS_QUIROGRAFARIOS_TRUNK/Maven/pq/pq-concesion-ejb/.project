@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>pq-concesion-ejb</name>
+  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>codigo-seguro</project>
+    <project>biess-util</project>
+    <project>creditos-pq-core-ejb</project>
+    <project>historia-laboral-ejb</project>
+    <project>biess-client-listas-observados-ejb</project>
+    <project>conozca-su-cliente-ejb</project>
+    <project>utilitarios-genericos</project>
+    <project>cuenta-bancaria-ejb</project>
+    <project>fondos-reserva-ejb</project>
+    <project>biess-client-servicios-pq-ejb</project>
+    <project>consolidado-ejb</project>
+    <project>commons-iess</project>
+    <project>logging-ejb</project>
+    <project>security-beans</project>
+    <project>pensiones-ejb</project>
+    <project>buro-credito-ejb</project>
+    <project>biess-client-consulta-prestacion-ejb</project>
+    <project>biess-client-consulta-snap-ejb</project>
+    <project>cliente-ws-snap-servicios</project>
+    <project>cesantia-ejb</project>
+    <project>biess-client-general-ejb</project>
+    <project>fr-cuenta-individual-ejb</project>
+    <project>cliente-ws-registro-civil</project>
+    <project>core-biess-ejb</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.m2e.core.maven2Builder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.hibernate.eclipse.console.hibernateBuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.m2e.core.maven2Nature</nature>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.hibernate.eclipse.console.hibernateNature</nature>
+  </natures>
+</projectDescription>

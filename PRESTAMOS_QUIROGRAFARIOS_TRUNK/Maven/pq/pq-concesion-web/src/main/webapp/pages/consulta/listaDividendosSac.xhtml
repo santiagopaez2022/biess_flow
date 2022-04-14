@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+
+	<rich:dataTable var="dividendo" id="#{idListaDividendos}"
+		value="#{listaExigibles}" styleClass="dt_panel"
+		headerClass="dt_header" rowClasses="prow1,prow2">
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Estado del dividendo</f:facet>
+			<h:outputText value="#{dividendo.estado}">
+				<f:converter converterId="estadoPrestamoPQConverter" />
+			</h:outputText>
+		</rich:column>
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Cuota</f:facet>
+			<h:outputText value="#{dividendo.numeroCuota}" />
+
+		</rich:column>
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Periodo</f:facet>
+			<h:outputText value="#{dividendo.fechaVencimiento}">
+						<f:convertDateTime pattern="dd-MMM-yyyy" />
+			</h:outputText>
+		</rich:column>
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Capital Amortizado</f:facet>
+			<h:outputText value="#{dividendo.valorCapital}">
+				<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+					type="currency" />
+			</h:outputText>
+		</rich:column>
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Interés</f:facet>
+			<h:outputText value="#{dividendo.montoInteres}">
+				<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+					type="currency" />
+			</h:outputText>
+		</rich:column>
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Interés de Mora</f:facet>
+			<h:outputText value="#{dividendo.montoMora}">
+				<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+					type="currency" />
+			</h:outputText>
+		</rich:column>
+
+		<rich:column style="text-align:center;">
+			<f:facet name="header">Total</f:facet>
+			<h:outputText value="#{dividendo.valorDividendo}">
+				<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+					type="currency" />
+			</h:outputText>
+		</rich:column>
+
+		<rich:column style="text-align:center;" rendered="#{muestraCheck}">
+			<f:facet name="header">Seleccionar</f:facet>
+
+			<h:selectBooleanCheckbox
+				value="#{creditoAccion.dividendosSacCheck[dividendo]}"
+				disabled="#{creditoAccion.habilitaSeleccionDividendo}"
+				valueChangeListener="#{creditoAccion.sumarPagosSeleccionados}"
+				immediate="true">
+				<a4j:support event="onchange" reRender="#{renderIds}" />
+				<f:attribute name="dividendoSelect" value="#{dividendo}" />
+			</h:selectBooleanCheckbox>
+		</rich:column>
+
+		<f:facet name="footer">
+			<a4j:outputPanel ajaxRendered="true">
+
+				<rich:columnGroup>
+					<rich:column colspan="6">TOTAL A PAGAR:</rich:column>
+					<rich:column>
+						<h:outputText id="#{idValorTotalPago}"
+							value="#{sumatoriaDividendos}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+					</rich:column>
+				</rich:columnGroup>
+			</a4j:outputPanel>
+		</f:facet>
+
+	</rich:dataTable>
+
+
+
+</ui:composition>

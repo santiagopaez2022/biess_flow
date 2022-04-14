@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="com.sample" xmlns="http://drools.org/drools-3.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:schemaLocation="http://drools.org/drools-3.0 drools-3.0.xsd">
+
+	<import name="java.util.HashMap" />
+	<import name="org.drools.*" />
+	<import name="java.lang.String" />
+	<import name="java.lang.Boolean" />
+	<import name="java.util.Date" />
+	<import name="ec.gov.iess.creditos.pq.modelo.Requisito" />
+	<import name="ec.gov.iess.consolidado.modelo.ResumenConsolidado" />
+	<import name="ec.gov.iess.creditos.pq.modelo.Precalificacion" />
+	
+	<function return-type="boolean" name="esPensionista">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="resumenConsolidado"
+			type="ResumenConsolidado" />
+		<parameter identifier="prestacionesJubilado"
+			type="String" />	
+		<body>
+		Requisito rq = new Requisito();
+		rq.setDescripcion("VALIDACION DE QUE SEA PENSIONISTA");
+
+		boolean esPensionista = resumenConsolidado.getEsPensionista()
+				.booleanValue();
+		if (esPensionista) {
+			rq.setAprobado(true);
+			rq.setObservacion("ES PENSIONISTA DE " +  prestacionesJubilado);
+		} else {
+			rq.setAprobado(false);
+			rq.setObservacion("NO ES PENSIONISTA DEL IESS");
+		}
+
+		precalificacion.getRequisitos().add(rq);
+
+		return esPensionista;
+		</body>
+	</function>
+
+	<!--+
+		| Valida si es pensionista
+		+-->
+	<rule name="VALIDAR SI ES PENSIONISTA">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='resumenConsolidado'
+				object-type='ResumenConsolidado' />
+			<column identifier='prestacionesJubilado'
+				object-type='String' />	
+			<eval>
+				!esPensionista(precalificacion,resumenConsolidado,prestacionesJubilado)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>	
+
+
+</package>

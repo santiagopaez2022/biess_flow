@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/impresion.xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>
+		<ui:insert name="titulo">
+			<h:outputText value="#{titulos['sistema.titulo']}" />
+		</ui:insert>
+	</title>
+	<link rel="stylesheet" type="text/css"
+		href="${facesContext.externalContext.request.contextPath}/css/biess.css" />
+	</head>
+	<ui:define name="contenido">
+		<rich:panel styleClass="errorPanel" 
+			rendered="#{seguimientoCredito.msjError!=null}">
+			<h:outputText value="#{seguimientoCredito.msjError}"></h:outputText>
+		</rich:panel>
+		<!--
+			Ricardo Tituana: INC-5780
+			* Se mejora el estilo de presentacion
+			* Para concesion, campo  valor = valorTransferido
+			* Para novacion, campo  valor = valorTransferido - valliqnov
+		-->		
+		<a4j:outputPanel id="pnlPrestamo">
+			<rich:panel id="pnlDatosPrestamo" styleClass="panel"
+					headerClass="pheader" bodyClass="pbody">
+					<f:facet name="header">
+					#{labels['seguimiento.label.titulo.datosprestamo']}
+					</f:facet>
+					<h:panelGrid columns="2" styleClass="panelInvisible">
+						<h:outputText value="#{labels['seguimiento.label.cedulaafiliado']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.cedula}" />
+						
+						<h:outputText value="#{labels['seguimiento.label.nombreafiliado']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.nombre}" />
+						
+						<h:outputText value="#{labels['seguimiento.label.numeroprestamo']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.numeroPrestamo}" />
+						
+						<h:outputText value="#{labels['seguimiento.label.fechaprestamo']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.fechaRegistroPrestamo}" />
+						
+						<h:outputText value="#{labels['seguimiento.label.banco']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.nombreInstitucionFinanciera}" />
+						
+						<h:outputText value="#{labels['seguimiento.label.cuenta']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.numeroCuentaBancaria}" />			
+						
+						<h:outputText value="#{labels['seguimiento.label.tipocuenta']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.tipoCuentaBancaria}" />
+						
+						<h:outputText value="#{labels['seguimiento.label.valor']}:" rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}" />						
+						<h:outputText 
+							value="#{seguimientoCredito.detallePrestamo.valorTransferido}"
+							rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency"
+								rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}" />
+						</h:outputText>
+						
+						<h:outputText value="#{labels['seguimiento.label.valor']}:" rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}" />
+						<h:outputText
+							value="#{seguimientoCredito.detallePrestamo.valorTransferido - consultaCredito.prestamoBean.prestamo.valliqnov}"
+							rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+						
+						<h:outputText value="#{labels['seguimiento.label.estadoprestamo']}:" />
+						<h:outputText value="#{seguimientoCredito.detallePrestamo.estadoActualPrestamo}" />
+					</h:panelGrid>
+			</rich:panel>
+			<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="#{seguimientoCredito.detallePrestamo!=null}" >			
+				<rich:panel styleClass="panel" headerClass="pheader"
+					bodyClass="pbody" rendered="#{seguimientoCredito.detalleSeguimientoCreditoBeanList!=null}">
+					<f:facet name="header">
+						#{labels['seguimiento.label.titulo.detalleseguimientoprestamo']}
+					</f:facet>
+					<rich:dataTable id="tablaDetalleSeguimientoCreditos" var="detalleSeguimiento"
+						value="#{seguimientoCredito.detalleSeguimientoCreditoBeanList}" styleClass="tablesinside"
+						headerClass="dt_header" rowClasses="prow1,prow2"
+						rendered="#{not empty seguimientoCredito.detalleSeguimientoCreditoBeanList}">
+						<rich:column style="text-align:center;">
+							<f:facet name="header">#{labels['seguimiento.label.titulo.fechacambioestado']}</f:facet>
+							<h:outputText value="#{detalleSeguimiento.fechaCambioEstado}" />
+						</rich:column>
+						<rich:column style="text-align:center;">
+							<f:facet name="header">#{labels['seguimiento.label.titulo.estado']}</f:facet>
+							<h:outputText value="#{detalleSeguimiento.estado}" />
+						</rich:column>
+						<rich:column style="text-align:center;">
+							<f:facet name="header">#{labels['seguimiento.label.titulo.observacion']}</f:facet>
+							<h:outputText value="#{detalleSeguimiento.observacion}" />
+						</rich:column>
+					</rich:dataTable>
+					<br />
+					<h:panelGrid columns="2"
+						styleClass="panelInvisible" id="pnlBotones2">
+						<input type="button" class="botonbarra" 
+							value="#{labels['button.imprimir']}" id="imprimir2"
+							onclick="window.print();" />
+						<input type="button" class="botonbarra"
+							value="#{labels['button.cerrar']}" id="cerrar"
+							onclick="window.close();" />
+					</h:panelGrid>
+				</rich:panel>		
+			</rich:panel>
+		</a4j:outputPanel>				
+	</ui:define>
+</ui:composition>

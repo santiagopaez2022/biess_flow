@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/base-panel-menu-vertical.xhtml">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+			<h:outputText value="#{labels['titulo.comprobante.pago.individual']}" rendered="#{(not creditoAccion.esSaldeb) and (not  creditoAccion.esConsultaComprobante)}"/>
+			<h:outputText value="#{labels['titulo.comprobante.saldo.debito']}" rendered="#{(creditoAccion.esSaldeb) and (not  creditoAccion.esConsultaComprobante)}"/>
+			<h:outputText value="#{labels['titulo.consulta.comprobantes.pago']}" rendered="#{creditoAccion.esConsultaComprobante}"/>
+		</div>
+		<br />
+
+		<rich:panel id="uiOK" styleClass="okayPanel"
+			rendered="#{creditoAccion.pagindGenerado and not creditoAccion.esSaldeb}">
+			<h:outputText value="#{messages['generacion.pagind.satisfactorio']}"
+				escape="false"></h:outputText>
+		</rich:panel>
+		<rich:panel id="uiOKSaldeb" styleClass="okayPanel"
+			rendered="#{creditoAccion.pagindGenerado and creditoAccion.esSaldeb}">
+			<h:outputText value="#{messages['generacion.saldeb.satisfactorio']}"
+				escape="false"></h:outputText>
+		</rich:panel>
+
+		<br />
+		
+		<!-- Se aumenta el mensagge en el comprobante -->
+		<br />
+		  <rich:panel id="uiMensage" styleClass="notePanelBottom"
+			rendered="#{(creditoAccion.prestamoSeleccionado.prestamoPk.codprecla == 20 || creditoAccion.prestamoSeleccionado.prestamoPk.codprecla == 22) and (not creditoAccion.esSaldeb) and (not creditoAccion.esConsultaComprobante) }">
+			<b>
+			<h:outputText value="#{messages['mensaje.comprobante']}"
+				escape="false"></h:outputText>
+		    </b>
+		  </rich:panel>
+		<br />
+
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="${datos.solicitante!=null}">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			<h:panelGrid columns="2" styleClass="panelInvisible">
+				<h:outputLabel value="#{labels.cedula}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{datos.solicitante.datosPersonales.cedula}" />
+
+				<h:outputLabel value="#{labels.nombresApellidos}:" />
+				<h:outputLabel style="font-weight:bold"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+
+			</h:panelGrid>
+
+		</rich:panel>
+
+		<br />
+		<div align="center"><h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					<h:outputText value="#{labels['titulo.comprobantes.pago.saldeb']}" rendered="#{creditoAccion.esSaldeb and (not  creditoAccion.esConsultaComprobante)}"/>
+					<h:outputText value="#{labels['titulo.comprobantes.pago']}" rendered="#{(not creditoAccion.esSaldeb) and (not  creditoAccion.esConsultaComprobante)}"/>
+					<h:outputText value="#{labels['titulo.consulta.comprobantes.lista']}" rendered="#{creditoAccion.esConsultaComprobante}"/>
+		
+				</f:facet>
+
+				<rich:dataTable var="comprobante"
+					value="#{creditoAccion.comprobantesDePago}" styleClass="dt_panel"
+					headerClass="dt_header" rowClasses="prow1,prow2">
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{labels['comprobante.tipo']}</f:facet>
+						<h:outputText value="#{comprobante.tipoComprobante.descripcion}">
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{labels['comprobante.numero']}</f:facet>
+						<h:outputText value="#{comprobante.pk.codComPagAfi}">
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{labels['comprobante.fecha.generacion']}</f:facet>
+						<h:outputText value="#{comprobante.fechageneracionComprobante}">
+							<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" timeZone="GMT-5" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:right;">
+						<f:facet name="header">#{labels['comprobante.valor.total']}</f:facet>
+						<h:outputText value="#{comprobante.valorTotalComprobante}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">
+							<rich:spacer />
+						</f:facet>
+						<!-- RT: se cambio este boton innecesariamente y se le devolvio al estado anterior INC-5654 -->
+						<a4j:commandButton
+							action="#{creditoAccion.seleccionarComprobante}"
+							value="#{labels['button.ver']}" styleClass="botonbarra"
+							oncomplete="window.open('comprobantePagoDividendos.jsf','_blank','scrollbars=yes,height=800,width=800,top=150,left=300');"></a4j:commandButton>
+					</rich:column>
+				</rich:dataTable>
+
+			</rich:panel>
+			<br />
+			<h:commandButton action="consultaCreditos"
+				value="#{labels['button.cancelar']}" styleClass="botonbarra" immediate="true"></h:commandButton>
+		</h:form></div>
+	</ui:define>
+</ui:composition>

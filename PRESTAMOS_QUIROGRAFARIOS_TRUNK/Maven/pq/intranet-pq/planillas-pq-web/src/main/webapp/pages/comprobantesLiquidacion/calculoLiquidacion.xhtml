@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{titulos['precalculo.liquidacion']}</div>
+
+		<rich:panel styleClass="messagePanel">
+			<h:outputText value="#{etiquetas['liquidacion.mensaje.liquidar']}" />
+			<rich:spacer width="5" />
+			<h:outputText value="#{etiquetas['liquidacion.mensaje.cancelar']}" />
+		</rich:panel>
+		
+
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="${creditoAccion.datos.solicitante!=null}">
+			<f:facet name="header">
+				#{titulos['datos.generales']}
+			</f:facet>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{etiquetas['comp.liq.cedula']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.datos.solicitante.datosPersonales.cedula}" />
+
+				<h:outputLabel value="#{etiquetas['comp.liq.nombresApellidos']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.datos.solicitante.datosPersonales.apellidosNombres}" />
+
+				<h:outputLabel value="#{etiquetas['credito.prestamo']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.clasePrestamo.descripcion}" />
+				<h:outputLabel value="#{etiquetas['credito.numero']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.prestamoPk.numpreafi}" />
+
+				<h:outputLabel value="#{etiquetas['credito.fecha.inicio']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.calculoLiquidacion.fechaInicial}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{etiquetas['credito.fecha.fin']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.calculoLiquidacion.fechaFinal}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{etiquetas['credito.monto.abrev']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.calculoLiquidacion.montoPrestamo}">
+					<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+						type="currency" />
+				</h:outputText>
+
+			</h:panelGrid>
+
+		</rich:panel>
+
+		
+		<div align="center"><h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody" style="width:500px">
+				<f:facet name="header">
+					#{titulos['subtotal.liquidacion']}
+				</f:facet>
+				<table class="recuadroValores">
+					<tr>
+						<th>#{etiquetas['liquidacion.valor.dividendos']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.capitalTotal}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText></td>
+					</tr>
+					<tr>
+						<th>#{etiquetas['liquidacion.valor.interes.mora']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.interesPorMora}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText></td>
+					</tr>
+					<tr>
+						<th>#{etiquetas['liquidacion.valor.favor.seguro.saldos']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.seguroSaldos}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText></td>
+					</tr>
+					<tr>
+						<th>#{etiquetas['liquidacion.total.cancelar']}:</th>
+						<td><h:outputText
+							value="#{creditoAccion.calculoLiquidacion.valorPorCancelar}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText></td>
+					</tr>
+				</table>
+			</rich:panel>
+			<br />
+			<h:commandButton
+				onclick="if(!confirm('Se va a proceder a generar la liquidación anticipada del Préstamo Nº: #{creditoAccion.prestamoSeleccionado.prestamoPk.numpreafi}. ¿Está de acuerdo?”:')){this.disabled=false;return false};"
+				action="#{creditoAccion.liquidar}"
+				value="#{botones['liquidar']}" styleClass="boton1"></h:commandButton>
+			<rich:spacer />
+			<rich:spacer />
+			<h:commandButton action="consultarCreditos"
+				value="#{botones['cancelar']}" styleClass="boton1" immediate="true"></h:commandButton>
+		</h:form></div>
+	</ui:define>
+</ui:composition>

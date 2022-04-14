@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel.xhtml">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['titulo.roles.seleccion']}</h1>
+
+	<!-- <a4j:keepAlive beanName="roles"></a4j:keepAlive> -->
+	
+		<h:form id="formRolesSel">
+			<a4j:jsFunction action="#{roles.initRoles}" name="obtenerRoles"
+				status="cargandoRoles" reRender="pnlRoles"></a4j:jsFunction>
+
+			<a4j:outputPanel id="pnlRoles">
+				<rich:panel id="pnlProductos" rendered="#{roles.cargado}" style="width:100%;">
+					<rich:panel id="rchPnlError" styleClass="errorPanel"
+						rendered="#{!empty roles.errorMsg}">
+						#{roles.errorMsg}
+					</rich:panel>				
+
+				    <div id="rolcontainer">
+				        <div class="rol">
+				          <div class="contentpadding">
+				            <p>
+								<h:commandLink action="#{roles.seleccionaRolAfiliado}" disabled="#{!roles.habilitarAfi}"
+								 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+									<img src="${facesContext.externalContext.request.contextPath}/files/images/content/icon-afiliado.png" />
+								</h:commandLink>				            
+							</p>
+				            <h4>
+								<h:commandLink action="#{roles.seleccionaRolAfiliado}" disabled="#{!roles.habilitarAfi}"
+									value="Afiliado"
+									 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >								
+								</h:commandLink>				            
+				            </h4>
+				          </div>
+				        </div>
+				        <div class="rol">
+				          <div class="contentpadding">
+				            <p>
+								<h:commandLink action="#{roles.seleccionaRolJubilado}" disabled="#{!roles.habilitarJub}"
+								 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+									<img src="${facesContext.externalContext.request.contextPath}/files/images/content/icon-jubilado.png" />
+								</h:commandLink>				            
+				            </p>
+				            <h4>
+								<h:commandLink action="#{roles.seleccionaRolJubilado}" disabled="#{!roles.habilitarJub}"
+									value="Jubilados - Pensionista Viudez" styleClass="txt_producto"
+									 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >								
+								</h:commandLink>
+							</h4>
+				          </div>
+				        </div>
+				        <div class="rol" style="margin-right:0;">
+				          <div class="contentpadding">
+				            <p>
+								<h:commandLink action="#{roles.seleccionaRolZafrero}" disabled="#{!roles.habilitarZafrero}"
+								 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+									<img src="${facesContext.externalContext.request.contextPath}/files/images/content/icon-zafrero.png" />
+								</h:commandLink>					            
+							</p>
+				            <h4>
+								<h:commandLink action="#{roles.seleccionaRolZafrero}" disabled="#{!roles.habilitarZafrero}"
+									value="Zafrero Temporal" styleClass="txt_producto"
+									 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >								
+								</h:commandLink>
+							</h4>
+				          </div>
+				        </div>
+				      </div>
+					
+				</rich:panel>
+			</a4j:outputPanel>
+		</h:form>
+ <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+		<script type="text/javascript">
+		obtenerRoles();
+	</script>
+	</ui:define>
+</ui:composition>

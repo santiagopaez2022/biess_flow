@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+			<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/conozcasucliente.css" />
+			<script type="text/javascript" src="${facesContext.externalContext.request.contextPath}/js/validador.js" />
+			<script type="text/javascript"> 
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar 
+			</script>
+
+			<rich:panel style="width: 100%;">
+				<h:panelGrid columns="1" style="width: 100%;">
+					<rich:panel header="#{labels.conozcacliente_lbl_datos_extranjeros}">
+						<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+							<f:facet name="header">
+								<h:outputText value="Entered Data Status:"></h:outputText>
+							</f:facet>
+							<f:facet name="infoMarker">
+								
+							</f:facet>
+							<f:facet name="errorMarker">
+								
+							</f:facet>
+						</rich:messages>
+						
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+						
+							<h:outputText value="#{labels.conozcacliente_ext_num_pass}:" />
+							<span style="color: red">*</span>
+							<h:inputText value="#{conozcaCliente.detalleCliente.pasaporte}" maxlength="25" required="true" 
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_ext_num_pass}" />
+
+							<h:outputText value="#{labels.conozcacliente_ext_estado_migratorio}:">
+							</h:outputText>
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuEstadoMigratorio" value="#{conozcaCliente.detalleCliente.estadoMigratorio}" styleClass="ui-selectonemenu"
+								required="true" style="width: 100%;" 
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_ext_estado_migratorio}">
+								<f:selectItems value="#{conozcaCliente.listaEstadoMigratorio}" />
+								<a4j:support event="onchange" process="selectOneMenuEstadoMigratorio" reRender="campoOblig" action="#{conozcaCliente.mostrarCampoObligatorio}"
+									ajaxSingle="true"></a4j:support>
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_ext_fec_exp_pas}:" />
+							<span style="color: red">*</span>
+							<rich:calendar id="calFecExpPas" value="#{conozcaCliente.detalleCliente.fechaExpedicionPasaporte}" pattern="dd-MM-yyyy" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_ext_fec_exp_pas}" locale="es" navigator="true"
+								yearRange="c-100:c" >
+							</rich:calendar>
+							
+							<h:outputText value="#{labels.conozcacliente_ext_fec_cad_pas}:" />
+							<span style="color: red">*</span>
+							<rich:calendar id="calFecCadPas" value="#{conozcaCliente.detalleCliente.fechaCaducidadPasaporte}" pattern="dd-MM-yyyy" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_ext_fec_cad_pas}" locale="es" navigator="true"
+								yearRange="c-100:c" >
+							</rich:calendar>
+							
+							<h:outputText value="#{labels.conozcacliente_ext_fec_ing}:" />
+							<a4j:outputPanel ajaxRendered="true">
+								<h:panelGrid id="campoOblig" rendered="#{conozcaCliente.mostrarObligatorio}">
+									<span style="color: red">*</span>
+								</h:panelGrid>
+							</a4j:outputPanel>
+							<rich:calendar id="calFecIngPais" value="#{conozcaCliente.detalleCliente.fechaIngresoPais}" pattern="dd-MM-yyyy" required="false"
+								locale="es" navigator="true" yearRange="c-100:c" >
+							</rich:calendar>
+
+						</h:panelGrid>
+					</rich:panel>
+					
+					<h:panelGrid columns="3" style="width: 100%;">
+						<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="previous" styleClass="botonbarra" />
+						<rich:spacer></rich:spacer>
+						<a4j:commandButton value="Siguiente &gt;&gt;" style="float:right" action="#{conozcaCliente.validaExtranjeros}" styleClass="boton" onclick="window.scrollTo(0, 0);" />
+					</h:panelGrid>
+
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

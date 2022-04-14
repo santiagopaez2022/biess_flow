@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+				template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+			<a4j:region>
+				<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/conozcasucliente.css" />
+				<script type="text/javascript" src="${facesContext.externalContext.request.contextPath}/js/validador.js" />
+				<script type="text/javascript">
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar 
+			</script>
+
+				<rich:panel style="width: 100%;">
+					<h:panelGrid columns="1" style="width: 100%;">
+						<rich:panel header="#{labels.conozcacliente_lbl_datos_titulo}">
+							<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+								<f:facet name="header">
+									<h:outputText value="Entered Data Status:"></h:outputText>
+								</f:facet>
+								<f:facet name="infoMarker">
+
+								</f:facet>
+								<f:facet name="errorMarker">
+
+								</f:facet>
+							</rich:messages>
+
+							<rich:panel styleClass="#{conozcaCliente.estiloPaneles}" rendered="#{conozcaCliente.mostrarMensajeDivPol}">
+								<h:outputText value="#{conozcaCliente.msgDivpolParametrizado}"
+											  escape="false" />
+							</rich:panel>
+
+							<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_identificaion_tipo}:">
+								</h:outputText>
+								<h:outputText value="*" styleClass="output-text-simbolo-requerido" />
+
+								<h:selectOneMenu id="selectOneMenuTipoIdentificacion" value="#{conozcaCliente.cliente.tipoIdentificacion}" styleClass="ui-selectonemenu"
+												 required="true" disabled="true" style="width: 100%;"
+												 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_identificaion_tipo}">
+									<f:selectItems value="#{conozcaCliente.listaTipoIdentificacion}" />
+								</h:selectOneMenu>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_identificacion}:">
+								</h:outputText>
+								<span style="color: red">*</span>
+								<h:inputText styleClass="input-text-cedula" value="#{conozcaCliente.cliente.cedula}" id="inputTextCedula" size="20" maxlength="13"
+											 style="width: 96%;" required="true" readonly="true"
+											 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_identificacion}">
+								</h:inputText>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_cliente}:" />
+								<span style="color: red">*</span>
+								<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.nombre}" id="inputTextCliente" size="40" maxlength="80" required="true"
+											 readonly="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_cliente}" style="width: 96%;">
+								</h:inputText>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_relacion_sujeto}:" />
+								<span style="color: red">*</span>
+
+								<h:selectOneMenu id="selectOneMenuTipoRelacionSujeto" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.tipoRelacion}"
+												 style="width: 100%;" required="true"
+												 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_relacion_sujeto}" disabled="true">
+									<f:selectItems value="#{conozcaCliente.listaTipoRelacionItems}" />
+								</h:selectOneMenu>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_fecha_nacimiento}:" />
+								<span style="color: red">*</span>
+								<rich:calendar id="calendarFechaNacimiento" value="#{conozcaCliente.cliente.fechaNacimiento}" pattern="dd-MM-yyyy" required="true"
+											   requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_fecha_nacimiento}" locale="es" navigator="true"
+											   yearRange="c-100:c" disabled="true">
+								</rich:calendar>
+
+								<a4j:outputPanel id="idPanelProvinciaLabel"
+												 styleClass="panel-sin-borde">
+									<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_provincia_nacimiento}:" rendered="#{conozcaCliente.mostrarLugarNac}"/>
+								</a4j:outputPanel>
+								<h:outputText value=" " />
+								<a4j:outputPanel id="idPanelProvincia"
+												 styleClass="panel-sin-borde">
+									<h:selectOneMenu id="selectOneMenuProvinciaNacimiento" styleClass="ui-selectonemenu" value="#{conozcaCliente.provinciaNacimientoSelec}"
+													 style="width: 100%;" rendered="#{conozcaCliente.mostrarLugarNac}">
+										<f:selectItems value="#{conozcaCliente.listaProvinciaNacimientoItems}" />
+										<a4j:support event="onchange" action="#{conozcaCliente.cargarCantonNacimiento}" process="@this" global="false" partialSubmit="true"
+													 ajaxSingle="true" reRender="selectOneMenuCantonNacimiento" />
+									</h:selectOneMenu>
+								</a4j:outputPanel>
+
+								<a4j:outputPanel id="idPanelCantonLabel"
+												 styleClass="panel-sin-borde">
+									<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_canton_nacimiento}:" rendered="#{conozcaCliente.mostrarLugarNac}"/>
+								</a4j:outputPanel>
+								<h:outputText value=" "/>
+								<a4j:outputPanel id="idPanelCanton"
+												 styleClass="panel-sin-borde">
+									<h:selectOneMenu id="selectOneMenuCantonNacimiento" styleClass="ui-selectonemenu" value="#{conozcaCliente.cantonNacimientoSelec}"
+													 style="width: 100%;" rendered="#{conozcaCliente.mostrarLugarNac}">
+										<f:selectItems value="#{conozcaCliente.listaCantonNacimientoItems}" />
+									</h:selectOneMenu>
+								</a4j:outputPanel>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_nivel_estudios}:" />
+								<span style="color: red">*</span>
+								<h:selectOneMenu id="selectOneMenuNivelEstudios" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.nivelEstudio}" required="true"
+												 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_nivel_estudios}" style="width: 100%;">
+									<a4j:support event="onchange" action="#{conozcaCliente.loadNivelEstudios}" reRender="idPanelProfesionLabel,idPanelProfesion" ajaxSingle="true" />
+									<f:selectItems value="#{conozcaCliente.listaNivelEstudiosItems}" />
+								</h:selectOneMenu>
+
+
+								<a4j:outputPanel id="idPanelProfesionLabel" styleClass="panel-sin-borde">
+									<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_profesion}:" rendered="#{conozcaCliente.profesionRendered}" />
+								</a4j:outputPanel>
+								<h:outputText value=" " />
+
+								<a4j:outputPanel id="idPanelProfesion" styleClass="panel-sin-borde">
+									<h:selectOneMenu id="selectOneMenuProfesion" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.profesion}" required="true"
+													 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_profesion}" style="width: 100%;"
+													 rendered="#{conozcaCliente.profesionRendered}">
+										<f:selectItems value="#{conozcaCliente.listaProfesionItems}" />
+									</h:selectOneMenu>
+								</a4j:outputPanel>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_estado_civil}:" />
+								<span style="color: red">*</span>
+
+								<h:selectOneMenu id="selectOneMenuEstadoCivil" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.estadoCivil}" required="true"
+												 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_estado_civil}" style="width: 100%;"
+												 disabled="#{not empty conozcaCliente.cliente.estadoCivil and conozcaCliente.cliente.estadoCivil!=''}">
+									<a4j:support event="onchange" action="#{conozcaCliente.changeEstadoCivil}" ajaxSingle="true" />
+									<f:selectItems value="#{conozcaCliente.listaEstadoCivilItems}" />
+								</h:selectOneMenu>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_genero}:" />
+								<span style="color: red">*</span>
+								<h:selectOneMenu id="selectOneMenuGenero" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.genero}" required="true"
+												 requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_genero}" style="width: 100%;"
+												 disabled="#{not empty conozcaCliente.cliente.genero and conozcaCliente.cliente.genero!=''}">
+									<f:selectItems value="#{conozcaCliente.listaGeneroItems}" />
+								</h:selectOneMenu>
+
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_cargas_familiares}:" />
+								<span style="color: red">*</span>
+								<h:panelGrid styleClass="panel-sin-borde" columns="3">
+									<h:selectOneMenu id="selectOneMenuCargaFamiliar" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.cargasFamiliares}"
+													 required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_cargas_familiares}"
+													 style="width: 180%;">
+										<a4j:support event="onchange" action="#{conozcaCliente.loadNumCargas}" reRender="idPanelNumCargasLabel,idPanelNumCargas" ajaxSingle="true" />
+										<f:selectItem itemLabel="SI" itemValue="1" />
+										<f:selectItem itemLabel="NO" itemValue="0" />
+									</h:selectOneMenu>
+									<h:outputLabel value="" style="width: 10px;"/>
+									<h:outputLabel id="outputTextMenuCargaFamiliar" value="#{labels.conozcacliente_lbl_datos_personales_cargas_familiares_numero_mensaje}"
+												   styleClass="output-text-mensajes" style="width: 100%;" />
+								</h:panelGrid>
+
+								<a4j:outputPanel id="idPanelNumCargasLabel" styleClass="panel-sin-borde">
+									<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_cargas_familiares_numero}:"
+												  rendered="#{conozcaCliente.listaNumCargasRendered}" />
+								</a4j:outputPanel>
+								<h:outputText value=" " />
+								<a4j:outputPanel id="idPanelNumCargas" styleClass="panel-sin-borde">
+									<h:panelGrid styleClass="panel-sin-borde" columns="1" columnClasses="columna10">
+										<h:selectOneMenu id="selectMenuNumeroCargaFamiliar" styleClass="ui-selectonemenu-corto"
+														 value="#{conozcaCliente.cliente.numeroCargasFamiliares}" rendered="#{conozcaCliente.listaNumCargasRendered}" style="width: 100%;">
+											<f:selectItems value="#{conozcaCliente.listaNumCargasS}" />
+										</h:selectOneMenu>
+									</h:panelGrid>
+								</a4j:outputPanel>
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_nacionalidad}:" />
+								<span style="color: red">*</span>
+
+
+								<h:selectOneMenu id="selectOneMenuNacionalidad" styleClass="ui-selectonemenu" value="#{conozcaCliente.nacionalidadSelect}" required="true"
+												 style="width: 100%;" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_personales_nacionalidad}"
+												 disabled="#{not empty conozcaCliente.cliente.nacionalidad and conozcaCliente.cliente.nacionalidad!=''}">
+									<f:selectItems value="#{conozcaCliente.listaNacionalidadItems}" />
+								</h:selectOneMenu>
+
+
+								<h:outputText value="#{labels.conozcacliente_lbl_datos_personales_email}:" />
+								<span style="color: red">*</span>
+								<h:inputText styleClass="input-text-mail" value="#{conozcaCliente.mascaraEmail}"
+											 id="inputTextEmail" name="inputTextEmail" size="40" maxlength="60" style="width: 96%;" disabled="true" />
+
+								<h:outputText value=" " rendered="#{conozcaCliente.mensajeEmail != null}" escape="false"/>
+								<h:outputText value=" " rendered="#{conozcaCliente.mensajeEmail != null}"/>
+								<rich:panel rendered="#{conozcaCliente.mensajeEmail != null}" >
+									<span style="color: red"  escape="false"><h:outputText value="#{conozcaCliente.mensajeEmail}" escape="false"/></span>
+								</rich:panel>
+
+
+							</h:panelGrid>
+						</rich:panel>
+
+						<h:panelGrid columns="3" style="width: 100%;">
+							<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="previous" styleClass="botonbarra" />
+							<rich:spacer></rich:spacer>
+							<a4j:commandButton value="Siguiente &gt;&gt;" style="float:right" action="#{conozcaCliente.redireccionarExtranjeros}" styleClass="boton" onclick="window.scrollTo(0, 0);" disabled="#{conozcaCliente.mensajeEmail != null || conozcaCliente.mostrarMensajeDivPol}" />
+						</h:panelGrid>
+
+					</h:panelGrid>
+				</rich:panel>
+			</a4j:region>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

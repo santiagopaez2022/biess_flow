@@ -1,0 +1,118 @@
+/*
+Plantilla de estilos del Banco del Instituto Ecuatoriano de Seguridad Social
+http://www.biess.fin.ec
+2010
+*/
+
+body {
+	width: 100%;
+	margin: 0px auto;
+	padding: 0px;
+	/*background: #36393E url(../img-biess/image01.jpg) repeat left top;*/
+	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#header {
+	/*width: 900px;*/
+	height: 110px;
+	margin: 0px auto;
+	background: url(../img-biess/header-bg.jpg) repeat-x bottom;
+}
+
+#logo {
+	width: 175px;
+	height: 80px;
+	margin: 0px 0px 0px 30px;
+	background: url(../img-biess/biess-logo.png) no-repeat 0 5px;
+}
+
+#logoImpresion {
+	width: 175px;
+	height: 80px;
+	margin: 0px 0px 0px 30px;
+	background: url(../img-biess/logoBiessImpresion.jpg) no-repeat 0 5px;
+}
+
+#legend{
+	position:absolute;
+	top: 75px;
+	right: 30px;
+	color: #1e6387;
+	font-weight: bold;
+}	
+
+#navigation {
+	height: 22px;
+	margin: 0 auto;
+	padding: 0px;
+	background: url(../img-biess/superior-bg.jpg) repeat-x;
+}
+
+#navigation ul {
+	margin: 0px;
+	list-style: none;
+	margin-right: 20px;
+}
+
+#navigation li {
+	display: inline;
+}
+
+#navigation a {
+	display: block;
+	float: right;
+	height: 22px;
+	padding: 5px 0px 0px 10px;
+	/*text-decoration: none;*/
+	color: #1e6387;
+}
+
+#navigation a:hover {
+	color: red;
+}
+
+#navigation .first {
+	color: #00C6FF;
+}
+
+#content {
+	/*width: 900px;*/
+	min-height: 405px;
+	margin: 0px auto;
+	padding: 20px 0px;
+	word-wrap: break-word;
+	background: url(../img-biess/marca-bg.png) no-repeat right bottom;
+}
+
+#page {
+	min-width: 840px;
+	margin: 0px auto;
+	padding: 0px 30px;
+}
+
+#marca {
+	width: 114px;
+	height: 405px;
+	float: right;
+	bottom: 0px;
+}
+
+#footer {
+	/*width: 900px;*/
+	height: 25px;
+	margin: 0px auto;
+	padding: 5px 0px;
+	background: url(../img-biess/footer-bg.jpg) repeat-x;
+}
+
+#footer p {
+	font-size: 10px;
+	padding-left: 30px;
+	color: #90908E;
+}
+
+hr {
+	color: gray;
+}

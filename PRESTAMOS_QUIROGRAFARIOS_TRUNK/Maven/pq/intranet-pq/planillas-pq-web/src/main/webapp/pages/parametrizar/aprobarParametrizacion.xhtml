@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+	<ui:define name="contenido">
+
+		<h:form id="form" prependId="false">
+			<a4j:jsFunction name="put" reRender="jpnlDatosParam">
+				<a4j:actionparam name="codParametro"
+					assignTo="#{aprobacionParametrizacionBean.codParametro}"
+					actionListener="#{aprobacionParametrizacionBean.seleccionarParametro}" />
+			</a4j:jsFunction>
+
+			<h:panelGroup id="PGUParametro">
+				<h:outputText value="#{mensajes['param.aprobacion.titulo']}" escape="false" /> <br /><br />
+				
+				<rich:messages ajaxRendered="true">
+					<f:facet name="errorMarker">
+						<h:graphicImage url="/img/error.gif" />
+					</f:facet>
+					<f:facet name="infoMarker">
+						<h:graphicImage url="/img/information.jpg" />
+					</f:facet>
+				</rich:messages>
+
+				<rich:dataTable id="dtParametro"
+					value="#{aprobacionParametrizacionBean.listaParametrizacionPQ}"
+					var="_param" width="100%">
+
+					<rich:column sortBy="#{_param.plazoMinimo}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.plazo.minimo']}" />
+						</f:facet>
+						<h:outputText value="#{_param.plazoMinimo}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.plazoMaximo}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.plazo.maximo']}" />
+						</f:facet>
+						<h:outputText value="#{_param.plazoMaximo}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.capacidadPago}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.capacidad.pago']}" />
+						</f:facet>
+						<h:outputText value="#{_param.capacidadPago}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.montoMaximoGarantia}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.porcentaje.garantias']}" />
+						</f:facet>
+						<h:outputText value="#{_param.montoMaximoGarantia}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.tasaInteres}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.tasa.interes']}" />
+						</f:facet>
+						<h:outputText value="#{_param.tasaInteres}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.montoMaximoSBU}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.porcentaje.sbu']}" />
+						</f:facet>
+						<h:outputText value="#{_param.montoMaximoSBU}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.montoMinimoSBU}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.monto.minimo.sbu']}" />
+						</f:facet>
+						<h:outputText value="#{_param.montoMinimoSBU}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.rangoEdadInicial}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.rango.edad.desde']}" />
+						</f:facet>
+						<h:outputText value="#{_param.rangoEdadInicial}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.rangoEdadFinal}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.rango.edad.hasta']}" />
+						</f:facet>
+						<h:outputText value="#{_param.rangoEdadFinal}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.tipoProducto}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.tipo.producto']}" />
+						</f:facet>
+						<h:outputText value="#{_param.tipoProducto}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.pq.observacion']}" />
+						</f:facet>
+						<h:outputText
+							value="#{_param.estado == 'P' ? etiquetas['parametrizacion.pendiente.aprobacion'] : etiquetas['parametrizacion.pendiente.eliminacion']}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['parametrizacion.pq.rechazar']}" />
+						</f:facet>
+						<center>
+							<a4j:commandButton styleClass="boton"
+								style="border:0;width: 15px; height: 15px;"
+								image="/img/common/error.gif"
+								onclick="put('#{_param.codParametro}');" process="@this"
+								id="btnRechazar"
+								title="#{etiquetas['parametrizacion.pq.rechazar']}"
+								oncomplete="Richfaces.showModalPanel('panelRechazarParam', {top:'50px', left:'200px', width:'300px', height:'150px'})">
+							</a4j:commandButton>
+						</center>
+					</rich:column>
+
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['parametrizacion.pq.aprobar']}" />
+						</f:facet>
+						<center>
+							<a4j:commandButton styleClass="boton"
+								style="border:0;width: 15px; height: 15px;"
+								image="/img/common/okay.gif"
+								onclick="put('#{_param.codParametro}');" process="@this"
+								id="btnAprobar"
+								title="#{etiquetas['parametrizacion.pq.aprobar']}"
+								oncomplete="Richfaces.showModalPanel('panelAprobarParam', {top:'50px', left:'200px', width:'300px', height:'150px'})">
+							</a4j:commandButton>
+						</center>
+					</rich:column>
+
+					<f:facet name="footer">
+						<rich:datascroller renderIfSinglePage="false" for="dtParametro"
+							maxPages="10"></rich:datascroller>
+					</f:facet>
+
+				</rich:dataTable>
+			</h:panelGroup>
+			<br />
+		</h:form>
+
+		<br />
+
+		<!-- PANEL PARA APROBACION DEL PARAMETRO -->
+		<rich:modalPanel id="panelAprobarParam" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+					value="#{etiquetas['parametrizacion.pq.confirmar.aprobacion.titulo']}" />
+			</f:facet>
+
+			<a4j:form>
+				<a4j:outputPanel ajaxRendered="true">
+					<h:panelGrid columns="2">
+						<h:outputText
+							value="#{etiquetas['parametrizacion.pq.confirmar.aprobacion.mensaje']}" />
+						<rich:spacer></rich:spacer>
+
+						<rich:spacer></rich:spacer>
+						<rich:spacer></rich:spacer>
+						
+						<h:panelGrid columns="2">
+							<h:outputText value="#{etiquetas['parametrizacion.plazo.minimo']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.plazoMinimo}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.plazo.maximo']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.plazoMaximo}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.tasa.interes']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.tasaInteres}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.tipo.producto']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.tipoProducto}" />
+						</h:panelGrid>
+						<rich:spacer></rich:spacer>
+
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['parametrizacion.pq.aprobar']}"
+							ajaxSingle="true" id="btnAprobarr"
+							action="#{aprobacionParametrizacionBean.aprobar}"
+							oncomplete="Richfaces.hideModalPanel('panelAprobarParam');"
+							styleClass="boton" reRender="PGUParametro,dtParametro">
+						</a4j:commandButton>
+
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['parametrizacion.pq.cancelar']}"
+							ajaxSingle="true" id="btnCancelarAprob"
+							action="#{aprobacionParametrizacionBean.resetearSeleccionado}"
+							oncomplete="Richfaces.hideModalPanel('panelAprobarParam');"
+							styleClass="boton">
+						</a4j:commandButton>
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+
+		<!-- PANEL PARA RECHAZO DEL PARAMETRO -->
+		<rich:modalPanel id="panelRechazarParam" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+					value="#{etiquetas['parametrizacion.pq.confirmar.rechazo.titulo']}" />
+			</f:facet>
+
+			<a4j:form>
+				<a4j:outputPanel ajaxRendered="true">
+					<h:panelGrid columns="2">
+						<h:outputText
+							value="#{etiquetas['parametrizacion.pq.confirmar.rechazo.mensaje']}" />
+						<rich:spacer></rich:spacer>
+
+						<rich:spacer></rich:spacer>
+						<rich:spacer></rich:spacer>
+						
+						<h:panelGrid columns="2">
+							<h:outputText value="#{etiquetas['parametrizacion.plazo.minimo']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.plazoMinimo}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.plazo.maximo']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.plazoMaximo}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.tasa.interes']}" />
+							<h:outputText value="#{aprobacionParametrizacionBean.parametrizacionPQSeleccionado.tasaInteres}" />
+						</h:panelGrid>
+						<rich:spacer></rich:spacer>
+
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['parametrizacion.pq.rechazar']}"
+							ajaxSingle="true" id="btnRechazar"
+							action="#{aprobacionParametrizacionBean.rechazar}"
+							oncomplete="Richfaces.hideModalPanel('panelRechazarParam');"
+							styleClass="boton" reRender="PGUParametro,dtParametro">
+						</a4j:commandButton>
+
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['parametrizacion.pq.cancelar']}"
+							ajaxSingle="true" id="btnCancelarRec"
+							action="#{aprobacionParametrizacionBean.resetearSeleccionado}"
+							oncomplete="Richfaces.hideModalPanel('panelRechazarParam');"
+							styleClass="boton">
+						</a4j:commandButton>
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<script type="text/javascript" language="Javascript"
+			src="../../js/utilitarios.js" />
+
+		<h:form id="consultarBloqueo">
+
+			<h:messages globalOnly="true"></h:messages>
+
+			<f:subview rendered="#{funcionario.cedula==null}">
+				<div class="mensajeError">#{errores['datos.sesion']}</div>
+				<br />
+			</f:subview>
+
+			<f:subview rendered="#{funcionario.cedula!=null}">
+
+				<!-- muestra los mensajse que se generen en el backin bien aprobacionbean -->
+				<a4j:outputPanel id="mensajes">
+					<h:messages />
+					<rich:panel rendered="#{desbloqueocuentabean.mensaje != null}">
+						<div class="mensajeError">
+							<h:outputText value="#{desbloqueocuentabean.mensaje}" />
+							<br />
+						</div>
+					</rich:panel>
+				</a4j:outputPanel>
+
+				<a4j:outputPanel id="mensajesok">
+					<h:messages />
+					<rich:panel rendered="#{desbloqueocuentabean.okmensaje != null}">
+						<div class="mensajeOK">
+							<h:outputText value="#{desbloqueocuentabean.okmensaje}" />
+							<br />
+						</div>
+					</rich:panel>
+				</a4j:outputPanel>
+
+				<!-- <a4j:region id="busqueda"> -->
+				<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+					cellpadding="0" style="width:100%;">
+
+					<rich:panel>
+
+						<f:facet name="header">#{titulos['busqueda']} </f:facet>
+						<br />
+						<h:outputText value="* Ingrese la CI" />
+						<h:panelGrid columns="8"
+							columnClasses="etiqueta,info,info,info,info">
+
+							<b>#{etiquetas['unlock.cedula']}</b>
+							<h:inputText value="#{desbloqueocuentabean.cedula}"
+								maxlength="10" styleClass="" id="campoCedula"
+								onkeypress="return permitirValores(event, 'num')"
+								onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+							</h:inputText>
+
+							<rich:spacer width="20" />
+
+							<a4j:commandButton id="btnConsulta"
+								reRender="mensajes, mensajesok, datosAfiliado, datosAfiliadoHistorico"
+								action="#{desbloqueocuentabean.consultarEstadoCuenta}"
+								value="#{botones['consultar']}" styleClass="boton"
+								status="cargandoconsulta" />
+
+							<rich:spacer width="20" />
+
+							<a4j:status id="cargandoconsulta">
+								<f:facet name="start">
+									<rich:panel style="height:20px; border-width:0px;">
+										<h:graphicImage value="/img/conexion.gif" />
+										<h:outputText value="#{mensajes.espere}"></h:outputText>
+									</rich:panel>
+								</f:facet>
+							</a4j:status>
+
+							<rich:spacer width="20" />
+
+						</h:panelGrid>
+
+					</rich:panel>
+
+				</h:panelGrid>
+				<!-- </a4j:region> -->
+			</f:subview>
+			<br />
+
+			<f:subview>
+				<!-- <a4j:region> -->
+				<a4j:outputPanel id="datosAfiliado">
+
+					<rich:panel
+						rendered="#{not empty desbloqueocuentabean.bloqueoUsuario}">
+
+						<f:facet name="header">#{titulos['estado']} </f:facet>
+						<br />
+
+						<h:panelGrid columns="2">
+
+							<b>#{etiquetas['unlock.nombre']}:</b>
+							<h:outputText value="#{desbloqueocuentabean.afiliado.apenomafi}"
+								id="nombreAfiliado" />
+
+							<b>#{etiquetas['unlock.fechaNacimiento']}:</b>
+							<h:outputText value="#{desbloqueocuentabean.afiliado.fecnacafi}"
+								id="fechaNacimientoAfiliado">
+								<f:convertDateTime pattern="yyyy-MM-dd" />
+							</h:outputText>
+
+							<b>#{etiquetas['unlock.cedula']}:</b>
+							<h:outputText
+								value="#{desbloqueocuentabean.bloqueoUsuario.cedula}"
+								id="cedulaAfiliado" />
+
+							<b>#{etiquetas['unlock.estado']}:</b>
+							<h:outputText
+								value="#{desbloqueocuentabean.bloqueoUsuario.indicadorCuentaBloqueda=='N'?'DESBLOQUEADA':'BLOQUEADA'}"
+								id="estadoCuenta" />
+
+							<b>#{etiquetas['unlock.observacion']}:</b>
+							<h:inputTextarea style="width:100%;" rows="3" cols="90"
+								id="txtObs"
+								value="#{desbloqueocuentabean.bloqueoUsuario.observacion}"
+								rendered="#{desbloqueocuentabean.bloqueoUsuario.indicadorCuentaBloqueda=='S'}">
+								<a4j:support event="onblur" reRender="txtObs" />
+								<f:validateLength maximum="500" />
+							</h:inputTextarea>
+
+							<a4j:commandButton id="btnDesbloqueo" ajaxSingle="true"
+								immediate="true" limitToList="true"
+								reRender="mensajes,mensajesok,datosAfiliado,datosAfiliadoHistorico"
+								action="#{desbloqueocuentabean.desbloquearEstadoCuenta}"
+								value="#{botones['desbloquear']}" styleClass="boton"
+								status="cargandoconsulta"
+								rendered="#{desbloqueocuentabean.bloqueoUsuario.indicadorCuentaBloqueda=='S'}">
+							</a4j:commandButton>
+
+						</h:panelGrid>
+
+					</rich:panel>
+
+				</a4j:outputPanel>
+				<!-- </a4j:region> -->
+
+			</f:subview>
+
+			<br />
+
+			<f:subview>
+				<!-- <a4j:region> -->
+				<a4j:outputPanel id="datosAfiliadoHistorico">
+					<rich:panel
+						rendered="#{not empty desbloqueocuentabean.bloqueoUsuario}">
+						<f:facet name="header">#{titulos['historico']} </f:facet>
+						<h:panelGroup>
+
+							<rich:dataTable
+								value="#{desbloqueocuentabean.listaBloqueoUsuarioHistorico}"
+								var="_bloqueo" width="100%" id="bloHis" rows="10"
+								sortPriority="#{_bloqueo.fechaRegistro}" sortMode="single">
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['unlock.cedula']}" />
+									</f:facet>
+									<h:outputText value="#{_bloqueo.cedula}" />
+								</rich:column>
+
+								<rich:column sortOrder="DESCENDING" selfSorted="false">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['unlock.fecha']}" />
+									</f:facet>
+									<h:outputText value="#{_bloqueo.fechaRegistro}">
+										<f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+									</h:outputText>
+								</rich:column>
+
+								<rich:column style="width:20%;" sortable="true"
+									filterBy="#{_bloqueo.tipoBloqueo}" filterEvent="onkeyup">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['unlock.tipoBloqueo']}" />
+									</f:facet>
+									<h:outputText value="#{_bloqueo.tipoBloqueo}" />
+								</rich:column>
+
+								<rich:column style="width:20%;" sortable="true"
+									filterBy="#{_bloqueo.observacion}" filterEvent="onkeyup">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['unlock.observacion']}" />
+									</f:facet>
+									<h:outputText value="#{_bloqueo.observacion}" />
+								</rich:column>
+
+							</rich:dataTable>
+							<rich:spacer id="spacerAmo1" height="10" />
+							<rich:datascroller id="uiDataS" for="bloHis" maxPages="5" />
+						</h:panelGroup>
+
+					</rich:panel>
+				</a4j:outputPanel>
+				<!-- </a4j:region> -->
+			</f:subview>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

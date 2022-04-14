@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['pq.focalizados.titulo.informacion']}</h1>
+		<a4j:status id="cargandoProductos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible" id="pnlInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+			<a4j:commandButton action="#{principal.logout}"
+				value="#{labels['button.salir']}" styleClass="botonbarra"
+				immediate="true">
+			</a4j:commandButton>
+		</a4j:status>
+
+		<a4j:region>
+			<h:form id="formProveedorSel">
+				<a4j:outputPanel id="pnlProductos">
+					<rich:panel style="width:100%;">
+						<f:facet name="header">
+							#{labels['pq.focalizados.titulo.informacion.texto']}
+						</f:facet>
+						
+						<h:panelGrid columns="1" styleClass="panelInvisible">
+							<rich:panel id="uiSCNovacionesError" styleClass="errorPanel" rendered="#{pqFocalizados.tienePrestamosVigentes}">
+								#{pqFocalizados.mensajePrestamosVigentes}
+							</rich:panel>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="panelInvisible" rendered="#{!pqFocalizados.tienePrestamosVigentes}">
+							<h:outputText value="#{messages['mensaje.pq.focalizados.informacion']}" escape="false"/>
+						</h:panelGrid>
+					</rich:panel>
+				</a4j:outputPanel>
+
+				<a4j:commandButton action="#{pqFocalizados.seleccionaCocinaPorCodigo}" value="#{labels['pq.focalizados.buscar.codigo.cocina']}" styleClass="botonAmarillo" rendered="#{!pqFocalizados.tienePrestamosVigentes}" />
+				<a4j:commandButton action="#{pqFocalizados.seleccionaCocinaPorEstablecimiento}" value="#{labels['pq.focalizados.buscar.establecimiento']}" styleClass="botonAmarillo" rendered="#{!pqFocalizados.tienePrestamosVigentes}" />
+				<h:commandButton action="regresar" value="#{labels['button.regresar']}" styleClass="botonbarra" immediate="true" />
+			</h:form>
+		</a4j:region>
+
+		<script type="text/javascript">
+		   load();
+	    </script>
+	</ui:define>
+</ui:composition>

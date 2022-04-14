@@ -1,0 +1,28 @@
+mes.concesion.zafreros=6
+#Pre-produccion
+url.servicio.mora.patronal http://192.168.253.48:8080/webservice-general-rs/rest/moraPatronal/verificarMoraPatronal
+
+#Desarrollo
+#url.servicio.mora.patronal http://192.168.183.43:8083/webservice-general-rs/rest/moraPatronal/verificarMoraPatronal
+
+#Produccion
+#url.servicio.mora.patronal https://sapp.biess.fin.ec/webservice-general-rs/rest/moraPatronal/verificarMoraPatronal
+
+#RUC Ministerio de relaciones exteriores
+ruc.ministerio.relaciones.exteriores 1760000820001
+
+mensaje.afiliado.cesante No es posible aprobar el cr\u00E9dito debido a que el/la afiliado/a: %s, con la c\u00E9dula: %s, se encuentra cesante.
+
+#Mensaje de codigo de division politica
+mensaje.codigo.divpol ESTIMADO ASEGURADO, FAVOR ACTUALIZAR SU INFORMACI\u00D3N DE CONTACTO, CAMPOS (PROVINCIA, CANT\u00D3N Y PARROQUIA) EN LA P\u00C1GINA DE HISTORIA LABORAL DEL IESS, OPCI\u00D3N \u0022INFORMACI\u00D3N\u0022, \u0022ACTUALIZACI\u00D3N DATOS\u0022
+
+# Ecuador tu lugar en el mundo
+mensaje.turismo.no.existe.reserva Estimado asegurado, no existe una reservaci\u00F3n a su nombre. Por favor cont\u00E1ctese con su agencia de viajes preferida.
+mensaje.turismo.codigo.reserva.invalido El c\u00F3digo de reserva ingresado es incorrecto
+mensaje.turismo.error.anular.reserva Se present\u00F3 un error al anular la reserva. Por favor intente m\u00E1s tarde.
+mensaje.turismo.error.no.controlado.consulta.reserva Se present\u00F3 un problema al consultar informaci\u00F3n del paquete tur\u00EDstico. Por favor intente m\u00E1s tarde. 
+mensaje.turismo.error.no.controlado.anula.reserva Se present\u00F3 un error al anular la reserva. Por favor intente m\u00E1s tarde.
+
+#Bloqueo fin semana y feriados
+mensaje.bloqueo.fin.semana El producto solicitado se concede \u00FAnicamente en d\u00EDas laborables, por favor realizar la precalificaci\u00F3n de cr\u00E9dito el pr\u00F3ximo d\u00EDa h\u00E1bil.
+diasferiados=09/10/2017;

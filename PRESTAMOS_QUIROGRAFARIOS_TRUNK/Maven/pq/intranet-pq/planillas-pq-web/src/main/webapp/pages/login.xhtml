@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	>
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>#{titulos['sistema.titulo']}</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/iess_RES2.css" />
+
+</head>
+
+<body>
+
+	<div id="head">
+		<div class="top_menu">
+				<a style="cursor: help" href="mailto:ayudapq@iess.gov.ec">Ayuda</a>
+				<b>|</b>
+				<a href="#" onclick="window.close()">Salir</a>
+		</div>
+		<div class="logo">&nbsp;</div>
+		<div class="rosa">&nbsp;</div>
+		<div class="banner">&nbsp;</div>
+	</div>
+
+
+	<div id="main">
+	<div class="spacergr"></div>
+	   	<div style="width:100%; border-bottom:1px solid #e6e6e6; padding:0px 0px 3px 0px">
+	   		<span class="tit_sistema">Préstamos Quirografarios</span>
+	   	</div>
+		
+       
+      	<div id="gr" style="float:left; width:320px;">
+				 
+	 		<img src="../img/planilla.jpg" />
+			
+  		</div>
+      
+      	<div id="login" style="float:left; width:400px; height:auto; margin:50px 0px 0px 0px;">
+      		<span class="text_mensaje_pagina">Ingrese al Sistema</span>
+      		<div style="border-top:1px dotted #999; height:2px; width:400px; margin:5px 0px"></div>
+			
+			<form id="form1" method="post" action="j_security_check">
+				<table width="100%" border="0" cellspacing="2" cellpadding="2">
+				  	<tr>
+						<td width="141"><span class="etiqueta">Cédula:</span></td>
+						<td width="245"><input type="text" name="j_username" class="normal" /></td>
+				  	</tr>
+				  	<tr>
+						<td><span class="etiqueta">Clave:</span></td>
+						<td><input type="password" name="j_password" class="normal" /></td>
+				  	</tr>
+				  	<tr>
+						<td colspan="2" align="center"><input
+						class="boton1" type="submit" name="Submit" value="Aceptar"  /></td>
+				  	</tr>
+				</table>
+			</form>
+		</div>
+
+		
+	<div class="spacer"></div>
+</div>
+<div id="footer" >
+<img src="../img/footer.jpg" />
+</div>
+<div style="margin:5px; height:25px; color:#8d8f90">
+Instituto Ecuatoriano de Seguridad Social
+</div>
+
+</body>
+</html>

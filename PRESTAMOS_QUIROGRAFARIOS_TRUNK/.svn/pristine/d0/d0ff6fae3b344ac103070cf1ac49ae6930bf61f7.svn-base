@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+		<a4j:region>
+			<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/conozcasucliente.css" />
+			<script type="text/javascript" src="../../js/validador.js" />
+			<script type="text/javascript"> 
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar 
+			</script>
+
+			<rich:panel style="width: 100%;">
+				<h:panelGrid columns="1" style="width: 100%;">
+						<rich:panel>
+							<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+								<f:facet name="header">
+									<h:outputText value="Entered Data Status:"></h:outputText>
+								</f:facet>
+								<f:facet name="infoMarker">
+									
+								</f:facet>
+								<f:facet name="errorMarker">
+									
+								</f:facet>
+							</rich:messages>
+						</rich:panel>
+						<f:subview id="sbvConyuge" rendered="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}">
+							<rich:panel
+								header="#{labels.conozcacliente_lbl_datos_conyugue_titulo_tab}"	>
+								<h:panelGrid columns="3"
+									columnClasses="columna10,columna3,columna20,columna12"
+									cellpadding="2" cellspacing="2">
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_personales_identificaion_tipo}:">
+									</h:outputText>
+									<span style="color: red">*</span>
+									<h:selectOneMenu id="selectOneMenuTipoIdentificacionCon"
+										value="#{conozcaCliente.tipoIdentificacionConyuge}"
+										styleClass="ui-selectonemenu" style="width: 100%;"
+										required="true" disabled="false"
+										requiredMessage="#{msgs.msg_valor_requerido} : #{msgs.conozcacliente_lbl_datos_personales_identificaion_tipo}">
+										<a4j:support event="onchange"
+											action="#{conozcaCliente.changeTipoIdenConyuge}"
+											reRender="inputTextCedulaConyugue,inputTextNombreConyugue,selectOneMenuNacionalidadConyugue,calendarFechaNacimientoConyugue,inputTextTelefonoCelularConyugue,selectOneMenuEstadoCivilCon,selectOneMenuGeneroCon"
+											ajaxSingle="true"
+											process="selectOneMenuTipoIdentificacionCon" />
+										<f:selectItems
+											value="#{conozcaCliente.listaTipoIdentificacion}" />
+									</h:selectOneMenu>
+
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_conyugue_identificacion}:" />
+									<span style="color: red">*</span>
+									<h:inputText styleClass="input-text-cedula"
+										value="#{conozcaCliente.cliente.cedulaConyugue}"
+										id="inputTextCedulaConyugue" size="13" 
+										disabled="#{conozcaCliente.bloqueaDatosConyuge}"
+										maxlength="#{conozcaCliente.longitudIndenConyuge}"
+										style="width: 96%;"
+										required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+										requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_conyugue_identificacion}"
+										onkeypress="return validaIdentificacionConyuge(event)">
+										<a4j:support action="#{conozcaCliente.consultarDatosConyuge}"
+											event="onblur"
+											reRender="inputTextNombreConyugue,selectOneMenuNacionalidadConyugue,calendarFechaNacimientoConyugue,selectOneMenuEstadoCivilCon,selectOneMenuGeneroCon,pnlLblCelularConyugue,pnlLblRequeridoCelularConyugue,pnlCelularConyugue1"
+											ajaxSingle="true" />
+									</h:inputText>
+
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_conyugue_nombre}:" />
+									<span style="color: red">*</span>
+									<h:inputText styleClass="input-text"
+										value="#{conozcaCliente.nombreConyuge}"
+										id="inputTextNombreConyugue" size="40" maxlength="80"
+										disabled="#{conozcaCliente.bloqueaDatosConyuge}"
+										style="width: 96%;"
+										required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+										requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_conyugue_nombre}"
+										onkeypress="return validarNombres(event)">
+									</h:inputText>
+
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_conyugue_nacionalidad}:" />
+									<span style="color: red">*</span>
+									<h:selectOneMenu id="selectOneMenuNacionalidadConyugue"
+										style="width: 100%;"
+										value="#{conozcaCliente.nacionalidadConyugeSelect}"
+										disabled="#{conozcaCliente.bloqueaDatosConyuge}"
+										required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+										requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_conyugue_nacionalidad}">
+										<f:selectItems
+											value="#{conozcaCliente.listaNacionalidadItems}" />
+									</h:selectOneMenu>
+
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_conyugue_fecha_nacimiento}:" />
+									<span style="color: red">*</span>
+									<rich:calendar id="calendarFechaNacimientoConyugue"
+										value="#{conozcaCliente.cliente.fechaNacimientoConyugue}"
+										pattern="dd-MM-yyyy"
+										disabled="#{conozcaCliente.bloqueaDatosConyuge}"
+										required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+										requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_conyugue_fecha_nacimiento}"
+										navigator="true" locale="es" yearRange="c-100:c">
+										<a4j:support event="onchanged" ajaxSingle="true"
+											action="#{conozcaCliente.onDateFechaConyuge}"
+											reRender="calendarFechaNacimientoConyugue"></a4j:support>
+									</rich:calendar>
+
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_personales_estado_civil}:" />
+									<span style="color: red">*</span>
+									<h:selectOneMenu id="selectOneMenuEstadoCivilCon"
+										styleClass="ui-selectonemenu"
+										value="#{conozcaCliente.cliente.estadoCivilConyuge}"
+										disabled="#{conozcaCliente.bloqueaDatosConyuge}"
+										required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+										requiredMessage="#{etiquetas.msg_valor_requerido} : #{etiquetas.conozcacliente_lbl_datos_personales_estado_civil}"
+										style="width: 100%;">
+										<f:selectItems value="#{conozcaCliente.listaEstadoCivilItems}" />
+									</h:selectOneMenu>
+
+									<h:outputText
+										value="#{labels.conozcacliente_lbl_datos_personales_genero}:" />
+									<span style="color: red">*</span>
+									<h:selectOneMenu id="selectOneMenuGeneroCon"
+										styleClass="ui-selectonemenu"
+										value="#{conozcaCliente.cliente.generoConyuge}"
+										disabled="#{conozcaCliente.bloqueaDatosConyuge}"
+										required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+										style="width: 100%;"
+										requiredMessage="#{etiquetas.msg_valor_requerido} : #{etiquetas.conozcacliente_lbl_datos_personales_genero}">
+										<f:selectItems value="#{conozcaCliente.listaGeneroItems}" />
+
+									</h:selectOneMenu>
+
+									<a4j:outputPanel id="pnlLblCelularConyugue">
+										<h:panelGrid styleClass="panel-sin-borde"
+											rendered="#{conozcaCliente.mostrarCelularConyugue}">
+											<h:outputText
+												value="#{labels.conozcacliente_lbl_datos_conyugue_telefono_celular}:" />
+										</h:panelGrid>
+									</a4j:outputPanel>
+									<a4j:outputPanel id="pnlLblRequeridoCelularConyugue">
+										<h:panelGrid styleClass="panel-sin-borde"
+											rendered="#{conozcaCliente.mostrarCelularConyugue}">
+											<h:outputText id="lblRequeridoCelularConyugue" value="*"
+												style="color: red" />
+										</h:panelGrid>
+									</a4j:outputPanel>
+									<a4j:outputPanel id="pnlCelularConyugue1">
+										<h:panelGrid styleClass="panel-sin-borde" columns="2"
+											rendered="#{conozcaCliente.mostrarCelularConyugue}">
+											<h:inputText styleClass="input-text-telefono"
+												value="#{conozcaCliente.celularConyuge}"
+												id="inputTextTelefonoCelularConyugue" size="15"
+												maxlength="10"
+												required="#{conozcaCliente.cliente.estadoCivil=='C' or conozcaCliente.cliente.estadoCivil=='U'}"
+												requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_datos_conyugue_telefono_celular}"
+												onkeypress="return validarNumeros(event)"
+												style="width: 100%;">
+												<f:validator validatorId="TelefonoValidator" />
+											</h:inputText>
+											<h:outputLabel id="outputTextTelefonoCelularConyugue"
+												styleClass="output-text-mensajes"
+												value="#{labels.conozcacliente_lbl_direccion_domicilio_telefono_celular_mensaje}" />
+										</h:panelGrid>
+									</a4j:outputPanel>
+								</h:panelGrid>
+							</rich:panel>
+						</f:subview>
+						<rich:panel header="#{labels.conozcacliente_lbl_actividad_titulo_tab}">
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_actividad}:" />
+							<span style="color: red">*</span>
+							
+							<h:inputTextarea id="inputMenuActividadEconomica" rendered="#{conozcaCliente.actividadEconomica != null}" value="#{conozcaCliente.actividadEconomica}" style="width: 95%;" readonly ="true" escape="true"/>
+							<h:outputLabel id="outputTextErrorActividadEconomica"
+									value="#{labels.pq_mensaje_servicio_dinardap}"
+									styleClass="output-text-mensajes" style="width: 95%; color: red" rendered="#{conozcaCliente.actividadEconomica == null}" />
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_relacion_dependencia}:" />
+							<span style="color: red">*</span>	
+							<h:selectOneMenu id="selectOneMenuRelacionDependencia" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.relacionDependencia}"
+								required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_relacion_dependencia}"
+								disabled="true" style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaRelacionDependenciaLaboralItems}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_cargo}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.cargoTrabajo}" id="inputTextCargoTrabajo" size="40" maxlength="150"
+								required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_cargo}"
+								disabled="#{conozcaCliente.cliente.cargoTrabajo!=null and !conozcaCliente.cliente.cargoTrabajo!=''}" style="width: 96%;">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_provincia}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuProvinciaTrabajo" styleClass="ui-selectonemenu" value="#{conozcaCliente.provinciaTrabSelec}"
+								style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaProvinciaTrabajoItems}" />
+								<a4j:support event="onchange" action="#{conozcaCliente.cargarCantonTrabajo}" process="@this" global="false" partialSubmit="true"
+									ajaxSingle="true" reRender="selectOneMenuCantonTrabajo" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_canton}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuCantonTrabajo" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.cantonTrabajo}"
+								style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaCantonTrabajoItems}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_direccion_calle_principal}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.trabajoCallePrincipal}" 
+								id="inputTextTrabajoCallePrincipal" size="40" maxlength="450" style="width: 96%;"
+								required="true" onkeypress="return validarCaracteresEspeciales(event)" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_direccion_calle_principal}">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_direccion_numero_propiedad}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text-mediano" value="#{conozcaCliente.cliente.trabajoNumeroPropiedad}" 
+								id="inputTextTrabajoNumeroPropiedad" size="20" maxlength="20" style="width: 96%;"
+								required="true" onkeypress="return validarNomenclatura(event)" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_direccion_numero_propiedad}">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_direccion_calle_secundaria}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.trabajoCalleSecundaria}" 
+								id="inputTextTrabajoCalleSecundaria" size="40" maxlength="400" style="width: 96%;"
+								required="true" onkeypress="return validarCaracteresEspeciales(event)" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_direccion_calle_secundaria}">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_telefono}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="2">
+								<h:inputText styleClass="input-text-telefono" value="#{conozcaCliente.telefonoTrabajo}" id="inputTextTrabajoCSCTelefono" size="15" maxlength="9"
+									onkeypress="return validarNumeros(event)" style="width: 96%;" 
+									required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_telefono}"
+									disabled="#{conozcaCliente.habilitarTelefonoTrabajo}">
+									<f:validator validatorId="TelefonoValidator" />
+								</h:inputText>
+								<h:outputLabel id="outputTextTrabajoTelefono" styleClass="output-text-mensajes"
+									value=" #{labels.conozcacliente_lbl_direccion_domicilio_telefono_mensaje}" />
+							</h:panelGrid>
+							
+							<h:outputText
+								value="#{labels.conozcacliente_lbl_actividad_economica_ext_trabajo}:" />
+							<span style="color: red"></span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="2">
+								<h:inputText styleClass="input-text-telefono"
+									value="#{conozcaCliente.extensionTrabajo}"
+									id="inputTextExtTrabajoCSCTelefono" size="15" maxlength="9"
+									onkeypress="return validarNumeros(event)" style="width: 96%;"
+									required="false">
+								</h:inputText>
+							</h:panelGrid>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_email}:" />
+							<h:outputText value=" " />
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.emailTrabajo}" id="inputTextTrabajoEmail" size="40" maxlength="60"
+								style="width: 96%;">
+								<f:validator validatorId="EmailValidator" />
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_fecha_inicio}:" />
+							<span style="color: red">*</span>
+							<rich:calendar id="calendarFechaInicioTrabajoAnterior" value="#{conozcaCliente.cliente.fechaInicioUltimoTrabajo}" pattern="dd-MM-yyyy"
+								required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_fecha_inicio}"
+								navigator="true" locale="es" yearRange="c-100:c" 
+								disabled="#{conozcaCliente.cliente.fechaInicioUltimoTrabajo!=null}">
+								<a4j:support event="onchanged" ajaxSingle="true" action="#{conozcaCliente.onDateSelectIni}"></a4j:support>
+							</rich:calendar>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_fecha_fin}:" />
+							<span style="color: red">*</span>
+							<rich:calendar id="calendarFechaFinTrabajoAnterior" value="#{conozcaCliente.cliente.fechaFinUltimoTrabajo}" pattern="dd-MM-yyyy"
+								required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_fecha_fin}" navigator="true"
+								locale="es" yearRange="c-100:c" 
+								disabled="#{conozcaCliente.cliente.fechaFinUltimoTrabajo!=null}">
+								<a4j:support event="onchanged" ajaxSingle="true" action="#{conozcaCliente.onDateSelectFin}"></a4j:support>
+							</rich:calendar>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_tiempo_ultimo_trabajo}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText value="#{conozcaCliente.cliente.tiempoUltimoTrabajo}" id="inputTextTiempoUltimoTrabajo" size="10" maxlength="3"
+									requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_tiempo_ultimo_trabajo_fechas}" required="true"
+									onkeypress="return validarNumeros(event)" style="width: 100%;"
+									disabled="#{conozcaCliente.cliente.tiempoUltimoTrabajo!=null and conozcaCliente.cliente.tiempoUltimoTrabajo!=''}">
+									<f:validator validatorId="fechasUltimoTrabajo" />
+								</h:inputText>
+								<h:outputLabel value="" style="width: 1%;"/>
+								<h:outputLabel id="outputTextTiempoUltimoTrab" value="#{labels.conozcacliente_lbl_direccion_domicilio_tiempo_ultimo_trabajo}"
+									styleClass="output-text-mensajes" style="width: 100%;"/>
+							</h:panelGrid>
+
+						</h:panelGrid>
+					</rich:panel>
+					
+					<rich:panel id="rchPanelActividadEconomicaSrd" header="#{labels.conozcacliente_lbl_actividad_economica_srd_titulo}" rendered="#{conozcaCliente.actividadEconomicaSrd}">
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_srd_razon_social}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.sinRelDepRazonSocial}" id="inputTextSinRelDepRazonSocial" size="40"
+								maxlength="450" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_srd_razon_social}" required="true"  
+								style="width: 96%;">
+							</h:inputText>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_srd_ruc}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.sinRelDepRuc}" id="inputTextSinRelDepRuc" size="40"
+								maxlength="13" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_srd_ruc}" required="true"  
+								style="width: 96%;">
+							</h:inputText>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_srd_direccion_trabajo}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.sinRelDepDireccionTrabajo}" id="inputTextSinRelDepDireccionTrabajo" size="40"
+								maxlength="450" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_srd_direccion_trabajo}" required="true"  
+								onkeypress="return validarCaracteresEspeciales(event)" 
+								style="width: 96%;">
+							</h:inputText>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_actividad_economica_srd_telefono_trabajo}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="2">
+								<h:inputText styleClass="input-text-telefono" value="#{conozcaCliente.cliente.sinRelDepTelefonoTrabajo}" 
+									id="inputTextSinRelDepTrabajoTelefono" size="15" maxlength="9"
+									onkeypress="return validarNumeros(event)" 
+									requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_actividad_economica_srd_telefono_trabajo}" 
+									required="true" style="width: 96%;">
+									<f:validator validatorId="TelefonoValidator" />
+								</h:inputText>
+								<h:outputLabel id="outputTextSinRelDepTrabajoTelefono" styleClass="output-text-mensajes"
+									value=" #{labels.conozcacliente_lbl_direccion_domicilio_telefono_mensaje}" />
+							</h:panelGrid>
+							
+							
+							
+						</h:panelGrid>
+					</rich:panel>
+
+					<h:panelGrid columns="3" style="width: 100%;">
+						<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="previous" styleClass="botonbarra" />
+						<rich:spacer></rich:spacer>
+						<a4j:commandButton value="Siguiente &gt;&gt;" style="float:right" action="#{conozcaCliente.validaPaginaEconomica}" styleClass="boton"
+							onclick="window.scrollTo(0, 0);" />
+					</h:panelGrid>
+				</h:panelGrid>
+			</rich:panel>
+		</a4j:region>
+		</h:form>
+	</ui:define>
+</ui:composition>

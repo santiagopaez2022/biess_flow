@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<!-- Filtros de consulta -->
+		<h:form id="formConsulta">
+			<a4j:region id="busqueda">
+				<div>
+					<f:subview>
+						<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+							cellpadding="0" style="width:100%;">
+							<rich:panel>
+								<f:facet name="header">#{etiquetas['listaobservados.etiqueta.titulo']} </f:facet>
+								<br />
+								<h:messages globalOnly="true"></h:messages>
+
+								<a4j:outputPanel ajaxRendered="true" id="mensagesProceso">
+
+									<a4j:outputPanel id="pnlResultadoExito"
+										rendered="#{listaObservadosBean.mensajeExito!=null}">
+										<rich:panel id="panelExito" styleClass="infoPanel">
+											<h:outputText id="txtMensageExito"
+												value="#{listaObservadosBean.mensajeExito}" escape="false"></h:outputText>
+										</rich:panel>
+									</a4j:outputPanel>
+
+									<a4j:outputPanel id="pnlResultadoError"
+										rendered="#{listaObservadosBean.mensaje!=null}">
+										<rich:panel id="panelError" styleClass="errorPanel">
+											<h:outputText id="txtMensageError"
+												value="#{listaObservadosBean.mensaje}" escape="false"></h:outputText>
+										</rich:panel>
+									</a4j:outputPanel>
+
+									<br />
+
+								</a4j:outputPanel>
+
+								<h:outputText
+									value="* Puede consultar por uno de los siguientes criterios; Periodo, Aplicativo, Estado de Bloqueo, Cédula del Asegurado" />
+
+								<h:panelGrid columns="4"
+									columnClasses="etiqueta,info,etiqueta,info">
+
+									<b>#{etiquetas['listaobservados.etiqueta.consulta.periodo']}</b>
+									<h:outputLabel value=" " />
+									<h:outputLabel value=" " />
+									<h:outputLabel value=" " />
+									<b>
+										#{etiquetas['listaobservados.etiqueta.consulta.periodo.fecha.inicial']}</b>
+									<a4j:outputPanel id="fechaD" layout="block">
+										<rich:calendar id="calendarFechaDesde"
+											value="#{listaObservadosBean.bloqueoListaControlCriterio.fechaInicio}"
+											popup="true" required="false" datePattern="dd-MM-yyyy"
+											immediate="true" showApplyButton="false"
+											enableManualInput="false" showFooter="false" cellWidth="15px"
+											cellHeight="22px">
+											<a4j:support event="onchange" reRender="calendarFechaDesde" />
+										</rich:calendar>
+									</a4j:outputPanel>
+
+									<b>#{etiquetas['listaobservados.etiqueta.consulta.periodo.fecha.final']}</b>
+									<a4j:outputPanel id="fechaF" layout="block">
+										<rich:calendar id="calendarFechaHasta"
+											value="#{listaObservadosBean.bloqueoListaControlCriterio.fechaFin}"
+											popup="true" required="false" datePattern="dd-MM-yyyy"
+											immediate="true" showApplyButton="false"
+											enableManualInput="false" showFooter="false" cellWidth="15px"
+											cellHeight="22px">
+											<a4j:support event="onchange" reRender="calendarFechaHasta" />
+										</rich:calendar>
+									</a4j:outputPanel>
+
+									<b>#{etiquetas['listaobservados.etiqueta.consulta.aplicativo']}</b>
+									<h:selectOneMenu
+										value="#{listaObservadosBean.bloqueoListaControlCriterio.aplicativo}">
+										<f:selectItems
+											value="#{listaObservadosBean.aplicativosListItems}" />
+									</h:selectOneMenu>
+
+									<b>#{etiquetas['listaobservados.etiqueta.consulta.bloqueo']}</b>
+									<h:selectOneMenu
+										value="#{listaObservadosBean.bloqueoListaControlCriterio.bloqueado}">
+										<f:selectItems value="#{listaObservadosBean.estadosListItems}" />
+									</h:selectOneMenu>
+
+									<b>#{etiquetas['listaobservados.etiqueta.consulta.cedula']}</b>
+									<h:inputText
+										value="#{listaObservadosBean.bloqueoListaControlCriterio.cedula}"
+										id="campoCedula"
+										onkeypress="return permitirValores(event, 'num')" />
+
+									<a4j:status id="cargandoconsulta">
+										<f:facet name="start">
+											<rich:panel style="height:20px; border-width:0px;">
+												<h:graphicImage value="/img/conexion.gif" />
+												<h:outputText
+													value="#{mensajes['listaobservados.mensaje.procesando']}"></h:outputText>
+											</rich:panel>
+										</f:facet>
+									</a4j:status>
+								</h:panelGrid>
+								<br />
+								<center>
+									<a4j:commandButton
+										action="#{listaObservadosBean.obtenerUsuariosEnListaObservados}"
+										value="#{botones['consultar']}" styleClass="boton"
+										status="cargandoconsulta"
+										reRender="outputPaneListaObservados,mensagesProceso" />
+								</center>
+
+							</rich:panel>
+						</h:panelGrid>
+
+					</f:subview>
+				</div>
+			</a4j:region>
+		</h:form>
+
+		<br />
+
+		<h:form id="formListaObservados">
+			<div>
+				<f:subview>
+					<a4j:outputPanel id="outputPaneListaObservados">
+
+						<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+							cellpadding="0"
+							rendered="#{not empty listaObservadosBean.listaBloqueos}">
+
+							<rich:panel id="panelListaObservados">
+
+								<f:facet name="header">#{etiquetas['listaobservados.etiqueta.data.titulo']}</f:facet>
+
+								<rich:dataTable id="dataTableListaObservados" var="bloqueo"
+									value="#{listaObservadosBean.listaBloqueos}"
+									rendered="#{not empty listaObservadosBean.listaBloqueos}"
+									rows="10">
+
+									<f:facet name="header">
+										<rich:columnGroup>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.cedula']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.asegurado']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.producto']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.bloqueo']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.fecha.registro']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.usuario.registro']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.usuario.registro.ip']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.fecha.actualizacion']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.usuario.actualizacion']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.usuario.actualizacion.ip']}" />
+											</rich:column>
+											<rich:column>
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.detalle.etiqueta.motivo']}" />
+											</rich:column>
+											<rich:column colspan="2">
+												<h:outputLabel
+													value="#{etiquetas['listaobservados.etiqueta.data.tabla.operaciones']}" />
+											</rich:column>
+										</rich:columnGroup>
+									</f:facet>
+
+									<rich:column>
+										<h:outputText value="#{bloqueo.cedula}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.nombresApellidos}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.aplicativo}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.bloqueado}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.fechaRegistro}">
+											
+										</h:outputText>
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.funcionarioIngresa}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.ipIngreso}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.fechaActualizacion}">
+										</h:outputText>
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.funcionarioActualiza}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.ipActualizacion}" />
+									</rich:column>
+									<rich:column>
+										<h:outputText value="#{bloqueo.observacionDesbloqueo}" />
+									</rich:column>
+									<rich:column>
+										<a4j:commandButton id="btnVerDetalle"
+											value="#{botones['ver.detalle']}" styleClass="boton"
+											oncomplete="Richfaces.showModalPanel('panelDetallesBloqueo')">
+											<f:setPropertyActionListener
+												target="#{listaObservadosBean.bloqueoListaControlSeleccionado}"
+												value="#{bloqueo}" />
+										</a4j:commandButton>
+									</rich:column>
+
+									<rich:column>
+										<a4j:commandButton id="btnDesbloquear"
+											value="#{botones['desbloquear']}" styleClass="boton"
+											oncomplete="Richfaces.showModalPanel('panelConfirmacion', {top:'50px', left:'300px', width:'350px', height:'200px'})"
+											rendered="#{bloqueo.bloqueado==listaObservadosBean.estadoBloqueado}">
+											<f:setPropertyActionListener
+												target="#{listaObservadosBean.bloqueoListaControlSeleccionado}"
+												value="#{bloqueo}" />
+										</a4j:commandButton>
+									</rich:column>
+
+								</rich:dataTable>
+								<rich:spacer id="spacerAmo1" height="10" />
+								<rich:datascroller id="uiDataS" for="dataTableListaObservados"
+									maxPages="10" />
+
+							</rich:panel>
+						</h:panelGrid>
+					</a4j:outputPanel>
+				</f:subview>
+			</div>
+		</h:form>
+
+		<rich:modalPanel id="panelDetallesBloqueo" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+					value="#{etiquetas['listaobservados.detalle.etiqueta.titulo']}" />
+			</f:facet>
+
+			<a4j:form>
+				<a4j:outputPanel ajaxRendered="true">
+
+					<div id="divDetallesBloqueo"
+						style="width: 500px; height: 450px; overflow: scroll;">
+						<rich:panel>
+							<!-- Datos del Credito -->
+							<f:facet name="header">#{etiquetas['listaobservados.detalle.etiqueta.lista.asegurado']}</f:facet>
+							<br />
+							<h:panelGrid columns="2" columnClasses="info">
+								<h:outputText
+									value="#{etiquetas['listaobservados.etiqueta.data.tabla.cedula']}:" />
+								<h:outputText
+									value="#{listaObservadosBean.bloqueoListaControlSeleccionado.cedula}" />
+
+								<h:outputText
+									value="#{etiquetas['listaobservados.etiqueta.data.tabla.asegurado']}:" />
+								<h:outputText
+									value="#{listaObservadosBean.bloqueoListaControlSeleccionado.nombresApellidos}" />
+
+								<h:outputText
+									value="#{etiquetas['listaobservados.etiqueta.data.tabla.producto']}:" />
+								<h:outputText
+									value="#{listaObservadosBean.bloqueoListaControlSeleccionado.aplicativo}" />
+
+							</h:panelGrid>
+						</rich:panel>
+
+						<rich:panel id="panelDetallesBloqueo1">
+
+							<f:facet name="header">#{etiquetas['listaobservados.detalle.etiqueta.lista.titulo']}</f:facet>
+
+							<rich:dataTable id="dataTableDetalleListaObservados"
+								var="detalle"
+								value="#{listaObservadosBean.bloqueoListaControlSeleccionado.listaDetalles}"
+								width="100%"
+								rendered="#{not empty listaObservadosBean.bloqueoListaControlSeleccionado.listaDetalles}"
+								rows="5">
+
+								<f:facet name="header">
+									<rich:columnGroup>
+										<rich:column>
+											<h:outputLabel
+												value="#{etiquetas['listaobservados.detalle.etiqueta.lista.control.tipo']}" />
+										</rich:column>
+										<rich:column>
+											<h:outputLabel
+												value="#{etiquetas['listaobservados.detalle.etiqueta.lista.control.nombre']}" />
+										</rich:column>
+										<rich:column>
+											<h:outputLabel
+												value="#{etiquetas['listaobservados.detalle.etiqueta.motivo']}" />
+										</rich:column>
+									</rich:columnGroup>
+								</f:facet>
+
+								<rich:column>
+									<h:outputText value="#{detalle.listaControl.tipoLista}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{detalle.listaControl.nombreLista}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{detalle.observacion}" />
+								</rich:column>
+
+							</rich:dataTable>
+
+							<rich:spacer id="spacerAmo2" height="10" />
+							<rich:datascroller id="uiDataS2"
+								for="dataTableDetalleListaObservados" maxPages="5" />
+
+						</rich:panel>
+					</div>
+
+					<rich:spacer height="10px"></rich:spacer>
+
+					<center>
+						<a4j:commandButton style="width:100px"
+							value="#{botones['cerrar']}" ajaxSingle="true"
+							id="btnSalirDetalle"
+							oncomplete="Richfaces.hideModalPanel('panelDetallesBloqueo');"
+							styleClass="boton">
+						</a4j:commandButton>
+					</center>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+
+
+		<rich:modalPanel id="panelConfirmacion" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+					value="#{etiquetas['listaobservados.confirmacion.etiqueta.titulo']}" />
+			</f:facet>
+
+			<div id="divConfirmacionBloqueo" style="width: 350px; height: 200px;">
+
+				<a4j:form>
+					<a4j:outputPanel id="pnlRequeridoError" ajaxRendered="true"
+						rendered="#{listaObservadosBean.mensajeRequerido!=null}">
+						<rich:panel id="pnlRequeridoError2" styleClass="errorPanel">
+							<h:outputText id="txtMensageRequeridoError"
+								value="#{listaObservadosBean.mensajeRequerido}" escape="false" />
+						</rich:panel>
+					</a4j:outputPanel>
+
+					<a4j:outputPanel id="pnlConfirmacionensaje">
+						<rich:panel id="panelExito" styleClass="infoPanel">
+							<h:outputText id="txtMensageConfirmacion"
+								value="#{mensajes['listaobservados.mensaje.confirmacion']}"
+								escape="false"></h:outputText>
+						</rich:panel>
+
+						<a4j:outputPanel ajaxRendered="true">
+							<h:panelGrid columns="2">
+								<h:outputLabel
+									value="*#{etiquetas['listaobservados.detalle.etiqueta.motivo']}:" />
+								<h:inputTextarea id="inputTextareaObservacion" required="true"
+									value="#{listaObservadosBean.motivo}" cols="30" rows="4"
+									requiredMessage="Valor requerido.">
+									<a4j:support event="onblur"
+										reRender="inputTextareaObservacion,btnAceptar"
+										ajaxSingle="true" />
+								</h:inputTextarea>
+								<h:outputLabel value="" />
+								<h:message errorClass="error" for="inputTextareaObservacion" />
+							</h:panelGrid>
+						</a4j:outputPanel>
+
+					</a4j:outputPanel>
+
+					<rich:spacer height="20px"></rich:spacer>
+					<center>
+						<a4j:outputPanel ajaxRendered="true">
+							<a4j:commandButton style="width:100px"
+								value="#{botones['aceptar']}" ajaxSingle="true" id="btnAceptar"
+								action="#{listaObservadosBean.desbloquear}"
+								oncomplete="Richfaces.hideModalPanel('panelConfirmacion');"
+								styleClass="boton"
+								reRender="pnlRequeridoError2,outputPaneListaObservados,mensagesProceso,pnlRequeridoError"
+								rendered="#{not empty listaObservadosBean.motivo}">
+							</a4j:commandButton>
+							<a4j:commandButton style="width:100px"
+								value="#{botones['cancelar']}" ajaxSingle="true"
+								id="btncerrarDialogo" action="#{listaObservadosBean.cancelar}"
+								oncomplete="Richfaces.hideModalPanel('panelConfirmacion');"
+								styleClass="boton"
+								reRender="pnlRequeridoError2,pnlRequeridoError">
+							</a4j:commandButton>
+						</a4j:outputPanel>
+					</center>
+
+				</a4j:form>
+
+			</div>
+		</rich:modalPanel>
+	</ui:define>
+</ui:composition>

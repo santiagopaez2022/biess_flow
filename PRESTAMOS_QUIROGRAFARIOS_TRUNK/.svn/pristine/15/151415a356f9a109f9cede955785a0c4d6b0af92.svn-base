@@ -1,0 +1,64 @@
+/* 
+ * Copyright 2007 INSTITUTO ECUATORIANO DE SEGURIDAD
+ * SOCIAL - ECUADOR Licensed under the IESS License, Version 1.0 (the
+ * "License"); you may not use this file. You may obtain a copy of the License
+ * at http://www.iess.gov.ec Unless required by applicable law or agreed to in
+ * writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package ec.gov.iess.creditos.dao.impl;
+
+import java.io.Serializable;
+
+import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
+
+
+import ec.gov.biess.util.log.LoggerBiess;
+import ec.gov.iess.creditos.dao.TasaInteresDao;
+import ec.gov.iess.creditos.excepcion.TasaInteresExcepcion;
+import ec.gov.iess.creditos.modelo.persistencia.TasaInteres;
+import ec.gov.iess.dao.ejb.GenericEjbDao;
+
+/**
+ * @author cvillarreal
+ * 
+ */
+@Stateless
+public class TasaInteresDaoImpl extends GenericEjbDao<TasaInteres, Serializable>
+		implements TasaInteresDao {
+
+	LoggerBiess log = LoggerBiess.getLogger(TasaInteresDaoImpl.class);
+
+	/**
+	 * @param type
+	 */
+	public TasaInteresDaoImpl() {
+		super(TasaInteres.class);
+	}
+
+	public TasaInteres consultaTasaInteresDetalle(String idtasaInteres)
+			throws TasaInteresExcepcion {
+
+		log.debug(" Parametros :");
+		log.debug(" tasa interes : " + idtasaInteres);
+
+		Query query = em.createNamedQuery("TasaInteres.consultaPorTasainteres");
+		query.setParameter("idtasaInteres", idtasaInteres);
+
+		try {
+			return (TasaInteres) query.getSingleResult();
+		} catch (NonUniqueResultException e) {
+			log.error(" mas de un resultado:" + e.getMessage());
+			throw new TasaInteresExcepcion(e);
+		} catch (NoResultException e) {
+			log.warn(" no existen datos tasa de interes id : " + idtasaInteres);
+			return null;
+		}
+	}
+
+}

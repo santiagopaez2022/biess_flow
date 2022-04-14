@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>planillaspq-web</display-name>
+	<!-- AREA DE PARAMETROS DE CONTEXTO -->
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<!-- Special Debug Output for Development -->
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<!-- Optional JSF-RI Parameters to Help Debug -->
+	<context-param>
+		<param-name>com.sun.faces.validateXml</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.verifyObjects</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	<!-- skin -->
+	<context-param>
+		<param-name>org.richfaces.SKIN</param-name>
+		<param-value>blueSky</param-value>
+	</context-param>
+	<!-- Facelets -->
+	<context-param>
+		<param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+		<param-value>com.sun.facelets.FaceletViewHandler</param-value>
+	</context-param>
+	<!-- Aumentado para seguridades -->
+	<context-param>
+		<param-name>codigoAplicacion</param-name>
+		<param-value>PQ-INTRANET</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.REFRESH_PERIOD</param-name>
+		<param-value>-1</param-value>
+	</context-param>
+	<!-- AREA DE PARAMETROS DE FILTROS Aumentado para utilizar componentes richFaces 
+		y ajax4jsf -->
+	<filter>
+		<display-name>Richfaces Filter</display-name>
+		<filter-name>richfaces</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+	</filter>
+	<!-- Aumentado para seguridades -->
+	<filter>
+		<filter-name>MenuFilter</filter-name>
+		<filter-class>ec.gov.iess.seguridades.filter.MenuFilter</filter-class>
+		<!-- si se desea mas de un modulo separar con comas Ej: CRE,PEN -->
+		<init-param>
+			<param-name>paginasNoProtegidas</param-name>
+			<param-value>previo.jsf,login.jsf,salir.jsf,error/login-error.jsf,error/403.jsf,error/404.jsf</param-value>
+		</init-param>
+		<init-param>
+			<param-name>codigoAplicacion</param-name>
+			<param-value>PQ-INTRANET</param-value>
+		</init-param>
+	</filter>
+	<!-- AREA DE PARAMETROS DE MAPEO DE FILTROS Aumentado para utilizar componentes 
+		richFaces y ajax4jsf -->
+	<filter-mapping>
+		<filter-name>richfaces</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<!-- Aumentado para manejo de seguridades -->
+	<filter-mapping>
+		<filter-name>MenuFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>MenuFilter</filter-name>
+		<servlet-name>Autenticador</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>MyFacesExtensionsFilter</filter-name>
+	    <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+	    <init-param>
+	      <param-name>uploadMaxFileSize</param-name>
+	      <param-value>20m</param-value>
+	    </init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>MyFacesExtensionsFilter</filter-name>
+	    <servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+	    <filter-name>MyFacesExtensionsFilter</filter-name>
+	    <url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- AREA DE PARAMETROS DE LISTENER -->
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	<!-- AREA DE PARAMETROS DE SERVLET Faces Servlet -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	 <servlet>
+	  <servlet-name>downloadFileDB</servlet-name>
+	  <servlet-class>ec.gov.iess.planillaspq.web.servlet.DBFileDownloadServlet</servlet-class>
+	 </servlet>
+	<!-- AREA DE PARAMETROS DE MAPEO DE SERVLET Faces Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	 <servlet-mapping>
+	  <servlet-name>downloadFileDB</servlet-name>
+	  <url-pattern>/descargarArchivo</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/pages/index.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error/403.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404.jsf</location>
+	</error-page>
+	<!--+ |Configuración de seguridades. Con esto se asegura que cualquier |solicitud 
+		sea atendida siempre y cuando se haya hecho login + -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>All JSP Pages</web-resource-name>
+			<url-pattern>*.jsf</url-pattern>
+			<http-method>POST</http-method>
+			<http-method>GET</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>FU</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Archivos No Protegidos</web-resource-name>
+			<url-pattern>/login.xhtml</url-pattern>
+			<url-pattern>/pages/salir.jsf</url-pattern>
+			<url-pattern>/error-login.xhtml</url-pattern>
+			<url-pattern>/error/*</url-pattern>
+			<url-pattern>/css/*</url-pattern>
+			<url-pattern>/img/*</url-pattern>
+			<url-pattern>/js/*</url-pattern>
+			<url-pattern>/a4j*</url-pattern>
+			<url-pattern>/a4j/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+	</security-constraint>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>iessSecurity</realm-name>
+		<form-login-config>
+			<form-login-page>/pages/login.jsf</form-login-page>
+			<form-error-page>/pages/login.jsf</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-role>
+		<description>Rol de Usuario del Sistema - Funcionario</description>
+		<role-name>FU</role-name>
+	</security-role>
+	<!-- AREA DE PARAMETROS DE REFERENCIAS EJB Aumentado Referencias a EJB's -->
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/MenuServicio</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.seguridades.servicio.MenuServicio</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/PlanillaServicioLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.planillaspq.servicio.PlanillaServicioLocal</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/PlanillaPrestamoDetalleServicioLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.planillaspq.servicio.PlanillaPrestamoDetalleServicioLocal</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/AjustePlanillaServicioLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.planillaspq.servicio.AjustePlanillaServicioLocal</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/CambioEstadoServicioLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.planillaspq.servicio.CambioEstadoServicioLocal</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/AnulaPlanillaServicioLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.planillaspq.servicio.AnulaPlanillaServicioLocal</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/DesbloqueoCuentaServicio</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.fin.biess.unlock.servicio.DesbloqueoCuentaServicio</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/AfiliadoServicio</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.hl.servicio.AfiliadoServicio</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/RegistroCivilBiessServicioLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.planillaspq.servicio.RegistroCivilBiessServicio</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/ProveedorServicio</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home />
+		<local>ec.fin.biess.creditos.pq.servicio.ProveedorServicio</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/TipoPrestamoServicio</ejb-ref-name>
+		<ejb-ref-type>Entity</ejb-ref-type>
+		<local-home />
+		<local>ec.fin.biess.creditos.pq.servicio.TipoPrestamoServicio</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/InstitucionFinancieraServicio</ejb-ref-name>
+		<ejb-ref-type>Entity</ejb-ref-type>
+		<local-home />
+		<local>ec.gov.iess.cuentabancaria.servicio.InstitucionFinancieraServicio</local>
+	</ejb-local-ref>
+</web-app>

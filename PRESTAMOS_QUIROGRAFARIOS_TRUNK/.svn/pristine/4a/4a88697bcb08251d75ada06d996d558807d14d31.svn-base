@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.precalificacioncruce']}</div>
+
+
+		<rich:panel id="pnlDatosGenerales" styleClass="panel"
+			headerClass="pheader" bodyClass="pbody">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			<!-- mensajes de error -->
+			<a4j:outputPanel ajaxRendered="true">
+				<h:messages styleClass="errorPanel"
+					style="padding:10px 0px 15px 55px; margin: 0px;" />
+				
+			</a4j:outputPanel>
+			<h:panelGrid columns="2" styleClass="panelInvisible">
+				<h:outputLabel for="txtCedula" value="#{labels.cedula}:" />
+				<h:inputText id="txtCedula"
+					value="#{datos.solicitante.datosPersonales.cedula}" readonly="true" />
+
+				<h:outputLabel for="txtApellidos"
+					value="#{labels.nombresApellidos}:" />
+				<h:inputText id="txtApellidos"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}"
+					readonly="true" size="60" />
+			</h:panelGrid>
+
+		</rich:panel>
+		
+		<a4j:status id="cargandoRequisitos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+		</a4j:status>
+		<h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['resultado.precalificacion.requisitos']}
+				</f:facet>
+				<a4j:outputPanel id="pnlRequisitos">
+					<h:dataTable var="item"
+						value="#{creditoAccion.requisitosCruceCuentas}"
+						styleClass="tablesinside"
+						headerClass="dt_header" rowClasses="prow1,prow2">
+						<h:column>
+							<f:facet name="header">#{labels.requisito}</f:facet>
+							<h:outputText value="#{item.descripcion}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{labels.aprueba}</f:facet>
+							<div align="center"><h:graphicImage
+								value="/files/images/content/icon-check.png" rendered="#{item.aprobado}"></h:graphicImage>
+							<h:graphicImage value="/files/images/content/icon-uncheck.png"
+								rendered="#{!item.aprobado}"></h:graphicImage></div>
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{labels.observacion}</f:facet>
+							<h:outputText value="#{item.observacion}" />
+						</h:column>
+					</h:dataTable>
+				</a4j:outputPanel>
+			</rich:panel>
+			
+			<a4j:outputPanel id="pnlResultado">
+				<f:subview >
+					
+					<rich:panel styleClass="panelResults" headerClass="pheader"
+						bodyClass="pbody">
+						<f:facet name="header">	#{labels['resultado.final']} </f:facet>
+						<rich:panel styleClass="okayPanel"
+							rendered="#{creditoAccion.habilitarRequisitosCruce}">
+							<h:outputText value="#{messages['precalificacioncruce.aceptada']}"
+								escape="false"></h:outputText>
+						</rich:panel>
+						<rich:panel styleClass="errorPanel"
+							rendered="#{!creditoAccion.habilitarRequisitosCruce}">
+							<h:outputText value="#{messages['precalificacioncruce.negada']}"
+								escape="false"></h:outputText>
+							<h:outputText value="#{creditoAccion.msjError}"
+								escape="false"></h:outputText>
+						</rich:panel>
+					</rich:panel>
+					<br />
+					<div align="center">
+						<h:commandButton
+						action="#{creditoAccion.calcularLiquidacionFondos}"
+						value="#{labels['button.aceptar']}"
+						disabled="#{!creditoAccion.habilitarRequisitosCruce}"
+						styleClass="boton"></h:commandButton> 
+						<h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> 
+			<input type="button" class="botonbarra"
+				value="#{labels['button.imprimir.requisitoscruce']}" id="imprimir"
+				onclick="window.print();" />
+						<h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> 
+						<h:commandButton action="consultaCreditos"
+						value="#{labels['button.cancelar']}" styleClass="boton"></h:commandButton>
+					</div>
+				</f:subview>
+			</a4j:outputPanel>
+		</h:form>
+		<script type="text/javascript">
+			cargarRequisitos();
+		</script>
+	</ui:define>
+</ui:composition>

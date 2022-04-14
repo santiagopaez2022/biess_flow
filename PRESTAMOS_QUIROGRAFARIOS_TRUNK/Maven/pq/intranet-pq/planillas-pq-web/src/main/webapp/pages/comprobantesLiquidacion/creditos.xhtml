@@ -1,0 +1,129 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['consulta.creditos']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<script type="text/javascript" language="Javascript"
+			src="../../js/utilitarios.js" />
+
+		<div class="text_mensaje_pagina">
+		#{titulos['consulta.creditos']} <a4j:status>
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible">
+					<h:graphicImage value="/img/conexion.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+		</a4j:status></div>
+
+		<a4j:outputPanel id="pnlDatosGenerales">
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody" rendered="${consultaCredito.datos.solicitante!=null}">
+				<f:facet name="header">
+				#{titulos['datos.generales']}
+			</f:facet>
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="#{etiquetas['comp.liq.cedula']}:" />
+					<h:outputText style="font-weight:bold"
+						value="#{consultaCredito.datos.solicitante.datosPersonales.cedula}" />
+					<h:outputLabel value="#{etiquetas['comp.liq.nombresApellidos']}:" />
+					<h:outputText style="font-weight:bold"
+						value="#{consultaCredito.datos.solicitante.datosPersonales.apellidosNombres}" />
+				</h:panelGrid>
+
+			</rich:panel>
+		</a4j:outputPanel>
+		
+		
+		<h:form id="frmCreditosComprobanteLiquidacion">
+			<f:subview>
+				<a4j:outputPanel id="oppCreditosComprobanteLiquidacion">
+					
+					<rich:panel styleClass="messagePanel" headerClass="pheader" bodyClass="pbody" style="margin: 0px !important;">
+							<h:outputText value="#{etiquetas['seleccione.un.credito.recaudacion']}" rendered="#{not empty consultaCredito.listaPrestamos}" />
+							<h:outputText value="No posee creditos vigentes." rendered="#{empty consultaCredito.listaPrestamos}}" />
+					</rich:panel>
+					
+					<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+						cellpadding="0" style="width:100%;"
+						rendered="#{not empty consultaCredito.listaPrestamos}">
+						<rich:panel>
+							<f:facet name="header">#{titulos['creditos.vigentes']}</f:facet>
+							<h:panelGrid columns="1" columnClasses="info" width="100%">
+								<h:panelGroup>
+									<rich:dataTable binding="#{consultaCredito.tablaPrestamos}"
+										var="item"	value="#{consultaCredito.listaPrestamos}" width="100%"
+										rendered="#{not empty consultaCredito.listaPrestamos}">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column>#{etiquetas['credito.prestamo']}</rich:column>
+												<rich:column>#{etiquetas['credito.estado']}</rich:column>
+												<rich:column>#{etiquetas['credito.numero']}</rich:column>
+												<rich:column>#{etiquetas['credito.plazo.meses']}</rich:column>
+												<rich:column>#{etiquetas['credito.fecha.concesion']}</rich:column>
+												<rich:column>#{etiquetas['credito.monto.abrev']}</rich:column>
+												<rich:column>
+													<rich:spacer width="10px" />
+												</rich:column>
+											</rich:columnGroup>
+										</f:facet>
+										<rich:column>
+											<h:outputText value="#{item.clasePrestamo.descripcion}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.prestamoPk.numpreafi}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.plzmes}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.fecpreafi}">
+												<f:convertDateTime pattern="dd-MMM-yyyy" />
+											</h:outputText>
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{item.valsalcap}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2" type="currency"/>
+											</h:outputText>
+										</rich:column>
+										<rich:column style="text-align:center">
+											<a4j:commandButton value="#{botones['seleccionar']}"
+												reRender="mensajesAnulacion"
+												action="#{consultaCredito.seleccionar}" styleClass="boton1">
+											</a4j:commandButton>
+										</rich:column>
+									</rich:dataTable>
+								</h:panelGroup>
+							</h:panelGrid>
+						</rich:panel>
+						<br />
+					</h:panelGrid>
+				</a4j:outputPanel>
+				
+				<a4j:outputPanel id="mensajesAnulacion">
+					<h:messages />
+						<rich:panel rendered="#{creditoAccion.msjError != null}">
+						<div class="mensajeInfo">
+							<h:outputText value="#{creditoAccion.msjError}" />
+							<br />
+							</div>
+						</rich:panel>
+				</a4j:outputPanel>
+				
+			</f:subview>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu-vertical.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['sistema.titulo']}
+	</ui:define>
+
+	<ui:define name="contenido">		
+		<a4j:status id="cargandoRoles">			
+			<a4j:commandButton action="#{principal.logout}" value="#{labels['button.salir']}"
+				styleClass="botonbarra" immediate="true">
+			</a4j:commandButton>				
+		</a4j:status>
+		<div align="center">
+		<p style="margin-left: 10%;margin-top: 15%;color: white;"></p>
+			<img src="../files/images/content/foto-principal.jpg" />				
+		</div>
+		
+		<script type="text/javascript">
+			Richfaces.showModalPanel('pnlMenInf');
+		</script>
+	</ui:define>
+
+</ui:composition>

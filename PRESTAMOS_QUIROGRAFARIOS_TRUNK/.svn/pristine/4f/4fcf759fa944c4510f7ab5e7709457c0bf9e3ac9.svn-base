@@ -1,0 +1,4 @@
+date.pattern=dd/MMM/yyyy
+image.close=/img/close.png
+report.datasource=java\:auditoriaDS
+codigo.modulo=4

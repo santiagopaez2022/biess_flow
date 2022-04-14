@@ -1,0 +1,1007 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['pq.simulador.pq.titulo']}</h1>
+		
+		<!-- INICIO REGION DE REQUISITOS BLOQUEANTES -->
+		<a4j:region id="rgnBloqueantes">
+			<a4j:outputPanel id="pnlDiscapacitado" rendered="#{simuladorPqSesion.mostrarPaneles}">
+				<rich:panel styleClass="panel" headerClass="pheader"
+					bodyClass="pbody">
+					<f:facet name="header">	#{labels['persona.con.discapacidad']} </f:facet>
+
+					<a4j:region id="regDiscapacitados">
+						<h:form id="formDiscapacitados">
+							<table>
+								<tr>
+									<td><h:outputLabel
+											value="#{labels['pq.simulador.tipo.solicitud']}:" /></td>
+									<td colspan="3"><h:selectOneMenu id="select-discapacitado"
+											value="#{simuladorPqRequest.seleccionTramiteComoDiscapacitado}">
+											<f:selectItem itemValue="NO"
+												itemLabel="#{labels['pq.simulador.normal']}" />
+											<f:selectItem itemValue="SI"
+												itemLabel="#{labels['pq.simulador.discapacitado']}" />
+											<a4j:support event="onchange"
+												action="#{simuladorPq.confirmarDiscapacidad}"
+												ajaxSingle="true"
+												reRender="msgInfoDiscapacitado,formDiscapacitados,pnlDiscapacitado,pnlRequisitosBloqueantes,pnlResultado,
+													pnlBotones,frmTipoProducto:pnlTipoProducto,frmTipoProducto:pnlMensajeNoBloqueante,pnlRequisitos" />
+										</h:selectOneMenu></td>
+								</tr>
+							</table>
+
+							<a4j:status for="regDiscapacitados">
+								<f:facet name="start">
+									<rich:panel styleClass="messageWaiting">
+										<h:outputText value="#{messages['confirmando.discapacidad']}" />
+									</rich:panel>
+								</f:facet>
+							</a4j:status>
+
+							<a4j:outputPanel id="msgInfoDiscapacitado">
+								<rich:panel
+									styleClass="#{simuladorPq.estiloMensajeDiscapacitado}"
+									rendered="#{simuladorPq.mensajeDiscapacitado != null}">
+									<h:outputText value="#{simuladorPq.mensajeDiscapacitado}"></h:outputText>
+								</rich:panel>
+							</a4j:outputPanel>
+
+						</h:form>
+					</a4j:region>
+				</rich:panel>
+			</a4j:outputPanel>
+
+			<a4j:outputPanel id="pnlResultado" rendered="#{simuladorPqSesion.mostrarPaneles}">
+				<rich:panel styleClass="panelResults" headerClass="pheader"
+					bodyClass="pbody">
+					<f:facet name="header">	#{labels['pq.simulador.cumplimiento.requisitos.habilitantes']} </f:facet>
+					<rich:panel styleClass="okayPanel"
+						rendered="#{simuladorPq.aprobadoBloqueantes}">
+						<h:outputText value="#{messages['mensaje.simulador.aceptado']}"
+							escape="false"></h:outputText>
+					</rich:panel>
+					<rich:panel styleClass="errorPanel"
+						rendered="#{!simuladorPq.aprobadoBloqueantes}">
+						<h:outputText value="#{messages['mensaje.simulador.negado']}"
+							escape="false"></h:outputText>
+					</rich:panel>
+				</rich:panel>
+				<br />
+			</a4j:outputPanel>
+
+			<h:form id="formRequisitosBloq">
+
+				<h:messages showSummary="true" for="formRequisitosBloq"
+					styleClass="errorPanel" />
+				<a4j:outputPanel id="pnlRequisitosBloqueantes"
+					rendered="#{simuladorPqSesion.mostrarPaneles and fn:length(simuladorPq.requisitosBloqueantes) > 0}">
+					<rich:panel style="width:100%;">
+
+						<h:panelGrid columns="1" styleClass="panelInvisible">
+							<a4j:outputPanel ajaxRendered="true"
+								rendered="#{simuladorPq.mensajeError != null}">
+								<h:outputText styleClass="errorPanel"
+									rendered="#{simuladorPq.mensajeError != null}"
+									value="#{simuladorPq.mensajeError}"
+									style="padding:10px 0px 15px 55px; margin: 0px;" />
+								<br />
+							</a4j:outputPanel>
+
+							<a4j:outputPanel id="pnlRequisitos">
+								<h:dataTable var="item"
+									value="#{simuladorPq.requisitosBloqueantes}"
+									styleClass="tablesinside" headerClass="dt_header"
+									rowClasses="prow1,prow2">
+									<h:column>
+										<f:facet name="header">#{labels.requisito}</f:facet>
+										<h:outputText value="#{item.descripcion}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">#{labels.aprueba}</f:facet>
+										<div align="center">
+											<h:graphicImage value="/files/images/content/icon-check.png"
+												rendered="#{item.aprobado}"></h:graphicImage>
+											<h:graphicImage
+												value="/files/images/content/icon-uncheck.png"
+												rendered="#{!item.aprobado}"></h:graphicImage>
+										</div>
+									</h:column>
+									<h:column>
+										<f:facet name="header">#{labels.observacion}</f:facet>
+										<h:outputText value="#{item.observacion}" />
+									</h:column>
+								</h:dataTable>
+							</a4j:outputPanel>
+						</h:panelGrid>
+					</rich:panel>
+				</a4j:outputPanel>
+
+			</h:form>
+		</a4j:region>
+		<!-- FIN REGION DE REQUISITOS BLOQUEANTES -->
+
+
+		<!-- INICIO REGION DE TIPO DE PRODUCTO -->
+		<a4j:region id="rgnTipoProducto">
+			<h:form id="frmTipoProducto">
+
+				<a4j:outputPanel id="pnlRequisitos">
+					<br />
+					<rich:panel styleClass="panel" headerClass="pheader"
+						rendered="#{simuladorPq.simuladorPqSesion.mostrarRequisitosNoBloqueantes}"
+						bodyClass="pbody">
+						<f:facet name="header">#{labels['pq.simulador.cumplimiento.requisitos']}</f:facet>
+						
+						<rich:panel styleClass="errorPanel">
+							<h:outputText
+								value="#{messages['mensaje.simulador.no.cumple.requisitos']}"
+								escape="false"></h:outputText>
+						</rich:panel>
+						
+						<a4j:outputPanel id="pnlRequisitosDatos">
+
+							<h:dataTable var="item"
+								value="#{simuladorPq.simuladorPqSesion.listaRequisitosNoBloqueantes}"
+								styleClass="tablesinside" headerClass="dt_header"
+								rowClasses="prow1,prow2">
+								<h:column>
+									<f:facet name="header">#{labels.requisito}</f:facet>
+									<h:outputText value="#{item.descripcion}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">#{labels.aprueba}</f:facet>
+									<div align="center">
+										<h:graphicImage value="/files/images/content/icon-check.png"
+											rendered="#{item.aprobado}"></h:graphicImage>
+										<h:graphicImage value="/files/images/content/icon-uncheck.png"
+											rendered="#{!item.aprobado}"></h:graphicImage>
+									</div>
+								</h:column>
+								<h:column>
+									<f:facet name="header">#{labels.observacion}</f:facet>
+									<h:outputText value="#{item.observacion}" />
+									<h:outputText value="#{item.url}" rendered="#{item.url!=null}" />
+								</h:column>
+							</h:dataTable>
+						</a4j:outputPanel>
+					</rich:panel>
+				</a4j:outputPanel>
+
+
+				<a4j:outputPanel id="pnlTipoProducto" rendered="#{simuladorPqSesion.mostrarPaneles}">
+					<a4j:outputPanel style="width:100%;"
+						rendered="#{simuladorPq.aprobadoBloqueantes}">
+						
+						<!-- PARAMETROS PARA CALCULO DEL CREDITO -->
+						<h:form id="formCargarCalculo">
+							<a4j:region id="regConcesion">
+								<a4j:status for="regConcesion">
+									<f:facet name="start">
+										<rich:panel styleClass="panelInvisible">
+											<h:graphicImage id="uiBlanco5" value="/img/ajax/cargando.gif" />
+											<h:outputText value="#{messages['cargando.garantias']}"></h:outputText>
+										</rich:panel>
+									</f:facet>
+								</a4j:status>
+								<!-- CALCULO DE GARANTIAS -->
+								<a4j:outputPanel id="pnlGarantias">
+									<h:messages showSummary="true" for="formCargarCalculo"
+										styleClass="errorPanel" />
+									<br />
+									<h:outputText value="#{simuladorPq.mensajeError}"
+										rendered="#{simuladorPq.mensajeError != null}"
+										style="color:Red;"></h:outputText>
+									<a4j:outputPanel rendered="#{simuladorPqSesion.mostrarPaneles}">
+										<rich:panel styleClass="panel" headerClass="pheader"
+											bodyClass="pbody">
+											<f:facet name="header">#{labels['parametros.calculo.credito']}</f:facet>
+											<table style="width: 100%;">
+												<tr>
+													<td style="width: 50%; vertical-align: top;">
+														<fieldset style="width: 94%; height: 100%;">
+															<legend>#{labels['condiciones.calculo']}</legend>
+
+															<table width="100%">
+																<tr>
+																	<td width="55%"><h:outputLabel for="txtEdad"
+																			value="#{labels['edad.actual']}:" /></td>
+																	<td width="5%"></td>
+																	<td width="30%" class="tdCampoNum"><h:outputText
+																			id="txtEdad"
+																			value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.edadActualAnios} "></h:outputText>
+																	</td>
+																	<td width="5%"></td>
+																	<td width="5%">#{labels.anios}</td>
+																</tr>
+																<tr>
+																	<td><h:graphicImage id="uiBlanco60"
+																			value="/img/blanco.jpg" /></td>
+																	<td></td>
+																	<td class="tdCampoNum"><h:outputText
+																			id="txtEdadMeses"
+																			value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.edadActualMeses}" />
+																	</td>
+																	<td></td>
+																	<td>#{labels.meses}</td>
+																</tr>
+																<tr>
+																	<td colspan="3"><rich:separator id="uisep3"
+																			height="1" lineType="dotted" /> <br /></td>
+																</tr>
+																<tr>
+																	<td><h:outputLabel for="txtPlazo"
+																			value="#{labels['plazo.maximo.credito']}:" /></td>
+																	<td></td>
+																	<td class="tdCampoNum"><h:outputText id="txtPlazo"
+																			value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.plazoMaximo}" />
+																	</td>
+
+																	<td></td>
+
+																	<td>#{labels.meses}</td>
+																</tr>
+																<tr>
+																	<td><h:outputLabel for="txtInteres"
+																			value="#{labels['tasa.interes.iess']}:" /></td>
+																	<td></td>
+																	<td class="tdCampoNum"><h:outputText
+																			id="txtInteres"
+																			value="#{simuladorPq.tipoProductosPqSeleccionado=='EMERG' ? messages['parametro.tasa.interes.plazo.emergente.info'] : messages['parametro.tasa.interes.plazo.info'] }">
+																		</h:outputText></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<!-- COMIENZA EL CALCULO DE MULTIPLES PQS -->
+																<tr>
+																	<td colspan="3"><rich:separator id="uisep4"
+																			height="1" lineType="dotted" /> <br /></td>
+																</tr>
+																<tr>
+																	<c:if test="${datos.solicitante.tipo=='AFILIADO'}">
+																		<td><h:outputLabel for="txtSueldo"
+																				value="#{roles.mensajeSueldoPromedio}:" /></td>
+																	</c:if>
+																	<c:if test="${datos.solicitante.tipo=='JUBILADO'}">
+																		<td><h:outputLabel for="txtSueldo"
+																				value="#{labels['prestaciones.ingreso.neto.mensual']}:" />
+																		</td>
+																	</c:if>
+																	<td></td>
+																	<td class="tdCampoNum"><h:outputText
+																			id="txtSueldo"
+																			value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.sueldoPromedio}">
+																			<f:convertNumber groupingUsed="true"
+																				maxFractionDigits="2" type="currency" />
+																		</h:outputText></td>
+																	<td></td>
+																	<td><strong>(A)</strong></td>
+																</tr>
+																<tr>
+																	<td colspan="3"><rich:separator id="uisepmp1"
+																			height="1" lineType="dotted" /> <br /></td>
+																</tr>
+																<!-- CAPACIDAD DE PAGO -->
+																<tr>
+																	<td><h:outputLabel for="txtCapacidadPago"
+																			value="#{labels['valor.capacidad.pago']}:" /></td>
+																	<td></td>
+																	<td class="tdCampoNum"><h:outputText
+																			id="txtCapacidadPago"
+																			value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.capacidadPago}">
+																			<f:convertNumber groupingUsed="true"
+																				maxFractionDigits="2" type="currency" />
+																		</h:outputText></td>
+																	<td></td>
+																	<td><strong>(B</strong> <h:outputText
+																			id="lblCapacidadPago"
+																			value="=A*#{simuladorPq.simuladorPqSesion.parametrosSimulacion.porcentajeCapacidadPago}%" /><strong>)</strong></td>
+																</tr>
+																<!-- FIN CAPACIDAD DE PAGO -->
+																<tr>
+																	<td colspan="3"><rich:separator id="uisepmp2"
+																			height="1" lineType="dotted" /> <br /></td>
+																</tr>
+																<!-- COMIENZA CUOTA MULTIPLES PQs -->
+																<tr>
+																	<td>DETALLE CREDITOS <strong>(C):</strong></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<f:subview
+																	rendered="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.listaDetalleEgresos != null}">
+
+																	<c:forEach
+																		items="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.listaDetalleEgresos}"
+																		var="itemEgresos">
+																		<tr>
+																			<td><h:outputText value="#{itemEgresos.nombre}" /></td>
+																			<td></td>
+																			<td class="tdCampoNum"><h:outputText
+																					value="#{itemEgresos.valor}"
+																					style="text-align: right;">
+																					<f:convertNumber groupingUsed="true"
+																						maxFractionDigits="2" type="currency" />
+																				</h:outputText></td>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																	</c:forEach>
+																</f:subview>
+																<!-- CAPACIDAD DE ENDEUDAMIENTO -->
+																<tr>
+																	<td colspan="3"><rich:separator id="uisepmp3"
+																			height="1" lineType="dotted" /> <br /></td>
+																</tr>
+																<tr>
+																	<td><h:outputLabel for="txtCapEndeudamiento"
+																			value="#{labels['valor.capacidad.endeudamiento']}:"
+																			style="#{simuladorPq.colorTextoEndeudamiento}" /></td>
+																	<td></td>
+																	<td class="tdCampoNum"><h:outputText value="$"
+																			style="#{simuladorPq.colorTextoEndeudamiento}"></h:outputText>
+																		<h:outputText id="txtCapEndeudamiento"
+																			value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.capacidadEndeudamiento}"
+																			style="#{simuladorPq.colorTextoEndeudamiento}">
+																			<f:convertNumber groupingUsed="true"
+																				maxFractionDigits="2" />
+																		</h:outputText></td>
+																	<td></td>
+																	<td><h:outputText value="(B-C)"
+																			style="#{simuladorPq.colorTextoEndeudamiento}"></h:outputText></td>
+																</tr>
+															</table>
+														</fieldset>
+													</td>
+													<td style="vertical-align: top;">
+														<!-- COMIENZA GARANTIAS -->
+														<fieldset style="width: 94%; height: 100%;">
+															<legend>
+																<h:outputText value="#{labels['garantias']}"
+																	rendered="#{datos.solicitante.tipo=='AFILIADO'}"></h:outputText>
+																<h:outputText value="#{labels['pension.jubilacion']}"
+																	rendered="#{datos.solicitante.tipo=='JUBILADO'}"></h:outputText>
+															</legend>
+
+															<table width="100%">
+																<!-- AFILIADO -->
+																<c:if test="${datos.solicitante.tipo=='AFILIADO'}">
+																	<tr>
+																		<td>CESANTIAS:</td>
+																	</tr>
+																	<c:forEach
+																		items="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.listaDetalleIngresos}"
+																		var="itemCes">
+																		<c:if test="${itemCes.observacion =='Cesantia'}">
+																			<tr>
+																				<td><h:outputText value="#{itemCes.nombre}" escape="false" /></td>
+																				<td class="tdCampoNum"><h:outputText
+																						value="#{itemCes.valor}"
+																						style="text-align: right;">
+																						<f:convertNumber groupingUsed="true"
+																							maxFractionDigits="2" type="currency" />
+																					</h:outputText></td>
+																			</tr>
+																		</c:if>
+																	</c:forEach>
+																	<tr>
+																		<td colspan="3"><rich:separator id="uisepmp4"
+																				height="1" lineType="dotted" /> <br /></td>
+																	</tr>
+																	<tr>
+																		<td>FONDOS:</td>
+																	</tr>
+																	<c:forEach
+																		items="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.listaDetalleIngresos}"
+																		var="itemFond">
+																		<c:if test="${itemFond.observacion =='Fondos'}">
+																			<tr>
+																				<td><h:outputText value="#{itemFond.nombre}" escape="false" /></td>
+																				<td class="tdCampoNum"><h:outputText
+																						value="#{itemFond.valor}"
+																						style="text-align: right;">
+																						<f:convertNumber groupingUsed="true"
+																							maxFractionDigits="2" type="currency" />
+																					</h:outputText></td>
+																			</tr>
+																		</c:if>
+																	</c:forEach>
+																	<tr>
+																		<td colspan="3"><rich:separator id="uisepmp5"
+																				height="1" lineType="dotted" /> <br /></td>
+																	</tr>
+																</c:if>
+																<!-- FIN AFILIADO -->
+																<!-- JUBILADO -->
+																<c:if test="${datos.solicitante.tipo=='JUBILADO'}">
+																	<c:if
+																		test="#{resultado.datos.mensajePrestacionJubilado!=null}">
+																		<tr>
+																			<td><rich:panel styleClass="errorPanel"
+																					rendered="#{resultado.datos.mensajePrestacionJubilado!=null}">
+																					<h:outputText
+																						value="#{resultado.datos.mensajePrestacionJubilado}"></h:outputText>
+																				</rich:panel></td>
+																		</tr>
+																	</c:if>
+																	<c:if
+																		test="#{resultado.datos.mensajePrestacionJubilado==null}">
+																		<tr>
+																			<td></td>
+																			<td><b> #{labels['prestaciones.ingresos']} </b></td>
+																			<td><b> #{labels['prestaciones.egresos']} </b></td>
+																		</tr>
+																		<c:forEach
+																			items="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.informacionPrestacionPensionado.listaPrestaciones}"
+																			var="_presta">
+																			<tr>
+																				<td><h:outputText
+																						value="#{_presta.descripcion}:" /></td>
+																				<td class="tdCampoNum">$<h:outputText
+																						value="#{_presta.ingresos}"
+																						style="text-align: right;">
+																						<f:convertNumber groupingUsed="true"
+																							maxFractionDigits="2" type="currency" />
+																					</h:outputText>
+																				</td>
+																				<td class="tdCampoNum">$<h:outputText
+																						value="#{_presta.egresos}"
+																						style="text-align: right;">
+																						<f:convertNumber groupingUsed="true"
+																							maxFractionDigits="2" type="currency" />
+																					</h:outputText>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td colspan="3"><rich:separator height="1"
+																						lineType="dotted" /> <br /></td>
+																			</tr>
+																		</c:forEach>
+																		<tr>
+																			<td><b>Total</b></td>
+																			<td class="tdCampoNum"><b>$#{simuladorPq.simuladorPqSesion.parametrosSimulacion.informacionPrestacionPensionado.totalIngresos}</b></td>
+																			<td class="tdCampoNum"><b>$#{simuladorPq.simuladorPqSesion.parametrosSimulacion.informacionPrestacionPensionado.totalEgresos}</b></td>
+																		</tr>
+																		<tr>
+																			<td colspan="2"><b>#{labels['total.valor.comprometer']}:</b></td>
+																			<td class="tdCampoNum"><b>
+																					$#{simuladorPq.simuladorPqSesion.parametrosSimulacion.informacionPrestacionPensionado.valorAComprometer}
+																					<br />
+																			</b></td>
+																		</tr>
+																	</c:if>
+																</c:if>
+																<!-- FIN JUBILADO -->
+																<c:if
+																	test="${datos.solicitante.tipo=='AFILIADO'}">
+																	<tr>
+																		<td><h:outputLabel for="txtGarantia"
+																				value="#{labels['total.garantia']}:"  escape="false"/></td>
+																		<td class="tdCampoNum"><h:outputText
+																				id="txtGarantia"
+																				value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.totalGarantia}">
+																				<f:convertNumber groupingUsed="true"
+																					maxFractionDigits="2" type="currency" />
+																			</h:outputText></td>
+																	</tr>
+																</c:if>
+																	<c:if
+																	test="${datos.solicitante.tipo=='ZAFRERO_TEMPORAL'}">
+																	<tr>
+																		<td><h:outputLabel for="txtGarantia"
+																				value="#{labels['total.garantia.prerrequisitos']}:"  escape="false"/></td>
+																		<td class="tdCampoNum"><h:outputText
+																				id="txtGarantia"
+																				value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.totalGarantia}">
+																				<f:convertNumber groupingUsed="true"
+																					maxFractionDigits="2" type="currency" />
+																			</h:outputText></td>
+																	</tr>
+																</c:if>
+																
+																
+
+															</table>
+														</fieldset> <!-- FIN GARANTIAS -->
+													</td>
+												</tr>
+											</table>
+										</rich:panel>
+									</a4j:outputPanel>
+								</a4j:outputPanel>
+							</a4j:region>
+						</h:form>
+
+						<!-- TABS: REFERENCIA, SIMULACION, AMORTIZACION -->
+						<a4j:status for="regPestanias">
+							<f:facet name="start">
+								<rich:panel styleClass="panelInvisible"
+									style="float:right;height:20px;position:absolute;left:475px;margin-top:5px;">
+									<b> <h:outputText value="#{messages['cargando']}"></h:outputText>
+									</b>
+								</rich:panel>
+							</f:facet>
+						</a4j:status>
+
+						<a4j:region id="regPestanias">
+							<a4j:outputPanel id="formPestanias"
+								rendered="#{simuladorPqSesion.mostrarPaneles}"
+								styleClass="panelInvisibleMax">
+								<a4j:form id="uiForm" name="formularioPestanias">
+									<a4j:outputPanel styleClass="panelInvisibleMax"
+										rendered="#{simuladorPqSesion.cargado}">
+
+										<rich:tabPanel switchType="client" id="tabPanelPrincipal"
+											name="tabPanelPrincipal"
+											binding="#{simuladorPq.htmlTabPanel}" height="320px"
+											tabClass="rich-tab-inactive">
+
+											<!-- SIMULACION -->
+											<rich:tab id="sim" name="sim"
+												label="#{labels['tab.simulacion']}"
+												binding="#{simuladorPq.htmlTabSim}"
+												onlabelclick="preparaCampos()">
+
+												<rich:panel id="uiSeleccione" styleClass="messagePanel">
+									#{messages['credito.simulacion']}
+									
+									<h:outputText value="#{simuladorPq.mensajeError}"
+														rendered="#{simuladorPq.mensajeError != null}"
+														style="color:Red;"></h:outputText>
+												</rich:panel>
+
+												<rich:tabPanel switchType="ajax" id="tabPanelSimulacion"
+													height="200px">
+
+													<a4j:support
+														action="#{simuladorPq.ocultarBotonTablaAmortizacion}"
+														event="ontabchange"
+														reRender="cmdCalcularPorCuota, cmdCalcularPorMonto, cmdAceptarPorCuota, cmdAceptarPorMonto, uiSimC, uiSimM, uiSCObservacOk, uiSCObservacError, uiSMO, uiSMO2"
+														process="@this"></a4j:support>
+													<rich:tab id="uiSimM"
+														label="#{labels['simulacion.monto.credito']}">
+														<rich:panel id="uiSCCI" styleClass="messagePanel"
+															rendered="#{simuladorPq.categoriaProductoSeleccionado != 'CAT_FOCALIZADOS'}">
+											#{messages['simulacion.cuota.mensual']}
+										</rich:panel>
+														<rich:panel id="uiSCCIFoc" styleClass="messagePanel"
+															rendered="#{simuladorPq.categoriaProductoSeleccionado == 'CAT_FOCALIZADOS'}">
+											#{messages['mensaje.pq.focalizado.cuota.mensual']}
+										</rich:panel>
+
+														<h:messages showSummary="true" for="formularioPestanias"
+															styleClass="errorPanel" />
+
+														<f:subview>
+
+															<rich:panel styleClass="messagePanel"
+																rendered="#{simuladorPq.opcionSimCuota.tipoTablaSeleccionado !=null and simuladorPq.opcionSimCuota.tipoTablaSeleccionado=='FRANCESA'}">
+																<h:outputText
+																	value="#{messages['sistema.amortizacion.frances']}  #{messages['mensaje.sistema.frances']}"
+																	style="text-align:left;" />
+															</rich:panel>
+
+															<rich:panel styleClass="messagePanel"
+																rendered="#{simuladorPq.opcionSimCuota.tipoTablaSeleccionado !=null and simuladorPq.opcionSimCuota.tipoTablaSeleccionado=='ALEMANA'}">
+																<h:outputText
+																	value="#{messages['sistema.amortizacion.aleman']} #{messages['mensaje.sistema.aleman']}"
+																	style="text-align:right;" />
+															</rich:panel>
+
+															<rich:panel id="uiSCObservacOk" styleClass="okayPanel"
+																rendered="#{(simuladorPq.simulacion != null) and simuladorPq.simulacion.calculoCredito}">
+												#{simuladorPq.simulacion.observacion}
+											</rich:panel>
+
+															<rich:panel id="uiSCObservacError"
+																styleClass="errorPanel"
+																rendered="#{(simuladorPq.simulacion != null) and !simuladorPq.simulacion.calculoCredito and simuladorPq.simulacion.observacion!=null}">
+												#{simuladorPq.simulacion.observacion}
+											</rich:panel>
+
+														</f:subview>
+
+														<!-- SIMULACION PRODUCTOS NORMAL -->
+														<h:panelGrid columns="1" border="0" id="uiGridSimCuota" >
+															<h:panelGroup>
+																<h:outputLabel value="#{labels['simulacion.plazo']}:"
+																	style="text-align:right" />
+																<h:inputText id="c"
+																	value="#{simuladorPq.opcionSimCuota.meses}"
+																	styleClass="calc-write"
+																	onkeypress="return aceptarNumeros(event, this, false)">
+																	<a4j:support process="c" event="onchange"
+																		ajaxSingle="true"
+																		action="#{simuladorPq.reseteaListaTablaAmortizacion}"
+																		reRender="selectTablaPrueba, uiTxtSimCuotaMontoMax"></a4j:support>
+																</h:inputText>
+																<h:outputText value="(#{labels.meses})" />
+																<h:outputText
+																	value="#{labels['simulacion.plazo.maximo']}:  " />
+
+																<h:outputText id="uiTxtSimCuotaMaxCreditoZafreroCuota"
+																	rendered="#{datos.solicitante.tipo=='ZAFRERO_TEMPORAL'}"
+																	value="12">
+																</h:outputText>
+																<h:outputText id="uiTxtSimCuotaMaxCreditoCuota"
+																	rendered="#{datos.solicitante.tipo!='ZAFRERO_TEMPORAL'}"
+																	value="#{simuladorPq.simuladorPqSesion.parametrosSimulacion.plazoMaximo}">
+																</h:outputText>
+															</h:panelGroup>
+
+															<h:panelGroup>
+																<h:outputLabel
+																	value="#{labels['simulacion.tipo.tabla']}:" />
+																<h:selectOneMenu id="selectTablaPrueba"
+																	value="#{simuladorPq.opcionSimCuota.tipoTablaSeleccionado}">
+																	<f:selectItem itemValue="" itemLabel="Seleccione ..." />
+																	<f:selectItems value="#{simuladorPq.tipoTablaItems}" />
+																	<a4j:support event="onchange" onchange="Richfaces.showModalPanel('pnl');"
+																		process="c, selectTablaPrueba" oncomplete="Richfaces.hideModalPanel('pnl');"
+																		action="#{simuladorPq.obtenerMontoMaximo}"
+																		reRender="tabPanelSimulacion, lblCapacidadPago,txtCapacidadPago,txtCapEndeudamiento" />
+																</h:selectOneMenu>
+															</h:panelGroup>
+
+															<h:panelGroup>
+																<h:outputLabel value="#{labels['simulacion.monto']}: $" />
+																<h:inputText id="cc"
+																	value="#{simuladorPq.opcionSimCuota.valorTotalCredito}"
+																	styleClass="calc-write"
+																	onkeypress="return aceptarNumeros(event, this, true)"
+																	readonly="#{simuladorPq.categoriaProductoSeleccionado == 'CAT_FOCALIZADOS' ? 'true' : 'false'}">
+																	<a4j:support
+																		action="#{simuladorPq.validarSeleccionTablaAmortizacion}"
+																		process="cc" event="onchange"
+																		rendered="uiSCObservacError" />
+																	<f:converter converterId="dineroConverter" />
+																</h:inputText>
+																<h:outputLabel
+																	value="#{labels['simulacion.monto.maximo']}:"
+																	id="labelMonto"
+																	rendered="#{simuladorPq.opcionSimCuota.tipoTablaSeleccionado ==null}"
+																	style="text-align:left" />
+																<h:outputLabel
+																	value="#{labels['simulacion.monto.maximo']} #{simuladorPq.opcionSimCuota.tipoTablaSeleccionado}:"
+																	rendered="#{simuladorPq.opcionSimCuota.tipoTablaSeleccionado !=null}"
+																	style="text-align:left" id="tipoSeleccion" />
+																<h:outputText id="uiTxtSimCuotaMontoMax"
+																	value="#{simuladorPq.simulacion.montoMaximoCredito}">
+																	<f:convertNumber groupingUsed="true"
+																		maxFractionDigits="2" type="currency" />
+																</h:outputText>
+															</h:panelGroup>
+
+														</h:panelGrid>
+
+														<div style="font-size: 20px;">
+															#{labels['simulacion.cuota']}:
+															<h:outputText id="uiSimResCuota"
+																value="#{simuladorPq.opcionSimCuota.cuotaMensual}">
+																<f:convertNumber groupingUsed="true"
+																	maxFractionDigits="2" type="currency" />
+															</h:outputText>
+															<!-- #{labels.moneda} -->
+														</div>
+														<br />
+														<div align="left" id="uiDivBotCalcCuo">
+															<a4j:commandButton id="cmdCalcularPorCuota" onclick="Richfaces.showModalPanel('pnl');"
+																 oncomplete="Richfaces.hideModalPanel('pnl');"
+																action="#{simuladorPq.calcularSimCuotaNew}"
+																value="Calcular" styleClass="boton"
+																reRender="tabPanelPrincipal,tabPanelSimulacion,txtCapacidadPago,txtCapEndeudamiento">
+															</a4j:commandButton>
+															<h:graphicImage id="uiBlanco15" value="/img/blanco.jpg" />
+															<a4j:commandButton id="cmdAceptarPorCuota"
+															   onclick="Richfaces.showModalPanel('pnl');"
+                                                                oncomplete="Richfaces.hideModalPanel('pnl');"
+																action="#{simuladorPq.aceptarSimCuotaNew}"
+																value="#{labels['button.amortizacion.ver']}"
+																styleClass="boton"
+																rendered="#{simuladorPq.simuladorPqSesion.calculoCredito}"
+																reRender="tabPanelPrincipal,tablaFrancesa,lblCapacidadPago,txtCapacidadPago">
+															</a4j:commandButton>
+														</div>
+													</rich:tab>
+
+												</rich:tabPanel>
+											</rich:tab>
+
+											<!-- FIN SIMULACION -->
+
+											<!-- AMORTIZACION -->
+											<rich:tab id="amo" name="amo"
+												label="#{labels['tab.tabla.amortizacion']}"
+												binding="#{simuladorPq.simuladorPqSesion.htmlTabAmo}">
+												<rich:panel id="uiPnlValorReaj" styleClass="messagePanel">
+									#{messages['amortizacion.valores.reajustables']}
+								</rich:panel>
+
+												<!-- NUEVA SIMULACION DE LAS 2 TABLAS -->
+												<rich:panel styleClass="panel" headerClass="pheader"
+													bodyClass="pbody" id="tablaFrancesa">
+													<fieldset style="width: 94%; height: 100%;">
+														<c:if
+															test="${simuladorPq.simulacion.tipoSimulacion=='FRANCESA'}">
+															<legend>#{labels['creditoAConceder.francesa']}</legend>
+														</c:if>
+														<c:if
+															test="${simuladorPq.simulacion.tipoSimulacion=='ALEMANA'}">
+															<legend>#{labels['creditoAConceder.alemana']}</legend>
+														</c:if>
+														<table style="width: 100%;">
+															<tr>
+																<td width="45%">#{labels['credito.monto']}:</td>
+																<td width="20%" class="tdCampoNum"><h:outputText
+																		id="uiCreditoMonto"
+																		value="#{(simuladorPq.datos.tiposProductosPq=='TUR' or simuladorPq.datos.tiposProductosPq=='FOC') ? 
+														simuladorPq.prestamoCalculo.valorCredito + simuladorPq.prestamoCalculo.seguroSaldo.valor : simuladorPq.prestamoCalculo.valorCredito}">
+																		<f:convertNumber pattern="$ ####.00" />
+																	</h:outputText></td>
+																<td width="35%">( A )</td>
+															</tr>
+															<tr>
+																<td width="45%">#{labels['credito.seguro.saldo']}:</td>
+																<td width="20%" class="tdCampoNum"><h:outputText
+																		id="uiCreditoSS"
+																		value="#{simuladorPq.prestamoCalculo.seguroSaldo.valor}">
+																		<f:convertNumber pattern="$ ####.00" />
+																	</h:outputText></td>
+																<td width="35%">( B )</td>
+															</tr>
+															<tr>
+																<td width="45%"><h:outputText
+																		value="#{labels['credito.liquido.pagar']}:"
+																		rendered="#{simuladorPq.categoriaProductoSeleccionado=='CAT_NORMALES'}" />
+																	<h:outputText
+																		value="#{labels['credito.monto.autorizado']}:"
+																		rendered="#{simuladorPq.categoriaProductoSeleccionado=='CAT_SERVICIOS' and simuladorPq.tipoProductosPqSeleccionado!='PEN'}" />
+																	<h:outputText
+																		value="#{labels['credito.monto.pensiones.alimenticas']}:"
+																		rendered="#{datos.pagoPensionesAlimenticias}" /> <h:outputText
+																		value="#{labels['pq.focalizados.monto.transferir.autorizado']}:"
+																		rendered="#{simuladorPq.tipoProductosPqSeleccionado=='FOC'}" />
+																</td>
+																<td width="25%" class="tdCampoNum"><h:outputText
+																		id="uiCreditoLP"
+																		value="#{simuladorPq.prestamoCalculo.liquidoPagar}">
+																		<f:convertNumber pattern="$ ####.00" />
+																	</h:outputText></td>
+																<td width="35%"><h:outputText value="( = A - B )" /></td>
+															</tr>
+															<tr>
+																<td colspan="4"><rich:separator id="uisep6"
+																		height="1" lineType="dotted" /></td>
+															</tr>
+															<tr>
+																<td width="45%">#{labels['credito.tasa']}:</td>
+																<td width="20%" class="tdCampoNum"><h:outputText
+																		id="uiCreditoTasa"
+																		value="#{simuladorPq.prestamoCalculo.tasaInteres}">
+																		<f:convertNumber pattern="####.00" />
+																	</h:outputText> %</td>
+																<td width="35%"></td>
+															</tr>
+															<tr>
+																<td width="45%">#{labels['credito.plazo']}:</td>
+																<td width="20%" class="tdCampoNum"><h:outputText
+																		id="uiCreditoPlazo"
+																		value="#{simuladorPq.prestamoCalculo.plazoMeses}"></h:outputText>
+																	#{labels.meses}</td>
+																<td width="35%"></td>
+															</tr>
+															<tr>
+																<td colspan="4"><rich:separator id="uisep30"
+																		height="1" lineType="dotted" /></td>
+															</tr>
+															<tr>
+																<td><h:outputText id="uiCreditoPerGraInterzafra"
+																		value="#{labels['credito.periodo.gracia.interzafra']}"
+																		rendered="#{simuladorPq.prestamoCalculo.periodoGraciaInterZafra.valor > 0}"></h:outputText>
+																</td>
+																<td class="tdCampoNum"><h:outputText
+																		id="uiCreditoInterzafra"
+																		value="#{simuladorPq.prestamoCalculo.periodoGraciaInterZafra.valor}"
+																		rendered="#{simuladorPq.prestamoCalculo.periodoGraciaInterZafra.valor > 0}">
+																		<f:convertNumber groupingUsed="true"
+																			maxFractionDigits="2" type="currency" />
+																	</h:outputText></td>
+																<td><h:outputText id="uiCreditoPerGraInterzafra1"
+																		value="(#{messages['credito.periodo.gracia.interzafra']})"
+																		rendered="#{simuladorPq.prestamoCalculo.periodoGraciaInterZafra.valor > 0}"></h:outputText>
+																</td>
+															</tr>
+															<tr>
+																<td width="45%"><h:outputText id="outTotalInteres"
+																		style="font-weight:bold"
+																		value="#{labels['total.interes']}:" /></td>
+																<td width="20%"><h:outputText
+																		id="outTotalInteresValor"
+																		value="#{simuladorPq.prestamoCalculo.totalInteres}">
+																		<f:convertNumber pattern="$ ####.00" />
+																	</h:outputText></td>
+																<td width="35%"></td>
+
+															</tr>
+														</table>
+													</fieldset>
+												</rich:panel>
+												<!-- FIN DE LAS TABLAS DE AMORTIZACION -->
+
+												<rich:spacer id="spacerAmo5" height="10" />
+												
+												<rich:spacer id="spacerAmo2" height="10" />
+												<rich:dataTable id="tablaAmortizacion" rows="13" first="0"
+													value="#{simuladorPqSesion.tablaAmortizacion}"
+													var="dividendo" styleClass="dt_panel"
+													headerClass="dt_header" rowClasses="prow1,prow2">
+													<f:facet name="header">
+														<rich:columnGroup rowClasses="dt_header">
+															<rich:column>#{labels['credito.dividendo.numero']}</rich:column>
+															<rich:column id="lblCapAmor">#{labels['credito.capital.amortizado']}</rich:column>
+															<rich:column id="lblInteres">#{labels['credito.interes']}</rich:column>
+															<rich:column id="lblInteresGracia">#{labels['credito.dividendo.interes.gracia']}</rich:column>
+															<rich:column id="lblDividendo">#{labels['credito.dividendo.valor']}</rich:column>
+															<rich:column id="lblSaldo">#{labels['credito.saldo.capital']}</rich:column>
+															<rich:column id="lblFecha">#{labels['credito.dividendo.fechaPago']}</rich:column>
+														</rich:columnGroup>
+													</f:facet>
+													<rich:columnGroup rowClasses="prow1,prow2">
+														<rich:column style="width: 15%; text-align: center;">
+															<h:outputText id="uiNo#{dividendo.numeroDividendo}"
+																value="#{dividendo.numeroDividendo}" />
+														</rich:column>
+														<rich:column style="width: 15%;" styleClass="tdCampoNum">
+															<h:outputText id="uiCA#{dividendo.numeroDividendo}"
+																value="#{dividendo.valorAbonoCapital}">
+																<f:convertNumber pattern="$ ####.00" />
+															</h:outputText>
+														</rich:column>
+														<rich:column style="width: 15%;" styleClass="tdCampoNum">
+															<h:outputText id="uiInt#{dividendo.numeroDividendo}"
+																value="#{dividendo.valorInteres}">
+												$
+												<f:convertNumber pattern="####.00" />
+															</h:outputText>
+														</rich:column>
+														<rich:column style="width: 15%;" styleClass="tdCampoNum">
+															<h:outputText id="uiIntGra#{dividendo.numeroDividendo}"
+																value="#{dividendo.valorIntPerGra}">
+												$
+												<f:convertNumber pattern="####.00" />
+															</h:outputText>
+														</rich:column>
+														<rich:column style="width: 15%;" styleClass="tdCampoNum">
+															<h:outputText id="uiVD#{dividendo.numeroDividendo}"
+																value="#{dividendo.valorDividendo}">
+																<f:convertNumber pattern="$ ####.00" />
+															</h:outputText>
+														</rich:column>
+														<rich:column styleClass="tdCampoNum">
+															<h:outputText id="uiSC#{dividendo.numeroDividendo}"
+																value="#{dividendo.valorSaldoCapital}">
+																<f:convertNumber pattern="$ ####.00" />
+															</h:outputText>
+														</rich:column>
+														<rich:column style="width: 15%; text-align: center;">
+															<h:outputText id="uiFPD#{dividendo.numeroDividendo}"
+																value="#{dividendo.fechapagoDividendo}"
+																rendered="#{dividendo.numeroDividendo!=0}">
+																<f:convertDateTime pattern="MM - yyyy" />
+															</h:outputText>
+														</rich:column>
+													</rich:columnGroup>
+												</rich:dataTable>
+												<!-- Agregar todos los tooltip -->
+												<rich:toolTip id="tool1" for="lblCapAmor"
+													style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.capital.amortizado']}
+								</rich:toolTip>
+												<rich:toolTip id="tool2" for="lblInteres"
+													style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.interes']}
+								</rich:toolTip>
+												<rich:toolTip id="tool3" for="lblDividendo"
+													style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.valor.dividendo']}
+								</rich:toolTip>
+												<rich:toolTip id="tool4" for="lblSaldo"
+													style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.saldo.capital']}
+								</rich:toolTip>
+												<rich:toolTip id="tool5" for="lblFecha"
+													style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.fecha.pago.dividendo']}
+								</rich:toolTip>
+												<!-- fin de los tooltip -->
+												<rich:spacer id="spacerAmo1" height="10" />
+												<rich:datascroller id="uiDataS" for="tablaAmortizacion"
+													maxPages="20" />
+												<br />
+
+
+
+												<rich:panel id="uiPnlSimTabla" styleClass="messagePanel">
+									#{messages['credito.tabla.amortizacion.informacion']}
+								</rich:panel>
+
+											</rich:tab>
+
+										</rich:tabPanel>
+									</a4j:outputPanel>
+									<br />
+
+								</a4j:form>
+							</a4j:outputPanel>
+
+						</a4j:region>
+
+					</a4j:outputPanel>
+				</a4j:outputPanel>
+			</h:form>
+		</a4j:region>
+		<!-- FIN REGION DE TIPO DE PRODUCTO -->
+
+		<a4j:outputPanel id="pnlBotones">
+			<h:form id="frmBotones">
+				<br />
+				<div align="center">
+					<h:commandButton action="aceptar"
+						value="#{labels['button.aceptar.continuar']}"
+						disabled="#{!simuladorPq.aprobadoBloqueantes or simuladorPq.simuladorPqSesion.mostrarRequisitosNoBloqueantes}"
+						styleClass="botonbarra"></h:commandButton>
+					<rich:spacer />
+					<h:commandButton action="regresar"
+						value="#{labels['button.regresar']}" styleClass="botonbarra"
+						immediate="true"></h:commandButton>
+					<rich:spacer />
+				</div>
+			</h:form>
+		</a4j:outputPanel>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<rich:panel>
+			<div class="infoboxWarning">
+				<h:outputText
+					value="#{messages['mensaje.simulador.tabla.amortizacion.referencial']}" />
+			</div>
+		</rich:panel>
+			<a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+
+		<script type="text/javascript">
+	  		var seleccionado = false;
+	  		function preparaCampos() {
+	  	  		if (!seleccionado) {
+					setTimeout(function() {
+						document.getElementById("uiForm:prueba").click();
+		  				seleccionado = true;
+					}, 500);
+				}
+			}
+		</script>
+
+	</ui:define>
+</ui:composition>

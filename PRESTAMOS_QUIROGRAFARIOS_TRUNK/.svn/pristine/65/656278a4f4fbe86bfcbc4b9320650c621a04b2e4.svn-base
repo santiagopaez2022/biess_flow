@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><ui:insert name="titulo">#{titulos['sistema.titulo']}</ui:insert>
+</title>
+<link rel="stylesheet" type="text/css"
+	href="#{facesContext.externalContext.request.contextPath}/css/iess.css" />
+<link rel="stylesheet" type="text/css"
+	href="#{facesContext.externalContext.request.contextPath}/css/fr-internet.css" />
+</head>
+<body>
+<f:view>
+	<ui:insert name="encabezado">
+		<div id="cabecera">
+		<div class="contenedor_logo"></div>
+		<div class="contenedor_titulo"></div>
+		<div class="contenedor_topder"><h:form id="linksEncabezado">
+			<!-- TOP (MENU SUPERIOR DERECHO)  -->
+			<a href="mailto:ayudafr@iess.gov.ec">#{etiquetas['contactenos']}</a>
+			<b>|</b>
+			<a href="#" onclick="window.close()" >#{botones['salir']}</a>
+		</h:form></div>
+		<div class="contenedor_topizq" />
+		<div id="fecha" class="contenedor_fecha"><h:outputText
+			value="#{hoy}">
+			<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" />
+		</h:outputText></div>
+		</div>
+		<div class="contenedor_titsistema">#{titulos['sistema.titulo']}
+		</div>
+		<div id="cont_subtitulo">#{etiquetas['encabezado.usuario']}:
+			#{cuentaIndividualBean.datos.nombre}</div>
+	</ui:insert>
+
+	<div id="principal">
+	<span class="text_mensaje_pagina"><ui:insert name="tituloPagina"></ui:insert></span>
+
+
+
+	<div id="contenido"><ui:insert name="contenido">Contenido</ui:insert></div>
+
+	<div id="pie"><ui:insert name="pie">#{etiquetas['copyright']}</ui:insert></div>
+	</div>
+	<!-- principal -->
+
+</f:view>
+</body>
+</html>

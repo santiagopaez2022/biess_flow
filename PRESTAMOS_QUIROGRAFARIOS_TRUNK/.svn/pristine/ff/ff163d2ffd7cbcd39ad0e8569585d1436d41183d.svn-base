@@ -1,0 +1,49 @@
+salir=Salir
+depuracion.boton.actualizar_nombre Actualizar Nombre
+ajustar=Confirmar Ajuste
+cancelar=Cancelar
+reset=Reset
+anularcomp=Anular Comprobante
+anularplanilla=Anular Planilla 
+consultar.planilla=Consultar
+eliminar.detalle=Ajustar Planilla
+consultar.aportes=Consultar Aportes
+enviar.origen=Enviar a Origen
+enviar.destino=Enviar a Destino
+actualizar=Actualizar
+guardar=Guardar
+consultar=Consultar
+aprobar=Aprobar
+rechazar=Rechazar
+generar.reporte=Generar Reporte
+imprimir=Imprimir
+Regenerar=Regenerar Tabla de Amortizaci\u00F3n
+exportar.pdf = Exportar PDF
+desbloquear = Desbloquear
+detalle = Detalle
+exportar.excel = Exportar EXCEL
+limpiar=Limpiar
+ver.detalle=Ver Detalle
+## INC-2350 Implementacion automatizada de verificacion en lista de control de usuarios PQ.
+cerrar=Cerrar
+ver.adjuntos=Ver adjuntos
+
+# Errores para aprobar pda masivos
+aprobar.pda.masivo Aprobar
+aprobar.pda.masivo.cargar CARGAR
+aprobar.pda.masivo.aceptar Aceptar
+aprobar.pda.masivo.cancelar Cancelar
+aprobar.pda.masivo.cedulas.archivo Validar C\u00E9dulas Archivo
+
+# Comprobantes y Liquidacion
+salir Salir
+regresar Regresar
+procesar Procesar
+seleccionar Seleccionar
+consulta.creditos Consulta de Cr\u00E9ditos
+pagar.dividendos Pagar Dividendos
+imprimir.comprobante=Imprimir Comprobante
+liquidar=Liquidar
+imprimir.liquidacion=Imprimir Liquidaci\u00F3n
+anular Anular
+aceptar Aceptar

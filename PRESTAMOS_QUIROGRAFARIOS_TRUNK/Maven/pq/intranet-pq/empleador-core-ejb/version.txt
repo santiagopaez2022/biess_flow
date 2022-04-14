@@ -1,0 +1,43 @@
+empleador-core-ejb
+
+Version: 1.0.0  (línea base)
+
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilación de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE
+(C)	XML		pom.xml
+(C)	Eclipse	.project
+(C)	Eclipse	.classpath
+(C)	Eclipse	.settings
+(C)	Carpeta	src
+(C)	Carpeta	src\main
+(C)	Carpeta	src\main\resources
+(C)	Carpeta	src\main\java
+(C)	Carpeta	src\main\java\ec
+(C)	Carpeta	src\main\java\ec\gov
+(C)	Carpeta	src\main\java\ec\gov\iess
+(C)	Carpeta	src\main\java\ec\gov\iess\empleadorcore
+(C)	Paquete	src\main\java\ec\gov\iess\empleadorcore\dao
+(C)	Paquete	src\main\java\ec\gov\iess\empleadorcore\modelo
+(C)	Paquete	src\main\java\ec\gov\iess\empleadorcore\test
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\dao\EmpleadorDao.java
+(C)	Paquete	src\main\java\ec\gov\iess\empleadorcore\dao\impl
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\dao\SucursalDao.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\dao\impl\EmpleadorDaoJpa.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\dao\impl\SucursalDaoJpa.java
+(C)	Carpeta	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia
+(C)	Paquete	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\embedable
+(C)	Paquete	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\pk
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\embedable\Empleador.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\embedable\Seccion.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\embedable\Sucursal.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\embedable\TipoEmpleador.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\pk\SucursalPK.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\modelo\persistencia\pk\TipoEmpleadorPK.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\test\EmpleadorDaoTest.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\test\SucursalDaoTest.java
+(C)	Clase	src\main\java\ec\gov\iess\empleadorcore\test\UnitTest.java
+(C)	Paquete	src\main\resources\META-INF
+(C)	XML		src\main\resources\META-INF\persistence.xml
+ 

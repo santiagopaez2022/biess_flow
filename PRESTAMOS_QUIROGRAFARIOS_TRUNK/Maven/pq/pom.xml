@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ec.fin.biess</groupId>
+        <artifactId>biess</artifactId>
+        <version>2.0.0</version>
+    </parent>
+    <artifactId>pq</artifactId>
+    <packaging>pom</packaging>
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>${codificacion}</project.build.sourceEncoding>
+        <maven.compiler.source>${jdk}</maven.compiler.source>
+        <maven.compiler.target>${jdk}</maven.compiler.target>
+    </properties>
+    <modules>
+        <module>seguridades-ws-core</module>
+        <module>seguridades-ws-model</module>
+        <module>creditos-pq-core-ejb</module>
+        <module>unlock-ejb</module>
+        <module>pq-concesion-ejb</module>
+        <module>pq-ws-ejb</module>
+        <module>pq-concesion-web</module>
+        <module>intranet-pq</module>
+        <module>simulador-pq-ejb</module>
+    </modules>
+     <build>
+      <pluginManagement>
+            <plugins>
+                  <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>3.0.2</version>
+                  </plugin>
+            </plugins>
+      </pluginManagement>
+</build>
+</project>

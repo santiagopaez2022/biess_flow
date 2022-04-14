@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+		<a4j:form id="consultarCedulaCompInf">
+					<h:messages globalOnly="true"></h:messages>
+					<f:subview rendered="#{funcionario.cedula==null}">
+						<div class="mensajeError">#{errores['datos.sesion']}</div>
+						<br />
+					</f:subview>
+					
+					<a4j:outputPanel id="panelGeneral">
+					<f:subview rendered="#{funcionario.cedula!=null}">
+
+						<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+							cellpadding="0" style="width:100%;">
+							
+							<a4j:outputPanel id="panelDatos">
+							<rich:panel>
+
+								<f:facet name="header">#{titulos['busqueda']} </f:facet>
+
+								<br />
+								<h:outputText value="#{mensajes['consulta.informacion']}" />
+								<br />
+
+								<h:panelGrid columns="2" cellpadding="0" cellspacing="2"
+									columnClasses="etiqueta,info,info,info,info" styleClass="">
+
+									<b>#{etiquetas['general.consulta.cedula']}:</b>
+									<h:inputText value="#{consultaCredito.cedulaAfiliado}"
+										id="campoCedula" maxlength="10"
+										onkeypress="return permitirValores(event, 'num')"
+										onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+										validatorMessage="#{mensajes['tamanio.cedula']}">
+										<f:validateLength maximum="10" minimum="10" />
+									</h:inputText>
+
+									<a4j:commandButton
+										reRender="mensajes, panelDatos"
+										action="#{consultaCredito.inicializarConsultaComprobante}"
+										value="#{botones['consultar']}" styleClass="boton1"> 
+										<a4j:status id="status" onstart="Richfaces.showModalPanel('splash')" onstop="Richfaces.hideModalPanel('splash')" />
+									</a4j:commandButton>
+									
+									<a4j:commandButton
+										reRender="mensajes, panelDatos" immediate="true"
+										action="#{consultaCredito.salir}"
+										value="#{botones['salir']}" styleClass="boton1">
+									</a4j:commandButton>
+								</h:panelGrid>
+							</rich:panel>
+							
+							<rich:panel id="mensajes" rendered="#{consultaCredito.mensajeError != null}">
+								<h:messages />
+								<rich:panel>
+									<div class="mensajeInfo"><h:outputText
+										value="#{consultaCredito.mensajeError}" /><br />
+									</div>
+								</rich:panel>
+							</rich:panel>
+							</a4j:outputPanel>
+								
+								<rich:modalPanel id="splash" autosized="true" width="200" height="80" moveable="false" resizeable="false">
+									<center>
+										<f:facet name="header">
+											<h:outputText value="#{etiquetas['status']}" />
+										</f:facet>
+										<h:graphicImage value="/img/conexion.gif" />
+									</center>
+								</rich:modalPanel>
+							
+							
+						</h:panelGrid>
+					</f:subview>
+					<a4j:jsFunction id="inicializacion" name="initPantalla"
+						action="#{consultaCredito.init}" reRender="panelGeneral" />
+				</a4j:outputPanel>
+			</a4j:form>
+			<script type="text/javascript">
+				initPantalla();
+  			</script>
+		<br />
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="com.sample" xmlns="http://drools.org/drools-3.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:schemaLocation="http://drools.org/drools-3.0 drools-3.0.xsd">
+
+	<import name="java.util.HashMap" />
+	<import name="org.drools.*" />
+	<import name="java.lang.String" />
+	<import name="java.lang.Boolean" />
+	<import name="java.util.Date" />
+	<import name="ec.gov.iess.creditos.pq.modelo.Requisito" />
+	<import name="ec.gov.iess.creditos.pq.modelo.InfoPrecalificacion" />
+	<import name="ec.gov.iess.creditos.pq.modelo.Precalificacion" />
+	
+	<function return-type="boolean" name="numeroImposiciones">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+    	<parameter identifier="infoPrecalificacion" type="InfoPrecalificacion" />
+    	<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE NUMERO DE IMPOSICIONES");
+			int numero = infoPrecalificacion.getNumeroImposiciones().intValue();
+			rq.setObservacion("TIENE " + String.valueOf(numero) + " APORTACIONES");
+			boolean valido = (numero >= 36);
+			if (valido){ 
+				rq.setAprobado(true);
+			}else{
+				rq.setAprobado(false);
+			}
+			precalificacion.getRequisitos().add(rq);
+			return valido;
+		</body>
+	</function>
+	
+	<function return-type="boolean" name="numeroImposicionesConsecutivas">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+    	<parameter identifier="infoPrecalificacion" type="InfoPrecalificacion" />
+    	<body>
+			int numeroImpoConsecutivas = 6;
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO TENGA POR LO MENOS "
+					+ numeroImpoConsecutivas + " APORTACIONES CONSECUTIVAS");
+	
+			int numeroImpoConsecutivasAfiliado = infoPrecalificacion
+					.getImposicionesConsecutivas().intValue();
+	
+			boolean cumpleCondicion = numeroImpoConsecutivasAfiliado >= numeroImpoConsecutivas;
+	
+			rq.setObservacion("EL AFILIADO TIENE " + numeroImpoConsecutivasAfiliado
+					+ " APORTACIONES CONSECUTIVAS");
+			if (cumpleCondicion) {
+				rq.setAprobado(true);
+			} else {
+				rq.setAprobado(false);
+			}
+			precalificacion.getRequisitos().add(rq);
+			return cumpleCondicion;
+		</body>
+	</function>
+
+	<function return-type="boolean" name="empleadorNoPerteneceSsc">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+    	<parameter identifier="infoPrecalificacion" type="InfoPrecalificacion" />
+    	<body>
+				Requisito rq = new Requisito();
+				rq.setDescripcion("VALIDACION DE QUE EMPLEADOR NO PERTENEZCA AL SEGURO SOCIAL CAMPESINO");
+				
+				boolean perteneceAlSsc = infoPrecalificacion.getCodigoRelacionTrabajo().equals("01") ||
+										infoPrecalificacion.getCodigoRelacionTrabajo().equals("46") ||
+										infoPrecalificacion.getCodigoRelacionTrabajo().equals("47") ||
+										infoPrecalificacion.getCodigoRelacionTrabajo().equals("48");
+				if (perteneceAlSsc){ 
+					rq.setAprobado(false);
+					rq.setObservacion("SU EMPLEADOR PERTENECE AL SEGURO SOCIAL CAMPESINO");
+				}else{
+					rq.setAprobado(true);
+					rq.setObservacion("SU EMPLEADOR NO PERTENECE AL SEGURO SOCIAL CAMPESINO");
+				}
+				precalificacion.getRequisitos().add(rq);
+				return perteneceAlSsc;
+		</body>
+	</function>
+	
+	<function return-type="boolean" name="afiliadoEsVoluntario">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EMPLEADOR NO SEA VOLUNTARIO");
+
+			boolean esVoluntario = infoPrecalificacion.getCodigoRelacionTrabajo().trim().equals("02");
+			
+			if (esVoluntario){ 
+				rq.setAprobado(false);
+				rq.setObservacion("EL EMPLEADOR ES VOLUNTARIO");
+			}else{
+				rq.setAprobado(true);
+				rq.setObservacion("EL EMPLEADOR NO ES VOLUNTARIO");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return esVoluntario;
+		</body>
+	</function>
+
+	<function return-type="boolean" name="afiliadoEsActivo">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO ES ACTIVO");
+	
+			boolean esActivo = infoPrecalificacion.getEstaActivo().booleanValue();
+	
+			if (esActivo) {
+				rq.setAprobado(true);
+				rq.setObservacion("EL AFILIADO ESTA ACTIVO");
+			} else {
+				rq.setAprobado(false);
+				rq.setObservacion("EL AFILIADO NO ESTA ACTIVO");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return esActivo;
+		</body>
+	</function>
+	
+	
+	
+	<rule name="NUMERO DE IMPOSICIONES">
+		<lhs>
+			<column identifier='precalificacion' object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion' object-type='InfoPrecalificacion' />
+			<eval>!numeroImposiciones(precalificacion, infoPrecalificacion)</eval>
+		</lhs>
+		<rhs>
+			precalificacion.setCalificado(false);
+		</rhs>
+	</rule>
+
+	<rule name="NUMERO DE IMPOSICIONES CONSECUTIVAS">
+		<lhs>
+			<column identifier='precalificacion' object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion' object-type='InfoPrecalificacion' />
+			<eval>!numeroImposicionesConsecutivas(precalificacion, infoPrecalificacion)</eval>
+		</lhs>
+		<rhs>
+			precalificacion.setCalificado(false);
+		</rhs>
+	</rule>
+	
+	<rule name= "VALIDAR QUE EL EMPLEADOR NO SEA DEL SEGURO CAMPESINO">
+		<lhs>
+			<column identifier='precalificacion' object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion' object-type='InfoPrecalificacion' />
+			<eval>empleadorNoPerteneceSsc(precalificacion,infoPrecalificacion)</eval>
+		</lhs>
+		<rhs>
+			precalificacion.setCalificado(false);
+		</rhs>
+		
+	</rule>
+	
+	<!--+ 
+		|Valida que el afiliado no sea voluntario.  
+		|Un afliado voluntario no púede solicitar un prestamo quirografario
+		|Un afiliado voluntario tiene un codigo de ralacion de trabajo = '02' (String)
+		+-->
+	<rule name="VALIDAR QUE NO SEA VOLUNTARIO">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				afiliadoEsVoluntario(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+
+	</rule>
+	
+	<!--+
+		| Valida si el afiliado se encuentra activo
+		| Un afiliado tiene que estar activo para poder solicitar un préstamo 
+		+-->
+	<rule name="VALIDAR QUE AFILIADO SEA ACTIVO">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				!afiliadoEsActivo(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>
+	
+	
+</package>

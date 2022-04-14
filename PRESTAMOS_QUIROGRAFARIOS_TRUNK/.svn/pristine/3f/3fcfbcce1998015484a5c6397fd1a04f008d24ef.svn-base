@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['comprobante.pago.individual']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+
+		<rich:panel id="uiOK" styleClass="okayPanel"
+			rendered="#{creditoAccion.pagindGenerado}">
+			<h:outputText value="#{mensajes['generacion.pagind.satisfactorio']}"
+				escape="false"></h:outputText>
+		</rich:panel>
+
+		<br />
+		
+		<!-- Se aumenta el mensagge en el comprobante -->
+		<br />
+		  <rich:panel id="uiMensage" styleClass="notePanelBottom"
+			rendered="#{creditoAccion.prestamoSeleccionado.prestamoPk.codprecla == 20 || creditoAccion.prestamoSeleccionado.prestamoPk.codprecla == 22}">
+			<b>
+			<h:outputText value="#{mensajes['mensaje.comprobante']}"
+				escape="false"></h:outputText>
+		    </b>
+		  </rich:panel>
+		<br />
+
+
+		<a4j:outputPanel id="pnlError">
+			<rich:panel styleClass="errorPanel"	rendered="#{creditoAccion.msjError!=null}">
+				<h:outputText value="#{creditoAccion.msjError}"></h:outputText>
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:outputPanel id="pnlDatosGenerales">
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody" rendered="${consultaCredito.datos.solicitante!=null}">
+				<f:facet name="header">
+				#{titulos['datos.generales']}
+			</f:facet>
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="#{etiquetas['comp.liq.cedula']}:" />
+					<h:outputText style="font-weight:bold"
+						value="#{consultaCredito.datos.solicitante.datosPersonales.cedula}" />
+					<h:outputLabel value="#{etiquetas['comp.liq.nombresApellidos']}:" />
+					<h:outputText style="font-weight:bold"
+						value="#{consultaCredito.datos.solicitante.datosPersonales.apellidosNombres}" />
+				</h:panelGrid>
+
+			</rich:panel>
+		</a4j:outputPanel>
+		
+		
+		<h:form id="frmCreditosComprobantePago">
+			<f:subview>
+				<a4j:outputPanel id="oppCreditosComprobantePago">
+					
+					<rich:panel styleClass="messagePanel" headerClass="pheader" bodyClass="pbody" style="margin: 0px !important;">
+							<h:outputText value="#{titulos['comprobantes.pago']}" rendered="#{not empty creditoAccion.comprobantesDePago}" />
+							<h:outputText value="No posee comprobantes de Pago." rendered="#{empty creditoAccion.comprobantesDePago}}" />
+					</rich:panel>
+					
+					<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+						cellpadding="0" style="width:100%;"
+						rendered="#{not empty creditoAccion.comprobantesDePago}">
+						<rich:panel>
+							<f:facet name="header">#{titulos['comprobantes.pago']}</f:facet>
+							<h:panelGrid columns="1" columnClasses="info" width="100%">
+								<h:panelGroup>
+									<rich:dataTable binding="#{creditoAccion.tablaComprobantes}"
+										var="comprobante"	value="#{creditoAccion.comprobantesDePago}" width="100%"
+										rendered="#{not empty creditoAccion.comprobantesDePago}">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column>#{etiquetas['comprobante.tipo']}</rich:column>
+												<rich:column>#{etiquetas['comprobante.numero']}</rich:column>
+												<rich:column>#{etiquetas['comprobante.fecha.generacion']}</rich:column>
+												<rich:column>#{etiquetas['comprobante.valor.total']}</rich:column>
+												<rich:column>
+												<rich:spacer width="10px" />
+												</rich:column>
+											</rich:columnGroup>
+										</f:facet>
+										<rich:column>
+											<h:outputText value="#{comprobante.tipoComprobante.descripcion}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{comprobante.pk.codComPagAfi}" />
+										</rich:column>
+										<rich:column>
+											<h:outputText value="#{comprobante.fechageneracionComprobante}">
+												<f:convertDateTime pattern="dd-MMM-yyyy" />
+											</h:outputText>
+										</rich:column>		
+										<rich:column>
+											<h:outputText value="#{comprobante.valorTotalComprobante}" />
+										</rich:column>
+										<rich:column style="text-align:center">
+											<a4j:commandButton
+												action="#{creditoAccion.seleccionarComprobanteP}"
+												value="#{botones['ver.detalle']}" styleClass="boton1">
+											</a4j:commandButton>
+										</rich:column>
+									</rich:dataTable>
+								</h:panelGroup>
+							</h:panelGrid>
+						</rich:panel>
+						<br />
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</f:subview>
+			
+			<h:commandButton action="consultarCreditos"
+				value="#{botones['cancelar']}" styleClass="boton1" immediate="true"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

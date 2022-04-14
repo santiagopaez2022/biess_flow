@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/base-panel-menu-vertical.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos" ajaxSingle="true" limitToList="true"/>
+			<a4j:jsFunction action="#{creditoAccion.resetear}" name="resetear" ajaxSingle="true" limitToList="true" reRender="pnlError"/>
+		</h:form>
+
+		<div class="text_mensaje_pagina">
+			#{labels['titulo.consulta.creditos']}
+			<a4j:status>
+				<f:facet name="start">
+					<rich:panel styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:panel>
+				</f:facet>
+			</a4j:status>
+		</div>
+
+
+		<a4j:outputPanel id="pnlError">
+			<rich:panel styleClass="errorPanel"
+				rendered="#{creditoAccion.msjError!=null}">
+				<h:outputText value="#{creditoAccion.msjError}"></h:outputText>
+			</rich:panel>
+			
+			<rich:panel rendered="#{creditoAccion.productos.mensajeInformativo != null}" styleClass="errorPanel">
+				<h:outputText value="#{creditoAccion.productos.mensajeInformativo}" id="lblMensajeInformativo" />
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:outputPanel id="pnlDatosGenerales">
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody" rendered="${datos.solicitante!=null}">
+				<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+				<h:panelGrid columns="2" styleClass="panelInvisible">
+					<h:outputLabel value="#{labels.cedula}:" />
+					<h:outputLabel style="font-weight:bold;text-align:left;"
+						value="#{datos.solicitante.datosPersonales.cedula}" />
+						
+					<h:outputLabel value="#{labels.nombresApellidos}:" />
+					<h:outputLabel style="font-weight:bold;text-align:left;"
+						value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+				</h:panelGrid>
+				
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:region id="regionTable">
+			<a4j:outputPanel id="pnlLista">
+				<h:form rendered="${datos.solicitante!=null}">
+					<rich:panel styleClass="panel" headerClass="pheader"
+						bodyClass="pbody">
+						<f:facet name="header">
+					#{labels['titulo.lista.creditos']}
+				</f:facet>
+
+						<a4j:status>
+							<f:facet name="start">
+								<rich:panel styleClass="panelInvisible">
+									<h:graphicImage value="/img/ajax/cargando.gif" />
+									<h:outputText value="#{messages.cargando}"></h:outputText>
+								</rich:panel>
+							</f:facet>
+						</a4j:status>
+						<rich:panel styleClass="messagePanel"
+							rendered="#{consultaCredito.mensaje!=null}">
+							<h:outputText value="#{consultaCredito.mensaje}" />
+						</rich:panel>
+					
+						<rich:dataTable id="tablaCreditos" var="item" rows="10"
+							value="#{consultaCredito.creditosVigNovacion}"
+							styleClass="tablesinside" headerClass="dt_header"
+							rowClasses="prow1,prow2" >
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.prestamo']}</f:facet>
+								<h:outputText value="#{item.clasePrestamo.descripcion}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.estado']}</f:facet>
+								<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.numero']}</f:facet>
+								<h:outputText value="#{item.prestamoPk.numpreafi}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.plazo.meses']}</f:facet>
+								<h:outputText value="#{item.plzmes}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.fecha.concesion']}</f:facet>
+								<h:outputText value="#{item.fecpreafi}">
+									<f:convertDateTime pattern="dd-MMM-yyyy" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:right;">
+								<f:facet name="header">#{labels['credito.monto.abrev']}</f:facet>
+								<h:outputText value="#{item.valsalcap}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">
+									<rich:spacer />
+								</f:facet>
+
+								<f:subview
+									rendered="#{creditoAccion.prestamoSeleccionadoNovacion!=null and creditoAccion.prestamoSeleccionadoNovacion.creditoPk.numpreafi==item.creditoPk.numpreafi}">
+									<a4j:commandButton styleClass="boton"
+										value="#{labels['button.seleccionar']}"
+										style="background:#268dc7;color:white"
+										reRender="lblMensajeInformativo, pnlError"
+										action="#{creditoAccion.seleccionarCreditoNovacion}">
+										<!-- <f:setPropertyActionListener
+											target="#{datos.prestamoNovacionSeleccionado}"
+											value="#{item}" /> -->
+										<f:setPropertyActionListener target="#{datos.novacionCredito}"
+											value="#{true}" />
+									</a4j:commandButton>
+								</f:subview>
+								<f:subview
+									rendered="#{(item.prestamoPk.numpreafi!=creditoAccion.prestamoSeleccionadoNovacion.prestamoPk.numpreafi)}">
+									<a4j:commandButton styleClass="boton"
+										value="#{labels['button.seleccionar']}"
+										reRender="lblMensajeInformativo, pnlError"
+										action="#{creditoAccion.seleccionarCreditoNovacion}"
+									  onclick="Richfaces.showModalPanel('pnl');"
+                                       oncomplete="Richfaces.hideModalPanel('pnl');">
+
+										<f:setPropertyActionListener target="#{datos.novacionCredito}"
+											value="#{true}" />
+									</a4j:commandButton>
+								</f:subview>
+							</rich:column>
+							
+							<f:facet name="footer">
+				                <rich:datascroller id="tablaCreditosScroller" for="tablaCreditos"/>
+				            </f:facet>														
+
+						</rich:dataTable>
+
+						<rich:panel styleClass="errorPanel"
+						rendered="#{fn:length(consultaCredito.creditosNoCalificadosNovacion) > 0}">
+						<h:outputText
+							value="#{messages['mensaje.no.creditos.novar']}"
+							escape="false"/>
+						</rich:panel>
+
+						<rich:dataTable id="creditosNoCalificados" var="item" rows="10"
+							value="#{consultaCredito.creditosNoCalificadosNovacion}"
+							styleClass="tablesinside" headerClass="dt_header"
+							rowClasses="prow1,prow2" rendered="#{fn:length(consultaCredito.creditosNoCalificadosNovacion) > 0}">
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.prestamo']}</f:facet>
+								<h:outputText value="#{item.clasePrestamo.descripcion}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.estado']}</f:facet>
+								<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.numero']}</f:facet>
+								<h:outputText value="#{item.prestamoPk.numpreafi}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.plazo.meses']}</f:facet>
+								<h:outputText value="#{item.plzmes}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['credito.fecha.concesion']}</f:facet>
+								<h:outputText value="#{item.fecpreafi}">
+									<f:convertDateTime pattern="dd-MMM-yyyy" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:right;">
+								<f:facet name="header">#{labels['credito.monto.abrev']}</f:facet>
+								<h:outputText value="#{item.valsalcap}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">
+									<rich:spacer />
+								</f:facet>
+									<a4j:commandButton styleClass="botonAmarillo"
+										value="Ver Detalle"
+										reRender="pnlDetalle,detalleNov"
+										action="#{creditoAccion.verDetalleCreditoNovacion}"
+									   onclick="Richfaces.showModalPanel('pnl');"
+                                      oncomplete="Richfaces.hideModalPanel('pnl');">
+									</a4j:commandButton>
+							</rich:column>							
+							<f:facet name="footer">
+				                <rich:datascroller id="tablaCreditosScroller" for="tablaCreditos"/>
+				            </f:facet>
+				            </rich:dataTable>
+				  		  <a4j:outputPanel id="pnlDetalle">
+							<rich:panel id="detalleNov" rendered="#{creditoAccion.muestraDetalleNov}">
+								<f:facet name="header">
+								<h:outputText value="Condiciones para novar-#{creditoAccion.prestamoSeleccionadoNovacion.nut}" escape="false"/>
+								</f:facet>
+								<h:outputText value="Tener cancelado al menos el #{creditoAccion.prestamoSeleccionadoNovacion.porcentajeComprometer}% del total de cuotas del crédito.  "	escape="false"/>
+								<h:graphicImage value="/files/images/content/icon-check.png" rendered="#{creditoAccion.prestamoSeleccionadoNovacion.cumpleCuotasPagadas}"/>
+								<h:graphicImage value="/files/images/content/icon-uncheck.png" rendered="#{!creditoAccion.prestamoSeleccionadoNovacion.cumpleCuotasPagadas}"/>
+								<br/>
+								<h:outputText value="No tener obligaciones patronales pendientes. " escape="false" rendered="#{creditoAccion.prestamoSeleccionadoNovacion.cumpleSaldoEmpleador}" />
+								<h:graphicImage value="/files/images/content/icon-uncheck.png" rendered="#{creditoAccion.prestamoSeleccionadoNovacion.cumpleSaldoEmpleador}" />
+								<br/>							
+								<h:outputText value="La operación seleccionada supera el número máximo de novaciones permitidas en el período fiscal." escape="false" rendered="#{creditoAccion.prestamoSeleccionadoNovacion.cumpleNumeroNovacion and consultaCredito.edadAsegurado!=null and consultaCredito.edadAsegurado le 90}" />
+								<h:graphicImage value="/files/images/content/icon-uncheck.png" rendered="#{creditoAccion.prestamoSeleccionadoNovacion.cumpleNumeroNovacion and consultaCredito.edadAsegurado!=null and consultaCredito.edadAsegurado le 90}" />
+								<br/>
+								<h:outputText value="Estimado cliente, usted no califica para realizar novaciones." escape="false" rendered="#{consultaCredito.edadAsegurado!=null and consultaCredito.edadPermiteNovaciones!=null and consultaCredito.edadAsegurado gt 90}" />
+								<h:graphicImage value="/files/images/content/icon-uncheck.png" rendered="#{consultaCredito.edadAsegurado!=null and consultaCredito.edadPermiteNovaciones!=null and consultaCredito.edadAsegurado gt 90}" />
+							</rich:panel>
+
+
+						</a4j:outputPanel>	
+					</rich:panel>
+
+				</h:form>
+			</a4j:outputPanel>
+		</a4j:region>
+	<a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+		<script type="text/javascript">
+			verificarDatos();
+			resetear();
+		</script>
+	</ui:define>
+</ui:composition>

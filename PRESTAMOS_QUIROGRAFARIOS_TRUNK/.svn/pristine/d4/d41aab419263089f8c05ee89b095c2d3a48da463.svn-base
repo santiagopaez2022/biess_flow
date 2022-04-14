@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.comprobante.pago.individual']}</div>
+		<br />
+
+		<h:form id="formSaldos">
+
+			<a4j:outputPanel id="pnlDatosAprobacionPdv" ajaxRendered="true">
+
+			<rich:panel styleClass="panel" headerClass="pheader"
+					bodyClass="pbody" rendered="#{!creditoAccion.esMontoPersonalizado}">
+				<f:facet name="header">
+					#{labels['seleccionar.pagos.realizar']}
+				</f:facet>
+				
+				<!-- INC-2129 Control en Generacion de Comprobantes. -->
+				<rich:panel styleClass="errorPanel"
+					rendered="#{creditoAccion.desplegarMensajeComprobanteImpago}">
+					<h:outputText
+						value="#{labels['dividendo.mensaje.comprobante.impago']}"></h:outputText>
+				</rich:panel>
+				
+					<rich:panel styleClass="messagePanel"
+						rendered="#{!creditoAccion.desplegarMensajeComprobanteImpago and !creditoAccion.esMontoPersonalizado}">
+					#{labels['aqui.puede.revisar']}
+				</rich:panel>
+					<!-- INICIO DE LISTA DE DIVIDENDOS PARA SELECCIONAR -->
+					<h:panelGroup id="tableRenderPanel"
+						rendered="#{!creditoAccion.esMontoPersonalizado}">
+						<ui:include src="/pages/consulta/listaDividendosSac.xhtml">
+							<ui:param name="bean" value="#{creditoAccion}" />
+							<ui:param name="metodoSumaCheck" value="sumarPagosSeleccionados" />
+							<ui:param name="muestraCheck"
+								value="#{!creditoAccion.esMontoPersonalizado}" />
+							<ui:param name="listaExigibles"
+								value="#{creditoAccion.listaDividendosSac}" />
+							<ui:param name="sumatoriaDividendos"
+								value="#{creditoAccion.totalDividendos}" />
+							<ui:param name="idFormListDividendo" value="idFormDividendosComp" />
+							<ui:param name="idListaDividendos" value="idListaDividendosComp" />
+							<ui:param name="idValorTotalPago" value="valorTotalPagoComp" />
+							<ui:param name="renderIds"
+								value="idListaDividendosComp,valorTotalPagoComp,panelError,panelTextoError,cmdBtnConfirmaGenComInd" />
+						</ui:include>
+						<!-- FIN DE LISTA DE DIVIDENDOS PARA SELECCIONAR -->
+					</h:panelGroup>
+					<br />
+
+
+
+					<!--Seccion Monto personalizado -->
+
+					<!-- 	BOTONES ACCION PRINCIPAL-->
+					<h:panelGroup id="botonesSimulacion"
+						rendered="#{!creditoAccion.esMontoPersonalizado}">
+						<h:panelGrid columns="3" styleClass="panelInvisible">
+				
+							<a4j:commandButton action="#{creditoAccion.generarPagInd}"
+								id="cmdBtnConfirmaGenComInd" onclick="this.disabled=true"
+								oncomplete="this.disabled=true" styleClass="botonAmarillo"
+								value="#{labels['button.confirmar.generacion']}"
+								reRender="formSaldos"
+								rendered="#{!creditoAccion.desplegarMensajeComprobanteImpago}"
+								disabled="#{!creditoAccion.accionGenCompIndivActivo}" />
+
+							<a4j:commandButton immediate="true"
+								action="#{creditoAccion.personalizarPago}"
+								reRender="tableRenderPanel" onclick="this.disabled=true"
+								styleClass="botonbarra" value="Personalizar Valor" />
+				
+							<h:commandButton action="consultaCreditos"
+								styleClass="botonbarra"
+								value="#{labels['button.consulta.creditos']}" />
+
+						</h:panelGrid>
+						<h:outputText style="font-weight:bold;color:#FF0000;font-style:italic" value="#{creditoAccion.msjDiaHabilCompInd}"  escape="false" />
+					</h:panelGroup>
+					<br />
+
+				</rich:panel>
+
+				<rich:panel id="mdlPnlValPersonalizado" width="500" height="120"
+					resizeable="false" moveable="false" styleClass="panel"
+					headerClass="pheader" bodyClass="pbody"
+					rendered="#{creditoAccion.esMontoPersonalizado}">
+					<f:facet name="header">
+						<h:outputText value="Personalice Monto Simulación de Pago:" />
+					</f:facet>
+
+					<h:panelGrid columns="4" styleClass="panelInvisible">
+						<h:outputLabel value="Ingrese el monto:" />
+						<h:inputText id="valPersonalizado"
+							value="#{creditoAccion.valorPersonalizado}"
+							styleClass="calc-write"
+							maxlength="10"
+							onkeypress="return aceptarNumeros(event, this, true)" >
+							               
+				        </h:inputText>
+						<a4j:commandButton reRender="lstMontoPersonalizado"
+							action="#{creditoAccion.calcularMontoPersonalizado}"
+							styleClass="botonAmarillo" value="Calcular" />
+						<a4j:commandButton action="#{creditoAccion.personalizarPago}"
+							onclick="this.disabled=true" styleClass="botonbarra"
+							value="Regresar" />
+					</h:panelGrid>
+
+
+					<br />
+					<h:panelGroup id="resultadoSimulacion"
+						rendered="#{creditoAccion.mostrarResultSimulacion}">
+						<a4j:outputPanel>
+							<rich:dataTable>
+					<rich:column style="text-align:center;">
+									<h:outputText value="Prueba" />
+					</rich:column>
+
+							</rich:dataTable>
+
+
+							<table class="rich-table">
+								<thead class="rich-table-thead">
+									<tr class="rich-table-header">
+										<th class="rich-table-headercell"></th>
+										<th class="rich-table-headercell"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="rich-table-row">
+										<td class="rich-table-cell"><h:outputText
+												value="Valor Total Exigible a la fecha de consulta"
+												style="font-weight: bold;" /> <br /> <h:outputText
+												value="(incluye el dividendo del mes actual):" /></td>
+										<td class="rich-table-cell"><h:outputText
+												style="float:right"
+												value="#{creditoAccion.montoTotalDividendos}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													type="currency" />
+											</h:outputText></td>
+
+									</tr>
+									<tr class="rich-table-row">
+										<td class="rich-table-cell"><h:outputText
+												value="Monto Simulación de Pago:" style="font-weight: bold;" /></td>
+										<td class="rich-table-cell"><h:outputText
+												style="float:right"
+												value="#{creditoAccion.valorPersonalizado}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													type="currency" pattern="-$#0.00" />
+											</h:outputText></td>
+
+									</tr>
+									<tr class="rich-table-row" bgcolor="#bed6f8">
+
+										<td class="rich-table-cell"><h:outputText
+												value="Saldo Pendiente de Pago:" style="font-weight: bold;" /></td>
+										<td class="rich-table-cell"><h:outputText
+												style="float:right;"
+												value="#{creditoAccion.montoTotalDividendos-creditoAccion.valorPersonalizado}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+											</h:outputText></td>
+
+									</tr>
+								</tbody>
+							</table>
+
+						</a4j:outputPanel>
+
+						<rich:panel styleClass="messagePanel"
+							style="margin: 0px !important;"
+							rendered="#{(creditoAccion.montoTotalDividendos-creditoAccion.valorPersonalizado)>0}">
+							<h:outputText value="#{labels['msg.simulacion.pago.pendientes']}"
+								escape="false" />
+						</rich:panel>
+				<br />
+						<h:panelGroup id="lstMontoPersonalizado">
+							<!-- LISTA DIVIDENDOS RESULTADO SIMULACION -->
+							<ui:include src="/pages/consulta/listaDividendosSac.xhtml">
+								<ui:param name="bean" value="#{creditoAccion}" />
+								<ui:param name="metodoSumaCheck" value="sumarPagosSeleccionados" />
+								<ui:param name="muestraCheck" value="false" />
+								<ui:param name="listaExigibles"
+									value="#{creditoAccion.lstDivPersonalizadoSac}" />
+								<ui:param name="sumatoriaDividendos"
+									value="#{creditoAccion.valorPersonalizado}" />
+								<ui:param name="idFormListDividendo"
+									value="idFormDividendosComp2" />
+								<ui:param name="idListaDividendos"
+									value="idListaDividendosComp2" />
+								<ui:param name="idValorTotalPago" value="valorTotalPagoComp2" />
+								<ui:param name="renderIds"
+									value="idListaDividendosComp2,valorTotalPagoComp2,panelError,panelTextoError" />
+							</ui:include>
+
+						</h:panelGroup>
+						<h:panelGrid columns="1" styleClass="panelInvisible">
+
+							<a4j:commandButton immediate="true"
+								action="#{creditoAccion.generarCompIndValPersonalizado}"
+								reRender="tableRenderPanel" onclick="this.disabled=true"
+								styleClass="botonAmarillo" value="Generar e Imprimir" />
+
+							<h:outputText style="font-weight:bold;color:#FF0000;font-style:italic" value="#{creditoAccion.msjDiaHabilCompInd}"  escape="false" />
+
+						</h:panelGrid>
+					</h:panelGroup>
+				</rich:panel>
+
+				<rich:panel id="panelError" styleClass="errorPanel"
+					rendered="#{creditoAccion.msjErrorPagInd!=null}">
+					<h:outputText id="panelTextoError"
+						value="#{creditoAccion.msjErrorPagInd}" />
+				</rich:panel>
+				<br />
+				<a4j:status>
+					<f:facet name="start">
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</f:facet>
+				</a4j:status>
+
+			</a4j:outputPanel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

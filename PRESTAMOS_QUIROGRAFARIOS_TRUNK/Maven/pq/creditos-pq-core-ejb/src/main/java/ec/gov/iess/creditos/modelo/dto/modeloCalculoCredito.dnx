@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.0/notation" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_ZcDLwC_MEdy3mKYMFvZQmQ" type="Class" name="modeloCalculoCredito.dnx">
+  <children xmi:id="_q9240C_QEdy3mKYMFvZQmQ">
+    <children xmi:id="_q9240y_QEdy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_q9241C_QEdy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_q9241S_QEdy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_q9241i_QEdy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_q9241y_QEdy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_q9242C_QEdy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_q9242S_QEdy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_q9242i_QEdy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_q9242y_QEdy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_q9240S_QEdy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=Garantia%5Bjcu%5Ename=Garantia.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_q9240i_QEdy3mKYMFvZQmQ" x="9888" y="1609" height="4048"/>
+  </children>
+  <children xmi:id="_An-b4C_REdy3mKYMFvZQmQ">
+    <children xmi:id="_An-b4y_REdy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_An-b5C_REdy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_An-b5S_REdy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_An-b5i_REdy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_An-b5y_REdy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_An-b6C_REdy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_An-b6S_REdy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_An-b6i_REdy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_An-b6y_REdy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_An-b4S_REdy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=DetalleGarantia%5Bjcu%5Ename=DetalleGarantia.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_An-b4i_REdy3mKYMFvZQmQ" x="10876" y="7604" width="6687" height="2530"/>
+  </children>
+  <children xmi:id="_ktsF0C_REdy3mKYMFvZQmQ">
+    <children xmi:id="_ktsF0y_REdy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_ktsF1C_REdy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_ktsF1S_REdy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_ktsF1i_REdy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_ktsF1y_REdy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_ktsF2C_REdy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_ktsF2S_REdy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_ktsF2i_REdy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_ktsF2y_REdy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_ktsF0S_REdy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=CondicionCalculo%5Bjcu%5Ename=CondicionCalculo.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ktsF0i_REdy3mKYMFvZQmQ" x="862" y="1979"/>
+  </children>
+  <children xmi:id="_V7Nr0C_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_V7Nr0y_YEdy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_V7Nr1C_YEdy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_V7Nr1S_YEdy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_V7Nr1i_YEdy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_V7Nr1y_YEdy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_V7Nr2C_YEdy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_V7Nr2S_YEdy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_V7Nr2i_YEdy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_V7Nr2y_YEdy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_V7Nr0S_YEdy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=TablaReferenciaCredito%5Bjcu%5Ename=TablaReferenciaCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V7Nr0i_YEdy3mKYMFvZQmQ" x="278" y="11093"/>
+  </children>
+  <children xmi:id="_Xw6CIC_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_Xw6CIy_YEdy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_Xw6CJC_YEdy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_Xw6CJS_YEdy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_Xw6CJi_YEdy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_Xw6CJy_YEdy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_Xw6CKC_YEdy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Xw6CKS_YEdy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_Xw6CKi_YEdy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Xw6CKy_YEdy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_Xw6CIS_YEdy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=OpcionCredito%5Bjcu%5Ename=OpcionCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Xw6CIi_YEdy3mKYMFvZQmQ" x="13039" y="14244"/>
+  </children>
+  <children xmi:id="_Y6WWcC_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_Y6WWcy_YEdy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_Y6WWdC_YEdy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_Y6WWdS_YEdy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_Y6WWdi_YEdy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_Y6WWdy_YEdy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_Y6WWeC_YEdy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Y6WWeS_YEdy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_Y6WWei_YEdy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Y6WWey_YEdy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_Y6WWcS_YEdy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=PlazoCredito%5Bjcu%5Ename=PlazoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y6WWci_YEdy3mKYMFvZQmQ" x="927" y="21321"/>
+  </children>
+  <children xmi:id="_Qu21gC_1Edy3mKYMFvZQmQ">
+    <children xmi:id="_Qu21gy_1Edy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_Qu21hC_1Edy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_Qu21hS_1Edy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_Qu21hi_1Edy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_Qu21hy_1Edy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_Qu21iC_1Edy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Qu21iS_1Edy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_Qu21ii_1Edy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Qu21iy_1Edy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_Qu21gS_1Edy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=CalculoCredito%5Bjcu%5Ename=CalculoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Qu21gi_1Edy3mKYMFvZQmQ" x="1205" y="7264"/>
+  </children>
+  <children xmi:id="_jYrQUC_1Edy3mKYMFvZQmQ" type="Text">
+    <children xmi:id="_jYrQUy_1Edy3mKYMFvZQmQ" type="DiagramName">
+      <element xsi:nil="true"/>
+    </children>
+    <children xmi:id="_jYrQVC_1Edy3mKYMFvZQmQ" type="Description">
+      <element xsi:nil="true"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_jYrQUS_1Edy3mKYMFvZQmQ" fontHeight="14" bold="true" description="Calculo credito"/>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jYrQUi_1Edy3mKYMFvZQmQ" x="618" y="618" width="6194" height="929"/>
+  </children>
+  <children xmi:id="_xcP78C_5Edy3mKYMFvZQmQ">
+    <children xmi:id="_xcP78y_5Edy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_xcP79C_5Edy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_xcP79S_5Edy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_xcP79i_5Edy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_xcP79y_5Edy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_xcP7-C_5Edy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_xcP7-S_5Edy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_xcP7-i_5Edy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_xcP7-y_5Edy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_xcP78S_5Edy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=PlazoCreditoSinDocumentoFiduciario%5Bjcu%5Ename=PlazoCreditoSinDocumentoFiduciario.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xcP78i_5Edy3mKYMFvZQmQ" x="618" y="16658"/>
+  </children>
+  <children xmi:id="_zdR_kC_5Edy3mKYMFvZQmQ">
+    <children xmi:id="_zdR_ky_5Edy3mKYMFvZQmQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_zdR_lC_5Edy3mKYMFvZQmQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_zdR_lS_5Edy3mKYMFvZQmQ" type="Stereotype"/>
+    <children xmi:id="_zdR_li_5Edy3mKYMFvZQmQ" type="Name"/>
+    <children xmi:id="_zdR_ly_5Edy3mKYMFvZQmQ" type="Parent"/>
+    <children xmi:id="_zdR_mC_5Edy3mKYMFvZQmQ" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_zdR_mS_5Edy3mKYMFvZQmQ"/>
+    </children>
+    <children xmi:id="_zdR_mi_5Edy3mKYMFvZQmQ" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_zdR_my_5Edy3mKYMFvZQmQ" collapsed="true"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_zdR_kS_5Edy3mKYMFvZQmQ" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=PlazoCreditoConDocumentoFiduciario%5Bjcu%5Ename=PlazoCreditoConDocumentoFiduciario.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zdR_ki_5Edy3mKYMFvZQmQ" x="10815" y="21630"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_ZcDLwS_MEdy3mKYMFvZQmQ"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_AoR94y_REdy3mKYMFvZQmQ" source="_q9240C_QEdy3mKYMFvZQmQ" target="_An-b4C_REdy3mKYMFvZQmQ">
+    <children xmi:id="_AoR95i_REdy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_AoR96C_REdy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_AoR96i_REdy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_AoR96S_REdy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AoR95y_REdy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_AoR95C_REdy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=Garantia%5Bjcu%5Ename=Garantia.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=DetalleGarantia%5Bjcu%5Ename=DetalleGarantia.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AoR95S_REdy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_XxppAS_YEdy3mKYMFvZQmQ" source="_V7Nr0C_YEdy3mKYMFvZQmQ" target="_Xw6CIC_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_XxppBC_YEdy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_XxppBi_YEdy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_XxppCC_YEdy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_XxppBy_YEdy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XxppBS_YEdy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_XxppAi_YEdy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=TablaReferenciaCredito%5Bjcu%5Ename=TablaReferenciaCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OpcionCredito%5Bjcu%5Ename=OpcionCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XxppAy_YEdy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_Y7PuUS_YEdy3mKYMFvZQmQ" source="_Y6WWcC_YEdy3mKYMFvZQmQ" target="_Xw6CIC_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_Y7PuVC_YEdy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_Y7PuVi_YEdy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_Y7PuWC_YEdy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_Y7PuVy_YEdy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y7PuVS_YEdy3mKYMFvZQmQ" x="1289" y="-443"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_Y7PuUi_YEdy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=PlazoCredito%5Bjcu%5Ename=PlazoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OpcionCredito%5Bjcu%5Ename=OpcionCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Y7PuUy_YEdy3mKYMFvZQmQ" points="[2726, -1734, -8766, 5607]$[9107, -5823, -2385, 1518]"/>
+  </edges>
+  <edges xmi:id="_QvAmgC_1Edy3mKYMFvZQmQ" source="_Qu21gC_1Edy3mKYMFvZQmQ" target="_ktsF0C_REdy3mKYMFvZQmQ">
+    <children xmi:id="_QvAmgy_1Edy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_QvAmhS_1Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_QvAmhy_1Edy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_QvAmhi_1Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QvAmhC_1Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_QvAmgS_1Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=CalculoCredito%5Bjcu%5Ename=CalculoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=CondicionCalculo%5Bjcu%5Ename=CondicionCalculo.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QvAmgi_1Edy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_QvAmiC_1Edy3mKYMFvZQmQ" source="_Qu21gC_1Edy3mKYMFvZQmQ" target="_q9240C_QEdy3mKYMFvZQmQ">
+    <children xmi:id="_QvAmiy_1Edy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_QvJwcC_1Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_QvJwci_1Edy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_QvJwcS_1Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QvAmjC_1Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_QvAmiS_1Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=CalculoCredito%5Bjcu%5Ename=CalculoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Garantia%5Bjcu%5Ename=Garantia.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QvAmii_1Edy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_QvJwcy_1Edy3mKYMFvZQmQ" source="_Qu21gC_1Edy3mKYMFvZQmQ" target="_V7Nr0C_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_QvJwdi_1Edy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_QvJweC_1Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_QvJwei_1Edy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_QvJweS_1Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QvJwdy_1Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_QvJwdC_1Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=CalculoCredito%5Bjcu%5Ename=CalculoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=TablaReferenciaCredito%5Bjcu%5Ename=TablaReferenciaCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QvJwdS_1Edy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_xci24C_5Edy3mKYMFvZQmQ" source="_V7Nr0C_YEdy3mKYMFvZQmQ" target="_xcP78C_5Edy3mKYMFvZQmQ">
+    <children xmi:id="_xci24y_5Edy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_xci25S_5Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_xci25y_5Edy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_xci25i_5Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xci25C_5Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_xci24S_5Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=TablaReferenciaCredito%5Bjcu%5Ename=TablaReferenciaCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=PlazoCreditoSinDocumentoFiduciario%5Bjcu%5Ename=PlazoCreditoSinDocumentoFiduciario.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xci24i_5Edy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_xci28C_5Edy3mKYMFvZQmQ" source="_xcP78C_5Edy3mKYMFvZQmQ" target="_Y6WWcC_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_xci28y_5Edy3mKYMFvZQmQ" type="NameLabel">
+      <children xmi:id="_xci29S_5Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_xci29i_5Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xci29C_5Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_xci28S_5Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=PlazoCreditoSinDocumentoFiduciario%5Bjcu%5Ename=PlazoCreditoSinDocumentoFiduciario.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=PlazoCredito%5Bjcu%5Ename=PlazoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xci28i_5Edy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_zdlhkC_5Edy3mKYMFvZQmQ" source="_V7Nr0C_YEdy3mKYMFvZQmQ" target="_zdR_kC_5Edy3mKYMFvZQmQ">
+    <children xmi:id="_zdlhky_5Edy3mKYMFvZQmQ" type="KindLabel">
+      <children xmi:id="_zdlhlS_5Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_zdlhly_5Edy3mKYMFvZQmQ" type="Kind"/>
+      <children xmi:id="_zdlhli_5Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zdlhlC_5Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_zdlhkS_5Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=TablaReferenciaCredito%5Bjcu%5Ename=TablaReferenciaCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=PlazoCreditoConDocumentoFiduciario%5Bjcu%5Ename=PlazoCreditoConDocumentoFiduciario.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zdlhki_5Edy3mKYMFvZQmQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_zdlhqC_5Edy3mKYMFvZQmQ" source="_zdR_kC_5Edy3mKYMFvZQmQ" target="_Y6WWcC_YEdy3mKYMFvZQmQ">
+    <children xmi:id="_zdlhqy_5Edy3mKYMFvZQmQ" type="NameLabel">
+      <children xmi:id="_zdlhrS_5Edy3mKYMFvZQmQ" type="Stereotype"/>
+      <children xmi:id="_zdlhri_5Edy3mKYMFvZQmQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zdlhrC_5Edy3mKYMFvZQmQ" y="-217"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_zdlhqS_5Edy3mKYMFvZQmQ" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=PlazoCreditoConDocumentoFiduciario%5Bjcu%5Ename=PlazoCreditoConDocumentoFiduciario.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=PlazoCredito%5Bjcu%5Ename=PlazoCredito.java%5Bjpack%5Ename=ec.gov.iess.creditos.pq.modelo%5Bjsrcroot%5Esrcfolder=ejbModule%5Bproject%5Eid=creditos-pq-ejb%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zdlhqi_5Edy3mKYMFvZQmQ" points="[-3841, 155, 6691, -278]$[-7186, 155, 3346, -278]"/>
+  </edges>
+</notation:Diagram>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+		
+		<f:subview rendered="#{aprobacionPdvBacking.visualizarTemporal}">
+		</f:subview>
+		
+		<h:form enctype="multipart/form-data" id="validarCedulasPdv">
+			<a4j:region id="validarCedulasArchivo">
+				<div>
+					<h:messages globalOnly="true"></h:messages>
+					<f:subview rendered="#{funcionario.cedula==null}">
+						<div class="mensajeError">#{errores['datos.sesion']}</div>
+						<br />
+					</f:subview>
+					<f:subview rendered="#{funcionario.cedula!=null}">
+						<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+							cellpadding="0" style="width:100%;">
+							<rich:panel>
+								<f:facet name="header">#{etiquetas['validacion.pda.titulo']} </f:facet>
+								<br />
+								<h:outputText
+									value="* #{etiquetas['validacion.pda.masivo.mensaje.inicial']}" />
+								<h:panelGrid columns="5">
+									<b>#{etiquetas['validacion.pda.masivo.archivo.cedulas']}: </b>
+									<t:inputFileUpload id="subirArchivoCedulas" value="#{aprobacionPdvBacking.archivoCedulas}" style="height: 22px">
+									</t:inputFileUpload>
+									<rich:spacer width="20" />
+									<h:commandButton id="cmdTCargarArchivo"
+										action="#{aprobacionPdvBacking.validarArchivoCedulas}"
+										value="#{botones['aprobar.pda.masivo.cedulas.archivo']}" styleClass="boton"
+										reRender="pnlDatosCedulasPdv, mensajesValidacion"/>
+								</h:panelGrid>
+							</rich:panel>
+						</h:panelGrid>
+						<br />
+						<!-- muestra los mensajes que se generen en el backin bien aprobacionPdvBacking -->
+						<a4j:outputPanel id="mensajesValidacion">
+							<h:messages />
+							<rich:panel rendered="#{aprobacionPdvBacking.mensajeErrorCedulasArchivo != null}">
+								<div class="mensajeError">
+									<h:outputText value="#{aprobacionPdvBacking.mensajeErrorCedulasArchivo}" />
+									<br />
+								</div>
+							</rich:panel>
+						</a4j:outputPanel>
+						
+					</f:subview>
+				</div>
+			</a4j:region>
+		</h:form>
+		
+		<a4j:outputPanel id="pnlDatosCedulasPdv" rendered="#{aprobacionPdvBacking.visualizarCarga}">
+			<h:form id="datosCedulasPdv">
+				<h:panelGrid columns="1" columnClasses="info" width="100%" >
+					<rich:panel>
+						<f:facet name="header">#{etiquetas['carga.pda.titulo']} </f:facet>
+						<br />
+						<h:panelGroup>
+				           	<table>
+						    	<tr>
+						           	<td><h:outputText value="  " /></td>
+						            <td><h:outputText value="#{etiquetas['aprobar.pda.masivo.cedulas']}"/></td>
+						           <a4j:region>
+						            <td><a4j:commandButton id="btnCargar"
+											value="#{botones['aprobar.pda.masivo.cargar']}"
+											onclick = "disabled=true"
+											action="#{aprobacionPdvBacking.cargarDatosMasivos}"
+											styleClass="boton"
+											status="cargandoconsulta"
+											reRender="datosCedulasPdv" >													
+										</a4j:commandButton>
+									</td>
+									<td>
+										<a4j:status id="cargandoconsulta">
+											<f:facet name="start">
+												<rich:panel style="height:20px; border-width:0px;">
+													<h:graphicImage value="/img/conexion.gif" />
+													<h:outputText value="#{mensajes.espere}"></h:outputText>
+												</rich:panel>
+											</f:facet>
+										</a4j:status>
+									</td>
+									</a4j:region>
+						        </tr>
+				                <a4j:repeat value="#{aprobacionPdvBacking.listadoCedulas}" var="cedulaMasiva">
+				                    <tr>
+				                    	<td><h:outputText value="#{cedulaMasiva.id}" /></td>
+				                        <td><h:outputText value="#{cedulaMasiva.cedula}" /></td>
+				                        <td><h:outputText value="#{cedulaMasiva.mensaje}" /></td>
+				                        <td></td>
+				                    </tr>
+				                </a4j:repeat>
+				     		</table>
+				     	</h:panelGroup>
+			     	</rich:panel>
+				</h:panelGrid>
+				
+				<a4j:outputPanel id="mensajes">
+					<h:messages />
+					<rich:panel rendered="#{aprobacionPdvBacking.mensajeErrorCarga != null}">
+						<div class="mensajeError">
+							<h:outputText value="#{aprobacionPdvBacking.mensajeErrorCarga}" />
+							<br />
+						</div>
+					</rich:panel>
+				</a4j:outputPanel>
+				
+			</h:form>
+		</a4j:outputPanel>
+		
+	</ui:define>
+</ui:composition>

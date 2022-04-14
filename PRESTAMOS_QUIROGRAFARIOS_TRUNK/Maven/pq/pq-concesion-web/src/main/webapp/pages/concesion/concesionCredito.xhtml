@@ -1,0 +1,1359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">#{labels['titulo.referencia.credito']}</div>
+
+		<!-- DINAMICO DEACUERDO AL PRODUCTO -->
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody" rendered="#{datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}">
+			<f:facet name="header">#{labels['datos.generales']}</f:facet>
+			<table>
+				<tr>
+					<td><h:outputLabel for="txtCedula" value="#{labels.cedula}:"
+							rendered="#{datos.solicitante.aprobado}" /></td>
+					<td><h:inputText id="txtCedula"
+							value="#{datos.solicitante.datosPersonales.cedula}"
+							readonly="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtApellidos"
+							value="#{labels.nombresApellidos}:" /></td>
+					<td><h:inputText id="txtApellidos"
+							value="#{datos.solicitante.datosPersonales.apellidosNombres}"
+							readonly="true" size="50" style=" width : 245px;" /></td>
+				</tr>
+				<tr>
+					<td colspan="4"><rich:separator id="uisep1" height="1"
+							lineType="dotted" rendered="#{datos.tiposProductosPq=='NOR'}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtIntitucion"
+							value="#{labels['institucion.financiera']}:"
+							rendered="#{datos.solicitante.cuentaBancaria!=null and datos.tiposProductosPq=='NOR' and !datos.pagoPensionesAlimenticias}" />
+					</td>
+					<td><h:inputText id="txtIntitucion"
+							rendered="#{datos.solicitante.cuentaBancaria!=null and datos.tiposProductosPq=='NOR' and !datos.pagoPensionesAlimenticias}"
+							value="#{datos.solicitante.cuentaBancaria.institucionFinanciera.descripcion}"
+							readonly="true" size="50" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtNumeroCuenta"
+							rendered="#{datos.solicitante.cuentaBancaria!=null and datos.tiposProductosPq=='NOR' and !datos.pagoPensionesAlimenticias}"
+							value="#{labels['numero.cuenta']}:" /></td>
+					<td><h:inputText id="txtNumeroCuenta"
+							rendered="#{datos.solicitante.cuentaBancaria!=null and datos.tiposProductosPq=='NOR' and !datos.pagoPensionesAlimenticias}"
+							value="#{datos.solicitante.cuentaBancaria.numeroCuenta}"
+							readonly="true" /></td>
+				</tr>
+				<tr>
+					<td colspan="4"><rich:separator id="uisep2" height="1"
+							lineType="dotted" rendered="#{datos.tiposProductosPq!='NOR'}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtEmpleadorActual"
+							value="#{labels['empleador.nombre']}:" /></td>
+					<td><h:inputText id="txtEmpleadorActual"
+							value="#{datos.solicitante.empleador.empleadorActual}"
+							readonly="true" style="width: auto;" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtRucEmpleador"
+							value="#{labels['ruc.empleador']}:" /></td>
+					<td><h:inputText id="txtRucEmpleador"
+							value="#{datos.solicitante.empleador.rucEmpleador}"
+							readonly="true" /></td>
+				</tr>
+			</table>
+		</rich:panel>
+
+		<!-- PENSIONES ALIMENTICIAS -->
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="#{datos.pagoPensionesAlimenticias}">
+			<f:facet name="header">
+				#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.titulo.datos']}
+			</f:facet>
+
+			<table>
+				<tr>
+					<td><h:outputLabel for="inputTextPACedula"
+							value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.cedula']}:" />
+					</td>
+					<td><h:inputText id="inputTextPACedula"
+							value="#{datos.beneficiarioCredito.numeroBeneficiario}" size="20"
+							maxlength="10" readonly="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="inputTextPABeneficiario"
+							value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.beneficiario']}:" />
+					</td>
+					<td><h:inputText id="inputTextPABeneficiario"
+							value="#{datos.beneficiarioCredito.beneficiario}" size="40"
+							maxlength="200" readonly="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="inputTextPAInstitucionFinanciera"
+							value="#{labels['institucion.financiera']}:" /></td>
+					<td><h:inputText id="inputTextPAInstitucionFinanciera"
+							rendered="#{datos.tiposProductosPq=='PEN'}"
+							value="#{datos.cuentaBancariaBeneficiarioCredito.institucionFinanciera.descripcion}"
+							readonly="true" size="50" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="inputTextPANumeroCuenta"
+							value="#{labels['numero.cuenta']}:" /></td>
+					<td><h:inputText id="inputTextPANumeroCuenta"
+							value="#{datos.cuentaBancariaBeneficiarioCredito.numeroCuenta}"
+							size="20" maxlength="20" readonly="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="inputTextPATipoCuenta"
+							value="#{labels['tipo.cuenta']}:" /></td>
+					<td><h:inputText id="inputTextPATipoCuenta"
+							value="#{datos.cuentaBancariaBeneficiarioCredito.tipoCuenta.descripcion}"
+							size="20" maxlength="20" readonly="true" /></td>
+				</tr>
+			</table>
+		</rich:panel>
+		<br />
+
+		<!-- PARAMETROS PARA CALCULO DEL CREDITO -->
+		<h:form id="formCargarCalculo">
+			<a4j:region id="regConcesion">
+				<a4j:jsFunction action="#{concesionCredito.cargarCalculoCreditoNew}"
+					name="cargarCalculoCreditoNew"
+					reRender="pnlGarantias,formPestanias,pnlMensajeError,pnlReservaEcuTur,opnlReversaTur,descripcionPqDinamico"></a4j:jsFunction>
+				
+				<a4j:status for="regConcesion">
+					<f:facet name="start">
+						<rich:panel styleClass="panelInvisible">
+							<h:graphicImage id="uiBlanco5" value="/img/ajax/cargando.gif" />
+							<h:outputText value="#{messages['cargando.garantias']}"></h:outputText>
+						</rich:panel>
+					</f:facet>
+				</a4j:status>
+
+				<a4j:outputPanel id="pnlMensajeError">
+					<h:outputText value="#{concesionCredito.message}" rendered="#{concesionCredito.message!=null}" style="color:Red;"></h:outputText>
+				</a4j:outputPanel>
+
+				<!-- CALCULO DE GARANTIAS -->
+				<a4j:outputPanel id="pnlGarantias" rendered="#{datos.tiposProductosPq != 'ECU_TUR'}">
+					<h:messages showSummary="true" for="formCargarCalculo"
+						style="color:red;" />
+					<br />
+					<rich:panel styleClass="panel" headerClass="pheader"
+						bodyClass="pbody" rendered="#{concesionCredito.cargado}">
+						<f:facet name="header">#{labels['parametros.calculo.credito']}</f:facet>
+						<table style="width: 100%;">
+							<tr>
+								<td style="width: 50%; vertical-align: top;">
+									<fieldset style="width: 94%; height: 100%;">
+										<legend>#{labels['condiciones.calculo']}</legend>
+
+										<table width="100%">
+											<tr>
+												<td width="55%"><h:outputLabel for="txtEdad"
+														value="#{labels['edad.actual']}:" /></td>
+												<td width="5%"></td>
+												<td width="30%" class="tdCampoNum"><h:outputText
+														id="txtEdad"
+														value="#{concesionCredito.calculoCredito.condicionCalculo.edadActualAnios} "></h:outputText>
+												</td>
+												<td width="5%"></td>
+												<td width="5%">#{labels.anios}</td>
+											</tr>
+											<tr>
+												<td><h:graphicImage id="uiBlanco60"
+														value="/img/blanco.jpg" /></td>
+												<td></td>
+												<td class="tdCampoNum"><h:outputText id="txtEdadMeses"
+														value="#{concesionCredito.calculoCredito.condicionCalculo.edadMesesAnios}" />
+												</td>
+												<td></td>
+												<td>#{labels.meses}</td>
+											</tr>
+											<tr>
+												<td colspan="3"><rich:separator id="uisep3" height="1"
+														lineType="dotted" /> <br /></td>
+											</tr>
+											<tr>
+												<td><h:outputLabel for="txtPlazo"
+														value="#{labels['plazo.maximo.credito']}:" /></td>
+												<td></td>
+												<td class="tdCampoNum"><h:outputText id="txtPlazo"
+														value="#{concesionCredito.datos.productoBiessEmergente ? concesionCredito.plazoMaximoEmergente :  concesionCredito.calculoCredito.condicionCalculo.plazoMaximo}"
+														rendered="#{datos.tiposProductosPq == 'NOR' or datos.tiposProductosPq == 'PEN'}" />
+														<h:outputText id="txtPlazoDinamico"
+														value="#{datos.dataRespGenericaResponseDto.proveedor.categoriaProveedor==null? concesionCredito.calculoCredito.condicionCalculo.plazoMaximo:datos.dataRespGenericaResponseDto.proveedor.categoriaProveedor.plazoMaximo }"
+														rendered="#{datos.tiposProductosPq == 'DINAMICO'}" />
+												</td>
+
+												<td></td>
+
+												<td>#{labels.meses}</td>
+											</tr>
+											<tr>
+												<td><h:outputLabel for="txtInteres"
+														value="#{labels['tasa.interes.iess']}:" /></td>
+												<td></td>
+												<td class="tdCampoNum">
+													<h:outputText id="txtInteres"
+														value="#{ messages['parametro.tasa.interes.plazo.info'] }">
+													</h:outputText>
+												</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<!-- COMIENZA EL CALCULO DE MULTIPLES PQS -->
+											<tr>
+												<td colspan="3"><rich:separator id="uisep4" height="1"
+														lineType="dotted" /> <br /></td>
+											</tr>
+											<tr>
+												<c:if test="${datos.solicitante.tipo=='AFILIADO' }">
+													<td><h:outputLabel for="txtSueldo"
+															value="#{roles.mensajeSueldoPromedio}:" /></td>
+												</c:if>
+												<c:if test="${datos.solicitante.tipo=='JUBILADO'}">
+													<td><h:outputLabel for="txtSueldo"
+															value="#{labels['prestaciones.ingreso.neto.mensual']}:" />
+													</td>
+												</c:if>
+												<td></td>
+												<td class="tdCampoNum"><h:outputText id="txtSueldo"
+														value="#{concesionCredito.calculoCredito.garantia.sueldoPromedioOriginal}">
+														<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+															type="currency" />
+													</h:outputText></td>
+												<td></td>
+												<td><strong>(A)</strong></td>
+											</tr>
+											<tr>
+												<td colspan="3"><rich:separator id="uisepmp1"
+														height="1" lineType="dotted" /> <br /></td>
+											</tr>
+											<!-- CAPACIDAD DE PAGO -->
+											<tr>
+												<td><h:outputLabel for="txtCapacidadPago"
+														value="#{labels['valor.capacidad.pago']}:" /></td>
+												<td></td>
+												<td class="tdCampoNum"><h:outputText
+														id="txtCapacidadPago"
+														value="#{concesionCredito.calculoCredito.garantia.capacidadPago}">
+														<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+															type="currency" />
+													</h:outputText></td>
+												<td></td>
+												<td><strong>(B</strong><h:outputText id="lblCapacidadPago" value="=A*#{concesionCredito.capacidadPago}%)" /></td>
+											</tr>
+											<!-- FIN CAPACIDAD DE PAGO -->
+											<tr>
+												<td colspan="3"><rich:separator id="uisepmp2"
+														height="1" lineType="dotted" /> <br /></td>
+											</tr>
+											<!-- COMIENZA CUOTA MULTIPLES PQs -->
+											<tr>
+												<td>DETALLE CREDITOS <strong>(C):</strong></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<f:subview
+												rendered="#{concesionCredito.calculoCredito.garantia.detalleCalculoEgresos != null}">
+
+												<c:forEach
+													items="#{concesionCredito.calculoCredito.garantia.detalleCalculoEgresos}"
+													var="itemEgresos">
+													<tr>
+														<td><h:outputText value="#{itemEgresos.nombre}" /></td>
+														<td></td>
+														<td class="tdCampoNum"><h:outputText
+																value="#{itemEgresos.valor}" style="text-align: right;">
+																<f:convertNumber groupingUsed="true"
+																	maxFractionDigits="2" type="currency" />
+															</h:outputText></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</c:forEach>
+											</f:subview>
+											<!-- CAPACIDAD DE ENDEUDAMIENTO -->
+											<tr>
+												<td colspan="3"><rich:separator id="uisepmp3"
+														height="1" lineType="dotted" /> <br /></td>
+											</tr>
+											<tr>
+												<td><h:outputLabel for="txtCapEndeudamiento"
+														value="#{labels['valor.capacidad.endeudamiento']}:" style="#{concesionCredito.colorTextoEndeudamiento}" /></td>
+												<td></td>
+												<td class="tdCampoNum"><h:outputText value="$" style="#{concesionCredito.colorTextoEndeudamiento}"></h:outputText><h:outputText
+														id="txtCapEndeudamiento"
+														value="#{concesionCredito.calculoCredito.garantia.capacidadEndeudamiento}"
+														style="#{concesionCredito.colorTextoEndeudamiento}">
+														<f:convertNumber groupingUsed="true" maxFractionDigits="2" />
+													</h:outputText></td>
+												<td></td>
+												<td><h:outputText value="(B-C)" style="#{concesionCredito.colorTextoEndeudamiento}"></h:outputText></td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+								<td style="vertical-align: top;">
+									<!-- COMIENZA GARANTIAS -->
+									<fieldset style="width: 94%; height: 100%;">
+										<legend>
+											<h:outputText value="#{labels['garantias']}"
+												rendered="#{datos.solicitante.tipo=='AFILIADO' }"></h:outputText>
+											<h:outputText value="#{labels['pension.jubilacion']}"
+												rendered="#{datos.solicitante.tipo=='JUBILADO'}"></h:outputText>
+										</legend>
+
+										<table width="100%">
+											<!-- AFILIADO -->
+											<c:if test="${datos.solicitante.tipo=='AFILIADO'}">
+												<tr>
+													<td>CESANTIAS:</td>
+												</tr>
+												<c:forEach
+													items="#{concesionCredito.calculoCredito.garantia.detalleCalculoIngresos}"
+													var="itemCes">
+													<c:if test="${itemCes.observacion =='Cesantia'}">
+														<tr>
+															<td><h:outputText value="#{itemCes.nombre}" escape="false"  /></td>
+															<td class="tdCampoNum"><h:outputText
+																	value="#{itemCes.valor}" style="text-align: right;">
+																	<f:convertNumber groupingUsed="true"
+																		maxFractionDigits="2" type="currency" />
+																</h:outputText></td>
+														</tr>
+													</c:if>
+												</c:forEach>
+												<tr>
+													<td colspan="3"><rich:separator id="uisepmp4"
+															height="1" lineType="dotted" /> <br /></td>
+												</tr>
+												<tr>
+													<td>FONDOS:</td>
+												</tr>
+												<c:forEach
+													items="#{concesionCredito.calculoCredito.garantia.detalleCalculoIngresos}"
+													var="itemFond">
+													<c:if test="${itemFond.observacion =='Fondos'}">
+														<tr>
+															<td><h:outputText value="#{itemFond.nombre}" escape="false" /></td>
+															<td class="tdCampoNum"><h:outputText
+																	value="#{itemFond.valor}" style="text-align: right;">
+																	<f:convertNumber groupingUsed="true"
+																		maxFractionDigits="2" type="currency" />
+																</h:outputText></td>
+														</tr>
+													</c:if>
+												</c:forEach>
+												<tr>
+													<td colspan="3"><rich:separator id="uisepmp5"
+															height="1" lineType="dotted" /> <br /></td>
+												</tr>
+											</c:if>
+											<!-- FIN AFILIADO -->
+											<!-- JUBILADO -->
+											<c:if test="${datos.solicitante.tipo=='JUBILADO'}">
+												<c:if
+													test="#{resultado.datos.mensajePrestacionJubilado!=null}">
+													<tr>
+														<td><rich:panel styleClass="errorPanel"
+																rendered="#{resultado.datos.mensajePrestacionJubilado!=null}">
+																<h:outputText
+																	value="#{resultado.datos.mensajePrestacionJubilado}"></h:outputText>
+															</rich:panel></td>
+													</tr>
+												</c:if>
+												<c:if
+													test="#{resultado.datos.mensajePrestacionJubilado==null}">
+													<tr>
+														<td></td>
+														<td><b> #{labels['prestaciones.ingresos']} </b></td>
+														<td><b> #{labels['prestaciones.egresos']} </b></td>
+													</tr>
+													<c:forEach
+														items="#{resultado.datos.informacionIessServicio.informacionPrestacionPensionado.listaPrestaciones}"
+														var="_presta">
+														<tr>
+															<td><h:outputText value="#{_presta.descripcion}:" />
+															</td>
+															<td class="tdCampoNum">$<h:outputText
+																	value="#{_presta.ingresos}" style="text-align: right;">
+																	<f:convertNumber groupingUsed="true"
+																		maxFractionDigits="2" type="currency" />
+																</h:outputText>
+															</td>
+															<td class="tdCampoNum">$<h:outputText
+																	value="#{_presta.egresos}" style="text-align: right;">
+																	<f:convertNumber groupingUsed="true"
+																		maxFractionDigits="2" type="currency" />
+																</h:outputText>
+															</td>
+														</tr>
+														<tr>
+															<td colspan="3"><rich:separator height="1"
+																	lineType="dotted" /> <br /></td>
+														</tr>
+													</c:forEach>
+													<tr>
+														<td><b>Total</b></td>
+														<td class="tdCampoNum"><b>$#{resultado.datos.informacionIessServicio.informacionPrestacionPensionado.totalIngresos}</b></td>
+														<td class="tdCampoNum"><b>$#{resultado.datos.informacionIessServicio.informacionPrestacionPensionado.totalEgresos}</b></td>
+													</tr>
+													<tr>
+														<td colspan="2"><b>#{labels['total.valor.comprometer']}:</b></td>
+														<td class="tdCampoNum"><b>
+																$#{resultado.datos.informacionIessServicio.informacionPrestacionPensionado.valorAComprometer}
+																<br />
+														</b></td>
+													</tr>
+												</c:if>
+											</c:if>
+											<!-- FIN JUBILADO -->
+											<c:if
+												test="${datos.solicitante.tipo=='AFILIADO' }">
+												<tr>
+													<td><h:outputLabel  for="txtGarantia" escape="false"
+															value="#{labels['total.garantia']}" /> </td>
+													<td class="tdCampoNum"><h:outputText id="txtGarantia"
+															value="#{concesionCredito.calculoCredito.garantia.totalGarantia}">
+															<f:convertNumber groupingUsed="true"
+																maxFractionDigits="2" type="currency" />
+														</h:outputText></td>
+												</tr>
+											</c:if>
+												<c:if
+												test="${datos.solicitante.tipo=='ZAFRERO_TEMPORAL'}">
+												<tr>
+													<td><h:outputLabel  for="txtGarantia" escape="false"
+															value="#{labels['total.garantia.prerrequisitos']}" /> </td>
+													<td class="tdCampoNum"><h:outputText id="txtGarantia"
+															value="#{concesionCredito.calculoCredito.garantia.totalGarantia}">
+															<f:convertNumber groupingUsed="true"
+																maxFractionDigits="2" type="currency" />
+														</h:outputText></td>
+												</tr>
+											</c:if>
+
+										</table>
+									</fieldset> <!-- FIN GARANTIAS -->
+								</td>
+							</tr>
+						</table>
+					</rich:panel>
+				</a4j:outputPanel>
+			</a4j:region>
+		</h:form>
+
+        <rich:panel id="descripcionPqDinamico" styleClass="panel" headerClass="pheader" bodyClass="pbody" rendered="#{datos.tiposProductosPq == 'DINAMICO'}">
+			<f:facet name="header">
+			    
+			     <h:outputText value="#{messages['descripcion.servicio.contratado']}"></h:outputText>
+			     
+			</f:facet>
+			<a4j:outputPanel id="infoPqDinamico">
+
+						<h:panelGrid columns="2" id="pnlPaqTur">
+							<c:forEach var="campo"
+								items="#{concesionCredito.datos.dataRespGenericaResponseDto.header}">
+
+								<h:outputText value="#{campo.item}" />
+								<h:outputText value="#{campo.valor}" />
+
+
+							</c:forEach>
+						</h:panelGrid>
+						<rich:separator height="2" />
+						<h:panelGrid columns="2" id="pnlPaqTur2">
+							<c:forEach var="campo"
+								items="#{concesionCredito.datos.dataRespGenericaResponseDto.body}">
+
+								<h:outputText value="#{campo.item}" />
+								<h:outputText value="#{campo.valor}" />
+
+
+							</c:forEach>
+						</h:panelGrid>
+
+					</a4j:outputPanel>
+        </rich:panel>
+          
+
+		<!-- TABS: REFERENCIA, SIMULACION, AMORTIZACION
+		<a4j:status for="regPestanias">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible"
+					style="float:right;height:20px;position:absolute;left:475px;margin-top:5px;">
+					<b> <h:outputText value="#{messages['cargando']}"></h:outputText>
+					</b>
+				</rich:panel>
+			</f:facet>
+		</a4j:status> -->
+		
+		<!-- PANEL DE INGRESO DE NUMERO DE RESERVA PARA CREDUTOS ECUADOR TU LUGAR EN EL MUNDO -->
+		<a4j:outputPanel id="opnlReversaTur">
+		<rich:panel id="pnlReservaEcuTur" styleClass="panel" headerClass="pheader" bodyClass="pbody" rendered="#{datos.tiposProductosPq == 'ECU_TUR' and empty concesionCredito.message}">
+			<h:form id="formEcuadorTurismo">
+				<a4j:region id="regEcuTurismo">
+					<h:outputText value="#{labels['ecuador.turistico.ingreso.codigo.reserva']}" />
+
+					<h:panelGrid columns="3">
+						<h:outputText value="#{labels['ecuador.turistico.codigo.reserva']}" />
+							<h:inputText id="txtNumeroReserva" value="#{concesionCredito.codigoReservaEcuTur}" styleClass="calc-write" required="true"
+								requiredMessage="#{errores['ecuador.turismo.reserva.requerido']}" maxlength="30" />
+							<a4j:outputPanel ajaxRendered="true">
+							<h:message for="txtNumeroReserva" errorClass="requerido"></h:message>
+						</a4j:outputPanel>
+
+						<a4j:commandButton id="btnVerificarReserva" action="#{concesionCredito.verificarNumeroReserva}" value="#{labels['ecuador.turistico.valida.reserva']}" styleClass="boton"
+							reRender="infoPaqueteTuristico, pnlPaqTur,tabPanelSimulacion">
+						</a4j:commandButton>
+						<h:commandButton action="principal" value="#{labels['button.cancelar']}" styleClass="botonbarra" immediate="true" />
+						<rich:spacer />
+					</h:panelGrid>
+
+					<a4j:status for="regEcuTurismo">
+						<f:facet name="start">
+							<rich:panel styleClass="panelInvisible">
+								<h:graphicImage id="uiBlanco7" value="/img/ajax/cargando.gif" />
+								<h:outputText value="#{messages['ecuador.turismo.validando.reserva']}"></h:outputText>
+							</rich:panel>
+						</f:facet>
+					</a4j:status>
+
+					<a4j:outputPanel id="infoPaqueteTuristico">
+						<h:messages styleClass="errorPanel" globalOnly="true" showDetail="false" showSummary="true" />
+
+						<h:panelGrid columns="2" id="pnlPaqTur">
+							<h:outputText value="#{labels['ecuador.turistico.paquete.contratado']}" escape="false" />
+							<rich:spacer />
+
+							<h:outputText value="#{concesionCredito.descripcionPaqueteTuristico}" escape="false" />
+							<rich:spacer />
+
+							<strong>Monto:</strong>
+							<rich:spacer />
+							
+							<h:outputText value="#{concesionCredito.montoPaqueteTuristico}">
+								<f:convertNumber pattern="$ ####.00" />
+							</h:outputText>
+							<rich:spacer />
+						</h:panelGrid>
+					</a4j:outputPanel>
+				</a4j:region>
+			</h:form>
+		</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:region id="regPestanias">
+			<a4j:outputPanel id="formPestanias" styleClass="panelInvisibleMax">
+				<a4j:form id="uiForm" name="formularioPestanias">
+					<rich:panel styleClass="panelInvisibleMax"
+						rendered="#{concesionCredito.cargado}">
+
+						<rich:tabPanel id="tabPanelPrincipal" name="tabPanelPrincipal" rendered="#{concesionCredito.renderizarPanelPrincpal}"
+							value="#{concesionCredito.panelActivoPrincipal}" switchType="ajax"
+							height="320px" tabClass="rich-tab-inactive"	immediate="true">
+							
+							<!-- SIMULACION -->
+							<rich:tab id="sim" name="sim" label="#{labels['tab.simulacion']}"
+								disabled="#{concesionCredito.deshabilitarSimulacion}" immediate="true"
+								onlabelclick="preparaCampos()">
+
+								<rich:panel id="uiSeleccione" styleClass="messagePanel">
+									<h:outputText value="#{messages['credito.simulacion']}" />
+									<br /><br />
+									<h:outputText value="#{concesionCredito.message}" escape="false"
+										rendered="#{concesionCredito.message!=null}"
+										style="color:Red;"></h:outputText>
+								</rich:panel>
+
+								<rich:tabPanel id="tabPanelSimulacion" name="tabPanelSimulacion" 
+               						value="#{concesionCredito.panelActivoSimulacion}" 
+               						height="200px" immediate="true" switchType="ajax">
+									
+									<rich:tab id="uiSimM" name="uiSimM" label="#{labels['simulacion.monto.credito']}" 
+               							action="#{concesionCredito.ocultarBotonTablaAmortizacionM}" 
+               							render="tabPanelSimulacion">
+										<rich:panel id="uiSCCI" styleClass="messagePanel" rendered="#{datos.categoriaTipoProductoPq != 'CAT_FOCALIZADOS' and datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}">
+											#{messages['simulacion.cuota.mensual']}
+										</rich:panel>
+										<rich:panel id="uiSCCIFoc" styleClass="messagePanel" rendered="#{datos.categoriaTipoProductoPq == 'CAT_FOCALIZADOS'}">
+											#{messages['mensaje.pq.focalizado.cuota.mensual']}
+										</rich:panel>
+										<rich:panel id="uiSCCIEcuTur" styleClass="messagePanel" rendered="#{datos.tiposProductosPq == 'ECU_TUR'}">
+											#{messages['ecuador.turismo.cuota.mensual']}
+										</rich:panel>
+										<rich:panel id="uiSCCIDinamico" styleClass="messagePanel" rendered="#{datos.tiposProductosPq == 'DINAMICO'}">
+											#{messages['pq.dinamico.mensaje.mensual']}
+										</rich:panel>
+										<f:subview
+											rendered="#{!concesionCredito.opcionSimMontoCargado}">
+
+											<rich:panel styleClass="messagePanel"
+												rendered="#{concesionCredito.opcionSimCuota.tipoTablaSeleccionado !=null and concesionCredito.opcionSimCuota.tipoTablaSeleccionado=='FRANCESA'}">
+												<h:outputText
+													value="#{messages['sistema.amortizacion.frances']}  #{messages['mensaje.sistema.frances']}"
+													style="text-align:left;" />
+											</rich:panel>
+
+											<rich:panel styleClass="messagePanel"
+												rendered="#{concesionCredito.opcionSimCuota.tipoTablaSeleccionado !=null and concesionCredito.opcionSimCuota.tipoTablaSeleccionado=='ALEMANA'}">
+												<h:outputText
+													value="#{messages['sistema.amortizacion.aleman']} #{messages['mensaje.sistema.aleman']}"
+													style="text-align:right;" />
+											</rich:panel>
+
+											<rich:panel id="uiSCObservacOk" styleClass="okayPanel"
+												rendered="#{(concesionCredito.simulacion != null) and concesionCredito.activarCalculoCredito}">
+												#{concesionCredito.simulacion.observacion}
+											</rich:panel>
+
+											<rich:panel id="uiSCObservacError" styleClass="errorPanel"
+												rendered="#{(concesionCredito.simulacion != null) and !concesionCredito.activarCalculoCredito and concesionCredito.simulacion.observacion!=null}">
+												#{concesionCredito.simulacion.observacion}
+											</rich:panel>
+
+										</f:subview>
+
+										<!-- SIMULACION PRODUCTOS NORMAL -->
+										 <h:messages styleClass="errorPanel" globalOnly="true" showDetail="false" showSummary="true" />
+										<h:panelGrid columns="1" border="0" id="uiGridSimCuota"
+											rendered="#{datos.categoriaTipoProductoPq =='CAT_NORMALES' or datos.categoriaTipoProductoPq =='CAT_SERVICIOS' or datos.categoriaTipoProductoPq == 'CAT_FOCALIZADOS'}">
+											<h:panelGroup>
+												<h:outputLabel value="#{labels['simulacion.plazo']}:"
+													style="text-align:right" />
+												<h:inputText id="c" rendered="#{!concesionCredito.datos.productoBiessEmergente}"
+													value="#{concesionCredito.opcionSimCuota.meses}"
+													styleClass="calc-write"
+													onkeypress="return aceptarNumeros(event, this, false)"
+													>
+													<a4j:support process="c" event="onkeyup" ajaxSingle="true"
+														action="#{concesionCredito.reseteaListaTablaAmortizacion}"
+														reRender="selectTablaPrueba, uiTxtSimCuotaMontoMax,uiSimResCuota,cc,cmdAceptarPorCuota"></a4j:support>
+												</h:inputText>
+												
+												<h:selectOneMenu id="selectMesesC" rendered="#{concesionCredito.datos.productoBiessEmergente}"
+													value="#{concesionCredito.opcionSimCuota.meses}">
+													<f:selectItem itemValue="" itemLabel="Seleccione ..." />
+													<f:selectItem itemValue="3" itemLabel="3 Meses" />
+													<f:selectItem itemValue="6" itemLabel="6 Meses" />
+													<f:selectItem itemValue="9" itemLabel="9 Meses" />
+														<a4j:support process="selectMesesC" event="onchange" ajaxSingle="true"
+														action="#{concesionCredito.reseteaListaTablaAmortizacion}"
+														reRender="selectTablaPrueba, uiTxtSimCuotaMontoMax,cc"></a4j:support>
+													</h:selectOneMenu>
+												
+												<h:outputText value="(#{labels.meses})" rendered="#{!concesionCredito.datos.productoBiessEmergente}"/>
+												<h:outputText
+													value="#{labels['simulacion.plazo.maximo']}:  " rendered="#{!concesionCredito.datos.productoBiessEmergente}" />
+												
+												<h:outputText id="uiTxtSimCuotaMaxCreditoZafreroCuota" rendered="#{datos.solicitante.tipo=='ZAFRERO_TEMPORAL' and !concesionCredito.datos.productoBiessEmergente}"
+													value="12">
+												</h:outputText>
+												<h:outputText id="uiTxtSimCuotaMaxCreditoCuota" rendered="#{datos.solicitante.tipo!='ZAFRERO_TEMPORAL' and concesionCredito.datos.tiposProductosPq!='DINAMICO' and !concesionCredito.datos.productoBiessEmergente}"
+													value="#{concesionCredito.datos.productoBiessEmergente ? concesionCredito.plazoMaximoEmergente :  concesionCredito.calculoCredito.condicionCalculo.plazoMaximo}">
+												</h:outputText>
+												<h:outputText id="uiTxtSimCuotaMaxCreditoDinamico" rendered="#{concesionCredito.datos.tiposProductosPq=='DINAMICO' and !concesionCredito.datos.productoBiessEmergente }"
+													value="#{datos.dataRespGenericaResponseDto.proveedor.categoriaProveedor==null? concesionCredito.calculoCredito.condicionCalculo.plazoMaximo:datos.dataRespGenericaResponseDto.proveedor.categoriaProveedor.plazoMaximo }">
+												</h:outputText>
+											</h:panelGroup>
+
+											<h:panelGroup>
+												<h:outputLabel value="#{labels['simulacion.tipo.tabla']}:" />
+												<h:selectOneMenu id="selectTablaPrueba"
+													value="#{concesionCredito.opcionSimCuota.tipoTablaSeleccionado}">
+													<f:selectItem itemValue="" itemLabel="Seleccione ..." />
+													<f:selectItems value="#{concesionCredito.tipoTablaItems}" />
+														<a4j:support event="onchange" id="supObtenerMntMaximo"
+														process="c, selectTablaPrueba,selectMesesC"
+														action="#{concesionCredito.obtenerMontoMaximo}"
+														onchange="Richfaces.showModalPanel('pnl');"
+															ajaxSingle="true"   oncomplete="Richfaces.hideModalPanel('pnl');"
+															reRender="tabPanelSimulacion, lblCapacidadPago,txtCapacidadPago,txtCapEndeudamiento" />
+												</h:selectOneMenu>
+											</h:panelGroup>
+
+											<h:panelGroup>
+												<h:outputLabel value="#{labels['simulacion.monto']}: $" />
+												<h:inputText id="cc"
+													value="#{concesionCredito.opcionSimCuota.valorTotalCredito}"
+													styleClass="calc-write"
+													onkeypress="return aceptarNumeros(event, this, true)" 
+													readonly="#{datos.categoriaTipoProductoPq == 'CAT_FOCALIZADOS' ? 'true' : 'false' || datos.dataRespGenericaResponseDto.proveedor.montoBloqueado }">
+													<a4j:support
+														action="#{concesionCredito.validarSeleccionTablaAmortizacion}"
+														process="cc" event="onchange" rendered="uiSCObservacError" />
+													<f:converter converterId="dineroConverter" />
+												</h:inputText>
+												<h:outputLabel value="#{labels['simulacion.monto.maximo']}:"
+													id="labelMonto"
+													rendered="#{concesionCredito.opcionSimCuota.tipoTablaSeleccionado ==null}"
+													style="text-align:left" />
+												<h:outputLabel
+													value="#{labels['simulacion.monto.maximo']} #{concesionCredito.opcionSimCuota.tipoTablaSeleccionado}:"
+													rendered="#{concesionCredito.opcionSimCuota.tipoTablaSeleccionado !=null}"
+													style="text-align:left" id="tipoSeleccion" />
+												<h:outputText id="uiTxtSimCuotaMontoMax"
+													value="#{concesionCredito.simulacion.montoMaximoCredito}">
+													<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+														type="currency" />
+												</h:outputText>
+											</h:panelGroup>
+
+
+											<!-- 											<h:outputLabel value="#{labels['simulacion.tipo.tabla']}:" /> -->
+											<!-- 											<h:selectOneMenu id="selectTabla" -->
+											<!-- 												value="#{concesionCredito.opcionSimCuota.tipoTablaSeleccionado}"> -->
+											<!-- 												<f:selectItem itemValue="" itemLabel="Seleccione ..." /> -->
+											<!-- 												<f:selectItems value="#{concesionCredito.tipoTablaItems}" /> -->
+											<!-- 												<a4j:support event="onchange" ajaxSingle="true" /> -->
+											<!-- 											</h:selectOneMenu> -->
+										</h:panelGrid>
+
+										<div style="font-size: 20px;">
+											#{labels['simulacion.cuota']}:
+											<h:outputText id="uiSimResCuota"
+												value="#{concesionCredito.opcionSimCuota.cuotaMensual}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													type="currency" />
+											</h:outputText>
+											<!-- #{labels.moneda} -->
+										</div>
+										<br />
+										<div align="left" id="uiDivBotCalcCuo">
+											<a4j:commandButton id="cmdCalcularPorCuota"
+												action="#{concesionCredito.calcularSimCuotaNew}"
+												value="Calcular" styleClass="boton"
+												reRender="tabPanelPrincipal,tabPanelSimulacion,txtCapacidadPago,txtCapEndeudamiento"
+												onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');">
+											</a4j:commandButton>
+											<h:graphicImage id="uiBlanco15" value="/img/blanco.jpg" />
+											<a4j:commandButton id="cmdAceptarPorCuota" onclick="Richfaces.showModalPanel('pnl');" 
+												name="cmdAceptarPorCuota"
+												action="#{concesionCredito.aceptarSimCuotaNew}"
+												value="#{labels['button.amortizacion.ver']}"
+												oncomplete="seleccionado = false;Richfaces.hideModalPanel('pnl');"
+												rendered="#{concesionCredito.activarCalculoCredito}"
+												styleClass="boton"
+												reRender="tabPanelPrincipal,tablaFrancesa,lblCapacidadPago,txtCapacidadPago">												
+											</a4j:commandButton>
+										</div>
+									</rich:tab>
+								</rich:tabPanel>
+							</rich:tab>
+
+							<!-- FIN SIMULACION -->
+
+							<!-- AMORTIZACION -->
+							<rich:tab id="amo" name="amo" 
+								label="#{labels['tab.tabla.amortizacion']}" 
+								disabled="#{concesionCredito.deshabilitarAmortizacion}"
+								immediate="true">
+								<rich:panel id="uiPnlValorReaj" styleClass="messagePanel">
+									#{messages['amortizacion.valores.reajustables']}
+								</rich:panel>
+
+								<!-- COMIENZA CATALOGO -->
+								<rich:panel id="dtNutEncontrado">
+									<fieldset style="width: 550px; height: 100%;">
+										<legend>
+											<h:outputText value="DESTINO DEL CREDITO"></h:outputText>
+										</legend>
+
+										<table width="100%">
+											<c:forEach items="#{concesionCredito.dtocatalogo}"
+												var="lisCatalogo">
+
+												<tr>
+													<td><a4j:commandButton
+															action="#{concesionCredito.seleccionarOp}"
+															immediate="true" reRender="dtNutEncontrado,msjError"
+															rendered="#{lisCatalogo.seleccion}"
+															image="/files/images/content/icon-check.png"
+															style="width: 12px; height: 12px;"
+															actionListener="#{concesionCredito.asignarValor}">
+															<f:attribute name="valor" value="#{lisCatalogo}" />
+														</a4j:commandButton> <a4j:commandButton
+															action="#{concesionCredito.seleccionarOp}"
+															immediate="true" reRender="dtNutEncontrado,msjError"
+															rendered="#{!lisCatalogo.seleccion}"
+															image="/img/blanco.jpg"
+															style="width: 12px; height: 12px;"
+															actionListener="#{concesionCredito.asignarValor}">
+															<f:attribute name="valor" value="#{lisCatalogo}" />
+														</a4j:commandButton></td>
+													<td><h:outputText value="#{lisCatalogo.descripcion}"></h:outputText>
+													</td>
+													<c:if test="${lisCatalogo.descripcion=='OTROS'}">
+														<td><h:inputText value="#{lisCatalogo.observacion}"></h:inputText>
+														</td>
+													</c:if>
+												</tr>
+											</c:forEach>
+										</table>
+									</fieldset>
+								</rich:panel>
+
+								<!-- FIN CATALOGO -->
+
+								<!-- NUEVA SIMULACION DE LAS 2 TABLAS -->
+								<rich:panel styleClass="panel" headerClass="pheader"
+									bodyClass="pbody" id="tablaFrancesa">
+									<fieldset style="width: 94%; height: 100%;">
+										<c:if
+											test="${concesionCredito.simulacion.tipoSimulacion=='FRANCESA'}">
+											<legend>#{labels['creditoAConceder.francesa']}</legend>
+										</c:if>
+										<c:if
+											test="${concesionCredito.simulacion.tipoSimulacion=='ALEMANA'}">
+											<legend>#{labels['creditoAConceder.alemana']}</legend>
+										</c:if>
+										<table style="width: 100%;">
+											<tr>
+												<td width="45%">#{labels['credito.monto']}:</td>
+												<td width="20%" class="tdCampoNum"><h:outputText
+														id="uiCreditoMonto"
+														value="#{(concesionCredito.datos.tiposProductosPq=='TUR' or concesionCredito.datos.tiposProductosPq=='FOC' or concesionCredito.datos.tiposProductosPq=='ECU_TUR'  or concesionCredito.datos.tiposProductosPq=='DINAMICO') ? 
+														concesionCredito.prestamoCalculo.valorCredito: concesionCredito.prestamoCalculo.valorCredito}">
+														<f:convertNumber pattern="$ ####.00" />
+													</h:outputText></td>
+												<td width="35%">( A )</td>
+											</tr>
+											<tr>
+												<td width="45%">#{labels['credito.seguro.saldo']}:</td>
+												<td width="20%" class="tdCampoNum"><h:outputText
+														id="uiCreditoSS"
+														value="#{concesionCredito.prestamoCalculo.seguroSaldo.valor}">
+														<f:convertNumber pattern="$ ####.00" />
+													</h:outputText></td>
+												<td width="35%">( B )</td>
+											</tr>
+											<tr>
+												<td width="45%"><h:outputText
+														value="#{labels['credito.liquido.pagar']}:"
+														rendered="#{datos.categoriaTipoProductoPq=='CAT_NORMALES'}" />
+													<h:outputText
+														value="#{labels['credito.monto.autorizado']}:"
+														rendered="#{datos.categoriaTipoProductoPq=='CAT_SERVICIOS' and datos.tiposProductosPq!='PEN'}" />
+													<h:outputText
+														value="#{labels['credito.monto.pensiones.alimenticas']}:"
+														rendered="#{datos.pagoPensionesAlimenticias}" />
+													<h:outputText
+														value="#{labels['pq.focalizados.monto.transferir.autorizado']}:"
+														rendered="#{concesionCredito.datos.tiposProductosPq=='FOC'}" />		
+												</td>
+												<td width="25%" class="tdCampoNum"><h:outputText
+														id="uiCreditoLP"
+														value="#{concesionCredito.prestamoCalculo.liquidoPagar}">
+														<f:convertNumber pattern="$ ####.00" />
+													</h:outputText></td>
+												<td width="35%"><h:outputText value="( = A - B )" /></td>
+											</tr>
+											<tr>
+												<td colspan="4"><rich:separator id="uisep6" height="1"
+														lineType="dotted" /></td>
+											</tr>
+											<tr>
+												<td width="45%">#{labels['credito.tasa']}:</td>
+												<td width="20%" class="tdCampoNum"><h:outputText
+														id="uiCreditoTasa"
+														value="#{concesionCredito.calculoCredito.condicionCalculo.tasaInteres}">
+														<f:convertNumber pattern="####.00" />
+													</h:outputText> %</td>
+												<td width="35%"></td>
+											</tr>
+											<tr>
+												<td width="45%">#{labels['credito.plazo']}:</td>
+												<td width="20%" class="tdCampoNum"><h:outputText
+														id="uiCreditoPlazo"
+														value="#{concesionCredito.prestamoCalculo.plazoMeses}"></h:outputText>
+													#{labels.meses}</td>
+												<td width="35%"></td>
+											</tr>
+											<tr>
+												<td colspan="4"><rich:separator id="uisep30" height="1"
+														lineType="dotted" /></td>
+											</tr>
+											<tr>
+												<td width="45%"><h:outputText id="outTotalInteres"
+														style="font-weight:bold"
+														value="#{labels['total.interes']}:" /></td>
+												<td width="20%"><h:outputText id="outTotalInteresValor"
+														value="#{concesionCredito.totalInteres}">
+														<f:convertNumber pattern="$ ####.00" />
+													</h:outputText></td>
+												<td width="35%"></td>
+
+											</tr>
+										</table>
+									</fieldset>
+								</rich:panel>
+								<!-- FIN DE LAS TABLAS DE AMORTIZACION -->
+
+								<rich:spacer id="spacerAmo5" height="10" />
+								<rich:panel id="uiPnlInfoTurismo" styleClass="messagePanel">
+									<h:outputText value="#{messages['mensaje.pq.focalizado.productos.desgravamen']}" rendered="#{concesionCredito.datos.tiposProductosPq == 'FOC'}" />
+									<h:outputText value="#{messages['mensaje.pq.ecuador.turismo.productos.desgravamen']}" rendered="#{concesionCredito.datos.tiposProductosPq == 'ECU_TUR'}" />
+				
+									<h:outputFormat value="#{messages['pq.dinamico.mensaje.productos.desgravamen']}" rendered="#{concesionCredito.datos.tiposProductosPq == 'DINAMICO'}">
+									<f:param value="#{datos.proveedor.prNombre}" ></f:param>
+									</h:outputFormat>
+									
+									<h:outputText value="#{messages['mensaje.info.credito.seguro.desgravamen']}" rendered="#{concesionCredito.datos.tiposProductosPq != 'FOC' and concesionCredito.datos.tiposProductosPq != 'ECU_TUR'  and concesionCredito.datos.tiposProductosPq != 'DINAMICO'}" />
+								</rich:panel>
+								<rich:spacer id="spacerAmoDin" height="5" />
+								<rich:panel id="uiPnlInfoDinamico" styleClass="warningPanel" rendered="#{concesionCredito.datos.tiposProductosPq == 'DINAMICO' and concesionCredito.esMtnMenProv}">
+								
+									<h:outputFormat value="#{messages['pq.dinamico.monto.menor.contratado']}" escape="false" >
+									<f:param value="#{concesionCredito.valIngCred}"></f:param>
+									<f:param value="#{concesionCredito.valPacProv}"></f:param>
+									<f:param value="#{concesionCredito.difValPag}"></f:param>
+									</h:outputFormat>
+									
+								</rich:panel>
+								<rich:spacer id="spacerAmo2" height="10" />
+								<rich:dataTable id="tablaAmortizacion" rows="13" first="0"
+									value="#{concesionCredito.prestamoCalculo.dividendoCalculoList}"
+									var="dividendo" styleClass="dt_panel" headerClass="dt_header"
+									rowClasses="prow1,prow2">
+									<f:facet name="header">
+										<rich:columnGroup rowClasses="dt_header">
+											<rich:column>#{labels['credito.dividendo.numero']}</rich:column>
+											<rich:column id="lblCapAmor">#{labels['credito.capital.amortizado']}</rich:column>
+											<rich:column id="lblInteres">#{labels['credito.interes']}</rich:column>
+											<rich:column id="lblInteresGracia">#{labels['credito.dividendo.interes.gracia']}</rich:column>
+											<rich:column id="lblDividendo">#{labels['credito.dividendo.valor']}</rich:column>
+											<rich:column id="lblSaldo">#{labels['credito.saldo.capital']}</rich:column>
+											<rich:column id="lblFecha">#{labels['credito.dividendo.fechaPago']}</rich:column>
+										</rich:columnGroup>
+									</f:facet>
+									<rich:columnGroup rowClasses="prow1,prow2">
+										<rich:column style="width: 15%; text-align: center;">
+											<h:outputText id="uiNo#{dividendo.numeroDividendo}"
+												value="#{dividendo.numeroDividendo}" />
+										</rich:column>
+										<rich:column style="width: 15%;" styleClass="tdCampoNum">
+											<h:outputText id="uiCA#{dividendo.numeroDividendo}"
+												value="#{dividendo.valorAbonoCapital}">
+												<f:convertNumber pattern="$ ####.00" />
+											</h:outputText>
+										</rich:column>
+										<rich:column style="width: 15%;" styleClass="tdCampoNum">
+											<h:outputText id="uiInt#{dividendo.numeroDividendo}"
+												value="#{dividendo.valorInteres}">
+												$
+												<f:convertNumber pattern="####.00" />
+											</h:outputText>
+										</rich:column>
+										<rich:column style="width: 15%;" styleClass="tdCampoNum">
+											<h:outputText id="uiIntGra#{dividendo.numeroDividendo}"
+												value="#{dividendo.valorIntPerGra}">
+												$
+												<f:convertNumber pattern="####.00" />
+											</h:outputText>
+										</rich:column>
+										<rich:column style="width: 15%;" styleClass="tdCampoNum">
+											<h:outputText id="uiVD#{dividendo.numeroDividendo}"
+												value="#{dividendo.valorDividendo}">
+												<f:convertNumber pattern="$ ####.00" />
+											</h:outputText>
+										</rich:column>
+										<rich:column styleClass="tdCampoNum">
+											<h:outputText id="uiSC#{dividendo.numeroDividendo}"
+												value="#{dividendo.valorSaldoCapital}">
+												<f:convertNumber pattern="$ ####.00" />
+											</h:outputText>
+										</rich:column>
+										<rich:column style="width: 15%; text-align: center;">
+											<h:outputText id="uiFPD#{dividendo.numeroDividendo}"
+												value="#{dividendo.fechapagoDividendo}"
+												rendered="#{dividendo.numeroDividendo!=0}">
+												<f:convertDateTime pattern="MM - yyyy" />
+											</h:outputText>
+										</rich:column>
+									</rich:columnGroup>
+								</rich:dataTable>
+								<!-- Agregar todos los tooltip -->
+								<rich:toolTip id="tool1" for="lblCapAmor"
+									style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.capital.amortizado']}
+								</rich:toolTip>
+								<rich:toolTip id="tool2" for="lblInteres"
+									style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.interes']}
+								</rich:toolTip>
+								<rich:toolTip id="tool3" for="lblDividendo"
+									style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.valor.dividendo']}
+								</rich:toolTip>
+								<rich:toolTip id="tool4" for="lblSaldo"
+									style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.saldo.capital']}
+								</rich:toolTip>
+								<rich:toolTip id="tool5" for="lblFecha"
+									style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+												#{messages['mensaje.fecha.pago.dividendo']}
+								</rich:toolTip>
+								<!-- fin de los tooltip -->
+								<rich:spacer id="spacerAmo1" height="10" />
+								<rich:datascroller id="uiDataS" for="tablaAmortizacion"
+									maxPages="20" />
+								<br />
+
+								<a4j:outputPanel id="msjError">
+									<rich:panel rendered="#{concesionCredito.error != null}"
+										styleClass="errorPanel">
+										<h:outputText value="#{concesionCredito.error}" />
+									</rich:panel>
+								</a4j:outputPanel>
+
+								<rich:panel id="uiPnlSimTabla" styleClass="messagePanel">
+									#{messages['credito.tabla.amortizacion.informacion']}
+								</rich:panel>
+
+								<div id="uiDivBotones" align="center">
+									<a4j:jsFunction name="aceptarPtmoJSFunction"
+										action="#{concesionCredito.aceptarPrestamo}" />
+									<a4j:commandButton id="cmdAceptarPrestamo"
+										action="#{concesionCredito.validaDestinoCredito}"
+										onclick="this.disabled = true;"
+										value="#{labels['button.crear.credito']}"
+										oncomplete="if (#{concesionCredito.error == null and concesionCredito.popupvalidacionrc == null}) {
+														if (!confirm('#{labels['esta.seguro.crear.credito']}')) {
+															this.disabled = false;
+															return false;
+														} else { 
+															aceptarPtmoJS();
+														}
+													} else if (#{concesionCredito.error == null}) {
+														javascript:Richfaces.showModalPanel('panelPopUpRegCivil');
+													}"
+										styleClass="boton" reRender="tabPanelPrincipal,msjError" 
+										rendered="#{!concesionCredito.bloquearCreditoServicios and concesionCredito.seguirInicial and datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}" />
+									<h:graphicImage id="uiBlanco17" value="/img/blanco.jpg" />
+									<a4j:commandButton id="cmdAceptarPrestamoTurismo" 
+										onclick="this.disabled = true;"
+										action="#{concesionCredito.obtenerTextoFATCondicionesEcuTur}"
+										value="#{labels['button.crear.credito']}"
+										oncomplete="javascript:Richfaces.showModalPanel('mdlInformativoEcuTur');"
+										styleClass="boton" reRender="tabPanelPrincipal,msjError, txtCodigoOtp,pnlFATEcuTur"
+										rendered="#{datos.tiposProductosPq == 'ECU_TUR'}"
+										 />
+										 <a4j:commandButton id="cmdAceptarPrestamoDinamico" 
+										onclick="this.disabled = true;"
+										action="#{concesionCredito.obtenerTextoFATDinamico}"
+										value="#{labels['button.crear.credito']}"
+										oncomplete="javascript:Richfaces.showModalPanel('mdlInformativoEcuTur');"
+										styleClass="boton" reRender="tabPanelPrincipal,msjError, txtCodigoOtp,pnlFATEcuTur"
+										rendered="#{datos.tiposProductosPq == 'DINAMICO'}"
+										 />
+									<a4j:commandButton id="cmdAceptarPrestamoOTP"
+										action="#{concesionCredito.validaDestinoCredito}"
+										onclick="this.disabled = true;Richfaces.showModalPanel('pnl');"
+										oncomplete="Richfaces.hideModalPanel('pnl');"
+										value="#{labels['button.crear.credito']}"
+										styleClass="boton" reRender="tabPanelPrincipal,msjError" 
+										rendered="#{!concesionCredito.bloquearCreditoServicios and concesionCredito.seguirOtp and datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}" />
+									<h:graphicImage id="uiBlanco17OTP" value="/img/blanco.jpg" />
+									<a4j:commandButton id="cmdCancelarPrestamo"
+										action="#{concesionCredito.cancelarDividendos}"
+										value="Cancelar" styleClass="boton"
+										reRender="tabPanelPrincipal" />
+
+								</div>
+							</rich:tab>
+
+						</rich:tabPanel>
+								<a4j:status for="regPestanias">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible"
+					style="float:right;height:20px;position:absolute;left:475px;margin-top:5px;">
+					<b> <h:outputText value="#{messages['cargando']}"></h:outputText>
+					</b>
+				</rich:panel>
+			</f:facet>
+		</a4j:status>
+					</rich:panel>
+					<br />
+					<div align="left" id="uiDivBotCancelarGen">
+						<h:panelGrid columns="2">
+							<a4j:commandButton action="#{principal.logout}"
+								value="#{labels['button.salir']}" styleClass="boton"
+								immediate="true">
+							</a4j:commandButton>
+							
+							<h:commandButton action="principal" value="#{labels['button.regresar']}"
+								rendered="#{concesionCredito.message!=null and datos.tiposProductosPq == 'ECU_TUR'}"
+								styleClass="botonbarra" immediate="true"></h:commandButton> 
+								
+								<h:commandButton action="principal" value="#{labels['button.aceptar']}"
+								rendered="#{concesionCredito.message!=null and datos.tiposProductosPq == 'DINAMICO'}"
+								styleClass="botonbarra" immediate="true"></h:commandButton> 
+						</h:panelGrid>
+					</div>
+
+					<a4j:commandButton id="prueba"
+						action="#{concesionCredito.limpiarCampos}"
+						reRender="tabPanelPrincipal" value="prueba" style="display: none;">
+					</a4j:commandButton>
+				</a4j:form>
+			</a4j:outputPanel>
+		</a4j:region>
+
+		<rich:modalPanel id="panelPopUpRegCivil" width="900" height="640"
+			resizeable="false" moveable="false" headerClass="header_popup">
+			<f:facet name="header">
+				<h:outputText value="Confirmar datos Registro Civil" />
+			</f:facet>
+			<a4j:form id="formPanelPop">
+				<div align="left">
+					<h:panelGroup>
+						<rich:panel styleClass="messagePanel" style="margin:0px;">
+							<h:outputText value="#{labels['verrc.nota']}" />
+						</rich:panel>
+
+						<h:panelGrid columns="2" columnClasses="col500,col400">
+							<h:panelGroup>
+								<rich:panel>
+									<f:facet name="header">
+										<h:outputText value="Ingreso de datos" />
+									</f:facet>
+									<h:panelGrid columns="2">
+										<h:outputLabel style="width:130px;" for="txtHuella"
+											value="1. #{labels['codigo.dactilar']}:" />
+										<h:panelGrid columns="1">
+											<h:inputText id="txtHuella"
+												style="text-transform: uppercase; width: 100px;"
+												maxlength="10" value="#{datos.codigoDactilar}"
+												disabled="#{datos.aceptaDatos}">
+											</h:inputText>
+										</h:panelGrid>
+
+										<h:outputLabel style="width:130px;height:35px;"
+											value="2. #{labels['fecha.expedicion']}:" />
+										<h:panelGrid columns="5">
+											<h:inputText id="anio" value="#{datos.anio}"
+												style="width: 40px;" maxlength="4"
+												onkeypress="return soloNumeros(event, this)" />
+											<h:outputLabel value=" - " style="width: 5px;" />
+											<h:inputText id="mes" value="#{datos.mes}"
+												style="width: 20px;" maxlength="2"
+												onkeypress="return soloNumeros(event, this)" />
+											<h:outputLabel value=" - " style="width: 5px;" />
+											<h:inputText id="dia" value="#{datos.dia}"
+												style="width: 20px;" maxlength="2"
+												onkeypress="return soloNumeros(event, this)" />
+											<h:outputLabel value="A&#241;o"
+												style="width:40px;text-align:center;"
+												styleClass="mensajeAyuda" />
+											<h:outputLabel value="" style="width: 5px;" />
+											<h:outputLabel value="Mes"
+												style="width:40px;text-align:center;"
+												styleClass="mensajeAyuda" />
+											<h:outputLabel value="" style="width: 5px;" />
+											<h:outputLabel value="D&#237;a"
+												style="width:40px;text-align:center;"
+												styleClass="mensajeAyuda" />
+										</h:panelGrid>
+									</h:panelGrid>
+
+									<a4j:outputPanel ajaxRendered="true">
+										<rich:panel id="errorIngresoDatos" styleClass="errorPanel"
+											style="margin:0px;min-height:20px;"
+											rendered="#{null != verificacionRegCivil.errorIngresoDatos}">
+											<h:outputText
+												value="#{verificacionRegCivil.errorIngresoDatos}" />
+										</rich:panel>
+									</a4j:outputPanel>
+								</rich:panel>
+
+								<rich:panel>
+									<f:facet name="header">
+										<h:outputText value="Confirmaci&#243;n de datos" />
+									</f:facet>
+									<h:panelGrid columns="2">
+										<h:outputLabel style="width:130px;" for="repTxtHuella"
+											value="1. #{labels['codigo.dactilar']}:" />
+										<h:panelGrid columns="1">
+											<h:inputText id="repTxtHuella"
+												style="text-transform: uppercase; width: 100px;"
+												maxlength="10" value="#{datos.repCodigoDactilar}"
+												disabled="#{datos.aceptaDatos}">
+											</h:inputText>
+										</h:panelGrid>
+										<h:outputLabel style="width:130px;height:35px;"
+											value="2. #{labels['fecha.expedicion']}:" />
+										<h:panelGrid columns="5">
+											<h:inputText id="repAnio" value="#{datos.repAnio}"
+												style="width: 40px;" maxlength="4"
+												onkeypress="return soloNumeros(event, this)" />
+											<h:outputLabel value=" - " style="width: 5px;" />
+											<h:inputText id="repMes" value="#{datos.repMes}"
+												style="width: 20px;" maxlength="2"
+												onkeypress="return soloNumeros(event, this)" />
+											<h:outputLabel value=" - " style="width: 5px;" />
+											<h:inputText id="repDia" value="#{datos.repDia}"
+												style="width: 20px;" maxlength="2"
+												onkeypress="return soloNumeros(event, this)" />
+											<h:outputLabel value="A&#241;o"
+												style="width:40px;text-align:center;"
+												styleClass="mensajeAyuda" />
+											<h:outputLabel value="" style="width: 5px;" />
+											<h:outputLabel value="Mes"
+												style="width:40px;text-align:center;"
+												styleClass="mensajeAyuda" />
+											<h:outputLabel value="" style="width: 5px;" />
+											<h:outputLabel value="D&#237;a"
+												style="width:40px;text-align:center;"
+												styleClass="mensajeAyuda" />
+										</h:panelGrid>
+									</h:panelGrid>
+
+									<a4j:outputPanel ajaxRendered="true">
+										<rich:panel id="errorConfirmacionDatos"
+											styleClass="errorPanel" style="margin:0px;min-height:20px;"
+											rendered="#{null != verificacionRegCivil.errorConfirmacionDatos}">
+											<h:outputText
+												value="#{verificacionRegCivil.errorConfirmacionDatos}" />
+										</rich:panel>
+									</a4j:outputPanel>
+								</rich:panel>
+
+								<div style="height: 80px;">
+									<a4j:outputPanel ajaxRendered="true" style="margin:0px;">
+										<rich:panel id="rchPnlMsgRegCivil" styleClass="errorPanel"
+											rendered="#{!empty verificacionRegCivil.mensajeErrorRegCivil}">
+											<h:outputText for="lblMensajeRegCiv"
+												value="#{verificacionRegCivil.mensajeErrorRegCivil}" />
+										</rich:panel>
+									</a4j:outputPanel>
+								</div>
+							</h:panelGroup>
+
+							<h:panelGrid columns="1">
+								<h:graphicImage value="/img-biess/ayuda_valrc.png" />
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<h:panelGrid columns="2">
+							<a4j:commandButton id="cmdAceptarValidacion" value="Aceptar"
+								binding="#{verificacionRegCivil.btnAceptar}"
+								onclick="disablePopupRCButtons()"
+								action="#{verificacionRegCivil.aceptarValidacion}"
+								styleClass="boton" data="#{datos.respuesta}"
+								oncomplete="if(data){document.forms[0].submit();}"
+								reRender="rchPnlMsgRegCivil,tabPanelPrincipal,msjError,cmdAceptarValidacion,cmdCerrarValidacion,errorConfirmacionDatos,errorIngresoDatos">
+							</a4j:commandButton>
+
+							<a4j:commandButton value="Cerrar" id="cmdCerrarValidacion"
+								action="#{verificacionRegCivil.init}" styleClass="boton"
+								oncomplete="document.forms[0].submit();" ajaxSingle="true" />
+						</h:panelGrid>
+					</h:panelGroup>
+				</div>
+			</a4j:form>
+		</rich:modalPanel>
+		
+		<!-- INICIO MODAL MENSAJE INFORMATIVO CREDITOS TURISTICOS ECUADOR TU LUGAR EN EL MUNDO -->
+		<rich:modalPanel id="mdlInformativoEcuTur" autosized="true" moveable="true" >
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value="#{labels['formulario.fat.titulo']}"></h:outputText>
+				</h:panelGroup>
+			</f:facet>
+			<h:form id="frmAceptarInfoEcuTur">
+				<a4j:outputPanel id="pnlFATEcuTur">
+
+					<div id="divFatEcuTurCredito" style="width: 800px; height: 550px; overflow: scroll;">
+
+						<rich:panel id="pnlFacEcuTurInt" styleClass="panel" headerClass="pheader" bodyClass="pbody">
+							<img src="../../files/images/content/Biess-Ecuador.png" />
+							<h:outputText id="outputTextFATEcuTur" value="#{concesionCredito.condicionesFATEcuTur}" escape="false" />
+						</rich:panel>
+
+					</div>
+				</a4j:outputPanel>
+				<center>
+					<h:panelGrid columns="2">
+						<a4j:commandButton id="cmdAceptarCondicionesEcuTur" action="#{concesionCredito.validaDestinoCredito}" value="#{labels['button.aceptar']}" styleClass="boton"
+							oncomplete="javascript:Richfaces.showModalPanel('panelPopUpOtpFocalizados');javascript:Richfaces.hideModalPanel('mdlInformativoEcuTur');"
+							reRender="tabPanelPrincipal,msjError, txtCodigoOtp">
+						</a4j:commandButton>
+						
+						<a4j:commandButton id="cmdCancelarCondicionesEcuTur" value="#{labels['button.cancelar']}" styleClass="boton"
+							oncomplete="javascript:Richfaces.hideModalPanel('mdlInformativoEcuTur');"
+							reRender="tabPanelPrincipal">
+						</a4j:commandButton>
+					</h:panelGrid>
+				</center>
+			</h:form>
+		</rich:modalPanel>
+		
+			<a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+		<!-- FINAL MODAL MENSAJE INFORMATIVO CREDITOS TURISTICOS ECUADOR TU LUGAR EN EL MUNDO -->
+		<script type="text/javascript">
+		cargarCalculoCreditoNew();
+
+		function aceptarPtmoJS() {
+			aceptarPtmoJSFunction();
+		}
+
+		function disablePopupRCButtons() {
+			document.getElementById('formPanelPop:cmdAceptarValidacion').disabled = true;
+			document.getElementById('formPanelPop:cmdCerrarValidacion').disabled = true;
+		}
+
+  		window.onload = function() {
+  			document.getElementById('formPanelPop:txtHuella').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:txtHuella').oncopy = function(e) { return false; }	  			
+			document.getElementById('formPanelPop:anio').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:anio').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:mes').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:mes').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:dia').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:dia').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repTxtHuella').onpaste = function(e) { return false; }	  			
+  			document.getElementById('formPanelPop:repTxtHuella').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repAnio').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:repAnio').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repMes').onpaste = function(e) { return false; }
+  			document.getElementById('formPanelPop:repMes').oncopy = function(e) { return false; }
+  			document.getElementById('formPanelPop:repDia').onpaste = function(e) { return false; }	  			
+  			document.getElementById('formPanelPop:repDia').oncopy = function(e) { return false; }
+  		}
+  		var seleccionado = false;
+  		function preparaCampos() {
+  	  		if(!seleccionado){
+				setTimeout(function(){
+					document.getElementById("uiForm:prueba").click();
+	  				seleccionado = true;
+				},500);
+			}  	  		
+		}
+  		
+	</script>
+
+	</ui:define>
+</ui:composition>

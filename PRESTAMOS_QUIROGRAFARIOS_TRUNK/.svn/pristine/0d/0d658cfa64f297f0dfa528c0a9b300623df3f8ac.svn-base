@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+	<managed-bean>
+		<managed-bean-name>menuTree</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.handler.MenuTreeHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>containerBean</property-name>
+			<property-class>ec.gov.iess.planillaspq.web.util.ContainerBean</property-class>
+			<value>#{containerBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>estadoMenu</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.EstadoMenuBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>containerBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.util.ContainerBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>funcionario</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.handler.FuncionarioHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>panelMenuHandler</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.seguridades.handler.PanelMenuHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>principal</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.PrincipalBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>planillahl</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AjustePlanillaHlBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>planillahost</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AjustePlanillaHostBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>anuplahost</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AnulaPlanillaHostBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>anuplahl</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AnulaPlanillaHlBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ordenes</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AprobacionOrdenesBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>inicializar</property-name>
+			<property-class>java.lang.String</property-class>
+			<value>#{inicializar}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>consulta</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.ConsultaOrdenesBacking</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>inicializar</property-name>
+			<property-class>java.lang.String</property-class>
+			<value>#{inicializar}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>desbloqueoBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.DesbloqueoClienteBacking</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>desbloqueoDM</property-name>
+			<property-class>ec.gov.iess.planillaspq.web.backing.dm.DesbloqueoClienteDM</property-class>
+			<value>#{desbloqueoDM}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>desbloqueoDM</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.dm.DesbloqueoClienteDM</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<!-- Managed bean - PQfraudes -->
+	<managed-bean>
+		<managed-bean-name>aprobacionbean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AprobacionPdaBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+  		<managed-bean-name>desbloqueocuentabean</managed-bean-name>
+  		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.DesbloqueoCuentaBacking</managed-bean-class>
+  		<managed-bean-scope>session</managed-bean-scope>
+ 	</managed-bean>
+ 	
+ 	<managed-bean>
+		<managed-bean-name>listaObservadosBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.bean.ListaObservadosBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>aprobacionPdvBacking</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AprobacionPdvBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<!-- Managed Bean Registro Civil -->
+	<managed-bean>
+		<managed-bean-name>consultaAfilidoRegistroCivilBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.ConsultaAfiliadoRegistroCivilBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>	
+		<managed-bean>
+		<managed-bean-name>proveedorBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.ProveedorBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<!-- Parametrizacion de PQ -->
+	<managed-bean>
+		<managed-bean-name>ingresoParametrizacionBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.IngresoParametrizacionBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>funcionarioHandler</property-name>
+			<property-class>ec.gov.iess.planillaspq.web.handler.FuncionarioHandler</property-class>
+			<value>#{funcionario}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>aprobacionParametrizacionBean</managed-bean-name>
+		<managed-bean-class>ec.gov.iess.planillaspq.web.backing.AprobacionParametrizacionBacking</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>funcionarioHandler</property-name>
+			<property-class>ec.gov.iess.planillaspq.web.handler.FuncionarioHandler</property-class>
+			<value>#{funcionario}</value>
+		</managed-property>
+	</managed-bean>
+
+  <managed-bean>
+  <managed-bean-name>datos</managed-bean-name>
+  <managed-bean-class>ec.gov.iess.planillaspq.web.bean.DatosBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <!-- Manejador de consultas de creditos -->
+ <managed-bean>
+  <managed-bean-name>consultaCredito</managed-bean-name>
+  <managed-bean-class>ec.gov.iess.planillaspq.web.backing.ConsultaCreditoBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>datos</property-name>
+   <property-class>ec.gov.iess.planillaspq.web.bean.DatosBean</property-class>
+   <value>#{datos}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>creditoAccion</property-name>
+   <property-class>ec.gov.iess.planillaspq.web.backing.CreditoAccionBean</property-class>
+   <value>#{creditoAccion}</value>
+  </managed-property>
+ </managed-bean>
+ <!-- Manejador de botones en la consulta de creditos -->
+ <managed-bean>
+  <managed-bean-name>creditoAccion</managed-bean-name>
+  <managed-bean-class>ec.gov.iess.planillaspq.web.backing.CreditoAccionBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>datos</property-name>
+   <property-class>ec.gov.iess.planillaspq.web.bean.DatosBean</property-class>
+   <value>#{datos}</value>
+  </managed-property>
+ </managed-bean>
+ 
+ 
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>principal</from-outcome>
+			<to-view-id>/pages/principal.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>salir</from-outcome>
+			<to-view-id>/pages/salir.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/ajustarplanillahl.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>buscarplanilla</from-outcome>
+			<to-view-id>/pages/ajustarplanillahlaccion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/ajustarplanillahost.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>buscarplanillahost</from-outcome>
+			<to-view-id>/pages/ajustarplanillahostaccion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/anularplanillahost.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>buscarplanillahost</from-outcome>
+			<to-view-id>/pages/anularplanillahostaccion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/anularplanillahl.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>buscarplanillahl</from-outcome>
+			<to-view-id>/pages/anularplanillahlaccion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/ordenes/consultarOrdenes.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>imprimirConsulta</from-outcome>
+			<to-view-id>/pages/ordenes/imprimirConsultaOrdenes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/pages/aprobacion/cargarcedulasmasivas.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>aprobarMasivo</from-outcome>
+			<to-view-id>/pages/aprobacion/aprobarsolicitudesmasivas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/pages/aprobacion/cargarcedulasmasivaspdv.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>aprobarMasivoPdv</from-outcome>
+			<to-view-id>/pages/aprobacion/aprobarsolicitudesmasivaspdv.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>consultarCreditos</from-outcome>
+			<to-view-id>/pages/comprobantesLiquidacion/creditos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>principalSalir</from-outcome>
+			<to-view-id>/pages/principal.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+	    	<description>Cualquier accion que retorne "pagIndSeleccion" envia a
+						la pagina /comprobantesLiquidacion/pagIndSeleccion.xhtml</description>
+			<from-outcome>pagIndSeleccion</from-outcome>
+		   	<to-view-id>/pages/comprobantesLiquidacion/pagIndSeleccion.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+		   	<description>Cualquier accion que retorne "pagIndSeleccionSaldos"
+						envia a la pagina /comprobantesLiquidacion/pagIndSeleccionSaldos.xhtml</description>
+		   	<from-outcome>pagIndSeleccionSaldos</from-outcome>
+		   	<to-view-id>/pages/comprobantesLiquidacion/pagIndSeleccionSaldos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+		   	<description>Cualquier accion que retorne "comprobantesPago" envia a
+						la pagina /comprobantesLiquidacion/comprobantesPago.xhtml</description>
+		   	<from-outcome>comprobantesPago</from-outcome>
+		   	<to-view-id>/pages/comprobantesLiquidacion/comprobantesPago.xhtml</to-view-id>
+		</navigation-case>
+	  	<navigation-case>
+			<description>Cualquier accion que retorne "calculoLiquidacion" envia
+						a la pagina /comprobantesLiquidacion/calculoLiquidacion.xhtml</description>
+		   	<from-outcome>calculoLiquidacion</from-outcome>
+		   	<to-view-id>/pages/comprobantesLiquidacion/calculoLiquidacion.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+		   	<description>Cualquier accion que retorne "resultadoLiquidacion"
+						envia a la pagina /comprobantesLiquidacion/resultadoLiquidacion.xhtml</description>
+		   	<from-outcome>resultadoLiquidacion</from-outcome>
+		   	<to-view-id>/pages/comprobantesLiquidacion/resultadoLiquidacion.xhtml</to-view-id>
+	 	</navigation-case>
+		<navigation-case>
+		   	<description>Cualquier accion que retorne "detallePrestamo" envia a
+						la pagina /detallePrestamo.xhtml</description>
+		   	<from-outcome>detallePrestamo</from-outcome>
+		   	<to-view-id>/pages/comprobantesLiquidacion/detallePrestamo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>comprobanteDividendos</from-outcome>
+			<to-view-id>/pages/comprobantesLiquidacion/comprobantePagoDividendos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>consultaComprobanteAnulacion</from-outcome>
+			<to-view-id>/pages/comprobantesLiquidacion/comprobantePagoDividendos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>liquidacionesPago</from-outcome>
+			<to-view-id>/pages/comprobantesLiquidacion/liquidacionesPago.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<resource-bundle>
+			<base-name>ec.gov.iess.planillaspq.web.resources.titulos</base-name>
+			<var>titulos</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>ec.gov.iess.planillaspq.web.resources.etiquetas</base-name>
+			<var>etiquetas</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>ec.gov.iess.planillaspq.web.resources.botones</base-name>
+			<var>botones</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>ec.gov.iess.planillaspq.web.resources.mensajes</base-name>
+			<var>mensajes</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>ec.gov.iess.planillaspq.web.resources.errores</base-name>
+			<var>errores</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>ec.gov.iess.planillaspq.web.resources.recursos</base-name>
+			<var>recursos</var>
+		</resource-bundle>
+	</application>
+</faces-config>

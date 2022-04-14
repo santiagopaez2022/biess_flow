@@ -1,0 +1,236 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/impresion.xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><ui:insert name="titulo">
+	<h:outputText value="#{titulos['sistema.titulo']}" />
+</ui:insert></title>
+<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/iess.css" />
+</head>
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{titulos['resultado.liquidacion']}</div>
+		
+		<!-- Se aumenta el mensagge en el comprobante -->
+		
+		<rich:panel id="uiMensage" styleClass="notePanelBottom"
+			rendered="#{creditoAccion.prestamoSeleccionado.prestamoPk.codprecla == 20 || creditoAccion.prestamoSeleccionado.prestamoPk.codprecla == 22}">
+			<b>
+			<h:outputText value="#{mensajes['mensaje.comprobante']}"
+				escape="false"></h:outputText>
+		    </b>
+		</rich:panel>
+		
+
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="${creditoAccion.datos.solicitante!=null}">
+			<f:facet name="header">
+				#{titulos['datos.generales']}
+			</f:facet>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{etiquetas['comp.liq.cedula']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.datos.solicitante.datosPersonales.cedula}" />
+
+
+				<h:outputLabel value="#{etiquetas['comp.liq.nombresApellidos']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.datos.solicitante.datosPersonales.apellidosNombres}" />
+
+				<h:outputLabel value="#{etiquetas['credito.prestamo']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.clasePrestamo.descripcion}" />
+
+				<h:outputLabel value="#{etiquetas['credito.numero']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.prestamoPk.numpreafi}" />
+
+				<h:outputLabel value="#{etiquetas['credito.numero.liquidacion']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.liquidacionPrestamo.numeroLiquidacion}" />
+
+				<h:outputLabel value="#{etiquetas['credito.fecha.liquidacion']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.liquidacionPrestamo.fechaLiquidacion}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{etiquetas['credito.fecha.inicio']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.fecinipre}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{etiquetas['credito.fecha.fin']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.fecfinpre}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{etiquetas['credito.monto.abrev']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.prestamoSeleccionado.mntpre}">
+					<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+						type="currency" />
+				</h:outputText>
+
+				<h:outputLabel value="#{etiquetas['credito.fecha.validez.liq']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.liquidacionPrestamo.fecTerPreLiq}">
+					<f:convertDateTime pattern="dd-MMM-yyyy" />
+				</h:outputText>
+
+			</h:panelGrid>
+
+		</rich:panel>
+
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{etiquetas['liquidacion.detalle']}
+				</f:facet>
+				<rich:dataTable var="item"
+					value="#{creditoAccion.liquidacionPrestamo.detalle}"
+					styleClass="dt_panel" rowClasses="prow1,prow2">
+					<f:facet name="header">
+
+						<rich:columnGroup columnClasses="dt_header">
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.fecha']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.anio']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.mes']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.num.dividendo']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.capital']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.interes.cap']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.interes.per']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.interes.mora']}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{etiquetas['liquidacion.total.dividendo']}" />
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+					<rich:column style="text-align:center;">
+						<h:outputText value="#{item.dividendoPrestamo.fecpagdiv}">
+							<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+				#{item.dividendoPrestamo.aniper}
+				</rich:column>
+					<rich:column style="text-align:center;">
+				#{item.dividendoPrestamo.mesper}
+				</rich:column>
+					<rich:column style="text-align:center;">#{item.dividendoPrestamo.dividendoPrestamoPk.numdiv}</rich:column>
+					<rich:column style="text-align:right;">
+						<h:outputText value="#{item.valCapAmo}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:right;">
+						<h:outputText value="#{item.intSalCap}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+
+					</rich:column>
+					<rich:column style="text-align:right;">
+						<h:outputText value="#{item.intPerGra}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:right;">
+						<h:outputText value="#{item.valIntMor}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:right;">
+						<h:outputText value="#{item.valDivTot}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText>
+					</rich:column>
+
+					<f:facet name="footer">
+						<rich:columnGroup>
+							<rich:column colspan="7">#{etiquetas['credito.subtotal.liquidacion']}</rich:column>
+							<rich:column style="text-align:right;">
+								<h:outputText
+									value="#{creditoAccion.liquidacionPrestamo.sumIntMor}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:right;">
+								<h:outputText
+									value="#{creditoAccion.liquidacionPrestamo.sumDivTot}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column breakBefore="true" colspan="8">#{etiquetas['liquidacion.valor.interes.mora.final']}</rich:column>
+							<rich:column style="text-align:right;">
+								<h:outputText
+									value="#{creditoAccion.liquidacionPrestamo.sumIntMor}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column breakBefore="true" colspan="8">#{etiquetas['credito.valor.favor.seguro.saldos']}</rich:column>
+							<rich:column style="text-align:right;">
+								(-)<h:outputText
+									value="#{creditoAccion.liquidacionPrestamo.segSalNet}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+
+							<rich:column colspan="8" breakBefore="true">#{etiquetas['liquidacion.total.cancelar']}</rich:column>
+							<rich:column style="text-align:right;">
+								<h:outputText
+									value="#{creditoAccion.liquidacionPrestamo.totCanLiq}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+
+						</rich:columnGroup>
+					</f:facet>
+				</rich:dataTable>
+
+
+
+			</rich:panel>
+			<br />
+			<input type="button" class="boton1"
+				value="#{botones['imprimir.liquidacion']}" id="imprimir2"
+				onclick="window.print();" />
+			<input type="button" class="boton1"
+				value="#{botones['cerrar']}" id="cerrar"
+				onclick="window.close();" />
+
+	</ui:define>
+</ui:composition>

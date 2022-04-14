@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="com.sample" xmlns="http://drools.org/drools-3.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:schemaLocation="http://drools.org/drools-3.0 drools-3.0.xsd">
+
+	<import name="java.util.HashMap" />
+	<import name="org.drools.*" />
+	<import name="java.lang.String" />
+	<import name="java.lang.Boolean" />
+	<import name="java.util.Date" />
+	<import name="ec.gov.iess.creditos.pq.modelo.Requisito" />
+	<import name="ec.gov.iess.creditos.pq.modelo.InfoPrecalificacion" />
+	<import name="ec.gov.iess.creditos.pq.modelo.Precalificacion" />
+	
+	<function return-type="boolean" name="cuentaValida">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+    	<parameter identifier="infoPrecalificacion" type="InfoPrecalificacion" />
+    	<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE CUENTA");
+			boolean valido = infoPrecalificacion.getTieneCuentaBancariaAut().booleanValue();
+			if (valido){ 
+				rq.setAprobado(true);
+				rq.setObservacion("TIENE CUENTA VALIDADA POR UN FUNCIONARIO DEL IESS");
+			}else{
+				rq.setAprobado(false);
+				rq.setObservacion("NO TIENE CUENTA VALIDADA POR UN FUNCIONARIO DEL IESS");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return valido;
+		</body>
+	</function>
+
+	<function return-type="boolean" name="tieneObligaciones">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+    	<parameter identifier="infoPrecalificacion" type="InfoPrecalificacion" />
+    	<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE OBLIGACIONES PENDIENTES CON EL IESS");
+			
+			boolean tieneObligaciones = (infoPrecalificacion.getEstaAlDiaObligaciones().booleanValue());
+			if (tieneObligaciones){ 
+				rq.setAprobado(false);
+				rq.setObservacion("TIENE OBLIGACIONES PENDIENTES CON EL IESS");
+			}else{
+				rq.setAprobado(true);
+				rq.setObservacion("NO TIENE OBLIGACIONES PENDIENTES CON EL IESS");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return tieneObligaciones;
+		</body>
+	</function>
+
+	
+	<function return-type="boolean" name="tieneCalificacionPositivaBuro">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			String calificacionPositiva = "1";
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO TENGA CALIFICACION POSITIVA DEL BURO DE CREDITO");
+	
+			boolean tieneCalificacionpositiva = infoPrecalificacion.getCalificacionBuroCredito().equals(calificacionPositiva);
+	
+			if (tieneCalificacionpositiva) {
+				rq.setAprobado(true);
+				rq.setObservacion("SI CALIFICO BURO DE CREDITO");
+				precalificacion.setCalificadoBuroCredito(true);
+			} else {
+				rq.setAprobado(false);
+				rq.setObservacion("NO CALIFICO BURO DE CREDITO");
+				precalificacion.setCalificadoBuroCredito(false);
+			}
+			precalificacion.getRequisitos().add(rq);
+			return tieneCalificacionpositiva;
+		</body>
+	</function>
+
+	<function return-type="boolean" name="tieneCreditosVigentes">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO NO TENGA CREDITOS VIGENTES CON EL IESS");
+	
+			boolean tieneCreditosVigentes = infoPrecalificacion.getTieneCreditosVigentes().booleanValue();
+	
+			if (tieneCreditosVigentes) {
+				rq.setAprobado(false);
+				rq.setObservacion("EL AFILIADO TIENE CREDITOS VIGENTES CON EL IESS");
+			} else {
+				rq.setAprobado(true);
+				rq.setObservacion("EL AFILIADO NO TIENE CREDITOS VIGENTES CON EL IESS");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return tieneCreditosVigentes;
+		</body>
+	</function>
+
+	<function return-type="boolean" name="tieneCreditosEnMora">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO NO TENGA CREDITOS EN MORA CON EL IESS");
+	
+			boolean estaEnMora = infoPrecalificacion.getEstaEnMora().booleanValue();
+	
+			if (estaEnMora) {
+				rq.setAprobado(false);
+				rq.setObservacion("EL AFILIADO TIENE CREDITOS EN MORA CON EL IESS");
+			} else {
+				rq.setAprobado(true);
+				rq.setObservacion("EL AFILIADO NO TIENE CREDITOS EN MORA CON EL IESS");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return estaEnMora;
+		</body>
+	</function>
+
+	<function return-type="boolean" name="tieneCreditosMismaCuenta">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO NO TENGA UN CREDITO VIGENTE EN LA MISMA CUENTA");
+	
+			boolean tieneCreditosMismaCuenta = infoPrecalificacion.getTieneCreditoVigenteMismaCuenta().booleanValue();
+	
+			if (tieneCreditosMismaCuenta) {
+				rq.setAprobado(false);
+				rq.setObservacion("EL AFILIADO TIENE CREDITOS VIGENTES EN LA MISMA CUENTA");
+			} else {
+				rq.setAprobado(true);
+				rq.setObservacion("EL AFILIADO NO TIENE CREDITOS VIGENTES EN LA MISMA CUENTA");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return tieneCreditosMismaCuenta;
+		</body>
+	</function>
+
+
+	<function return-type="boolean" name="tieneSolicitudCesantia">
+		<parameter identifier="precalificacion" type="Precalificacion" />
+		<parameter identifier="infoPrecalificacion"
+			type="InfoPrecalificacion" />
+		<body>
+			Requisito rq = new Requisito();
+			rq.setDescripcion("VALIDACION DE QUE EL AFILIADO NO TENGA SOLICITUD DE CESANTIA");
+	
+			boolean existeSolicitud = infoPrecalificacion.getTieneSolicitudCesantia().booleanValue();
+	
+			if (existeSolicitud) {
+				rq.setAprobado(false);
+				rq.setObservacion("EL AFILIADO TIENE UNA SOLICITUD DE CESANTIA");
+			} else {
+				rq.setAprobado(true);
+				rq.setObservacion("EL AFILIADO NO TIENE UNA SOLICITUD DE CESANTIA");
+			}
+			precalificacion.getRequisitos().add(rq);
+			return existeSolicitud;
+		</body>
+	</function>
+
+	<rule name="CUENTA VALIDA">
+		<lhs>
+			<column identifier='precalificacion' object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion' object-type='InfoPrecalificacion' />
+			<eval>!cuentaValida(precalificacion, infoPrecalificacion)</eval>
+		</lhs>
+		<rhs>
+			precalificacion.setCalificado(false);
+		</rhs>
+	</rule>
+
+
+	<rule name="CONTROL DE OBLIGACIONES">
+		<lhs>
+			<column identifier='precalificacion' object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion' object-type='InfoPrecalificacion' />
+			<eval>tieneObligaciones(precalificacion, infoPrecalificacion)</eval>
+		</lhs>
+		<rhs>
+			precalificacion.setCalificado(false);
+		</rhs>
+	</rule>
+
+	<!--+
+		| Valida si el afiliado tiene calificacion positiva en el buró de creditos
+		| Un afiliado debe tener un codigo de "1" para estar calificado
+		+-->
+	<rule name="VALIDAR CALIFICACION POSITIVA BURO CREDITO">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				!tieneCalificacionPositivaBuro(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>
+	
+	<!--+
+		| Valida si el afiliado tiene creditos vigentes en el IESS
+		| Un afiliado no debe tener ningun crédito vigente con el IESS para solicitar un 
+		|prestamo quirografario
+		+-->
+	<rule name="VALIDAR SI TIENE CREDITOS VIGENTES">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				tieneCreditosVigentes(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>	
+	
+	<!--+
+		| Valida si el afiliado tiene creditos en mora con el IESS
+		| Un afiliado no debe terner creditos en mora con el IESS
+		+-->
+	<rule name="VALIDAR SI TIENE CREDITOS EN MORA">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				tieneCreditosEnMora(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>	
+	
+	<!--+
+		| Valida si el afiliado tiene creditos en mora con el IESS
+		| Un afiliado no debe terner creditos en mora con el IESS
+		+-->
+	<rule name="VALIDAR SI TIENE CREDITOS VIGENTES MISMA CUENTA">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				tieneCreditosMismaCuenta(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>	
+	
+	<!--+
+		| Valida si no tiene una solicitud de cesantía
+		+-->
+	<rule name="VALIDAR SI EXISTE SOLICITUD CESANTIA">
+		<lhs>
+			<column identifier='precalificacion'
+				object-type='Precalificacion' />
+			<column identifier='infoPrecalificacion'
+				object-type='InfoPrecalificacion' />
+			<eval>
+				tieneSolicitudCesantia(precalificacion,infoPrecalificacion)
+			</eval>
+		</lhs>
+		
+		<rhs>precalificacion.setCalificado(false);</rhs>
+	</rule>	
+	
+</package>

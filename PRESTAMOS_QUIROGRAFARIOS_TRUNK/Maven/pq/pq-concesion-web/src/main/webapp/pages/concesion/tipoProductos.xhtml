@@ -1,0 +1,248 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['titulo.productos.seleccion']}</h1>
+		<!-- <p>#{labels['roles.forma.aplicacion']}:</p> -->
+
+		<a4j:status id="cargandoProductos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible" id="pnlInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+			<a4j:commandButton action="#{principal.logout}"
+				value="#{labels['button.salir']}" styleClass="botonbarra"
+				immediate="true">
+			</a4j:commandButton>
+		</a4j:status>
+
+		<!-- <a4j:keepAlive beanName="roles"></a4j:keepAlive> -->
+
+		<h:form id="formProductosSel" >
+			<a4j:jsFunction action="#{productos.load}" name="load"
+				status="cargandoProductos" reRender="pnlProductos"></a4j:jsFunction>
+
+			<rich:panel id="rchPnlErrorMensajes" styleClass="errorPanel"
+				rendered="#{!empty productos.errorMsg and productos.tipoSolicitud == 0}">
+						#{productos.errorMsg}
+					</rich:panel>
+
+			<a4j:outputPanel id="pnlProductos" ajaxRendered="true">
+				<rich:panel style="width:100%;">
+					<rich:panel id="rchPnlError" styleClass="errorPanel"
+						rendered="#{!empty productos.mensageProductos and empty productos.errorMsg}">
+						#{productos.mensageProductos}
+					</rich:panel>
+						<rich:spacer height="25"/>
+					<h1><h:outputText value="#{labels['etiqueta.seccion.clasico']}" style="color:#A9A9A9" /> </h1>
+					<rich:separator height="2" />
+
+					<h:panelGrid columns="2" style="width:105%;">
+					
+						<rich:panel style="width:30%;" id="pnlProductoNormal" rendered="#{!datos.bloqueoFinesSemana}">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/normal.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarProductoNormal}"
+											 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+											disabled="#{!productos.habilitarNormal}" value="Normal">
+											<f:setPropertyActionListener value="NOR"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+						
+						<rich:panel style="width:70%;" id="pnlProductoPapa" rendered="#{!datos.bloqueoFinesSemana and productos.datos.productoBiessPapaVigente}">
+							<div class="productitem">
+								<rich:panel
+									>
+									<img
+										src="${facesContext.externalContext.request.contextPath}/files/images/content/pq_preferencial.jpg"
+										width="52" height="52" class="floatleft"
+										title="#{labels['mensaje.tooltip.biess.papa']}" />
+										<strong>
+											<a4j:commandLink
+												action="#{productos.seleccionarBiessPapa}"
+												 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+												value="#{labels['biess.papa.producto']}"
+												title="#{labels['mensaje.tooltip.biess.papa']}">
+												<f:setPropertyActionListener value="NOR"
+													target="#{productos.codigoTipoProducto}" />
+											</a4j:commandLink>
+										</strong>
+										<br></br>
+										<strong>
+											<a4j:commandLink
+												action="#{productos.seleccionarBiessPapa}"
+												value="#{labels['biess.papa.etiqueta']}"
+												title="#{labels['mensaje.tooltip.biess.papa']}">
+												<f:setPropertyActionListener value="NOR"
+													target="#{productos.codigoTipoProducto}" />
+											</a4j:commandLink>
+										</strong>
+								</rich:panel>
+							</div>
+						</rich:panel>
+						
+						<rich:panel style="width:70%;" id="pnlProductoEmergente" rendered="#{!datos.bloqueoFinesSemana and productos.datos.productoBiessEmergenteVigente}">
+							<div class="productitem">
+								<rich:panel
+									>
+									<img
+										src="${facesContext.externalContext.request.contextPath}/files/images/content/pq_preferencial.jpg"
+										width="52" height="52" class="floatleft"
+										title="#{labels['mensaje.tooltip.biess.emergente.covid']}" />
+									<strong> <a4j:commandLink
+											action="#{productos.seleccionarBiessEmergente}"
+											 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+											value="#{labels['biess.emergente.producto.covid']}"
+											reRender="mensajeInfo"
+											title="#{labels['mensaje.tooltip.biess.emergente.covid']}">
+											<f:setPropertyActionListener value="NOR"
+												target="#{productos.codigoTipoProducto}" />
+										</a4j:commandLink>
+									</strong>
+									<br></br>
+										<strong>
+											<h:outputText value="#{labels['biess.emergente.producto.desc.covid']}" />
+										</strong>
+										
+								</rich:panel>
+							</div>
+						</rich:panel>
+						
+						<rich:panel style="width:30%;" id="pnlProductoMama" rendered="#{!datos.bloqueoFinesSemana and productos.datos.productoBiessMamaVigente}">
+							<div class="productitem">
+								<rich:panel
+									>
+									<img
+										src="${facesContext.externalContext.request.contextPath}/files/images/content/credito_mama.jpg"
+										width="52" height="52" class="floatleft"
+										title="#{labels['mensaje.tooltip.biess.mama']}" />
+									<strong> 
+										<a4j:commandLink
+											action="#{productos.seleccionarBiessMama}"
+											 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+											value="#{labels['biess.mama.producto']}"
+											title="#{labels['mensaje.tooltip.biess.mama']}">
+											<f:setPropertyActionListener value="NOR"
+												target="#{productos.codigoTipoProducto}" />
+										</a4j:commandLink>
+									</strong>
+								</rich:panel>
+							</div>
+						</rich:panel>
+						
+						<rich:panel style="width:70%;" id="pnlProductoMujer" rendered="#{!datos.bloqueoFinesSemana and productos.datos.productoBiessMujerVigente}">
+							<div class="productitem">
+								<rich:panel
+									>
+									<img
+										src="${facesContext.externalContext.request.contextPath}/files/images/content/credito_mujer.png"
+										width="52" height="52" class="floatleft"
+										title="#{labels['mensaje.tooltip.biess.mujer']}" />
+									<strong> 
+										<a4j:commandLink
+											action="#{productos.seleccionarBiessMujer}"
+											 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+											value="#{labels['biess.mujer.producto']}"
+											title="#{labels['mensaje.tooltip.biess.mujer']}">
+											<f:setPropertyActionListener value="NOR"
+												target="#{productos.codigoTipoProducto}" />
+										</a4j:commandLink>
+									</strong>
+								</rich:panel>
+							</div>
+						</rich:panel>
+						
+						
+					</h:panelGrid>
+						
+					<rich:spacer height="50"/>
+					<h1> <h:outputText value="#{labels['etiqueta.seccion.otro.productos']}" style="color:#A9A9A9" /></h1>
+					<rich:separator  style="background-color:#A9A9A9" height="2" />
+				<h:panelGrid columns="2" style="width:105%;">				
+				
+				
+						<rich:panel id="pnlProductoPensiones"
+							rendered="#{!datos.bloqueoFinesSemana}">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/pensiones_alimenticias.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarTipoOtrosProducto}"
+											 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+											value="#{labels['pensiones.alimenticias.titulo.link']}">
+											<f:setPropertyActionListener value="PEN"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+				
+							
+						 <rich:panel style="width:30%;" id="pnlEducativo" rendered="#{!datos.bloqueoFinesSemana}">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/educate.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <a4j:commandLink
+												action="#{productos.seleccionarProductoDinamico}"
+												value="#{labels['texto.icono.educate']}" 
+												 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+												<f:setPropertyActionListener value="DINAMICO"
+												target="#{productos.codigoTipoProducto}" />
+											<f:setPropertyActionListener value="3"
+												target="#{productos.codigoEspecialProd}" />
+												</a4j:commandLink>
+									</strong>
+										<br></br>
+					
+								</p>
+							</div>
+						</rich:panel>
+				</h:panelGrid>
+				<rich:spacer height="50"/>
+				</rich:panel>
+
+				<rich:panel styleClass="errorPanel" rendered="#{productos.mostrarMsgInfo}">
+					<h:outputText value="#{messages['mensaje.no.zonas.afectadas']}"
+						 id="mensajeInfo" />
+				</rich:panel>
+			
+			</a4j:outputPanel>
+		</h:form>
+
+	          <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+		<script type="text/javascript">
+		   load();
+	    </script>
+	</ui:define>
+</ui:composition>

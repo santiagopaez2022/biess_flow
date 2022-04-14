@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" template="plantillas/impresion.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+	<h4>#{labels['tab.tabla.amortizacion']}</h4>
+	
+	<fieldset style="width: auto;"><legend>#{labels['amortizacion.creditoAConceder']}</legend>
+						<h:panelGrid id="uiTablaAmortizacion" columns="4" border="0">
+								#{labels['credito.monto']}:
+								<h:outputText id="uiCreditoMonto"
+								value="#{concesionCredito.prestamoCalculo.valorCredito}"></h:outputText>
+								#{labels.moneda}
+								<h:graphicImage id="uiImg5" value="/img/blanco.jpg" />
+
+								#{labels['credito.tasa']}:
+								<h:outputText id="uiCreditoTasa" value="#{concesionCredito.calculoCredito.condicionCalculo.tasaInteres}">
+								</h:outputText>
+								%
+								<h:graphicImage id="uiImg6" value="/img/blanco.jpg" />
+								
+								#{labels['credito.seguro.saldo']}:
+								<h:outputText id="uiCreditoSS"
+								value="#{concesionCredito.prestamoCalculo.seguroSaldo.valor}"></h:outputText>
+								#{labels.moneda}
+								<h:graphicImage id="uiImg7" value="/img/blanco.jpg" />
+								
+								#{labels['credito.plazo']}:
+								<h:outputText id="uiCreditoPlazo"
+								value="#{concesionCredito.prestamoCalculo.plazoMeses}"></h:outputText>
+								#{labels.meses}
+								<h:graphicImage id="uiImg8" value="/img/blanco.jpg" />
+								
+								#{labels['credito.periodo.gracia']}:
+								<h:outputText id="uiCreditoPG"
+								value="#{concesionCredito.prestamoCalculo.periodoGracia.valor}"></h:outputText>
+								#{labels.moneda}
+								<h:outputText id="uiCreditoPerGra" value="(#{messages['credito.periodo.gracia']})"></h:outputText>
+								
+								#{labels['credito.liquido.pagar']}:
+								<h:outputText id="uiCreditoLP"
+								value="#{concesionCredito.prestamoCalculo.liquidoPagar}"></h:outputText>
+								#{labels.moneda}
+								<h:graphicImage id="uiImg9" value="/img/blanco.jpg" />
+								
+						</h:panelGrid></fieldset>
+	
+	<rich:dataTable id="tablaDividendos" value="#{concesionCredito.prestamoCalculo.dividendoCalculoList}" var="dividendo" rendered="#{concesionCredito.prestamoCalculo.dividendoCalculoList!=null}">
+					<rich:column>
+						<f:facet name="header">N&uacute;mero</f:facet>
+						<h:outputText value="#{dividendo.numeroDividendo}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Capital Amortizado</f:facet>
+						<h:outputText value="#{dividendo.valorAbonoCapital}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Interes</f:facet>
+						<h:outputText value="#{dividendo.valorInteres}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Interes de Gracia</f:facet>
+						<h:outputText value="#{dividendo.valorIntPerGra}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Dividendo</f:facet>
+						<h:outputText value="#{dividendo.valorCuota}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Saldo Capital</f:facet>
+						<h:outputText value="#{dividendo.valorSaldoCapital}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Fecha Pago Dividendo (dd/mm/yyyy)</f:facet>
+						<h:outputText value="#{dividendo.fechapagoDividendo}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</rich:column>
+				</rich:dataTable>  
+	</ui:define>
+</ui:composition>

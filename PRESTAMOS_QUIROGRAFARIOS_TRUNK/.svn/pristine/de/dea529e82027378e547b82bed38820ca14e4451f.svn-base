@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+			<script type="text/javascript"> 
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar 
+			</script>
+			<rich:panel header="#{labels.conozcacliente_lbl_confirmacion}">
+				<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+					<f:facet name="header">
+						<h:outputText value="Entered Data Status:"></h:outputText>
+					</f:facet>
+					<f:facet name="infoMarker">
+						
+					</f:facet>
+					<f:facet name="errorMarker">
+						
+					</f:facet>
+				</rich:messages>
+				<h:panelGrid columns="2" rendered="#{conozcaCliente.informacionGuardada}">
+					<h:commandButton value="#{botones['continuar.credito']}" immediate="true" action="#{conozcaCliente.redireccionaCredito}" styleClass="botonAmarillo"
+						rendered="#{conozcaCliente.datos.mostrarBotonConcesion}" />
+					<h:commandButton value="#{botones['continuar.novacion']}" action="#{conozcaCliente.redireccionaNovacion}" process="@this" styleClass="botonAmarillo"
+						immediate="true" rendered="#{conozcaCliente.datos.mostrarBotonNovacion}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="text-align: justify; text-justify: inter-word;">
+					<h:outputText value="#{messages.conozcacliente_msg_confirmacion1}" cellpadding="10" cellspacing="10" />
+					<br />
+					<br />
+					<h:outputText value="#{messages.conozcacliente_msg_confirmacion2}" cellpadding="10" cellspacing="10" />
+					<br />
+					<br />
+					<h:outputText value="#{messages.conozcacliente_msg_confirmacion3}" cellpadding="10" cellspacing="10" />
+					<br />
+					<br />
+					<h:outputText value="#{messages.conozcacliente_msg_confirmacion4}" cellpadding="10" cellspacing="10" />
+					<br />
+					<br />
+					<h:outputText value="#{messages.conozcacliente_msg_confirmacion5}" cellpadding="10" cellspacing="10" />
+					<br />
+					<br />
+				</h:panelGrid>
+				<div align="center" style="padding: 5px;">
+					<h:panelGrid columns="2">
+						<h:selectBooleanCheckbox id="idAceptaTerminos" value="#{conozcaCliente.aceptaTerminos}" required="true"
+							requiredMessage="#{labels['msg.acepta_terminos']}" />
+						<h:outputText value="#{messages.conozcacliente_msg_acepta_terminos}" />
+					</h:panelGrid>
+					<br /> <br />
+					<h:panelGrid columns="2">
+						<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="previous" styleClass="botonbarra"
+							actionListener="#{conozcaCliente.regresarConfirmacion}" />
+						<h:commandButton value="#{labels['button.guardar']}" action="#{conozcaCliente.guardar}" process="@this"
+							disabled="#{conozcaCliente.informacionGuardada}" styleClass="botonAmarillo" />
+					</h:panelGrid>
+				</div>
+
+			</rich:panel>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

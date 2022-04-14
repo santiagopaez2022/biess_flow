@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="contenido">
+	<f:view>
+		<!-- Filtros de consulta -->
+		<h:form id="consultaComprobanteAnulacion">
+					<h:messages globalOnly="true"></h:messages>
+					<rich:panel rendered="#{funcionario.cedula==null}">
+						<div class="mensajeError">#{errores['datos.sesion']}</div>
+						<br />
+					</rich:panel>
+					<a4j:outputPanel id="panelGeneral">
+						<h:panelGrid columns="1" rendered="#{funcionario.cedula!=null}" columnClasses="mitad" cellspacing="0"
+							cellpadding="0" style="width:100%;">
+							<rich:panel>
+								<f:facet name="header">#{titulos['busqueda']} </f:facet>
+								<br />
+								<h:panelGrid columns="2" cellpadding="0" cellspacing="2"
+									columnClasses="etiqueta,info,info,info,info" styleClass="">
+									<b>#{etiquetas['general.consulta.cedula']}:</b>
+									<h:inputText value="#{consultaCredito.cedulaAfiliado}"
+										id="campoCedula" maxlength="10"
+										onkeypress="return permitirValores(event, 'num')"
+										onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+										validatorMessage="#{mensajes['tamanio.cedula']}">
+										<f:validateLength maximum="10" minimum="10" />
+									</h:inputText>
+									<b>#{etiquetas['tipo.comprobante']}:</b>
+									<h:selectOneMenu value="#{consultaCredito.tipoComprobante}"
+												style="width:170px; ">
+										<f:selectItem itemLabel="Pago Individual"
+													itemValue="PAGIND" />
+										<f:selectItem
+													itemLabel="Saldo de Débito"
+													itemValue="SALDEB" />
+									</h:selectOneMenu>
+									<a4j:commandButton
+										reRender="resultadosolicitud, mensajes, mensajesAnulacion"
+										action="#{consultaCredito.inicializarConsultaComprobanteAnulacion}"
+										value="#{botones['consultar']}" styleClass="boton1"
+										status="cargandoconsulta" />
+									<a4j:commandButton
+										reRender="mensajes" ajaxSingle="true"
+										action="#{consultaCredito.salir}"
+										value="#{botones['salir']}" styleClass="boton1"/>
+									<rich:spacer width="20" />
+									<a4j:status id="cargandoconsulta">
+										<f:facet name="start">
+											<rich:panel style="height:20px; border-width:0px;">
+												<h:graphicImage value="/img/conexion.gif" />
+												<h:outputText value="#{mensajes.espere}"></h:outputText>
+											</rich:panel>
+										</f:facet>
+									</a4j:status>
+									</h:panelGrid>
+								<br />
+							</rich:panel>
+						</h:panelGrid>
+						<br />
+						<!-- muestra los mensajse que se generen en el backin bien aprobacionbean -->
+						<a4j:outputPanel id="mensajes">
+							<h:messages />
+							<rich:panel rendered="#{consultaCredito.mensajeError != null}">
+								<div class="mensajeInfo">
+									<h:outputText value="#{consultaCredito.mensajeError}" />
+									<br />
+								</div>
+							</rich:panel>
+						</a4j:outputPanel>
+						
+						<a4j:jsFunction id="inicializacion" name="initPantalla"
+							action="#{consultaCredito.init}" reRender="panelGeneral, mensajes, resultadosolicitud, mensajesAnulacion" />
+					</a4j:outputPanel>
+		</h:form>
+		<br />
+		<!-- Presentacion de resultados y aprobacion de solicitudes -->
+		<h:form id="anularComprobante">
+				<a4j:outputPanel id="resultadosolicitud">
+						<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+							cellpadding="0" style="width:100%;"
+							rendered="#{not empty creditoAccion.comprobantesDePago}">
+							<rich:panel>
+								<f:facet name="header">#{titulos['anulacion.comprobante']}</f:facet>
+								<h:panelGrid columns="1" columnClasses="info" width="100%">
+									<h:panelGroup>
+										<rich:dataTable binding="#{creditoAccion.tablaComprobantesPago}"
+											var="comprobante"	value="#{creditoAccion.comprobantesDePago}" width="100%"
+											rendered="#{not empty creditoAccion.comprobantesDePago}">
+											<f:facet name="header">
+												<rich:columnGroup>
+													<rich:column>#{etiquetas['tabla.anulacion.comprobante.tipo']}</rich:column>
+													<rich:column>#{etiquetas['tabla.anulacion.comprobante.numero']}</rich:column>
+													<rich:column>#{etiquetas['tabla.anulacion.comprobante.fecha.gen']}</rich:column>
+													<rich:column>#{etiquetas['tabla.anulacion.comprobante.fecha.ter']}</rich:column>
+													<rich:column>#{etiquetas['tabla.anulacion.comprobante.valor']}</rich:column>
+													<rich:column>
+														<rich:spacer width="10px" />
+													</rich:column>
+												</rich:columnGroup>
+											</f:facet>
+											<rich:column>
+												<h:outputText value="#{comprobante.tipoComprobante.descripcion}" />
+											</rich:column>
+											<rich:column>
+												<h:outputText value="#{comprobante.pk.codComPagAfi}" />
+											</rich:column>
+											<rich:column>
+												<h:outputText value="#{comprobante.fechageneracionComprobante}">
+													<f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss" />
+												</h:outputText>
+											</rich:column>
+											<rich:column>
+												<h:outputText value="#{comprobante.fechaFinComprobante}">
+													<f:convertDateTime pattern="yyyy-MM-dd" />
+												</h:outputText>
+											</rich:column>
+											<rich:column>
+												<h:outputText value="#{comprobante.valComPagAfi}" />
+											</rich:column>
+											<rich:column style="text-align:center">
+												<a4j:commandButton value="#{botones['anular']}"
+													action="#{creditoAccion.procesarAnularComprobantePago}" 
+													styleClass="boton"
+													onclick="if(!confirm('#{mensajes['aprobacion.anulacion.comprobante1']} #{comprobante.tipoComprobante.descripcion} #{mensajes['aprobacion.anulacion.comprobante2']} #{comprobante.pk.codComPagAfi} #{mensajes['aprobacion.anulacion.acuerdo']}')){return false}else{this.disabled = true };"
+													reRender="resultadosolicitud, mensajesAnulacion"
+													status="cargandoconsulta">
+												</a4j:commandButton>
+											</rich:column>
+										</rich:dataTable>
+									</h:panelGroup>
+								</h:panelGrid>
+							</rich:panel>
+							<br />
+						</h:panelGrid>
+				</a4j:outputPanel>
+				
+				<a4j:outputPanel id="mensajesAnulacion">
+					<h:messages />
+						<rich:panel rendered="#{creditoAccion.msjError != null}">
+						<div class="mensajeInfo">
+							<h:outputText value="#{creditoAccion.msjError}" />
+							<br />
+							</div>
+						</rich:panel>
+				</a4j:outputPanel>
+		</h:form>
+	</f:view>
+	<script type="text/javascript">
+			initPantalla();
+	</script>
+	</ui:define>
+</ui:composition>

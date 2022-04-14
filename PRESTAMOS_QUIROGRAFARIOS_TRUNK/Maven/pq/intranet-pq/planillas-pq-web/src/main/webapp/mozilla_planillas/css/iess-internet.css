@@ -1,0 +1,132 @@
+/*.invisible{
+	border:none;padding:0px;margin:0px;
+}*/
+div.mensajeInfo{
+	background-image:url(../img/information.jpg);
+	background-repeat:no-repeat;
+	padding:10px 20px 10px 60px;
+	height:35px;
+	color:#000;
+}
+div.mensajeError{
+	background-image:url(../img/error.gif);
+	background-repeat:no-repeat;
+	padding:10px 20px 10px 60px;
+	height:35px;
+	color:#000;
+}
+div.mensajeOK{
+	background-image:url(../img/okay.gif);
+	background-repeat:no-repeat;
+	padding:10px 20px 10px 60px;
+	height:35px;
+	color:#000;
+}
+div.mensajeAdvertencia{
+	background-image:url(../img/warning.jpg);
+	background-repeat:no-repeat;
+	padding:10px 20px 10px 60px;
+	height:35px;
+	color:#000;
+}
+div.mensajeNota{
+	background-image:url(../img/autentificacion/nota.jpg);
+	background-repeat:no-repeat;
+	padding:10px 20px 10px 60px;
+	height:35px;
+	color:#000;
+	font-weight:bold;
+}
+div.mensajeAviso{
+	background-image:url(../img/aviso.jpg);
+	background-repeat:no-repeat;
+	padding:10px 20px 10px 60px;
+	height:35px;
+	color:#000;
+}
+
+.panelReq{
+	border:none;padding:2px;margin:0px;
+}
+
+.panelReq:hover{
+	background-color:#ddd;
+}
+
+.panelReq b{
+	font-size:12px;
+	/*color: #CF8642;/*#385971;*/
+}
+
+.rich-table-header{
+	/*background-image: url("../img/panel/titulo.png");*/
+    background-repeat: repeat-x;
+	padding:5px;
+}
+
+.rich-table-headercell{
+	color:#486A83;
+	font-size: 12px;
+	font-weight: bold; 
+}
+
+.prow1{
+
+}
+.prow2{
+	background-color: #f1f6f8;
+}
+
+.rich-tree-node td{
+	white-space:normal;
+}
+
+.mitad{
+	width:50%;
+}
+
+a.opcion{
+	cursor:pointer;
+	font-size:14px;
+	color:#666;
+	text-decoration:none;
+}
+
+a.opcion:hover{
+	color:#000;
+}
+
+input.mayusculas{
+	text-transform:uppercase;
+}
+
+input.minusculas{
+	text-transform:lowercase;
+}
+
+.pr{
+background-image:url(../img/back.jpg); 
+background-repeat:no-repeat; 
+background-position:0px 25px; 
+padding:0px 0px 0px 20px; 
+
+}
+
+.pr a
+{
+font-family:Arial, Helvetica, sans-serif;
+color:#FFFFFF;
+font-size:13px;
+text-decoration:none;
+
+
+}
+.pr a:hover
+{
+font-family:Arial, Helvetica, sans-serif;
+
+font-size:13px;
+color:#f8f5f0;
+text-decoration:underline;
+
+}

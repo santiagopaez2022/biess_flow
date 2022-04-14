@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos"></a4j:jsFunction>
+		</h:form>
+
+		<div class="text_mensaje_pagina">AVISO</div>
+		<br />
+		<rich:panel styleClass="notePanelBottom" headerClass="pheader"
+			bodyClass="pbody" rendered="true">
+			<table style="padding-left: 35px">
+				<tr>
+					<td>
+						<b><h:outputText for="lblMensageFraude"
+								value="#{messages['bloqueo.proceso']}" rendered="#{not roles.datos.procesoConciliacionMig}" />
+						
+						<h:outputText  escape="false" style="color: #0060A9"
+								value="#{messages['mensaje.credito.conciliado']}" rendered="#{roles.datos.procesoConciliacionMig}" />
+						</b>
+					</td>
+					<td></td>
+				</tr>
+			</table>
+		</rich:panel>
+
+		<script type="text/javascript">
+			verificarDatos();
+		</script>
+
+	</ui:define>
+</ui:composition>

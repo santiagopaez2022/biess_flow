@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+.text_tasa {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #8f8e8e;
+	font-size: 11px;
+}
+</style>
+</head>
+<body>
+<table border="0" align="left">
+	<tr>
+		<td><img src="/img/interes.gif" /></td>
+		<td style="color: #e38e33; font-family: Arial; font-size: 11px;">
+		#{labels['tasa.interes.pq']}</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td class="text_tasa"><h:outputText
+			value="#{messages['tasa.interes.pq']} "></h:outputText> <h:outputText
+			value="#{tasaInteres.tasaInteresActual}"
+			rendered="#{tasaInteres.tasaInteresActual>0}">
+			<f:convertNumber groupingUsed="true" maxFractionDigits="2" />
+		</h:outputText> <h:outputText value="ERROR "
+			rendered="#{tasaInteres.tasaInteresActual le 0}" /> %<br />
+		<br />
+		</td>
+	</tr>
+</table>
+</body>
+</html>

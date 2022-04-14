@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+			<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/conozcasucliente.css" />
+			<script type="text/javascript" src="${facesContext.externalContext.request.contextPath}/js/validador.js" />
+			<script type="text/javascript"> 
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar 
+			</script>
+
+			<rich:panel style="width: 100%;">
+				<h:panelGrid columns="1" style="width: 100%;">
+				
+					<rich:panel id="rcpIngresosMensuales" header="#{labels.conozcacliente_lbl_ingresos_mensuales_titulo}">
+						<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+							<f:facet name="header">
+								<h:outputText value="Entered Data Status:"></h:outputText>
+							</f:facet>
+							<f:facet name="infoMarker">
+								
+							</f:facet>
+							<f:facet name="errorMarker">
+								
+							</f:facet>
+						</rich:messages>
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							<h:outputText value="#{labels.conozcacliente_lbl_ingresos_mensuales_origen_principales}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="inputTextOrigenIngresosPrincipales" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.origenIngreso}"
+								style="width: 100%;" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_ingresos_mensuales_origen_principales}">
+								<f:selectItems value="#{conozcaCliente.listaOrigenIngresosItems}" />
+								<a4j:support event=" " process="@this" global="false" partialSubmit="true" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_ingresos_mensuales_ingreso_dependiente}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="2">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.ingresosRelacionDependencia}" id="inputTextIngresosPrincipales"
+									size="20" maxlength="12" required="true" style="width: 71%;"
+									requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_ingresos_mensuales_ingreso_dependiente}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextIngresosPrincipales')"
+									disabled="#{conozcaCliente.cliente.ingresosRelacionDependencia!=null and conozcaCliente.cliente.ingresosRelacionDependencia!=''}">
+									<a4j:support event="onblur" reRender="inputTextIngresoTotal" />
+								</h:inputText>
+								<h:outputLabel styleClass="output-text-mensajes" value="#{labels.conozcacliente_lbl_ingresos_mensuales_ingresos_mensaje_ejemplo}" />
+							</h:panelGrid>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_ingresos_mensuales_origen_secundarios}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuOrigenIngresosSecundarios" styleClass="ui-selectonemenu"
+								value="#{conozcaCliente.cliente.origenIngresosSecundarios}" required="true" style="width: 100%;"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_ingresos_mensuales_origen_secundarios}">
+
+								<a4j:support event="onchange" action="#{conozcaCliente.changeOrigenSecundarios}" reRender="inputTextIngresosSecundarios,inputTextIngresoTotal"
+									ajaxSingle="true" />
+
+								<f:selectItems value="#{conozcaCliente.listaOrigenIngresosSecuItems}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_ingresos_mensuales_ingreso_adicionales}:" />
+							<span style="color: red"></span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="2">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.ingresosSecundarios}" id="inputTextIngresosSecundarios" size="20"
+									maxlength="12" required="false" style="width: 71%;"
+									requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_ingresos_mensuales_ingreso_adicionales}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextIngresosSecundarios')" disabled="#{conozcaCliente.bloqueaInfoDatosAdicionales}">
+									<a4j:support event="onblur" reRender="inputTextIngresoTotal" ajaxSingle="true" />
+									<!-- tooltip -->
+									<rich:toolTip id="tool1" for="inputTextIngresosSecundarios"
+										style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+										#{labels.conozcacliente_lbl_ingresos_mensuales_ingresos_mensaje}
+									</rich:toolTip>
+									<!-- fin de los tooltip -->
+								</h:inputText>
+								<h:outputLabel styleClass="output-text-mensajes" value="#{labels.conozcacliente_lbl_ingresos_mensuales_ingresos_mensaje_ejemplo}" />
+							</h:panelGrid>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_ingresos_mensuales_total}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text-numeros" style="width: 40%;"
+								value="#{conozcaCliente.cliente.ingresosRelacionDependencia+conozcaCliente.cliente.ingresosSecundarios}" id="inputTextIngresoTotal" size="20"
+								maxlength="30" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_ingresos_mensuales_total}"
+								disabled="true">
+							</h:inputText>
+						</h:panelGrid>
+					</rich:panel>
+					
+					<rich:panel id="panelGastosMensualesTitulo" header="#{labels.conozcacliente_lbl_gastos_titulo}" styleClass="titulo">
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							<h:outputText value="#{labels.conozcacliente_lbl_gastos_total}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.totalGastosMensuales}" id="inputTextTotalGastosMensuales"
+									size="20" maxlength="13" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_gastos_total}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextTotalGastosMensuales')" style="width: 70%;">
+								</h:inputText>
+								<br />
+								<h:outputLabel id="outputTextTotalGastosMensualesE" styleClass="output-text-mensajes"
+									value="#{labels.conozcacliente_lbl_gastos_mensaje_ejemplo}" />
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<!-- tooltip -->
+						<rich:toolTip id="tool10" for="inputTextTotalGastosMensuales"
+							style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+							#{labels.conozcacliente_lbl_gastos_mensaje}
+						</rich:toolTip>
+						<!-- fin de los tooltip -->
+						
+					</rich:panel>
+					
+					<!-- ACTIVOS -->
+					<rich:panel id="panelTotalActivos" header="#{labels.conozcacliente_lbl_activos_titulo}" styleClass="titulo">
+
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_activos_valor_inmuebles}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.valorBienesInmuebles}" id="inputTextValorInmuebles" size="20"
+									maxlength="13" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_activos_valor_inmuebles}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextValorInmuebles')" style="width: 100%;">
+									<a4j:support event="onblur" action="#{conozcaCliente.sumarActivos}" reRender="inputTextTotalActivos, inputTextTotalNeto" ajaxSingle="true" />
+								</h:inputText>
+								<br />
+								<h:outputLabel id="outputTextValorInmueblesE" styleClass="output-text-mensajes" value="#{labels.conozcacliente_lbl_activos_mensaje_ejemplo}" />
+							</h:panelGrid>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_activos_valor_vehiculo}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.valorTotalVehiculos}" id="inputTextValorVehiculo" size="20"
+									maxlength="13" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_activos_valor_vehiculo}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextValorVehiculo')" style="width: 100%;">
+									<a4j:support event="onblur" action="#{conozcaCliente.sumarActivos}" reRender="inputTextTotalActivos, inputTextTotalNeto" ajaxSingle="true" />
+								</h:inputText>
+								<br />
+								<h:outputLabel id="outputTextValorVehiculoE" styleClass="output-text-mensajes" value="#{labels.conozcacliente_lbl_activos_mensaje_ejemplo}" />
+							</h:panelGrid>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_activos_valor_otros}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.valorOtrosActivos}" id="inputTextValorOtrosActivos" size="20"
+									maxlength="13" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_activos_valor_otros}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextValorOtrosActivos')" style="width: 100%;">
+									<a4j:support event="onblur" action="#{conozcaCliente.sumarActivos}" reRender="inputTextTotalActivos, inputTextTotalNeto" ajaxSingle="true" />
+								</h:inputText>
+								<br />
+								<h:outputLabel id="outputTextValorOtrosActivosE" styleClass="output-text-mensajes" value="#{labels.conozcacliente_lbl_activos_mensaje_ejemplo}" />
+							</h:panelGrid>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_activos_total}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="1">
+								<h:inputText styleClass="input-text-numeros" 
+									value="#{conozcaCliente.cliente.totalActivos}" 
+									id="inputTextTotalActivos" size="20"
+									maxlength="13" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_activos_total}"
+									style="width: 100%;" disabled="true">
+								</h:inputText>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<!-- tooltip -->
+						<rich:toolTip id="tool2" for="inputTextValorInmuebles"
+							style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+							#{labels.conozcacliente_lbl_activos_valor_inmuebles_mensaje}
+						</rich:toolTip>
+						<rich:toolTip id="tool3" for="inputTextValorVehiculo"
+							style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+							#{labels.conozcacliente_lbl_activos_valor_vehiculo_mensaje}
+						</rich:toolTip>
+						<rich:toolTip id="tool4" for="inputTextValorOtrosActivos"
+							style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+							#{labels.conozcacliente_lbl_activos_valor_otros_mensaje}
+						</rich:toolTip>
+						<!-- fin de los tooltip -->
+						
+					</rich:panel>
+					
+					<!-- PASIVOS -->
+					<rich:panel id="panelTotalActivosPasivos" header="#{labels.conozcacliente_lbl_pasivos_titulo}" styleClass="titulo">
+
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_pasivos_total}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.totalDeuda}" id="inputTextTotalDeudas" size="20" maxlength="13"
+									required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_pasivos_total}"
+									onkeypress="return validarNumerosMonetarios(event, 'idForm:inputTextTotalDeudas')" style="width: 100%;">
+									<a4j:support event="onblur" reRender="inputTextTotalNeto" ajaxSingle="true" />
+								</h:inputText>
+								<br />
+								<h:outputLabel id="outputTextTotalPasivosE" styleClass="output-text-mensajes" value="#{labels.conozcacliente_lbl_pasivos_mensaje_ejemplo}" />
+							</h:panelGrid>
+							
+						</h:panelGrid>
+						<!-- tooltip -->
+						<rich:toolTip id="tool5" for="inputTextTotalDeudas"
+							style="background-color: #E3E9F0; border-color:#E1E1E1;">											
+							#{labels.conozcacliente_lbl_pasivos_mensaje}
+						</rich:toolTip>
+						<!-- fin de los tooltip -->
+					</rich:panel>
+
+					<!-- PATRIMONIO -->
+					<rich:panel id="panelPatrimonioTitulo" header="#{labels.conozcacliente_lbl_patrimonio_titulo}" styleClass="titulo">
+
+						<h:panelGrid columns="6" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							<h:outputText value="#{labels.conozcacliente_lbl_patrimonio_total}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.totalActivos-conozcaCliente.cliente.totalDeuda}"
+								id="inputTextTotalNeto" size="20" maxlength="13" required="true" style="width: 85%;"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_patrimonio_total}" disabled="true">
+							</h:inputText>
+							<h:outputText value="#{labels.conozcacliente_lbl_patrimonio_fecha_actualizacion}:" style="width: 30%;" />
+							<span style="color: red">*</span>
+							<rich:calendar id="calendarFechaActualizacionPatrimonio" value="#{conozcaCliente.cliente.fechaActualizacionPatrimonio}" pattern="dd-MM-yyyy"
+								required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_patrimonio_fecha_actualizacion}"
+								locale="#{conozcaCliente.locale}" navigator="true" yearRange="c-100:c" disabled="true">
+							</rich:calendar>
+						</h:panelGrid>
+					</rich:panel>
+
+					<!-- DESTINO DE CREDITO -->
+					<rich:panel id="panelDestinoCreditoTitulo" header="#{labels.conozcacliente_lbl_destino_credito_titulo}" styleClass="titulo">
+
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							<h:outputText value="#{labels.conozcacliente_lbl_destino_credito_destino}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuCreditoDestino" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.destinoCredito}"
+								requiredMessage="#{labels.msg_valor_requerido} #{labels.conozcacliente_lbl_gastos_titulo}: #{labels.conozcacliente_lbl_destino_credito_destino}"
+								required="true" style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaDestinoCreditoItems}" />
+								<a4j:support event=" " process="@this" global="false" partialSubmit="true" />
+							</h:selectOneMenu>
+						</h:panelGrid>
+					</rich:panel>
+
+					<h:panelGrid columns="3" style="width: 100%;">
+						<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="previous" styleClass="botonbarra" />
+						<rich:spacer width="400px;"></rich:spacer>
+						<a4j:commandButton value="Siguiente &gt;&gt;" style="float:right" action="#{conozcaCliente.validaPaginaIngresosEgresos}" styleClass="boton" onclick="window.scrollTo(0, 0);" />
+					</h:panelGrid>
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

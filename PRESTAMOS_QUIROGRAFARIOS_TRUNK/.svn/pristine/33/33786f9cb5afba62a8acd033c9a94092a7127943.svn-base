@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+		
+		<!-- mantiene en memoria el backing bean 
+		<a4j:keepAlive beanName="aprobacionbean" /> -->
+	
+		<h:form id="datosAprobacion">
+			<a4j:outputPanel id="pnlDatosAprobacion">
+				<h:panelGrid columns="1" columnClasses="info" width="100%" rendered="#{aprobacionbean.visualizarOrdenes}">
+					<h:panelGroup>
+						<div class="mensajeInfo">
+							<h:outputText value="#{aprobacionbean.mensajeCarga}" />
+							<br />
+						</div>
+					</h:panelGroup>
+					<h:panelGroup>			
+			            	<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+								cellpadding="0" style="width:100%;"
+								rendered="#{not empty aprobacionbean.listaPrestamosPDAMasivos}">
+								<rich:panel id="tablac">
+									<f:facet name="header">#{titulos['ordenes.aprobar']}</f:facet>
+									
+									<a4j:outputPanel id="pnlSeleccionados">
+										<h:panelGrid columns="4" columnClasses="etiqueta" width="20%">
+											<h:outputText value="Todos"/>
+											<h:outputText value=" " />
+											<h:outputText value=" " />
+											<h:outputText value=" " />
+											
+											<h:selectBooleanCheckbox value="#{aprobacionbean.seleccionarTodos}">
+												<a4j:support action="#{aprobacionbean.marcarTodosRegistros}"
+													event="onclick" process="@this" reRender="lstPDA, pnlSeleccionados" />
+											</h:selectBooleanCheckbox>
+											
+											<div>
+												<h:outputText value="#{aprobacionbean.contadorSelecionados} elementos seleccionados" />
+											</div>
+											
+											<h:outputText value=" " />
+																					
+											<a4j:commandButton id="btnAprobar"
+											value="#{botones['aprobar.pda.masivo']}"
+											action="#{aprobacionbean.aprobarAuxiliarMasivo}"
+											styleClass="boton"
+											reRender="pnlDatosAprobacion"/>
+																					
+										</h:panelGrid>
+									</a4j:outputPanel>
+									
+									<h:panelGrid columns="1" columnClasses="info" width="100%">
+										<h:panelGroup>
+											<rich:dataTable id="lstPDA" var="item"
+												value="#{aprobacionbean.listaPrestamosPDAMasivos}" width="100%"
+												rendered="#{not empty aprobacionbean.listaPrestamosPDAMasivos}" rows="10">
+												<!-- cabecera de la tabla solicitudes -->
+												<f:facet name="header">
+													<rich:columnGroup>													
+														<rich:column colspan="2">#{etiquetas['acciones']}</rich:column>
+														<rich:column colspan="4">#{etiquetas['datoscredito']}</rich:column>
+														<rich:column colspan="3">#{etiquetas['datospatrono']}</rich:column>
+														<rich:column colspan="7">#{etiquetas['datosasegurado']}</rich:column>
+														<rich:column colspan="5">#{etiquetas['institucionfinanciera']}</rich:column>
+														<rich:column colspan="2">#{etiquetas['info.adicional']}</rich:column>
+														<!--  -->
+														<rich:column breakBefore="true"></rich:column>
+														<rich:column>#{botones['ver.detalle']}</rich:column>
+	
+														<rich:column>#{etiquetas['pda.tipo.producto']}</rich:column>
+														<rich:column>#{etiquetas['pda.tipo.beneficiario']}</rich:column>
+														<rich:column>#{etiquetas['pda.estado']}</rich:column>
+														<rich:column>#{etiquetas['pda.monto']}</rich:column>
+														
+														<rich:column>#{etiquetas['pda.ruc']}</rich:column>
+														<rich:column>#{etiquetas['pda.nombrepatrono']}</rich:column>
+														<rich:column>#{etiquetas['pda.nombreempresa']}</rich:column>
+														<!--  -->
+														<rich:column>#{etiquetas['pda.numcedula']}</rich:column>
+														<rich:column>#{etiquetas['pda.visapasaporte']}</rich:column>
+														<rich:column>#{etiquetas['pda.nombreapellido']}</rich:column>
+														<rich:column>#{etiquetas['pda.dirdomicilio']}</rich:column>
+														<rich:column>#{etiquetas['pda.provincia']}</rich:column>
+														<rich:column>#{etiquetas['pda.ciudad']}</rich:column>
+														<rich:column>#{etiquetas['pda.fono']}</rich:column>
+														<!--  -->
+														<rich:column>#{etiquetas['pda.institucionfinanciera']}</rich:column>
+														<rich:column>#{etiquetas['pda.cta']}</rich:column>
+														<rich:column>#{etiquetas['pda.tipocta']}</rich:column>
+														<rich:column>#{etiquetas['pda.fecharegiess']}</rich:column>
+														<rich:column>#{etiquetas['pda.registronuevo_actualizar']}</rich:column>
+														
+														<rich:column>#{etiquetas['pap.url.documentos']}</rich:column>
+														<rich:column>#{etiquetas['pap.adjuntos']}</rich:column>
+													</rich:columnGroup>
+												</f:facet>
+												
+												<!-- Botones -->
+												<rich:column style="text-align:center">
+													<h:selectBooleanCheckbox id="chkSeleccionDetalle" value="#{item.datoSeleccionado}">
+														<a4j:support ajaxSingle="true" action="#{aprobacionbean.seleccionarSolicitud}" 
+															process="@this" event="onchange" reRender="pnlSeleccionados" />
+													</h:selectBooleanCheckbox>
+												</rich:column>
+												<rich:column style="text-align:center">
+													<a4j:commandButton id="btnVerDetalle"
+														value="#{botones['ver.detalle']}"
+														styleClass="boton"
+														action="#{aprobacionbean.verDetallePrestamo}"
+														oncomplete="Richfaces.showModalPanel('panelDetalleCredito', {top:'50px', left:'200px', width:'750px', height:'500px'})">
+													</a4j:commandButton>
+												</rich:column>
+												
+												<!-- Datos del Credito -->
+												<rich:column>
+													<h:outputText
+														value="#{item.prestamo.tipoPrestamo.descripcion}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText
+														value="#{item.tipoBeneficiario}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText
+														value="#{item.prestamo.estadoPrestamo.desestpre}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.mntpre}" />
+												</rich:column>
+												
+												<!-- Datos Patrono -->
+												<rich:column>
+													<h:outputText value="#{item.prestamo.rucemp}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.apenomrepleg}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.kspcotsri.razsoc}" />
+												</rich:column>
+	
+												<!-- Datos del Asegurado -->
+												<rich:column>
+													<h:outputText value="#{item.prestamo.numafi}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.numeroVisaPasaporteAfiliado}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.afiliado.apenomafi}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.afiliado.dirafi}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText
+														value="#{item.prestamo.afiliado.divisionPolitica.divisionPolitica.divisionPolitica.nomdivpol}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText
+														value="#{item.prestamo.afiliado.divisionPolitica.divisionPolitica.nomdivpol}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.afiliado.telafi}" />
+												</rich:column>
+												
+												<!-- Institucion Financiera -->
+												<rich:column>
+													<h:outputText
+														value="#{item.prestamo.institucionfinanciera.nomemp}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.prestamo.numctaban}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText
+														value="#{item.prestamo.tipoCuenta.descripcion}" />
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.fechactabancaria}">
+														<f:convertDateTime pattern="yyyy-MM-dd" />
+													</h:outputText>
+												</rich:column>
+												<rich:column>
+													<h:outputText value="#{item.primeravez}" />
+												</rich:column>
+												<!--  Informacion adicional-->
+												<!-- INC-2286 Ferrocarriles -->
+												<rich:column>
+													<h:commandLink
+														value="#{item.prestamoInformacion.urlDocumetosProveedor}"
+														rendered="#{item.prestamo.prestamoPk.codpretip == 6}" />
+												</rich:column>
+												<rich:column style="text-align:center">
+													<a4j:commandButton id="btnVerAdjuntos"
+														value="#{botones['ver.adjuntos']}"
+														action="#{aprobacionbean.obtenerAdjuntos}"
+														styleClass="boton" rendered="#{item.prestamo.prestamoPk.codpretip == 8 and item.prestamo.estadoPrestamo.codestpre == 'PDC'}"
+														oncomplete="Richfaces.showModalPanel('panelAdjuntos', {width:'300px', height:'200px'})">													
+													</a4j:commandButton>											
+												</rich:column>
+											</rich:dataTable>
+											<rich:spacer id="spacerAmo1" height="10" />
+											<rich:datascroller id="uiDataS" for="lstPDA" maxPages="5" />
+										</h:panelGroup>
+									</h:panelGrid>
+								</rich:panel>
+							</h:panelGrid>
+		        	</h:panelGroup>
+				</h:panelGrid>
+			
+				<a4j:outputPanel  ajaxRendered="true" rendered="#{aprobacionbean.visualizarAceptar}">
+					<a4j:region id="validarCedulasArchivo">
+					<rich:panel style="width: 400px; height: 650px;">
+					<center>
+					<div class="mensajeAdvertencia">
+						<h:outputText value="#{etiquetas['aprobar.pda.masivo.etiqueta.aprobacion']}" />
+						<br />
+					</div>
+					<div id="divDestalleAprobacion" style="width: 350px; height: 500px; overflow: scroll;">
+						<table>
+							<a4j:repeat value="#{aprobacionbean.solicitudPdaAuxiliar}" var="solicitudAuxiliar">
+			                    <tr>
+			                    	<td valign="top">
+			                    		#{solicitudAuxiliar.prestamo.afiliado.apenomafi}, #{solicitudAuxiliar.prestamo.numafi}
+			                    	</td>
+			                    </tr>
+			                </a4j:repeat>
+						</table>
+					</div>	
+					</center>
+					<rich:spacer height="10px"></rich:spacer>
+					<rich:spacer height="10px"></rich:spacer>
+					<center>
+						<a4j:commandButton style="width:100px"
+							value="#{botones['aprobar.pda.masivo.aceptar']}" ajaxSingle="true"
+							onclick = "disabled=true"
+							id="btnAprobarDetalle"
+							action="#{aprobacionbean.aprobarSolicitudMasiva}"
+							reRender="pnlDatosAprobacion"
+							status="procesandoMasivos"
+							styleClass="boton">
+						</a4j:commandButton>
+						<a4j:commandButton style="width:100px"
+							value="#{botones['aprobar.pda.masivo.cancelar']}" ajaxSingle="true"
+							id="btnSalirDetalle"
+							action="#{aprobacionbean.cancelarSolicitudMasiva}"
+							reRender="pnlDatosAprobacion"
+							styleClass="boton">
+						</a4j:commandButton>
+						<a4j:status id="procesandoMasivos">
+							<f:facet name="start">
+								<rich:panel style="height:20px; border-width:0px;">
+									<h:graphicImage value="/img/conexion.gif" />
+									<h:outputText value="#{mensajes.espere}"></h:outputText>
+								</rich:panel>
+							</f:facet>
+						</a4j:status>
+					</center>
+					</rich:panel>
+					</a4j:region>
+				</a4j:outputPanel>
+			
+				<a4j:outputPanel id="mensajes">
+					<h:messages />
+					<rich:panel rendered="#{aprobacionbean.mensajeMasivos != null}">
+						<div class="mensajeInfo">
+							<h:outputText value="#{aprobacionbean.mensajeMasivos}" />
+							<br />
+						</div>
+					</rich:panel>
+				</a4j:outputPanel>
+			</a4j:outputPanel>	
+		</h:form>
+		
+	
+		<!-- PANEL DETALLE CREDITO -->
+		<rich:modalPanel id="panelDetalleCredito" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+								value="#{etiquetas['prestamo.detalle.dialogo.titulo']}" />
+			</f:facet>
+			
+			<a4j:form>
+				<a4j:outputPanel ajaxRendered="true">
+
+					<div id="divDestalleCredito"
+						style="width: 750px; height: 500px; overflow: scroll;">
+
+						<table>
+							<tr>
+								<td valign="top"><rich:panel>
+										<!-- Datos del Credito -->
+										<f:facet name="header">#{etiquetas['prestamo.detalle.dialogo.datos.credito']}</f:facet>
+										<br />
+										<h:panelGrid columns="4" columnClasses="info" width="100%">
+											<h:outputText value="#{etiquetas['pda.tipo.producto']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.tipoPrestamo.descripcion}" />
+
+											<h:outputText value="#{etiquetas['pda.tipo.beneficiario']}" />
+											<h:inputText readonly="true" value="#{aprobacionbean.solicitudPdaSeleccionada.tipoBeneficiario}" />
+
+											<h:outputText value="#{etiquetas['pda.estado']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.estadoPrestamo.desestpre}" />
+
+											<h:outputText value="#{etiquetas['pda.monto']}" />
+											<h:inputText readonly="true" value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.mntpre}" />
+										</h:panelGrid>
+									</rich:panel></td>
+							</tr>
+							<tr>
+								<td valign="top"><rich:panel>
+										<!-- Datos del Patrono -->
+										<f:facet name="header">#{etiquetas['prestamo.detalle.dialogo.datos.patrono']}</f:facet>
+										<br />
+										<h:panelGrid columns="4" columnClasses="info" width="100%">
+											<h:outputLabel value="#{etiquetas['pda.ruc']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.rucemp}" />
+
+											<h:outputLabel value="#{etiquetas['pda.nombrepatrono']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.apenomrepleg}" />
+
+											<h:outputLabel value="#{etiquetas['pda.nombreempresa']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.kspcotsri.razsoc}" />
+
+											<h:outputLabel value="#{etiquetas['pda.direccionempresa']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.dirsuc}" />
+
+											<h:outputLabel value="#{etiquetas['pda.provincia']}" />
+											<h:inputText readonly="true"
+												rendered="#{aprobacionbean.solicitudPdaSeleccionada.nomdivpol != null}"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.nomdivpol}" />
+
+											<h:outputLabel value="#{etiquetas['pda.ciudad']}" />
+											<h:inputText readonly="true"
+												rendered="#{aprobacionbean.solicitudPdaSeleccionada.nomdivpolDP != null}"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.nomdivpolDP}" />
+
+											<h:outputLabel value="#{etiquetas['pda.fono']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.telsuc}" />
+										</h:panelGrid>
+									</rich:panel></td>
+							</tr>
+							<tr>
+								<td valign="top"><rich:panel>
+										<!-- Datos del Asegurado -->
+										<f:facet name="header">#{etiquetas['prestamo.detalle.dialogo.datos.asegurado']}</f:facet>
+										<br />
+										<h:panelGrid columns="4" columnClasses="info" width="100%">
+											<h:outputLabel value="#{etiquetas['pda.numcedula']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.numafi}" />
+												
+											<h:outputLabel value="#{etiquetas['pda.visapasaporte']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.numeroVisaPasaporteAfiliado}" />
+
+											<h:outputLabel value="#{etiquetas['pda.nombreapellido']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.afiliado.apenomafi}" />
+
+											<h:outputLabel value="#{etiquetas['pda.dirdomicilio']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.afiliado.dirafi}" />
+
+											<h:outputLabel value="#{etiquetas['pda.provincia']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.afiliado.divisionPolitica.divisionPolitica.divisionPolitica.nomdivpol}" />
+
+											<h:outputLabel value="#{etiquetas['pda.ciudad']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.afiliado.divisionPolitica.divisionPolitica.nomdivpol}" />
+
+											<h:outputLabel value="#{etiquetas['pda.fono']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.afiliado.telafi}" />
+										</h:panelGrid>
+										<!-- INC-2350 Implementacion automatizada de verificacion en lista de control de usuarios PQ. -->
+										<rich:panel rendered="#{aprobacionbean.enListaObservados}">
+											<!-- Datos lista de Observados -->
+											<f:facet name="header">#{etiquetas['credito.datos.lista.observados.pep.titulo']}</f:facet>
+											<h:outputLabel value="#{etiquetas['credito.datos.lista.observados.pep.mensaje']}" />
+											<rich:panel styleClass="messagePanel" headerClass="pheader"
+												bodyClass="pbody">
+												#{etiquetas['credito.datos.lista.observados.pep.mensaje.requisitos']}
+												<ul>
+													<li>#{etiquetas['credito.datos.lista.observados.pep.mensaje.requerimiento1']}</li>
+													<li>#{etiquetas['credito.datos.lista.observados.pep.mensaje.requerimiento2']}</li>
+													<li>#{etiquetas['credito.datos.lista.observados.pep.mensaje.requerimiento3']}</li>
+												</ul>
+											</rich:panel>							
+										</rich:panel>
+									</rich:panel></td>
+							</tr>
+
+							<tr>
+								<td valign="top"><rich:panel
+										rendered="#{!aprobacionbean.pagoPensionesAlimenticias}">
+										<!-- Datos del Institucion Financiera -->
+										<f:facet name="header">#{etiquetas['prestamo.detalle.dialogo.datos.institucion.financiera']}</f:facet>
+										<br />
+										<h:panelGrid columns="4" columnClasses="info" width="100%">
+											<h:outputLabel
+												value="#{etiquetas['pda.institucionfinanciera']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.institucionfinanciera.nomemp}" />
+
+											<h:outputLabel value="#{etiquetas['pda.cta']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.numctaban}" />
+
+											<h:outputLabel value="#{etiquetas['pda.tipocta']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.tipoCuenta.descripcion}" />
+
+											<h:outputLabel value="#{etiquetas['pda.fecharegiess']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.fechactabancaria}">
+												<f:convertDateTime pattern="yyyy-MM-dd" />
+											</h:inputText>
+
+											<h:outputLabel
+												value="#{etiquetas['pda.registronuevo_actualizar']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.primeravez}" />
+										</h:panelGrid>
+									</rich:panel>
+									
+									</td>
+							</tr>
+							<tr>
+								<td valign="top"><rich:panel
+										rendered="#{aprobacionbean.categoriaTipoProductoPq != 'CAT_SERVICIOS'}">
+										<!-- Datos del Institucion Financiera Anterior -->
+										<f:facet name="header">#{etiquetas['prestamo.detalle.dialogo.datos.institucion.financiera.anterior']}</f:facet>
+										<br />
+										<h:panelGrid columns="4" columnClasses="info" width="100%">
+											<h:outputLabel
+												value="#{etiquetas['pda.institucionfinanciera.anterior']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.entidadFinancieraAnterior}" />
+
+											<h:outputLabel value="#{etiquetas['pda.cta.anterior']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.numeroCuentaAnterior}" />
+
+											<h:outputLabel value="#{etiquetas['pda.tipocta.anterior']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.tipoCuentaAnterior}" />
+
+											<h:outputLabel
+												value="#{etiquetas['pda.fecharegiess.anterior']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.fechaRegistroAnterior}">
+												<f:convertDateTime pattern="yyyy-MM-dd" />
+											</h:inputText>
+										</h:panelGrid>
+									</rich:panel></td>
+							</tr>
+
+							<tr>
+								<td valign="top"><rich:panel
+										rendered="#{aprobacionbean.pagoPensionesAlimenticias}">
+
+										<f:facet name="header">#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.titulo']}</f:facet>
+										<br />
+										<h:panelGrid columns="4" columnClasses="info" width="100%">
+											<h:outputLabel for="inputTextPACedula"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.cedula']}:" />
+											<h:inputText id="inputTextPACedula"
+												value="#{aprobacionbean.beneficiarioCredito.numeroBeneficiario}"
+												readonly="true" />
+
+											<h:outputLabel for="inputTextPABeneficiario"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.beneficiario']}:" />
+											<h:inputText id="inputTextPABeneficiario"
+												value="#{aprobacionbean.beneficiarioCredito.beneficiario}"
+												readonly="true" />
+
+											<h:outputLabel for="inputTextPANombreMenores"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.nombre.menores']}:" />
+											<h:inputText id="inputTextPANombreMenores"
+												value="#{aprobacionbean.beneficiarioCredito.nombreMenor}"
+												readonly="true" />
+
+											<h:outputLabel
+												value="#{etiquetas['pda.institucionfinanciera']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.institucionfinanciera.nomemp}" />
+
+											<h:outputLabel value="#{etiquetas['pda.cta']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.numctaban}" />
+
+											<h:outputLabel value="#{etiquetas['pda.tipocta']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.prestamo.tipoCuenta.descripcion}" />
+
+											<h:outputLabel value="#{etiquetas['pda.fecharegiess']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.fechactabancaria}">
+												<f:convertDateTime pattern="yyyy-MM-dd" />
+											</h:inputText>
+
+											<h:outputLabel
+												value="#{etiquetas['pda.registronuevo_actualizar']}" />
+											<h:inputText readonly="true"
+												value="#{aprobacionbean.solicitudPdaSeleccionada.primeravez}" />
+
+											<h:outputLabel for="inputTextPANumeroCausa"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.numero.causa']}:" />
+											<h:inputText id="inputTextPANumeroCausa"
+												value="#{aprobacionbean.beneficiarioCredito.numeroCausa}"
+												readonly="true" />
+
+											<h:outputLabel for="inputTextPANumeroKardex"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.numero.kardex']}:" />
+											<h:inputText id="inputTextPANumeroKardex"
+												value="#{aprobacionbean.beneficiarioCredito.numeroKardex}"
+												readonly="true" />
+
+											<h:outputLabel for="inputTextPANumeroJuzgado"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.numero.juzgado']}:" />
+											<h:inputText id="inputTextPANumeroJuzgado"
+												value="#{aprobacionbean.beneficiarioCredito.numeroJuzgado}"
+												readonly="true" />
+
+											<h:outputLabel for="selectOneMenuPAProvinciaJuicio"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.provincia.juicio']}:" />
+											<h:inputText id="selectOneMenuPAProvinciaJuicio"
+												value="#{aprobacionbean.beneficiarioCredito.provincia.nomdivpol}"
+												readonly="true" />
+
+											<h:outputLabel for="inputTextPACiudadJuicio"
+												value="#{etiquetas['pension.alimenticia.beneficiariocredito.patriapotestad.ciudad.juicio']}:" />
+											<h:inputText id="inputTextPACiudadJuicio"
+												value="#{aprobacionbean.beneficiarioCredito.ciudad.nomdivpol}"
+												readonly="true" />
+										</h:panelGrid>
+									</rich:panel></td>
+							</tr>
+
+						</table>
+					</div>
+
+					<rich:spacer height="10px"></rich:spacer>
+					<center>
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['pda.cerrar']}" ajaxSingle="true"
+							id="btnsalirDetalle"
+							action="#{aprobacionbean.resetearDatosSolicitudPdaSeleccionada}"
+							oncomplete="Richfaces.hideModalPanel('panelDetalleCredito');"
+							styleClass="boton">
+						</a4j:commandButton>
+						
+						
+					</center>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+		
+		<!-- PANEL ADJUNTOS -->
+		<rich:modalPanel id="panelAdjuntos" autosized="true">
+			<f:facet name="header">
+				<h:outputText value="DOCUMENTOS ADJUNTOS" />
+			</f:facet>
+			<a4j:form>
+				<a4j:outputPanel ajaxRendered="true">
+					<rich:panel>
+						<rich:dataTable id="tablaAdjuntos" var="_detalle"
+							value="#{aprobacionbean.listaInformacionDetalle}" width="100%"
+							rendered="#{not empty aprobacionbean.listaInformacionDetalle}">
+							<rich:column>
+								<h:commandLink action="#{aprobacionbean.descargarArchivo}" 
+									value="#{_detalle.nombreArchivo}" />
+							</rich:column>
+						</rich:dataTable>					
+					</rich:panel>
+					<rich:spacer height="10px"></rich:spacer>
+					<center>
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['pda.cerrar']}" ajaxSingle="true"
+							id="btnsalir"
+							oncomplete="Richfaces.hideModalPanel('panelAdjuntos');"
+							styleClass="boton">
+						</a4j:commandButton>
+					</center>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+		
+		<!-- PANEL LISTADO APROBACION -->
+		<rich:modalPanel id="panelDetalleAprobacion" autosized="true">
+			<f:facet name="header">
+				<center>
+					Esta seguro que desea aprobar los creditos seleccionados
+				</center>
+			</f:facet>
+			
+			<a4j:form id="formDetalleAprobacionPop">
+				<a4j:outputPanel ajaxRendered="true">
+
+					<center>
+						<div id="divDestalleAprobacion" style="width: 350px; height: 500px; overflow: scroll;">
+							<table>
+								<a4j:repeat value="#{aprobacionbean.solicitudPdaAuxiliar}" var="solicitudAuxiliar">
+				                    <tr>
+				                    	<td valign="top">
+				                    		#{solicitudAuxiliar.prestamo.afiliado.apenomafi}, #{solicitudAuxiliar.prestamo.numafi}
+				                    	</td>
+				                    </tr>
+				                </a4j:repeat>
+							</table>
+						</div>	
+					</center>
+					
+					<rich:spacer height="10px"></rich:spacer>
+					<center>
+						<a4j:commandButton style="width:100px"
+							value="#{botones['aprobar.pda.masivo.aceptar']}" ajaxSingle="true"
+							id="btnAprobarDetalle"
+							action="#{aprobacionbean.aprobarSolicitudMasiva}"
+							oncomplete="Richfaces.hideModalPanel('panelDetalleAprobacion');document.forms[0].submit();"
+							reRender="datosCedulas"
+							styleClass="boton">
+						</a4j:commandButton>
+						<a4j:commandButton style="width:100px"
+							value="#{botones['aprobar.pda.masivo.cancelar']}" ajaxSingle="true"
+							id="btnSalirDetalle"
+							action="#{aprobacionbean.cancelarSolicitudMasiva}"
+							oncomplete="Richfaces.hideModalPanel('panelDetalleAprobacion');"
+							styleClass="boton">
+						</a4j:commandButton>
+
+					</center>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+		
+		
+	</ui:define>
+</ui:composition>

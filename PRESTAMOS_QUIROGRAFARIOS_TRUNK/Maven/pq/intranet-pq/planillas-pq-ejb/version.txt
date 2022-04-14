@@ -1,0 +1,87 @@
+planillas-pq-ejb
+
+Version: 1.0.0  (línea base)
+
+===============================================================================================
+Version: 1.0.0
+Requerimiento: INC-1800
+Cambios: 	
+clase	ec.gov.iess.planillaspq.exceptions.RegistroCivilBiessException.java	(E) 
+clase	ec.gov.iess.planillaspq.servicio.impl.RegistroCivilBiessServicioImpl.java	(E) 
+jar	lib/pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+interfaz	ec.gov.iess.planillaspq.servicio.RegistroCivilBiessServicio.java	(E) 
+Fecha: 17/06/2014
+
+
+===============================================================================================	
+Version: 1.0.1
+Requerimiento: INC-2487 / Implementación cambios código seguro para Apps PQ
+Cambios:
+
+Clase		ejbModule/ec/gov/iess/planillaspq/servicio/impl/AjustePlanillaServicioImpl.java	(M)
+Clase		ejbModule/ec/gov/iess/planillaspq/servicio/impl/AnulaPlanillaServicioImpl.java	(M)
+Clase		ejbModule/ec/gov/iess/planillaspq/servicio/impl/BusquedasServicioImpl.java		(M)
+Clase		ejbModule/ec/gov/iess/planillaspq/servicio/impl/CambioEstadoServicioImpl.java	(M)
+Clase		ejbModule/ec/gov/iess/planillaspq/servicio/impl/OrdenCompraServicioImpl.java	(M)
+Properties	lib/lib.properties																(M)
+xml			build.xml																		(M)
+jar			lib/codigo_seguro																(C)
+Jar			lib/codigo_seguro/codigo-seguro-1.0.1.jar										(C)
+Jar			lib/creditos-core/13_creditos-pq-core-1.0.9.jar									(M)
+jar			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.0.20.jar								(M)
+jar			lib/ utilitariosgenericos/utilitariosgenericos-1.0.2.jar 						(M)
+
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilación de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE 
+(C)	XML		pom.xml
+(C)	Eclipse	.project
+(C)	Eclipse	.classpath
+(C)	Eclipse	.settings
+(C)	Carpeta	src
+(C)	Carpeta	src\main
+(C)	Carpeta	src\main\resources
+(C)	Carpeta	src\main\resources\META-INF
+(C)	Carpeta	src\main\java
+(C)	Carpeta	src\main\java\ec
+(C)	Carpeta	src\main\java\ec\gov
+(C)	Carpeta	src\main\java\ec\gov\iess
+(C)	Carpeta	src\main\java\ec\gov\iess\planillaspq
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\enumeraciones
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\exceptions
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\servicio
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\enumeraciones\EnvioMail.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\AfiliadoNoExisteException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\AjustaPlanillaHlException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\AjustaPlanillaHostException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\AnulaPlanillaHlException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\AnulaPlanillaHostException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\CambioEstadoComprobanteException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\CambioEstadoComprobanteGenericoException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\CambioEstadoDividendoException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\EmpleadorNoExisteException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\PlanillaException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\exceptions\PlanillaHostException.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\AjustePlanillaServicioLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\AjustePlanillaServicioRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\AnulaPlanillaServicioLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\AnulaPlanillaServicioRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\BusquedasServicioLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\BusquedasServicioRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\CambioEstadoServicioLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\CambioEstadoServicioRemote.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\servicio\impl
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\OrdenCompraServicio.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\OrdenCompraServicioRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\PlanillaPrestamoDetalleServicioLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\PlanillaPrestamoDetalleServicioRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\PlanillaServicioLocal.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\PlanillaServicioRemote.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\AjustePlanillaServicioImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\AnulaPlanillaServicioImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\BusquedasServicioImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\CambioEstadoServicioImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\OrdenCompraServicioImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\PlanillaPrestamoDetalleServicioImpl.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\servicio\impl\PlanillaServicioImpl.java

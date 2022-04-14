@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ec.fin.biess</groupId>
+        <artifactId>pq</artifactId>
+        <version>2.0.0</version>
+    </parent>
+    <artifactId>intranet-pq</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>afiliado-core-ejb</module>
+        <module>empleador-core-ejb</module>
+        <module>planillas-pq-core-ejb</module>
+        <module>planillas-pq-ejb</module>
+        <module>planillas-pq-web</module>
+    </modules>
+</project>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+	<h:form id="consultarDia">
+		<a4j:region id="busqueda">
+			<div><h:messages></h:messages> <f:subview
+				rendered="#{funcionario.cedula==null}">
+				<div class="mensajeError">#{errores['datos.sesion']}</div>
+			</f:subview></div>
+		</a4j:region>
+	</h:form>
+	<div align="center" style="font-family: Arial, Helvetica, sans-serif;">
+	<h3>#{titulos['consulta.ordenes']}<rich:spacer width="12px" /><h:outputText
+		value="#{consulta.estadoOrden =='APR'?'Aprobadas':'Rechazadas'}"
+		rendered="#{consulta.estadoOrden !='TODOS'}" /></h3>
+	</div>
+	<div align="right" style="font-family: Arial, Helvetica, sans-serif;">
+	<b>#{etiquetas['fecha.desde']}</b> <h:outputText
+		value="#{consulta.fechaConsultaDesde}">
+		<f:convertDateTime pattern="dd/MM/yy" />
+	</h:outputText><rich:spacer style="width:15px;" /> <b>#{etiquetas['fecha.hasta']}</b>
+	<h:outputText value="#{consulta.fechaConsultaHasta}">
+		<f:convertDateTime pattern="dd/MM/yy" />
+	</h:outputText><br />
+	<b>Funcionario:</b><h:outputText value="#{funcionario.nombreCompleto}" />
+
+	</div>
+
+	<h:form id="actualizar">
+		<div><f:subview>
+			<a4j:outputPanel id="datosSaldos2">
+				<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+					cellpadding="0" style="width:100%;"
+					rendered="#{not empty consulta.listaOrdenes}">
+
+					<h:panelGrid columns="1" columnClasses="info" width="100%">
+						<h:panelGroup>
+							<rich:dataTable binding="#{consulta.tablaOrdenesImprimir}"
+								var="item" value="#{consulta.listaOrdenes}" width="100%"
+								rendered="#{not empty consulta.listaOrdenes}">
+								<f:facet name="header">
+									<rich:columnGroup>
+										<rich:column>#{etiquetas['orden.prestamo.num']}</rich:column>
+										<rich:column>#{etiquetas['orden.cedula']}</rich:column>
+										<rich:column style="width:40%;">#{etiquetas['orden.nombres']}</rich:column>
+										<rich:column>#{etiquetas['orden.fecha']}</rich:column>
+										<rich:column>#{etiquetas['prestamo.valor']}</rich:column>
+										<rich:column>#{etiquetas['prestamo.seguro']}</rich:column>
+										<rich:column>#{etiquetas['orden.valor']}</rich:column>
+										<rich:column>#{etiquetas['orden.plazo']}</rich:column>
+										<rich:column>#{etiquetas['orden.estado']}</rich:column>
+										<rich:column>#{etiquetas['orden.numero']}</rich:column>
+										<rich:column>#{etiquetas['orden.factura']}</rich:column>
+										<rich:column>#{etiquetas['orden.fec.confirmacion']}</rich:column>
+									</rich:columnGroup>
+								</f:facet>
+								<rich:column>
+									<h:outputText value="#{item.prestamo.prestamoPk.numpreafi}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.prestamo.numafi}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.nombres}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.ocFecGeneracion}">
+										<f:convertDateTime pattern="dd/MM/yy" />
+									</h:outputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.prestamo.mntpre}">
+										<f:convertNumber pattern="$###,###.##" />
+									</h:outputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.prestamo.valsegsal}">
+										<f:convertNumber pattern="$###,###.##" />
+									</h:outputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.ocValor}">
+										<f:convertNumber pattern="$###,###.##" />
+									</h:outputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.prestamo.plzmes}">
+										<f:convertNumber pattern="##m" />
+									</h:outputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText
+										value="#{item.detalleCatalogo.id.dcCodigo=='APR'?'Aprobada':'Rechazada'}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.ocCodOrdCompra}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.numFactura}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{item.fecConfirmacion}">
+										<f:convertDateTime pattern="dd/MM/yy" />
+									</h:outputText>
+								</rich:column>
+							</rich:dataTable>
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:panelGrid>
+				<div style="font-family: Arial, Helvetica, sans-serif; font-size:11px;">
+					<h:panelGrid columns="6" 
+						columnClasses="etiqueta2,info,etiqueta2,info,etiqueta2,info"
+						width="100%">
+						<b>#{etiquetas['total.prestamos']}:</b><h:outputText
+							value="#{consulta.totalPrestamos}">
+							<f:convertNumber pattern="$###,###.##" />
+						</h:outputText>
+						<b>#{etiquetas['total.seguros']}:</b><h:outputText
+							value="#{consulta.totalSeguros}">
+							<f:convertNumber pattern="$###,###.##" />
+						</h:outputText>
+						<b>#{etiquetas['total.ordenes']}:</b><h:outputText
+							value="#{consulta.totalOrdenes}">
+							<f:convertNumber pattern="$###,###.##" />
+						</h:outputText>
+					</h:panelGrid>
+					</div>
+					<br />
+					<div align="right"><input type="button" class="boton"
+						value="#{botones['imprimir']}" onclick="window.print();" />
+					</div>
+			</a4j:outputPanel>
+		</f:subview></div>
+	</h:form>
+</ui:composition>

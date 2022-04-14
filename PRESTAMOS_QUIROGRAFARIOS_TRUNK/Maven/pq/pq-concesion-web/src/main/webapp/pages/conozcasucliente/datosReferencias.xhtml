@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+			<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/conozcasucliente.css" />
+			<script type="text/javascript" src="${facesContext.externalContext.request.contextPath}/js/validador.js" />
+			<script type="text/javascript"> 
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar 
+			</script>
+
+			<rich:panel>
+				<rich:panel id="panelRefBancarias" header="#{labels.conozcacliente_lbl_referencias_titulo_tab}">
+					<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+						<f:facet name="header">
+							<h:outputText value="Entered Data Status:"></h:outputText>
+						</f:facet>
+						<f:facet name="infoMarker">
+							
+						</f:facet>
+						<f:facet name="errorMarker">
+							
+						</f:facet>
+					</rich:messages>
+					<h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_bancarias_institucion}:" />
+						<h:selectOneMenu id="inputTextReferenciaBancaria" style="width: 100%;" value="#{conozcaCliente.institucionBanco}">
+							<f:selectItems value="#{conozcaCliente.listaIfis}" />
+						</h:selectOneMenu>
+
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_bancarias_tipo_cuenta}:" />
+						<h:selectOneMenu id="inputTextReferenciaBancariaTipoCuenta" styleClass="ui-selectonemenu" value="#{conozcaCliente.tipoCuentaSeleccionada}"
+							style="width: 100%;">
+							<f:selectItems value="#{conozcaCliente.listaTipoCuentaItems}" />
+							<a4j:support event=" " process="@this" global="false" partialSubmit="true" />
+						</h:selectOneMenu>
+
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_bancarias_numero_cuenta}:" />
+						<h:inputText styleClass="input-text" value="#{conozcaCliente.numeroCuenta}" id="inputTextReferenciaBancariaNumeroCuenta" size="20"
+							maxlength="30" onkeypress="return validarNumeros(event)" style="width: 96%;">
+						</h:inputText>
+					</h:panelGrid>
+					<h:commandButton value="#{conozcaCliente.etiquetaAgregarModBancaria}" action="#{conozcaCliente.agregarReferenciaBancaria}" process="panelRefBancarias"
+						update="panelRefBancarias messageRef" styleClass="botonAmarillo" id="btnAgregarBancaria"></h:commandButton>
+					<br />
+					<h:panelGrid>
+						<rich:datascroller for="idTableRefB" maxPages="2" />
+						<rich:dataTable id="idTableRefB" var="tableRefB" value="#{conozcaCliente.listaReterenciaBancaria}" rows="2" width="550">
+							<f:facet name="header">
+								<rich:columnGroup>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_bancaria_banco}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_bancaria_tipo}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_bancaria_cuenta}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_bnt_modificar}" />
+									</h:column>
+								</rich:columnGroup>
+							</f:facet>
+
+							<h:column>
+								<h:outputText value="#{tableRefB.nombre}" />
+							</h:column>
+							<h:column>
+								<h:outputText value="#{tableRefB.tipoCuentaNombre}" />
+							</h:column>
+							<h:column>
+								<h:outputText value="#{tableRefB.numeroCuenta}" />
+							</h:column>
+							<h:column>
+								<a4j:commandButton value="#{labels.conozcacliente_bnt_modificar}" action="#{conozcaCliente.obtenerReferenciaBancaria}" process="@this"
+									reRender="inputTextReferenciaBancaria, inputTextReferenciaBancariaTipoCuenta, inputTextReferenciaBancariaNumeroCuenta, btnAgregarBancaria">
+									<f:setPropertyActionListener target="#{conozcaCliente.referenciaBancariaSeleccionada}" value="#{tableRefB}" />
+								</a4j:commandButton>
+							</h:column>
+						</rich:dataTable>
+						<rich:datascroller for="idTableRefB" maxPages="2" />
+					</h:panelGrid>
+				</rich:panel>
+				<br />
+				<rich:panel id="panelRefPersonales" header="#{labels.conozcacliente_lbl_referencias_personales_titulo}">
+					<h:panelGrid columns="2" cellpadding="2" cellspacing="2" style="width: 100%;">
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_personales_relacion}:" />
+						<h:selectOneMenu id="idRefPersonalesRelacion" styleClass="ui-selectonemenu" value="#{conozcaCliente.relacionSeleccionada}" style="width: 93%;">
+							<f:selectItems value="#{conozcaCliente.listaTipoRelacionPersonalItems}" />
+							<a4j:support event=" " process="@this" global="false" partialSubmit="true" />
+						</h:selectOneMenu>
+
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_personales_nombres_apellidos}:" />
+						<h:inputText styleClass="input-text" value="#{conozcaCliente.nombresApellidos}" id="inputTextRefNombresApellidos" size="20" maxlength="100"
+							onkeypress="return validarNombres(event)" style="width: 89%;">
+						</h:inputText>
+
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_personales_telefono_domicilio}:" />
+						<h:panelGrid columns="2">
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.telefonoRef}" id="inputTextRefTelefono" size="15" maxlength="9"
+								onkeypress="return validarNumeros(event)" style="width: 90%;">
+								<f:validator validatorId="TelefonoValidator" />
+							</h:inputText>
+							<h:outputLabel id="outputTextTelefonoRef" styleClass="output-text-mensajes" style="width: 100%;"
+								value=" #{labels.conozcacliente_lbl_direccion_domicilio_telefono_mensaje}" />
+						</h:panelGrid>
+						
+						<h:outputText value="#{labels.conozcacliente_lbl_referencias_personales_celular}:" />
+						<h:inputText styleClass="input-text" value="#{conozcaCliente.otroNumeroContactoRef}" id="inputTextCelularContacto" size="15" maxlength="10"
+							onkeypress="return validarNumeros(event)" style="width: 40%;">
+							<f:validator validatorId="celularValidator" />
+						</h:inputText>
+
+					</h:panelGrid>
+					<h:commandButton value="#{conozcaCliente.etiquetaAgregarModPersonal}" action="#{conozcaCliente.agregarReferenciaPersonal}" process="panelRefPersonales"
+						update="panelRefPersonales messageRef" styleClass="botonAmarillo" id="btnAgregarPersonal"></h:commandButton>
+					<br />
+					<h:panelGrid>
+						<rich:datascroller for="idTableRefP" maxPages="2" />
+						<rich:dataTable id="idTableRefP" var="tableRefP" value="#{conozcaCliente.listaReterenciaPersonal}" rows="2" width="550">
+							<f:facet name="header">
+								<rich:columnGroup>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_personal_relacion}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_personal_nombre}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_personal_telefono}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_ref_personal_otro_numero_contacto}" />
+									</h:column>
+									<h:column>
+										<h:outputText styleClass="headerText" value="#{labels.conozcacliente_bnt_modificar}" />
+									</h:column>
+								</rich:columnGroup>
+							</f:facet>
+
+							<h:column>
+								<h:outputText value="#{tableRefP.tipoRelacionNombre}" />
+							</h:column>
+							<h:column>
+								<h:outputText value="#{tableRefP.nombre}" />
+							</h:column>
+							<h:column>
+								<h:outputText value="#{tableRefP.telefono}" />
+							</h:column>
+							<h:column>
+								<h:outputText value="#{tableRefP.celular}" />
+							</h:column>
+							<h:column>
+								<a4j:commandButton value="#{labels.conozcacliente_bnt_modificar}" action="#{conozcaCliente.obtenerReferenciaPersonal}" process="@this"
+									reRender="idRefPersonalesRelacion, inputTextRefNombresApellidos, inputTextRefTelefono, inputTextCelularContacto, btnAgregarPersonal">
+									<f:setPropertyActionListener target="#{conozcaCliente.referenciaPersonalSeleccionada}" value="#{tableRefP}" />
+								</a4j:commandButton>
+							</h:column>
+						</rich:dataTable>
+						<rich:datascroller for="idTableRefP" maxPages="2" />
+					</h:panelGrid>
+				</rich:panel>
+
+				<h:panelGrid columns="3">
+					<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="previous" styleClass="botonbarra" />
+					<rich:spacer width="400px"></rich:spacer>
+					<a4j:commandButton value="Siguiente &gt;&gt;" style="float:right" action="#{conozcaCliente.validaReferencias}" styleClass="boton"
+						onclick="window.scrollTo(0, 0);" />
+				</h:panelGrid>
+			</rich:panel>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+		<a4j:form id="consultarDia">
+			<rich:messages errorLabelClass="rf-msgs-err"
+				infoLabelClass="rf-msgs-inf" id="msgs" showDetail="false">
+				<f:facet name="errorMarker">
+					<h:graphicImage value="/img/common/error.gif"
+						style=" height : 16px;" />
+				</f:facet>
+				<f:facet name="infoMarker">
+					<h:graphicImage value="/img/common/information.jpg"
+						style=" height : 16px;" />
+				</f:facet>
+			</rich:messages>
+			<a4j:outputPanel id="panelGeneral">
+				<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+					cellpadding="0" style="width:100%;">
+					<rich:panel id="panelBusqueda">
+						<f:facet name="header">#{titulos['busqueda']}</f:facet>
+						<h:panelGrid columns="7">
+
+							<b>#{etiquetas['periodo']} #{etiquetas['fecha.desde']}</b>
+							<a4j:outputPanel id="pnlFechaDesde">
+                                <rich:calendar value="#{desbloqueoDM.fechaDesde}" popup="true"
+                                    datePattern="dd-MM-yyyy" immediate="true"
+                                    showApplyButton="false" enableManualInput="false"
+                                    showFooter="false" cellWidth="15px" cellHeight="22px">
+                                    <a4j:support event="onchanged" action="#{desbloqueoBean.validarFechaDesde}" reRender="pnlFechaHasta"/>
+                                </rich:calendar>
+                            </a4j:outputPanel>
+							 <b>#{etiquetas['fecha.hasta']}</b>
+                            <a4j:outputPanel id="pnlFechaHasta">
+                                <rich:calendar value="#{desbloqueoDM.fechaHasta}" popup="true"
+                                    datePattern="dd-MM-yyyy" immediate="true"
+                                    showApplyButton="false" enableManualInput="false"
+                                    showFooter="false" cellWidth="15px" cellHeight="22px">
+                                    <a4j:support event="onchanged" action="#{desbloqueoBean.validarFechaHasta}" reRender="pnlFechaDesde"/>
+                                </rich:calendar>
+                            </a4j:outputPanel>
+
+
+							<a4j:commandButton reRender="resultadosolicitud"
+								action="#{desbloqueoBean.consultarPrestamosEstadoBloqueo}"
+								value="#{botones['consultar']}" styleClass="boton"
+								status="cargandoconsulta" />
+							<a4j:outputPanel id="botonPDF">
+								<h:commandButton action="#{desbloqueoBean.exportarEstadoERC}"
+									styleClass="boton" value="#{botones['exportar.excel']}" />
+							</a4j:outputPanel>
+							<a4j:status id="cargandoconsulta">
+								<f:facet name="start">
+									<rich:panel style="height:20px; border-width:0px;">
+										<h:graphicImage value="/img/conexion.gif" />
+										<h:outputText value="#{mensajes.espere}"></h:outputText>
+									</rich:panel>
+								</f:facet>
+							</a4j:status>
+
+							<b>#{etiquetas['usuario_cedula']}:</b>
+							<h:inputText value="#{desbloqueoDM.cedula}" />
+							<b>#{etiquetas['estado']}</b>
+							<h:selectOneMenu value="#{desbloqueoDM.estadoPrestamo}"
+								style="width:100%;">
+								<f:selectItem itemLabel="Todos" itemValue="" />
+								<f:selectItem itemLabel="Error Registro Civil" itemValue="ERC" />
+								<f:selectItem itemLabel="En Cambio Cuenta Bancaria" itemValue="ECC" />
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+					</rich:panel>
+				</h:panelGrid>
+				<a4j:outputPanel id="resultadosolicitud">
+					<h:panelGroup layout="block"
+						rendered="#{not empty desbloqueoDM.listaPrestamo}">
+						<rich:dataTable var="item" id="lstprestamos"
+							binding="#{desbloqueoDM.tblSolicitud}"
+							value="#{desbloqueoDM.listaPrestamo}" width="100%"
+							rendered="#{not empty desbloqueoDM.listaPrestamo}" rows="10">
+							<f:facet name="header">
+								<rich:columnGroup id="grupoColumna">
+									<rich:column colspan="2">#{etiquetas['datoscredito']}</rich:column>
+									<rich:column colspan="7">#{etiquetas['datospatrono']}</rich:column>
+									<rich:column colspan="7">#{etiquetas['datosasegurado']}</rich:column>
+									<rich:column colspan="9">#{etiquetas['institucionfinanciera']}</rich:column>
+									<rich:column colspan="1">#{etiquetas['acciones']}</rich:column>
+								</rich:columnGroup>
+							</f:facet>
+							<rich:column id="columna0" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.estado']}" />
+								</f:facet>
+								<h:outputText id="contenedor0" value="#{item.estadoPrestamo.codestpre}" />
+							</rich:column>
+							<rich:column id="columna10" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.monto']}" />
+								</f:facet>
+								<h:outputText id="contenedor10" value="#{item.mntpre}" />
+							</rich:column>
+							<rich:column id="columna1" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.ruc']}" />
+								</f:facet>
+								<h:outputText id="contenedor1" value="#{item.rucemp}" />
+							</rich:column>
+							<rich:column id="columna2" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.nombrepatrono']}" />
+								</f:facet>
+								<h:outputText id="contenedor2"
+									value="#{desbloqueoBean.sucursalfila.apenomrepleg}" />
+							</rich:column>
+							<rich:column id="columna3" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.nombreempresa']}" />
+								</f:facet>
+								<h:outputText id="contenedor3" value="#{item.kspcotsri.razsoc}" />
+							</rich:column>
+							<rich:column id="columna4" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.direccionempresa']}" />
+								</f:facet>
+								<h:outputText id="contenedor4"
+									value="#{desbloqueoDM.sucursal.dirsuc}" />
+							</rich:column>
+							<rich:column id="columna5" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.provincia']}" />
+								</f:facet>
+								<h:outputText id="contenedor5"
+									rendered="#{desbloqueoBean.divipoliticaPatrono != null and desbloqueoBean.divipoliticaPatrono.divisionPolitica != null and desbloqueoBean.divipoliticaPatrono.divisionPolitica.divisionPolitica != null}"
+									value="#{desbloqueoBean.divipoliticaPatrono.divisionPolitica.divisionPolitica.nomdivpol}" />
+							</rich:column>
+							<rich:column id="columna6" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.ciudad']}" />
+								</f:facet>
+								<h:outputText id="contenedor6"
+									rendered="#{desbloqueoDM.divisionPolitica != null}"
+									value="#{desbloqueoDM.divisionPolitica.divisionPolitica.nomdivpol}" />
+							</rich:column>
+							<rich:column id="columna7" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.fono']}" />
+								</f:facet>
+								<h:outputText id="contenedor7"
+									value="#{desbloqueoDM.sucursal.telsuc}" />
+							</rich:column>
+							<rich:column id="columna8" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.numcedula']}" />
+								</f:facet>
+								<h:outputText id="contenedor8" value="#{item.numafi}" />
+							</rich:column>
+							<rich:column id="columna9" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.nombreapellido']}" />
+								</f:facet>
+								<h:outputText id="contenedor9"
+									value="#{item.afiliado.apenomafi}" />
+							</rich:column>
+							<rich:column id="columna11" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.dirdomicilio']}" />
+								</f:facet>
+								<h:outputText id="contenedor11" value="#{item.afiliado.dirafi}" />
+							</rich:column>
+							<rich:column id="columna12" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.provincia']}" />
+								</f:facet>
+								<h:outputText id="contenedor12"
+									value="#{item.afiliado.divisionPolitica.divisionPolitica.divisionPolitica.nomdivpol}" />
+							</rich:column>
+							<rich:column id="columna13" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.ciudad']}" />
+								</f:facet>
+								<h:outputText id="contenedor13"
+									value="#{item.afiliado.divisionPolitica.divisionPolitica.nomdivpol}" />
+							</rich:column>
+							<rich:column id="columna14" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.fono']}" />
+								</f:facet>
+								<h:outputText id="contenedor14" value="#{item.afiliado.telafi}" />
+							</rich:column>
+							<rich:column id="columna14_1" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.celular']}" />
+								</f:facet>
+								<h:outputText id="contenedor14_1" value="#{item.afiliado.celafi}" />
+							</rich:column>
+							<rich:column id="columna15" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.institucionfinanciera']}" />
+								</f:facet>
+								<h:outputText id="contenedor15"
+									value="#{item.institucionfinanciera.nomemp}" />
+							</rich:column>
+							<rich:column id="columna16" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.cta']}" />
+								</f:facet>
+								<h:outputText id="contenedor16" value="#{item.numctaban}" />
+							</rich:column>
+							<rich:column id="columna16_1" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.tipocta']}" />
+								</f:facet>
+								<h:outputText id="contenedor16_1" value="#{item.tipoCuenta}" />
+							</rich:column>
+							<rich:column id="columna17" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.fecharegiess']}" />
+								</f:facet>
+								<h:outputText id="contenedor17"
+									value="#{desbloqueoBean.fechaBancaria}">
+									<f:convertDateTime pattern="yyyy-MM-dd" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="columna18" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{etiquetas['pda.registronuevo_actualizar']}" />
+								</f:facet>
+								<h:outputText id="contenedor18"
+									value="#{desbloqueoBean.primeraVez}">
+									<f:convertDateTime pattern="yyyy-MM-dd" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="columna20" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{etiquetas['pda.institucionfinanciera.anterior']}" />
+								</f:facet>
+								<h:outputText id="contenedor20"
+									value="#{item.cuentaBancariaAnterior.entidadFinancieraAnterior}" />
+							</rich:column>
+							<rich:column id="columna21" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.cta.anterior']}" />
+								</f:facet>
+								<h:outputText id="contenedor21"
+									value="#{item.cuentaBancariaAnterior.numeroCuentaAnterior}" />
+							</rich:column>
+							<rich:column id="columna22" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.tipocta.anterior']}" />
+								</f:facet>
+								<h:outputText id="contenedor22"
+									value="#{item.cuentaBancariaAnterior.tipoCuentaAnterior}" />
+							</rich:column>
+							<rich:column id="columna23" style="#{item.estiloCSS}">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['pda.fecharegiess.anterior']}" />
+								</f:facet>
+								<h:outputText id="contenedor23"
+									value="#{item.cuentaBancariaAnterior.fechaRegistroAnterior}">
+									<f:convertDateTime pattern="yyyy-MM-dd" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="columna19" style="text-align:center">
+								<f:facet name="header">
+									<h:outputText value="#{etiquetas['desbloquear']}" />
+								</f:facet>
+								<a4j:commandButton value="#{botones['desbloquear']}"
+									rendered="#{(item.estadoPrestamo.codestpre eq 'ERC' or item.estadoPrestamo.codestpre eq 'ECC' or item.estadoPrestamo.codestpre eq 'VIG')}"
+									action="#{desbloqueoBean.desBloquearPrestamo}"
+									styleClass="boton"
+									onclick="if(!confirm('#{etiquetas['desbloquear.confirmar']}')){return false}else{this.disabled = true };"
+									reRender="resultadosolicitud" status="cargandoconsulta">
+								</a4j:commandButton>
+							</rich:column>
+							
+							<f:facet name="footer">
+				                <rich:datascroller id="lstprestamosScroller" for="lstprestamos"
+				                	ajaxSingle="true" limitToList="true"/>
+				            </f:facet>							
+							
+						</rich:dataTable>
+					</h:panelGroup>
+				</a4j:outputPanel>
+				<a4j:jsFunction id="inicializacion" name="initPantalla"
+					action="#{desbloqueoBean.init}" reRender="panelGeneral" />
+			</a4j:outputPanel>
+		</a4j:form>
+		<script>
+		initPantalla();
+		</script>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['titulo.productos.seleccion']}</h1>
+		<!-- <p>#{labels['roles.forma.aplicacion']}:</p> -->
+
+		<a4j:status id="cargandoProductos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible" id="pnlInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+			<a4j:commandButton action="#{principal.logout}"
+				value="#{labels['button.salir']}" styleClass="botonbarra"
+				immediate="true">
+			</a4j:commandButton>
+		</a4j:status>
+
+		<!-- <a4j:keepAlive beanName="roles"></a4j:keepAlive> -->
+
+		<h:form id="formProductosSel" >
+			<a4j:jsFunction action="#{productos.load}" name="load"
+				status="cargandoProductos" reRender="pnlProductos"></a4j:jsFunction>
+
+			<a4j:outputPanel id="pnlProductos">
+				<rich:panel style="width:100%;">
+					<rich:panel id="rchPnlErrorMensajes" styleClass="errorPanel"
+						rendered="#{!empty productos.errorMsg and productos.tipoSolicitud == 2}">
+						#{productos.errorMsg}
+					</rich:panel>
+
+					<div class="row">
+						<div class="productitem">
+							<img
+								src="${facesContext.externalContext.request.contextPath}/files/images/content/normal.png"
+								alt="" width="52" height="52" class="floatleft" />
+							<p>
+								<strong> <h:commandLink
+										action="#{productos.seleccionarProductoNovacion}"
+										 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+										disabled="#{!productos.habilitarNormal}" value="Normal">
+										<f:setPropertyActionListener value="NOR"
+											target="#{productos.codigoTipoProducto}" />
+									</h:commandLink>
+								</strong>
+							</p>
+						</div>
+
+						<div class="productitem">
+							<img
+								src="${facesContext.externalContext.request.contextPath}/files/images/content/product.png"
+								alt="" width="52" height="52" class="floatleft" />
+							<p>
+								<strong> <a4j:commandLink action="#{productos.seleccionarOtrosProductos}"
+										value="Otros Productos"
+										 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');"  />
+								</strong>
+							</p>
+						</div>
+
+					</div>
+				</rich:panel>
+				
+				<rich:panel styleClass="errorPanel" rendered="#{productos.mostrarMsgInfo}">
+					<h:outputText value="#{messages['mensaje.no.zonas.afectadas']}"
+						 id="mensajeInfo" />
+				</rich:panel>
+			</a4j:outputPanel>
+			
+		</h:form>
+               <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+
+		<script type="text/javascript">
+		   load();
+	    </script>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+	
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.precalificacion']}</div>
+		<br />
+		
+		
+		<rich:panel id="pnlDatosGenerales" styleClass="panel" headerClass="pheader" bodyClass="pbody">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			<!-- mensajes de error -->
+		<a4j:outputPanel ajaxRendered="true">
+			<!--<rich:panel  styleClass="errorPanel">-->
+				<h:messages styleClass="errorPanel" style="padding:10px 0px 15px 55px; margin: 0px;"/> 
+				<!--#{messages['garantias.valor']}-->
+			<!--</rich:panel>-->
+			<br/>
+		</a4j:outputPanel>
+			<h:panelGrid columns="4" styleClass="panelInvisible">
+				<h:outputLabel for="txtCedula" value="#{labels.cedula}:" />
+				<h:inputText id="txtCedula"
+					value="#{datos.solicitante.datosPersonales.cedula}" 
+					readonly="true"/>
+
+				<h:outputLabel for="txtApellidos"
+					value="#{labels.nombresApellidos}:" />
+				<h:inputText id="txtApellidos"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}" 
+					readonly="true" size="70"/>
+			</h:panelGrid>
+			
+		</rich:panel>
+		<br/>
+		<h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['titulo.lista.creditos']}
+				</f:facet>
+		
+				<a4j:outputPanel id="pnlListaCreditos">
+					<rich:dataTable var="item"
+						value="#{consultaCredito.creditosVigentes}"
+						styleClass="dt_panel" headerClass="dt_header" rowClasses="prow1,prow2">
+						<rich:column>
+							<f:facet name="header">Fecha</f:facet>
+							<h:outputText value="#{item.fecpreafi}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">No.</f:facet>
+							<h:outputText value="#{item.prestamoPk.numpreafi}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Monto</f:facet>
+							<h:outputText value="#{item.valsalcap}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Dividendo</f:facet>
+							<h:outputText value="#{item.valtotdiv}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Meses</f:facet>
+							<h:outputText value="#{item.plzmes}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Interes</f:facet>
+							<h:outputText value="#{item.tasint}" />%
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Detalle</f:facet>
+							<h:outputText value="#{item.valtotdiv}" />
+						</rich:column>
+						
+						
+					</rich:dataTable>
+				</a4j:outputPanel>
+			</rich:panel>
+			<br />
+		</h:form>
+		<script type="text/javascript">
+			cargarRequisitos();
+		</script>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+			#{labels['titulo.precalculo.liquidacion']}</div>
+		<br />
+
+		<h:form id="formCalqLiqSalde">
+
+			<a4j:outputPanel id="pnlCalcLiqsal" ajaxRendered="true">
+
+				<a4j:outputPanel rendered="#{!creditoAccion.esMontoPersonalizado}">
+				
+					<rich:panel styleClass="panel" headerClass="pheader"
+						bodyClass="pbody" rendered="${datos.solicitante!=null}">
+						<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+						<h:panelGrid columns="2" styleClass="panelInvisible">
+							<h:outputLabel value="#{labels.cedula}:" />
+							<h:outputText style="font-weight:bold"
+								value="#{datos.solicitante.datosPersonales.cedula}" />
+
+
+							<h:outputLabel value="#{labels.nombresApellidos}:" />
+							<h:outputLabel style="font-weight:bold"
+								value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+
+							<h:outputLabel value="#{labels['credito.tipoAsegurado']}:" />
+							<h:outputLabel style="font-weight:bold"
+								value="#{creditoAccion.prestamoSeleccionado.clasePrestamo.descripcion}" />
+							<h:outputLabel value="#{labels['credito.nut']}:" />
+							<h:outputLabel style="font-weight:bold"
+								value="#{creditoAccion.prestamoSeleccionado.nut}" />
+
+							<h:outputLabel value="#{labels['credito.fecha.inicio']}:" />
+							<h:outputText style="font-weight:bold"
+								value="#{creditoAccion.calculoLiquidacion.fechaInicial}">
+								<f:convertDateTime pattern="dd-MMM-yyyy" />
+							</h:outputText>
+
+							<h:outputLabel value="#{labels['credito.fecha.fin']}:" />
+							<h:outputText style="font-weight:bold"
+								value="#{creditoAccion.calculoLiquidacion.fechaFinal}">
+								<f:convertDateTime pattern="dd-MMM-yyyy" />
+							</h:outputText>
+
+							<h:outputLabel value="#{labels['credito.monto.abrev']}:" />
+							<h:outputText style="font-weight:bold"
+								value="#{creditoAccion.calculoLiquidacion.montoPrestamo}">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText>
+
+						</h:panelGrid>
+
+					</rich:panel>
+
+					<br />
+					<div align="center">
+
+						<rich:panel styleClass="panel" headerClass="pheader"
+							bodyClass="pbody" style="width:500px">
+							<f:facet name="header">
+					#{labels['titulo.subtotal.liquidacion']}
+				</f:facet>
+							<table class="recuadroValores">
+								<tr>
+									<th>#{labels['liquidacion.valor.dividendos']}:</th>
+									<td><h:outputText
+											value="#{creditoAccion.calculoLiquidacion.capitalTotal}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+												type="currency" />
+										</h:outputText></td>
+								</tr>
+								<tr>
+									<th>#{labels['liquidacion.valor.interes.mora']}:</th>
+									<td><h:outputText
+											value="#{creditoAccion.calculoLiquidacion.interesPorMora}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+												type="currency" />
+										</h:outputText></td>
+								</tr>
+								<tr>
+									<th>#{labels['liquidacion.total.pagar']}:</th>
+									<td><h:outputText
+											value="#{creditoAccion.calculoLiquidacion.valorPorCancelar-creditoAccion.calculoLiquidacion.seguroSaldos}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+												type="currency" />
+										</h:outputText></td>
+								</tr>
+							</table>
+						</rich:panel>
+						<br />
+						<h:panelGroup id="botonesSimulacion"
+							rendered="#{!creditoAccion.esMontoPersonalizado}">
+							<h:panelGrid columns="3" styleClass="panelInvisible">
+
+								<a4j:commandButton immediate="true"
+									action="#{creditoAccion.personalizarPago}"
+									reRender="tableRenderPanel" onclick="this.disabled=true"
+									styleClass="botonbarra" value="Personalizar Valor" />
+
+								<a4j:commandButton action="#{creditoAccion.generarSalDeb}"
+									id="cmdBtnConfirmaGenComInd" onclick="this.disabled=true"
+									oncomplete="this.disabled=true" styleClass="botonAmarillo"
+									value="#{labels['button.confirmar.generacion']}"
+									reRender="formCalqLiqSalde,mdlPnlValPersonalizado"
+									rendered="#{!creditoAccion.desplegarMensajeComprobanteImpago}"
+									disabled="#{!creditoAccion.genCompIndivSaldebActivo}" />
+
+
+								<h:commandButton action="consultaCreditos"
+									styleClass="botonbarra"
+									value="#{labels['button.consulta.creditos']}" />
+
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</div>
+
+				</a4j:outputPanel>
+				<rich:panel id="mdlPnlValPersonalizado" width="500" height="120"
+					resizeable="false" moveable="false" styleClass="panel"
+					headerClass="pheader" bodyClass="pbody"
+					rendered="#{creditoAccion.esMontoPersonalizado}">
+					<f:facet name="header">
+						<h:outputText value="Personalice Monto Simulación de Pago:" />
+					</f:facet>
+
+					<h:panelGrid columns="4" styleClass="panelInvisible">
+						<h:outputLabel value="Ingrese el monto:" />
+						<h:inputText id="valPersonalizado"
+							value="#{creditoAccion.valorPersonalizado}"
+							styleClass="calc-write"
+							maxlength="7"
+							onkeypress="return aceptarNumeros(event, this, true)" />
+						<a4j:commandButton reRender="lstMontoPersonalizado"
+							action="#{creditoAccion.calcularMontoPersonalizadoSaldeb}"
+							styleClass="botonAmarillo" value="Calcular" />
+						<a4j:commandButton action="#{creditoAccion.personalizarPago}"
+							onclick="this.disabled=true" styleClass="botonbarra"
+							value="Regresar" />
+					</h:panelGrid>
+
+
+					<br />
+					<h:panelGroup id="resultadoSimulacion"
+						rendered="#{creditoAccion.mostrarResultSimulacion}">
+						<a4j:outputPanel>
+							<rich:dataTable>
+								<rich:column style="text-align:center;">
+									<h:outputText value="Prueba" />
+								</rich:column>
+
+							</rich:dataTable>
+
+
+							<table class="rich-table">
+								<thead class="rich-table-thead">
+									<tr class="rich-table-header">
+										<th class="rich-table-headercell"></th>
+										<th class="rich-table-headercell"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="rich-table-row">
+										<td class="rich-table-cell"><h:outputText
+												value="Valor Total Exigible a la fecha de consulta"
+												style="font-weight: bold;" /> <br /> <h:outputText
+												value="(incluye el dividendo del mes actual):" /></td>
+										<td class="rich-table-cell"><h:outputText
+												style="float:right"
+												value="#{creditoAccion.montoTotalDividendos}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													type="currency" />
+											</h:outputText></td>
+
+									</tr>
+									<tr class="rich-table-row">
+										<td class="rich-table-cell"><h:outputText
+												value="Monto Simulación de Pago:" style="font-weight: bold;" /></td>
+										<td class="rich-table-cell"><h:outputText
+												style="float:right"
+												value="#{creditoAccion.valorPersonalizado}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													type="currency" pattern="-$#0.00" />
+											</h:outputText></td>
+
+									</tr>
+									<tr class="rich-table-row" bgcolor="#bed6f8">
+
+										<td class="rich-table-cell"><h:outputText
+												value="Saldo Pendiente de Pago:" style="font-weight: bold;" /></td>
+										<td class="rich-table-cell"><h:outputText
+												style="float:right;"
+												value="#{creditoAccion.montoTotalDividendos-creditoAccion.valorPersonalizado}">
+												<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+													type="currency" />
+											</h:outputText></td>
+
+									</tr>
+								</tbody>
+							</table>
+
+						</a4j:outputPanel>
+
+						<rich:panel styleClass="messagePanel"
+							style="margin: 0px !important;"
+							rendered="#{(creditoAccion.montoTotalDividendos-creditoAccion.valorPersonalizado)>0}">
+							<h:outputText value="#{labels['msg.simulacion.pago.pendientes']}"
+								escape="false" />
+						</rich:panel>
+						<br />
+						<h:panelGroup id="lstMontoPersonalizado">
+							<!-- LISTA DIVIDENDOS RESULTADO SIMULACION -->
+							<ui:include src="/pages/consulta/listaDividendosSac.xhtml">
+								<ui:param name="bean" value="#{creditoAccion}" />
+								<ui:param name="metodoSumaCheck" value="sumarPagosSeleccionados" />
+								<ui:param name="muestraCheck" value="false" />
+								<ui:param name="listaExigibles"
+									value="#{creditoAccion.lstDivPersonalizadoSac}" />
+								<ui:param name="sumatoriaDividendos"
+									value="#{creditoAccion.valorPersonalizado}" />
+								<ui:param name="idFormListDividendo"
+									value="idFormDividendosComp2" />
+								<ui:param name="idListaDividendos"
+									value="idListaDividendosComp2" />
+								<ui:param name="idValorTotalPago" value="valorTotalPagoComp2" />
+								<ui:param name="renderIds"
+									value="idListaDividendosComp2,valorTotalPagoComp2,panelError,panelTextoError" />
+							</ui:include>
+
+						</h:panelGroup>
+						<h:panelGrid columns="1" styleClass="panelInvisible">
+
+							<a4j:commandButton immediate="true"
+								action="#{creditoAccion.generarCompIndValPersonalizadoSaldeb}"
+								reRender="tableRenderPanel" onclick="this.disabled=true"
+								styleClass="botonAmarillo" value="Generar e Imprimir" />
+
+
+
+						</h:panelGrid>
+					</h:panelGroup>
+				</rich:panel>
+
+				<rich:panel id="panelError" styleClass="errorPanel"
+					rendered="#{creditoAccion.msjErrorPagInd!=null}">
+					<h:outputText id="panelTextoError"
+						value="#{creditoAccion.msjErrorPagInd}" />
+				</rich:panel>
+				<br />
+				<a4j:status>
+					<f:facet name="start">
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</f:facet>
+				</a4j:status>
+
+			</a4j:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+		<rich:panel id="rchPnlError" styleClass="errorPanel">
+			<br />
+			<h:outputFormat value="#{messages['error.datos.solicitante']}">
+				<f:param value="${facesContext.externalContext.request.remoteUser}" />
+			</h:outputFormat>
+			<br />
+			<br />
+			<div id="boton" align="center"><h:commandButton action="#{principal.logout}"
+						value="#{labels['button.salir']}" styleClass="botonbarra"
+						immediate="true"></h:commandButton></div>
+		</rich:panel>
+	</ui:define>
+</ui:composition>

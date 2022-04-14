@@ -1,0 +1,38 @@
+<jboss-web>
+	<context-root>pq-concesion-web</context-root>
+	<security-domain flushOnSessionInvalidation="true">java:/jaas/iessSecurity</security-domain>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/MenuServicio</ejb-ref-name>
+		<local-jndi-name>MenuServicioImpl/local</local-jndi-name>
+	</ejb-local-ref>	
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/RolesPorUsuarioServicio</ejb-ref-name>
+		<local-jndi-name>
+			RolesPorUsuarioServicioImpl/local
+		</local-jndi-name>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/GenerarEmailDesbloqueoServicio</ejb-ref-name>
+		<local-jndi-name>
+			GenerarEmailDesbloqueoServicioImpl/local
+		</local-jndi-name>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/DesbloqueoCuentaOnlineServicio</ejb-ref-name>
+		<local-jndi-name>
+			DesbloqueoCuentaOnlineServicioImpl/local
+		</local-jndi-name>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/InstitucionFinancieraServicio</ejb-ref-name>
+		<local-jndi-name>
+			InstitucionFinancieraServicioImpl/local
+		</local-jndi-name>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/ProveedorServicio</ejb-ref-name>
+		<local-jndi-name>
+			ProveedorServicioImpl/local
+		</local-jndi-name>
+	</ejb-local-ref>
+</jboss-web>

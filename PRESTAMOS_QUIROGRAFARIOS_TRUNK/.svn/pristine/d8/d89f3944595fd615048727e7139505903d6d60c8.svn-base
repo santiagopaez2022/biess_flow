@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+<title><ui:insert name="titulo">#{titulos['sistema.titulo']}</ui:insert></title>
+<meta name="keywords"
+	content="biess, banco, banco del afiliado, banco del iess" />
+<meta name="description"
+	content="Banco del Instituto Ecuatoriano de Seguridad Social" />
+<ui:insert name="links">
+<link href="${facesContext.externalContext.request.contextPath}/css/biess.css" rel="stylesheet" type="text/css"	media="screen" />
+<link href="${facesContext.externalContext.request.contextPath}/css/transicion-pq.css" rel="stylesheet" type="text/css" media="screen" />
+</ui:insert>
+</head>
+<body>
+<f:view>
+	<div id="header">
+	<div id="navigation">
+	<ui:insert name="opciones">
+	<h:form>
+		<ul>
+			<li><a href="#{facesContext.externalContext.request.contextPath}/pages/index.jsp">Salir</a></li>
+			<li><a href="mailto:ayudaprestamos@biess.fin.ec">#{labels['contactenos']}</a></li>
+		</ul>
+	</h:form>
+	</ui:insert>
+	</div>
+	<div id="logo"></div>
+	<div id="legend"><ui:insert name="usuario">${facesContext.externalContext.request.remoteUser} - #{funcionario.nombreCompleto}</ui:insert></div>
+	</div>
+	<div id="content">
+	<div id="page"><ui:insert name="contenido">((( -- Contenido -- )))</ui:insert></div>
+	<div style="clear: both;">&nbsp;</div>
+	</div>
+	<div id="footer">
+		<p><h:outputText value="#{labels.copyright}" /></p>
+	</div>
+	<ui:insert name="scripts">
+		<script>
+	function toggle(){
+        var menu = document.getElementById('menu');
+        var imagen = document.getElementById('ocultar');
+		var imagen2=document.getElementById('mostrar');
+	   var contenido = document.getElementById('contenido');
+       if (menu.style.display == 'none') {
+           menu.style.display = 'block';
+           contenido.style.left = '210px';
+           contenido.style.width = '746px';
+		   imagen.style.display = 'block';
+		   imagen2.style.display = 'none';
+       } else {
+		   menu.style.display ='none';
+           contenido.style.left = '0px';
+           contenido.style.width = '946px';
+           imagen.style.display = 'none';
+		   imagen2.style.display = 'block';
+       }
+   } 
+    </script>
+	</ui:insert>
+</f:view>
+<script type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-2745673-2']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+</script> 
+</body>
+</html>

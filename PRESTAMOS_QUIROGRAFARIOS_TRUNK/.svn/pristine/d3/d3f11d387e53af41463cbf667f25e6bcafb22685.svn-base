@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>MODULO</title>
+<!-- <link rel="stylesheet" type="text/css"
+ href="#{facesContext.externalContext.request.contextPath}/css/iess.css" />
+<link rel="stylesheet" type="text/css"
+ href="#{facesContext.externalContext.request.contextPath}/css/pq.css" />-->
+
+<link rel="stylesheet" type="text/css" href="../css/iess_RES2.css" />
+<link rel="stylesheet" type="text/css" href="../css/pq.css" /> 
+</head>
+<body>
+<div id="contenedor">
+  <div id="encabezado">
+   <div class="contenedor_logo"></div>
+   <div class="contenedor_titulo"></div>
+   <div class="contenedor_topder"></div>
+   <div class="contenedor_topizq"></div>
+   <div class="contenedor_fecha"></div>
+  </div>
+  <div class="contenedor_titulo_aplicacion">PARAMETRIZACION DE LA RECAUDACION EN LINEA</div>
+  <div id="contenedor_info"></div>
+  <div id="contenido" style=" height : 580px;" align ="center">
+  <br></br><br></br><br></br><br></br>
+    <bold>COMBINACION INCORRECTA DE USUARIO Y CLAVE</bold>
+          <br></br><br></br><a href="principal.jsf">VOLVER A INGRESAR</a>
+   </div>
+  <div id="pie" >
+   &copy;Instituto Ecuatoriano de Seguridad Social. Todos los derechos reservados.
+  </div>
+ </div>
+</body>
+
+</html>

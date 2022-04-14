@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+		
+		<title>
+			<ui:insert name="titulo">#{titulos['sistema.titulo']}</ui:insert>
+		</title>
+		<link href="${facesContext.externalContext.request.contextPath}/files/css/styles.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/control-tabs.js"></script>
+	</head>
+
+	<body>
+		<a id="redirMainPage" href="${facesContext.externalContext.request.contextPath}"></a>
+		<a4j:outputPanel ajaxRendered="true">
+			<script type="text/javascript">
+				var sessionTimeOut = '${facesContext.externalContext.request.session.maxInactiveInterval}';
+				var sessionTimeOutMillis = parseInt(sessionTimeOut) * 1000;
+		     	setTimeout("window.location.href='#{facesContext.externalContext.request.contextPath}/pages/index.jsp';", 
+				     	sessionTimeOutMillis);
+		 	</script>
+		</a4j:outputPanel>
+	
+		<div id="top">
+			<ui:insert name="encabezado">
+				<h:form> 
+    				<a4j:jsFunction name="logoutJsFunction" action="#{principal.logout}"/>
+    				<a4j:jsFunction name="forzarLogoutJsFunction" action="#{principal.forzarLogout}"/>    	
+ 				</h:form>
+				<div id="toplinks"><a href="mailto:ayudaprestamos@biess.fin.ec">#{titulos['sistema.ayuda']}</a> <a href="" onclick="logoutFuntion();" class="cursorHand"><img  src="${facesContext.externalContext.request.contextPath}/files/images/layout/btn-salir.png" alt="Salir" width="47" height="14" border="0" /></a></div>
+			</ui:insert>
+		</div>
+
+		<div id="bodywrapper"> 
+		  <!-- HEADER --> 
+		  <!-- #BeginLibraryItem "/bancalinea/pq/files/Library/head.lbi" -->
+		  <div id="header">
+		    <h1>#{titulos['sistema.titulo']}</h1>
+		  </div>
+		  <!-- #EndLibraryItem -->
+		  
+		  <div id="content">
+		    <!-- ZONA DE USUARIO -->
+		    <div id="userlogged">
+		    	<strong>Bienvenido</strong><rich:spacer width="4px" height="1"/><a href="#{facesContext.externalContext.request.contextPath}/pages/concesion/roles.jsf">#{funcionario.nombreCompleto} (${facesContext.externalContext.request.remoteUser})</a>
+				<div id="pnlLastAccess" class="lastAccessPanel" >
+					#{labels['last.signin']}:
+					<rich:spacer width="2"></rich:spacer>
+					<h:outputText value="#{roles.lastSignin}" />
+				</div>								
+	    	</div>		    		  
+		    <div id="contentwrapper">
+		      	<ui:insert name="contenido">
+		      		Contenido
+		      	</ui:insert>			       
+		    </div>
+		  </div>		    
+		  
+		  <!-- LIBRERIA DEL FOOTER (FOOTER.LIB) --> 
+		  <!-- #BeginLibraryItem "/bancalinea/ph/files/Library/footer.lbi" -->
+		  <div id="footer">
+		    <div id="footertext">
+		    	<ui:insert name="pie">#{labels['copyright']}</ui:insert>
+		    </div>
+		  </div>
+	  	  <!-- #EndLibraryItem -->
+	  	
+	  	</div>
+	  	
+	  	<script type="text/javascript">
+			function logoutFuntion() {
+				logoutJsFunction();
+			}
+			function forzarLogoutFunction() {
+				forzarLogoutJsFunction();
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+login.incorrecto=Clave incorrecta, por favor ingrese la clave nuevamente.
+sin.permisos=No tiene permisos para acceder a la aplicaci\u00F3n
+404=No existe  el url al que usted quiere acceder.
+requerido=Requerido
+email.invalido=Email inv\u00E1lido
+espacios=Elimine los espacios en blanco
+telefono.invalido=Tel\u00E9fono inv\u00E1lido
+nivel.menu.no.soportado=Nivel de men\u00FA no soportado.
+no.existe.opciones.menu=No existen opciones de men\u00FA
+
+# Errores para aprobar pda masivos
+aprobar.pda.masivo.error.cedula Campo ingresado de forma incorrecta, \u00FAnicamente 10 d\u00EDgitos num\u00E9ricos
+aprobar.pda.masivo.error.txt.carga No a cargado un archivo. Debe cargar un archivo con extensi\u00F3n .txt
+aprobar.pda.masivo.error.txt.formato El formato de archivo ingresado es incorrecto. S\u00F3lo se debe ingresar archivos con extensi\u00F3n .txt
+aprobar.pda.masivo.error.txt.validacion El archivo contiene errores, por favor revisar el mismo.
+aprobar.pda.masivo.error.carga.archivo El archivo no se cargo. Por favor intentelo nuevamente.
+aprobar.pda.masivo.error.cedula.numero Campo ingresado de forma incorrecta, Solo se aceptan d\u00EDgitos num\u00E9ricos
+aprobar.pda.masivo.error.cedula.tamanio Campo ingresado de forma incorrecta, Solo se aceptan 10 d\u00EDgitos num\u00E9ricos
+aprobar.pda.masivo.error.cedula.digito Campo ingresado de forma incorrecta, D\u00EDgito verificador
+aprobar.pda.masivo.error.cedula.novalida La c\u00E9dula ingresada no es v\u00E1lida
+aprobar.pda.masivo.error.resultado.carga No existe informaci\u00F3n para los datos ingresados.
+aprobar.pda.masivo.error.aprobacion La aprobaci\u00F3n masiva no pudo ser procesada

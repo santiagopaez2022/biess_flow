@@ -1,0 +1,798 @@
+planillas-pq-web
+
+Version: 1.0.0
+Requerimiento: INC-1800
+Cambios:
+jar	lib/planillas-pq/planillaspq.jar	(M)
+jar	lib/planillas-pq-core/planillaspq-core.jar	(M)
+jar	lib/pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+properties	ec.gov.iess.planillaspq.web.resources.etiquetas.properties	(M)
+properties	ec.gov.iess.planillaspq.web.resources.botones.properties	(M)
+css	WebContent.css.iess.css	(M)
+xhtml	WebContent.pages.ordenes.desbloqueoCliente.xhtml	(M)
+xhtml	WebContent.pages.registroCivil.consultarAfiliadoRegistroCivil.xhtml	(M)
+jasper	WebContent.reportes.EstadoERC.jasper	(M)
+jrxml	WebContent.reportes.jrxml.EstadoERC.jrxml	(M)
+clase	ec.gov.iess.planillaspq.web.backing.ConsultaAfiliadoRegistroCivilBacking.java	(M)
+properties	lib/lib.properties	(M)
+xml	ant/build.xml	(M)
+clase	ec.gov.iess.planillaspq.web.backing.DesbloqueoClienteBacking.java	(M)
+
+======================================================================
+Version: 1.0.1
+Requerimiento: INC-1834
+Cambios:
+xml	/planillaspq-web/WebContent/WEB-INF/web.xml	(M)
+xml	/planillaspq-web/WebContent/WEB-INF/jboss-web.xml	(M)
+xml	/planillaspq-web/WebContent/WEB-INF/faces-config.xml	(M)
+xhtml	/planillaspq-web/WebContent/pages/unlock/unlock.xhtml	(C) 
+properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties	(M)
+properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/titulos.properties	(M)
+java	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/DesbloqueoCuentaBacking.java	(C) 
+jar	/planillaspq-web/lib/unlock-ejb/unlock-ejb.jar	(C) 
+properties	/planillaspq-web/lib/lib.properties	(M)
+js	/planillaspq-web/WebContent/js/utilitarios.js	(C) 
+xml	/planillaspq-web/ant/build.xml	(M)
+
+======================================================================
+Version: 1.0.2
+Requerimiento: INC-2272 / Implementación de cambios en la funcionalidad Préstamos Quirografarios para Pago de Pensiones Alimenticias.
+Cambios:
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java	(M)
+properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/botones.properties	(M)
+properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties	(M)
+properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/mensajes.properties	(M)
+Xhtml	/planillaspq-web/WebContent/pages/aprobacion/aprobarsolicitudpq.xhtml	(M)
+Xhtml	/planillaspq-web/WebContent/templates/base-panel-menu.xhtml	(M)
+jar	/planillaspq-web/lib/creditos-core/creditos-core-pq-1.0.0.jar	(M)
+jar	/planillaspq-web/lib/pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+
+======================================================================
+Version: 1.0.3
+Requerimiento: INC-2148 / Requerimiento Refugiados PQ.- Personas refugiadas y extranjeros que trabajan en relación de dependencia y son afiliados al Instituto Ecuatoriano de Seguridad Social
+Cambios:
+/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java	M
+/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties	M
+/planillaspq-web/WebContent/pages/aprobacion/aprobarsolicitudpq.xhtml	M
+lib/ creditos-1.0.0 /creditos-pq-core.jar	M
+lib/ pq-concesion-ejb/pq-concesion-ejb.jar	M
+
+======================================================================
+Version: 1.0.4
+Requerimiento: INC-2292 / Actualización información pasaporte de refugiados en la tabla de créditos aplicación
+Cambios:
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java		(M)
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/DesbloqueoClienteBacking.java	(M)
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/dm/DesbloqueoClienteDM.java	(M)
+Properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties		(M)
+Xhtml	/planillaspq-web/WebContent/pages/aprobacion/aprobarsolicitudpq.xhtml					(M)
+Xhtml	/planillaspq-web/WebContent/pages/ordenes/desbloqueoCliente.xhtml						(M)
+Jar	lib/ creditos-core/creditos-pq-core.jar														(M)
+Jar	lib/ pq-concesion-ejb/pq-concesion-ejb.jar													(M)
+
+======================================================================
+Version: 1.0.5
+Requerimiento: INC-2286 / Préstamo Quirografario - Ferrocarriles del Ecuador
+Cambios:
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java		(M)
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/DesbloqueoClienteBacking.java	(M)
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/ProveedorBacking.java			(C)
+Properties	/planillaspq-web/src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties		(M)
+xhtml	/planillaspq-web/WebContent/pages/aprobacion/aprobarsolicitudpq.xhtml					(M)
+xml	/planillaspq-web/WebContent/ WEB-INF/jboss-web.xml											(M)
+xml	/planillaspq-web/WebContent/ WEB-INF/web.xml												(M)
+xml	/planillaspq-web/WebContent/WEB-INF/faces-config.xml										(M)
+Imagen	/planillaspq-web/WebContent/img/add.png													(C)
+Imagen	/planillaspq-web/WebContent/img/edit.png												(C)
+Carpeta	/planillaspq-web/WebContent/pages/proveedor												(C)
+xhtml	/planillaspq-web/WebContent/pages/proveedor/administrarProveedor.xhtml					(C)
+Jar	lib/ pq-concesion-ejb/pq-concesion-ejb.jar													(M)
+Jar	lib/ creditos-core/creditos-pq-core.jar														(M)
+
+======================================================================
+Version: 1.0.6
+Requerimiento: INC-2350 / IMPLEMENTACION AUTOMATIZADA DE VERIFICACION EN LISTA DE CONTROL DE USUARIOS PQ
+Cambios:
+
+Clases:	
+src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java	(M)
+src/ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java	(C)
+src/ec/gov/iess/planillaspq/web/bean/ListaObservadosBean.java		(C)
+src/ec/gov/iess/planillaspq/web/util/BaseBean.java					(M)
+src/ec/gov/iess/planillaspq/web/util/DireccionIPUtil.java			(C)
+Paquete:	
+src/ec/gov/iess/planillaspq/web/bean								(C)
+Properties:
+src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties		(M)
+src/ec/gov/iess/planillaspq/web/resources/botones.properties		(M)
+src/ec/gov/iess/planillaspq/web/resources/mensajes.properties		(M)
+Xhtml:
+WebContent/pages/aprobacion/aprobarsolicitudpq.xhtml				(M)
+WebContent/pages/aprobacion/aprobarsolicitudpqpep.xhtml				(C)
+WebContent/pages/listaObservados/desbloqueoAsegurados.xhtml			(C)
+Xml:
+WebContent/WEB-INF/faces-config.xml									(M)
+ant/build.xml														(M)
+Dir:	
+WebContent/pages/listaObservados									(C)
+lib/conozcasucliente-ejb											(C)
+Jar:
+lib/conozcasucliente-ejb/16_conozcasucliente-ejb.jar				(C)
+lib/creditos-core/creditos-pq-core.jar								(M)
+lib/pq-concesion-ejb/pq-concesion-ejb.jar							(M)
+
+
+
+======================================================================
+Version: 1.0.7
+Requerimiento: INC-2469 / Ajuste en la fecha de registro de personas en listas de observados de PQ Intranet.
+Cambios:
+
+XTHML	WebContent/pages/listaObservados/desbloqueoAsegurados.xhtml	(M)
+
+======================================================================
+Version: 1.0.8
+Requerimiento: INC-2487 / Implementacion cambios codigo seguro para Apps PQ
+Cambios:
+
+Clase	src/ec/gov/iess/planillaspq/web/backing/AjustePlanillaHlBacking.java				(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/AjustePlanillaHostBacking.java				(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/AnulaPlanillaHostBacking.java				(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/AnulaPlanillaHlBacking.java					(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/AprobacionOrdenesBacking.java				(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java					(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java					(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/ConsultaAfiliadoRegistroCivilBacking.java	(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/ConsultaOrdenesBacking.java					(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/DesbloqueoCuentaBacking.java				(M)
+Clase	src/ec/gov/iess/planillaspq/web/backing/DesbloqueoClienteBacking.java				(M)
+Clase	src/ec/gov/iess/planillaspq/web/bean/ListaObservadosBean.java						(M)
+Clase	src/ec/gov/iess/planillaspq/web/handler/FuncionarioHandler.java						(M)
+Clase	src/ec/gov/iess/planillaspq/web/handler/MenuTreeHandler.java						(M)
+properties	lib/lib.properties																(M)
+xml			ant/build.xml																	(M)
+Directorio	lib/codigo_seguro																(C)
+jar			lib/codigo_seguro/codigo-seguro-1.0.1.jar										(C)
+jar			lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.3.jar						(M)
+jar			lib/creditos-core/13_creditos-pq-core-1.0.9.jar									(M)
+jar			lib/planillas-pq/18_planillaspq-1.0.1.jar											(M)
+jar			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.0.23.jar								(M)
+jar			lib/unlock-ejb/13q_unlock-ejb-1.0.4.jar											(M)
+
+
+======================================================================
+Version: 1.0.9
+Requerimiento: INC-2539 / Bug del aplicativo intranet PQ (tablas de amoritizaci�n) 
+Cambios:
+
+Clase	/src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java		(M)
+Clase	/src/ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java		(M)
+Clase	/src/ec/gov/iess/planillaspq/web/backing/ConsultaAfiliadoRegistroCivilBacking.java	(M)
+Jar 	/lib/creditos-core/creditos-pq-core-.jar	(M)
+Jar	    /lib/pq-concesion-ejb/pq-concesion-ejb.jar		(M)
+
+=================================================================================
+Version: 1.1.0
+Requerimiento: INC-2399 / Aplicativo de CREDITUR en PQ WEB. 
+Cambios:
+
+Paquete		src/ec/gov/iess/planillaspq/web/alertas/templates/email				(C)
+FTL			ec/gov/iess/planillaspq/web/alertas/templates/email/claveprov.ftl	(C)
+Paquete		src/ec/gov/iess/planillaspq/web/alertas/util						(C)
+Clase		src/ec/gov/iess/planillaspq/web/alertas/util/AlertUtil.java			(C)
+Clase		ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java		(M)
+Clase		src/ec/gov/iess/planillaspq/web/backing/ConsultaOrdenesBacking.java	(M)
+Clase		src/ec/gov/iess/planillaspq/web/backing/ProveedorBacking.java		(M)
+Properties	src/ec/gov/iess/planillaspq/web/resources/botones.properties		(M)
+Properties	src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties		(M)
+Paquete		src/ec/gov/iess/planillaspq/web/servlet								(C)
+Clase		src/ec/gov/iess/planillaspq/web/servlet/DBFileDownloadServlet.java	(C)
+XML			ant/build.xml														(M)
+Carpeta		lib/alerts-ejb														(C)
+JAR			lib/alerts-ejb/13p-alerts-ejb-1.0.0.jar								(C)
+JAR			lib/creditos-core/13_creditos-pq-core-1.1.0.jar						(M)
+JAR			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.0.jar					(M)
+Properties	lib/lib.properties													(M)
+CSS			WebContent/css/biess.css											(C)
+XHTML		WebContent/pages/aprobacion/aprobarsolicitudpq.xhtml				(M)
+XHTML		WebContent/pages/proveedor/administrarProveedor.xhtml				(M)
+XHTML		WebContent/templates/base-panel-menu.xhtml							(M)
+JAR			WebContent/WEB-INF/lib/commons-lang-2.1.jar							(M)
+XML			WebContent/WEB-INF/web.xml											(M)
+
+=================================================================================
+Version: 1.1.1
+Requerimiento: INC-2588 / Verificación en las listas de control del afiliado-jubilado-pensionista después de la creación del crédito Quirografario
+Cambios:
+Clase		src/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java	(M)
+Jar			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.1.jar					(M)
+
+
+==========================================
+Version: 1.1.2
+Requerimiento: INC-2643 / Parametrización para concesión de créditos quirografarios: tasas de interés y montos máximos de crédito.
+Cambios:
+
+Clase		src/ec/gov/iess/planillaspq/web/backing/AprobacionParametrizacionBacking.java	(C)
+Clase		src/ec/gov/iess/planillaspq/web/backing/IngresoParametrizacionBacking.java		(C)
+Paquete		src/ec/gov/iess/planillaspq/web/enumeration										(C)
+Enumeración	src/ec/gov/iess/planillaspq/web/enumeration/EstadoParametrizacionPQEnum.java	(C)
+Clase		src/ec/gov/iess/planillaspq/web/handler/FuncionarioHandler.java					(M)
+Properties	src/ec/gov/iess/planillaspq/web/resources/etiquetas.properties					(M)
+Properties	src/ec/gov/iess/planillaspq/web/resources/mensajes.properties					(M)
+XML			ant/build.xml																	(M)
+Carpeta		lib/core-biess-ejb																(C)
+JAR			lib/core-biess-ejb/14_core-biess-ejb-1.1.5.jar									(C)
+JAR			ib/creditos-core/13_creditos-pq-core-1.1.1.jar									(M)
+JAR			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.4.jar								(M)
+Properties	lib/lib.properties																(M)
+Carpeta		WebContent/pages/parametrizar													(C)
+XHTML		WebContent/pages/parametrizar/aprobarParametrizacion.xhtml						(C)
+XHTML		WebContent/pages/parametrizar/ingresarParametrizacion.xhtml						(C)
+XML			WebContent/WEB-INF/faces-config.xml												(M)
+JS			WebContent/js/utilitarios.js													(M)
+
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilación de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE 
+(C)	XML		pom.xml
+(C)	Eclipse	.project
+(C)	Eclipse	.classpath
+(C)	Eclipse	.settings
+(C)	Carpeta	src
+(C)	Carpeta	src\main
+(C)	Carpeta	src\main\resources
+(C)	Carpeta	src\main\webapp
+(C)	Carpeta	src\main\java
+(C)	Carpeta	src\main\java\ec
+(C)	Carpeta	src\main\java\ec\gov
+(C)	Carpeta	src\main\java\ec\gov\iess
+(C)	Carpeta	src\main\java\ec\gov\iess\planillaspq
+(C)	Carpeta	src\main\java\ec\gov\iess\planillaspq\web
+(C)	Carpeta	src\main\java\ec\gov\iess\planillaspq\web\alertas
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\backing
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\bean
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\handler
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\servlet
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\util
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\alertas\util
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\alertas\util\AlertUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AjustePlanillaHlBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AjustePlanillaHostBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AnulaPlanillaHlBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AnulaPlanillaHostBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AprobacionOrdenesBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AprobacionParametrizacionBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AprobacionPdaBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\AprobacionPdvBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\ConsultaAfiliadoRegistroCivilBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\ConsultaOrdenesBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\DesbloqueoClienteBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\DesbloqueoCuentaBacking.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\backing\dm
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\EstadoMenuBean.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\IngresoParametrizacionBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\PrincipalBean.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\ProveedorBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\backing\dm\DesbloqueoClienteDM.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\bean\ListaObservadosBean.java
+(C)	Paquete	src\main\java\ec\gov\iess\planillaspq\web\enumeration
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\enumeration\EstadoParametrizacionPQEnum.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\handler\FuncionarioHandler.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\handler\MenuTreeHandler.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\servlet\DBFileDownloadServlet.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\util\BaseBean.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\util\ContainerBean.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\util\DireccionIPUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\util\UtilDate.java
+(C)	Clase	src\main\java\ec\gov\iess\planillaspq\web\util\UtilReport.java
+(C)	Carpeta	src\main\resources\ec
+(C)	Carpeta	src\main\resources\ec\gov
+(C)	Carpeta	src\main\resources\ec\gov\iess
+(C)	Carpeta	src\main\resources\ec\gov\iess\planillaspq
+(C)	Carpeta	src\main\resources\ec\gov\iess\planillaspq\web
+(C)	Carpeta	src\main\resources\ec\gov\iess\planillaspq\web\alertas
+(C)	Paquete	src\main\resources\ec\gov\iess\planillaspq\web\resources
+(C)	Carpeta	src\main\resources\ec\gov\iess\planillaspq\web\alertas\templates
+(C)	Paquete	src\main\resources\ec\gov\iess\planillaspq\web\alertas\templates\email
+(C)	FTL	src\main\resources\ec\gov\iess\planillaspq\web\alertas\templates\email\claveprov.ftl
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\botones.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\errores.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\etiquetas.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\mensajes.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\mensajesLogica.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\recursos.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\planillaspq\web\resources\titulos.properties
+(C)	Paquete	src\main\webapp\css
+(C)	Paquete	src\main\webapp\error
+(C)	Paquete	src\main\webapp\img
+(C)	Paquete	src\main\webapp\js
+(C)	Paquete	src\main\webapp\mozilla_planillas
+(C)	Paquete	src\main\webapp\pages
+(C)	Paquete	src\main\webapp\reportes
+(C)	Paquete	src\main\webapp\templates
+(C)	Paquete	src\main\webapp\WEB-INF
+(C)	CSS	src\main\webapp\css\biess.css
+(C)	CSS	src\main\webapp\css\iess-impresion.css
+(C)	CSS	src\main\webapp\css\iess-internet.css
+(C)	CSS	src\main\webapp\css\iess.css
+(C)	CSS	src\main\webapp\css\iessRES.css
+(C)	CSS	src\main\webapp\css\iess_RES2.css
+(C)	HTML	src\main\webapp\error\403.xhtml
+(C)	HTML	src\main\webapp\error\404.xhtml
+(C)	HTML	src\main\webapp\error\login-error.xhtml
+(C)	JPG	src\main\webapp\img\abono.jpg
+(C)	PNG	src\main\webapp\img\add.png
+(C)	GIF	src\main\webapp\img\arrow-on.gif
+(C)	Paquete	src\main\webapp\img\autentificacion
+(C)	JPG	src\main\webapp\img\aviso.jpg
+(C)	JPG	src\main\webapp\img\back.jpg
+(C)	JPG	src\main\webapp\img\backderheader.jpg
+(C)	JPG	src\main\webapp\img\backfinal.jpg
+(C)	JPG	src\main\webapp\img\back_barra.jpg
+(C)	JPG	src\main\webapp\img\back_boton.png
+(C)	JPG	src\main\webapp\img\back_cabecera.jpg
+(C)	PNG	src\main\webapp\img\back_cabecera.png
+(C)	JPG	src\main\webapp\img\back_enlace.jpg
+(C)	JPG	src\main\webapp\img\back_footer.jpg
+(C)	JPG	src\main\webapp\img\back_sol.jpg
+(C)	JPG	src\main\webapp\img\back_topder.jpg
+(C)	JPG	src\main\webapp\img\back_topizq.jpg
+(C)	PNG	src\main\webapp\img\back_usuario.png
+(C)	GIF	src\main\webapp\img\bajar.gif
+(C)	JPG	src\main\webapp\img\botaqui.jpg
+(C)	JPG	src\main\webapp\img\cab3.jpg
+(C)	PNG	src\main\webapp\img\cab_calendario.png
+(C)	GIF	src\main\webapp\img\Calendar.gif
+(C)	Paquete	src\main\webapp\img\common
+(C)	GIF	src\main\webapp\img\conexion.gif
+(C)	GIF	src\main\webapp\img\construccion.gif
+(C)	JPG	src\main\webapp\img\construccion.jpg
+(C)	PNG	src\main\webapp\img\edit.png
+(C)	GIF	src\main\webapp\img\elcambio.gif
+(C)	GIF	src\main\webapp\img\error.gif
+(C)	JPG	src\main\webapp\img\familia.jpg
+(C)	JPG	src\main\webapp\img\familiaPeque.jpg
+(C)	JPG	src\main\webapp\img\flecha.jpg
+(C)	JPG	src\main\webapp\img\fondo.jpg
+(C)	JPG	src\main\webapp\img\footer.jpg
+(C)	GIF	src\main\webapp\img\footer1.gif
+(C)	JPG	src\main\webapp\img\iconoCorreo.jpg
+(C)	Paquete	src\main\webapp\img\iconospq
+(C)	JPG	src\main\webapp\img\iconoTelefono.jpg
+(C)	JPG	src\main\webapp\img\icono_requisitos.jpg
+(C)	JPG	src\main\webapp\img\icono_solicitud.jpg
+(C)	JPG	src\main\webapp\img\ico_usuario.jpg
+(C)	PNG	src\main\webapp\img\ico_usuario.png
+(C)	JPG	src\main\webapp\img\impresora.jpg
+(C)	JPG	src\main\webapp\img\information.jpg
+(C)	Paquete	src\main\webapp\img\left
+(C)	GIF	src\main\webapp\img\logo.gif
+(C)	JPG	src\main\webapp\img\logo.jpg
+(C)	JPG	src\main\webapp\img\logo1.jpg
+(C)	GIF	src\main\webapp\img\logocomp.gif
+(C)	JPG	src\main\webapp\img\logocomp.jpg
+(C)	Paquete	src\main\webapp\img\menu
+(C)	JPG	src\main\webapp\img\mostrarMenu.jpg
+(C)	PSD	src\main\webapp\img\newcabcecera.psd
+(C)	PNG	src\main\webapp\img\no.png
+(C)	JPG	src\main\webapp\img\ocultarMenu.jpg
+(C)	JPG	src\main\webapp\img\ok.jpg
+(C)	GIF	src\main\webapp\img\okay.gif
+(C)	GIF	src\main\webapp\img\okay2.gif
+(C)	Paquete	src\main\webapp\img\panel
+(C)	JPG	src\main\webapp\img\planilla.jpg
+(C)	JPG	src\main\webapp\img\planillas.jpg
+(C)	GIF	src\main\webapp\img\pregunta.gif
+(C)	JPG	src\main\webapp\img\pregunta.jpg
+(C)	GIF	src\main\webapp\img\remodelacion.gif
+(C)	JPG	src\main\webapp\img\remodelacion.jpg
+(C)	Paquete	src\main\webapp\img\report
+(C)	Paquete	src\main\webapp\img\right
+(C)	GIF	src\main\webapp\img\rosa.gif
+(C)	JPG	src\main\webapp\img\rosa.jpg
+(C)	GIF	src\main\webapp\img\r_hand.gif
+(C)	PNG	src\main\webapp\img\separador.png
+(C)	JPG	src\main\webapp\img\sistema.jpg
+(C)	JPG	src\main\webapp\img\solicitud.jpg
+(C)	GIF	src\main\webapp\img\spacer.gif
+(C)	GIF	src\main\webapp\img\stripe1.gif
+(C)	GIF	src\main\webapp\img\subir.gif
+(C)	JPG	src\main\webapp\img\telAyuda.jpg
+(C)	GIF	src\main\webapp\img\terminado.gif
+(C)	JPG	src\main\webapp\img\tit_iess.jpg
+(C)	PNG	src\main\webapp\img\tit_panel.png
+(C)	Paquete	src\main\webapp\img\tree
+(C)	GIF	src\main\webapp\img\txt_cambio.gif
+(C)	JPG	src\main\webapp\img\txt_cambio.jpg
+(C)	GIF	src\main\webapp\img\txt_solicitud.gif
+(C)	JPG	src\main\webapp\img\vinetamenu.jpg
+(C)	PNG	src\main\webapp\img\vineta_menu.png
+(C)	JPG	src\main\webapp\img\vivterminada.jpg
+(C)	JPG	src\main\webapp\img\warning.jpg
+(C)	PNG	src\main\webapp\img\yes.png
+(C)	JPG	src\main\webapp\img\autentificacion\back_left.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\back_right.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottom_center.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottom_left.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottom_right.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\nota.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_center.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_left.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_left_errror.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_right.jpg
+(C)	GIF	src\main\webapp\img\common\error.gif
+(C)	JPG	src\main\webapp\img\common\information.jpg
+(C)	PNG	src\main\webapp\img\common\no.png
+(C)	JPG	src\main\webapp\img\common\nota.jpg
+(C)	GIF	src\main\webapp\img\common\okay.gif
+(C)	JPG	src\main\webapp\img\common\warning.jpg
+(C)	PNG	src\main\webapp\img\common\yes.png
+(C)	PNG	src\main\webapp\img\iconospq\eliminar.png
+(C)	JPG	src\main\webapp\img\iconospq\plus_icon.jpg
+(C)	JPG	src\main\webapp\img\left\back.jpg
+(C)	JPG	src\main\webapp\img\left\back_text.jpg
+(C)	JPG	src\main\webapp\img\left\cedula.jpg
+(C)	GIF	src\main\webapp\img\left\impar.gif
+(C)	GIF	src\main\webapp\img\left\num.gif
+(C)	PNG	src\main\webapp\img\menu\back_contenido.png
+(C)	PNG	src\main\webapp\img\menu\back_menu.png
+(C)	PNG	src\main\webapp\img\menu\mostrar.png
+(C)	PNG	src\main\webapp\img\menu\ocultar.png
+(C)	PNG	src\main\webapp\img\panel\titulo.png
+(C)	JPG	src\main\webapp\img\panel\titulo1.jpg
+(C)	PNG	src\main\webapp\img\panel\titulo_botones.png
+(C)	PNG	src\main\webapp\img\report\biess-logo.png
+(C)	JPG	src\main\webapp\img\report\logo_iess.jpg
+(C)	PNG	src\main\webapp\img\report\pdf.png
+(C)	PNG	src\main\webapp\img\report\xls.png
+(C)	JPG	src\main\webapp\img\right\back-right.jpg
+(C)	JPG	src\main\webapp\img\right\back.jpg
+(C)	GIF	src\main\webapp\img\right\num.gif
+(C)	GIF	src\main\webapp\img\right\par.gif
+(C)	GIF	src\main\webapp\img\tree\iconLeaf.gif
+(C)	PNG	src\main\webapp\img\tree\splitterhc.png
+(C)	PNG	src\main\webapp\img\tree\splitterhr.png
+(C)	JS	src\main\webapp\js\utilitarios.js
+(C)	HTML	src\main\webapp\mozilla_planillas\base-panel-menu.xhtml
+(C)	Paquete	src\main\webapp\mozilla_planillas\css
+(C)	Paquete	src\main\webapp\mozilla_planillas\img
+(C)	CSS	src\main\webapp\mozilla_planillas\css\iess-impresion.css
+(C)	CSS	src\main\webapp\mozilla_planillas\css\iess-internet.css
+(C)	CSS	src\main\webapp\mozilla_planillas\css\iess.css
+(C)	CSS	src\main\webapp\mozilla_planillas\css\iessRES.css
+(C)	CSS	src\main\webapp\mozilla_planillas\img\abono.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\arrow-on.gif
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\autentificacion
+(C)	JPG	src\main\webapp\mozilla_planillas\img\aviso.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\backderheader.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\backfinal.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_barra.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\back_boton.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_cabecera.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\back_cabecera.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_enlace.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_footer.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_sol.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_topder.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\back_topizq.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\back_usuario.png
+(C)	GIF	src\main\webapp\mozilla_planillas\img\bajar.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\botaqui.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\cab3.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\cab_calendario.png
+(C)	GIF	src\main\webapp\mozilla_planillas\img\Calendar.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\construccion.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\construccion.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\elcambio.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\error.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\familia.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\familiaPeque.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\flecha.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\fondo.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\footer.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\footer1.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\iconoCorreo.jpg
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\iconospq
+(C)	JPG	src\main\webapp\mozilla_planillas\img\iconoTelefono.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\icono_requisitos.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\icono_solicitud.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\ico_usuario.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\ico_usuario.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\impresora.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\information.jpg
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\left
+(C)	GIF	src\main\webapp\mozilla_planillas\img\logo.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\logo.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\logo1.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\logocomp.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\logocomp.jpg
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\menu
+(C)	JPG	src\main\webapp\mozilla_planillas\img\mostrarMenu.jpg
+(C)	PSD	src\main\webapp\mozilla_planillas\img\newcabcecera.psd
+(C)	PNG	src\main\webapp\mozilla_planillas\img\no.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\ocultarMenu.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\ok.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\okay.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\okay2.gif
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\panel
+(C)	JPG	src\main\webapp\mozilla_planillas\img\planilla.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\planillas.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\pregunta.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\pregunta.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\remodelacion.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\remodelacion.jpg
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\report
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\right
+(C)	GIF	src\main\webapp\mozilla_planillas\img\rosa.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\rosa.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\r_hand.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\separador.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\sistema.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\solicitud.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\spacer.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\stripe1.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\subir.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\telAyuda.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\terminado.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\tit_iess.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\tit_panel.png
+(C)	Paquete	src\main\webapp\mozilla_planillas\img\tree
+(C)	GIF	src\main\webapp\mozilla_planillas\img\txt_cambio.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\txt_cambio.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\txt_solicitud.gif
+(C)	JPG	src\main\webapp\mozilla_planillas\img\vinetamenu.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\vineta_menu.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\vivterminada.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\warning.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\yes.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\back_left.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\back_right.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\bottom_center.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\bottom_left.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\bottom_right.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\nota.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\top_center.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\top_left.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\top_left_errror.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\autentificacion\top_right.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\iconospq\eliminar.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\left\back.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\left\back_text.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\left\cedula.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\left\impar.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\left\num.gif
+(C)	PNG	src\main\webapp\mozilla_planillas\img\menu\back_contenido.png
+(C)	PNG	src\main\webapp\mozilla_planillas\img\menu\back_menu.png
+(C)	PNG	src\main\webapp\mozilla_planillas\img\menu\mostrar.png
+(C)	PNG	src\main\webapp\mozilla_planillas\img\menu\ocultar.png
+(C)	PNG	src\main\webapp\mozilla_planillas\img\panel\titulo.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\panel\titulo1.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\panel\titulo_botones.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\report\logo_iess.jpg
+(C)	PNG	src\main\webapp\mozilla_planillas\img\report\pdf.png
+(C)	PNG	src\main\webapp\mozilla_planillas\img\report\xls.png
+(C)	JPG	src\main\webapp\mozilla_planillas\img\right\back-right.jpg
+(C)	JPG	src\main\webapp\mozilla_planillas\img\right\back.jpg
+(C)	GIF	src\main\webapp\mozilla_planillas\img\right\num.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\right\par.gif
+(C)	GIF	src\main\webapp\mozilla_planillas\img\tree\iconLeaf.gif
+(C)	PNG	src\main\webapp\mozilla_planillas\img\tree\splitterhc.png
+(C)	PNG	src\main\webapp\mozilla_planillas\img\tree\splitterhr.png
+(C)	HTML	src\main\webapp\pages\ajustarplanillahl.xhtml
+(C)	HTML	src\main\webapp\pages\ajustarplanillahlaccion.xhtml
+(C)	HTML	src\main\webapp\pages\ajustarplanillahost.xhtml
+(C)	HTML	src\main\webapp\pages\ajustarplanillahostaccion.xhtml
+(C)	HTML	src\main\webapp\pages\anularplanillahl.xhtml
+(C)	HTML	src\main\webapp\pages\anularplanillahlaccion.xhtml
+(C)	HTML	src\main\webapp\pages\anularplanillahost.xhtml
+(C)	HTML	src\main\webapp\pages\anularplanillahostaccion.xhtml
+(C)	Paquete	src\main\webapp\pages\aprobacion
+(C)	HTML	src\main\webapp\pages\error.xhtml
+(C)	JSP		src\main\webapp\pages\index.jsp
+(C)	Paquete	src\main\webapp\pages\listaObservados
+(C)	HTML	src\main\webapp\pages\login.xhtml
+(C)	HTML	src\main\webapp\pages\loginold.xhtml
+(C)	Paquete	src\main\webapp\pages\ordenes
+(C)	Paquete	src\main\webapp\pages\parametrizar
+(C)	HTML	src\main\webapp\pages\principal.xhtml
+(C)	Paquete	src\main\webapp\pages\proveedor
+(C)	Paquete	src\main\webapp\pages\registroCivil
+(C)	HTML	src\main\webapp\pages\salir.xhtml
+(C)	Paquete	src\main\webapp\pages\unlock
+(C)	HTML	src\main\webapp\pages\aprobacion\aprobarregeneracionpq.xhtml
+(C)	HTML	src\main\webapp\pages\aprobacion\aprobarsolicitudpq.xhtml
+(C)	HTML	src\main\webapp\pages\aprobacion\aprobarsolicitudpqpep.xhtml
+(C)	HTML	src\main\webapp\pages\listaObservados\desbloqueoAsegurados.xhtml
+(C)	HTML	src\main\webapp\pages\ordenes\consultarAprobacion.xhtml
+(C)	HTML	src\main\webapp\pages\ordenes\consultarOrdenes.xhtml
+(C)	Carpeta	src\main\webapp\pages\ordenes\CVS
+(C)	Carpeta	src\main\webapp\pages\ordenes\desbloqueoCliente.xhtml
+(C)	Carpeta	src\main\webapp\pages\ordenes\imprimirConsultaOrdenes.xhtml
+(C)	Carpeta	src\main\webapp\pages\ordenes\CVS\Entries
+(C)	Carpeta	src\main\webapp\pages\ordenes\CVS\Repository
+(C)	Carpeta	src\main\webapp\pages\ordenes\CVS\Root
+(C)	Carpeta	src\main\webapp\pages\ordenes\CVS\Tag
+(C)	HTML	src\main\webapp\pages\parametrizar\aprobarParametrizacion.xhtml
+(C)	HTML	src\main\webapp\pages\parametrizar\ingresarParametrizacion.xhtml
+(C)	HTML	src\main\webapp\pages\proveedor\administrarProveedor.xhtml
+(C)	HTML	src\main\webapp\pages\registroCivil\consultarAfiliadoRegistroCivil.xhtml
+(C)	HTML	src\main\webapp\pages\unlock\unlock.xhtml
+(C)	Jasper	src\main\webapp\reportes\EstadoERC.jasper
+(C)	Paquete	src\main\webapp\reportes\jrxml
+(C)	JRXML	src\main\webapp\reportes\jrxml\EstadoERC.jrxml
+(C)	HTML	src\main\webapp\templates\base-panel-menu.xhtml
+(C)	HTML	src\main\webapp\templates\base.xhtml
+(C)	HTML	src\main\webapp\templates\baseMenuTree.xhtml
+(C)	HTML	src\main\webapp\templates\baseSinSesion.xhtml
+(C)	HTML	src\main\webapp\templates\common.xhtml
+(C)	HTML	src\main\webapp\templates\template.xhtml
+(C)	XML		src\main\webapp\WEB-INF\faces-config.xml
+(C)	XML		src\main\webapp\WEB-INF\jboss-web.xml
+(C)	XML		src\main\webapp\WEB-INF\web.xml
+
+======================================================================
+Version: 2.0.1
+Requerimiento: INC-2695 / Zona Cero.- Requerimiento de Cambio Préstamos Quirografarios Biess Emergente
+Cambios: ACCION/TIPO/NOMBRE
+(M)	Clase		/ec/gov/iess/planillaspq/web/backing/IngresoParametrizacionBacking.java
+(M)	Properties	/ec/gov/iess/planillaspq/web/resources/etiquetas.properties
+(M)	XHTML		/src/main/webapp/pages/parametrizar/aprobarParametrizacion.xhtml
+(M)	XHTML		/src/main/webapp/pages/parametrizar/ingresarParametrizacion.xhtml
+(M)	Classpath	.classpath
+
+======================================================================
+Version: 2.0.2
+Requerimiento: INC-2808 / Modificaci�n de condiciones PQ
+Cambios: ACCION/TIPO/NOMBRE 
+
+clase		src/main/java/ec/gov/iess/planillaspq/web/backing/IngresoParametrizacionBacking.java	(M)
+properties	src/main/resources/ec/gov/iess/planillaspq/web/resources/etiquetas.properties			(M)
+properties	src/main/resources/ec/gov/iess/planillaspq/web/resources/mensajes.properties			(M)
+xhtml		src/main/webapp/pages/parametrizar/aprobarParametrizacion.xhtml							(M)
+xhtml		src/main/webapp/pages/parametrizar/ingresarParametrizacion.xhtml						(M)
+
+======================================================================
+Version: 2.0.3
+Requerimiento: INC-2891 / CAMBIO WEB SERVICE REGISTRO CIVIL PQ
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase		src/main/java/ec/gov/iess/planillaspq/web/backing/ConsultaAfiliadoRegistroCivilBacking.java		(M)
+
+
+======================================================================
+Version: 2.0.4
+Requerimiento: INC-2880 / Aclaración mensaje aplicativo
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase			src/main/java/ec/gov/iess/planillaspq/web/backing/AprobacionOrdenesBacking.java		(M)
+Clase			src/main/java/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java			(M)
+Clase			src/main/java/ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java			(M)
+
+
+======================================================================
+Version: 2.0.5
+Requerimiento: INC-2794 / Implementaci�n de Requerimiento logs de auditoria-Proceso de Pr�stamos Quirografarios
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/AjustePlanillaHlBacking.java	                (M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/AnulaPlanillaHlBacking.java	                (M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java                    (M)
+ Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java	                (M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/ConsultaAfiliadoRegistroCivilBacking.java	(M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/DesbloqueoClienteBacking.java	            (M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/DesbloqueoCuentaBacking.java	                (M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/backing/PrincipalBean.java	                        (M)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/handler/FuncionarioHandler.java	                    (M)
+Paquete	     src/main/java/ec/gov/iess/planillaspq/web/helper	                                            (C)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/helper/AuditoriaHelper.java	                        (C)
+Clase	     src/main/java/ec/gov/iess/planillaspq/web/util/BaseBean.java	                                (M)
+XHTML	     src/main/webapp/templates/base-panel-menu.xhtml	                                            (M)
+XML	         pom.xml	                                                                                    (M)
+
+
+======================================================================
+Version: 2.0.6
+Requerimiento: INC-2927 / AJUSTE EN APLICATIVO INFORMATICO HL PARA ANULACION DE PLANILLA PRESTAMO HIPOTECARIO
+Cambios: TIPO/NOMBRE/ACCION 
+
+XHTML	src/main/webapp/pages/ajustarplanillahost.xhtml	(M)
+XHTML	src/main/webapp/pages/anularplanillahost.xhtml	(M)
+
+
+======================================================================
+Version: 2.0.7
+Requerimiento: INC-2838 / CAMBIOS APROBACI�N PQ
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase		ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java			(M)
+Clase		ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java			(M)
+Clase		ec/gov/iess/planillaspq/web/bean/CedulasMasivasBean.java				(C)
+Clase		ec/gov/iess/planillaspq/web/util/CedulaUtil.java						(C)
+Clase		ec/gov/iess/planillaspq/web/util/Util.java								(C)
+Clase		ec/gov/iess/planillaspq/web/helper/AuditoriaHelper.java					(M)
+Properties	ec/gov/iess/planillaspq/web/resources/botones.properties				(M)
+Properties	ec/gov/iess/planillaspq/web/resources/errores.properties				(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/mensajes.properties 				(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/etiquetas.properties 			(M)
+xhtml		src/main/webapp/pages/aprobacion/aprobarsolicitudesmasivas.xhtml		(C)
+xhtml		src/main/webapp/pages/aprobacion/aprobarsolicitudesmasivaspdv.xhtml		(C)
+xhtml		src/main/webapp/pages/aprobacion/cargarcedulasmasivas.xhtml				(C)
+xhtml		src/main/webapp/pages/aprobacion/cargarcedulasmasivaspdv.xhtml			(C)
+xml			src/main/webapp/WEB-INF/faces-config.xml								(M)
+xml			src/main/webapp/WEB-INF/web.xml											(M)
+xml			pom.xml																	(M)
+
+======================================================================
+Version: 2.0.8
+Requerimiento: INC-2951 / Correcci�n aplicativo Administrador de Planillas
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase		ec/gov/iess/planillaspq/web/backing/AprobacionPdaBacking.java			(M)
+Clase		ec/gov/iess/planillaspq/web/backing/AprobacionPdvBacking.java			(M)
+Xhtml		webapp/pages/aprobacion/aprobarsolicitudesmasivaspdv.xhtml				(M)
+Xhtml		webapp/pages/aprobacion/cargarcedulasmasivas.xhtml						(M)
+Xhtml		webapp/pages/aprobacion/cargarcedulasmasivaspdv.xhtml					(M)
+
+
+
+
+======================================================================
+Version: 2.0.9
+Requerimiento: REQ-122 / Requerimiento de negocio "Modificar la parametrización de Cálculo de Intereses Convencionales y de Mora"
+Cambios: TIPO/NOMBRE/ACCION
+
+
+Carpeta	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gob										C
+Carpeta	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gob/biess									C
+Carpeta	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gob/biess/planillaspq						C
+Carpeta	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gob/biess/planillaspq/web					C
+Carpeta	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gob/biess/planillaspq/web/exception		C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gob/biess/planillaspq/web/exception/PagIndException.java			C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/backing/ConsultaCreditoBean.java			C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/backing/CreditoAccionBean.java			C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/backing/PrincipalBean.java				C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/backing/PagIndHelper.java					M
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/bean/DatosBean.java						C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/bean/PrestamoBean.java					C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/enumeration/FlujoParametrizacionPQEnum.java	C
+Clase	pq/intranet-pq/planillas-pq-web/src/main/java/ec/gov/iess/planillaspq/web/helper/AuditoriaHelper.java					M
+Properties	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/resources/botones.properties			M
+Properties	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/resources/etiquetas.properties		M
+Properties	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/resources/mensajes.properties		M
+Properties	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/resources/titulos.properties			M
+Fichero	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/alertas/template/email/compagind.ftl		C
+Fichero	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/alertas/template/email/credito.ftl		C
+Fichero	pq/intranet-pq/planillas-pq-web/src/main/resources/ec/gov/iess/planillaspq/web/alertas/template/email/liqcredito.ftl	C
+CSS	pq/intranet-pq/planillas-pq-web/src/main/webapp/css/print-pq.css															C
+CSS	pq/intranet-pq/planillas-pq-web/src/main/webapp/css/style.css																C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/principal.xhtml													M
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/calculoLiquidacion.xhtml					C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/comprobantePago.xhtml						C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/comprobantePagoDividendos.xhtml			C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/comprobantesPago.xhtml					C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarCedulaCuentaIndividual.xhtml		C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarCedulaGenerarComprobante.xhtml	C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarCedulaGenerarLiquidacion.xhtml	C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarCedulaInformacionComprobante.xhtml	C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarCedulaInformacionLiquidacion.xhtml	C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarComprobantesAnulacion.xhtml			C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/consultarComprobantesLiquidacionAnulacion.xhtml		C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/creditos.xhtml										C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/detallePrestamo.xhtml									C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/impComprobantePagoDividendos.xhtml					C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/impDetallePrestamo.xhtml								C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/infoCreditos.xhtml									C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/liquidacionesPago.xhtml								C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/listaCreditos.xhtml									C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/pagIndSeleccion.xhtml									C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/pagIndSeleccionSaldos.xhtml							C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/resultadoLiquidacion.xhtml							C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/seguimientoIndividualPrestamo.xhtml					C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/seguimientoPrestamoQuirografario.xhtml				C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/pages/comprobantesLiquidacion/tasaInteresVigente.xhtml								C
+XHTML	pq/intranet-pq/planillas-pq-web/src/main/webapp/templates/imprimir.xhtml															C
+XML	pq/intranet-pq/planillas-pq-web/src/main/webapp/WEB-INF/faces-config.xml																M
+

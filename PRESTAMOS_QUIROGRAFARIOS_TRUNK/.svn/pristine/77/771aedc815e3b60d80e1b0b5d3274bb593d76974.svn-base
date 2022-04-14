@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+	#{titulos['depuracion.inicio']}
+	</ui:define>
+	<ui:define name="contenido">
+		<div align="center">
+		<table width="100%" border="0" cellspacing="2" cellpadding="2">
+			<tr>
+			<td>
+				<div align="center" class="tit_sistema">PRESTAMOS QUIROGRAFARIOS</div>
+				<br />
+			</td>		
+			</tr>
+			<tr>
+			<td>
+				<div align="center" class="tit_sistema_int">ADMINISTRACION DE PLANILLAS</div>
+				<br />
+			</td>		
+			</tr>
+			<tr>
+				<td colspan="2"><div align="center"><img src="#{principal.ulrPrincipal}/img/planillas.jpg" width="300" height="150" /></div></td>
+			</tr>
+		</table>
+		</div>
+	</ui:define>
+</ui:composition>

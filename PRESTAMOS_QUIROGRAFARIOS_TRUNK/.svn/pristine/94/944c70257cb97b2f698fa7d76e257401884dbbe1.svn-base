@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+	<ui:define name="contenido">
+
+		<h:form id="form" prependId="false">
+			<a4j:jsFunction name="put" reRender="jpnlDatosProv">
+				<a4j:actionparam name="idProveedor"
+					assignTo="#{proveedorBean.idProveedor}"
+					actionListener="#{proveedorBean.seleccionarProveedor}" />
+			</a4j:jsFunction>
+			<a4j:jsFunction name="sendClave">
+				<a4j:actionparam name="idProveedor"
+					assignTo="#{proveedorBean.idProveedor}"
+					actionListener="#{proveedorBean.enviarEmailClave}" />
+			</a4j:jsFunction>
+
+			<h:panelGroup id="PGUProveedor">
+				<rich:dataTable id="dtProveedor"
+					value="#{proveedorBean.listaProveedor}" var="_proveedor"
+					width="100%">
+					<rich:column sortBy="#{_proveedor.prRuc}"
+						filterBy="#{_proveedor.prRuc}" filterEvent="onkeyup">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['ruc']}" />
+						</f:facet>
+						<h:outputText value="#{_proveedor.prRuc}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_proveedor.prNombre}">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['consulta.nombre']}" />
+						</f:facet>
+						<h:outputText value="#{_proveedor.prNombre}">
+						</h:outputText>
+					</rich:column>
+
+						<rich:column sortBy="#{_proveedor.prDireccion}">
+							<f:facet name="header">
+								<h:outputText value="#{etiquetas['direccion']}" />
+							</f:facet>
+							<h:outputText value="#{_proveedor.prDireccion}">
+							</h:outputText>
+						</rich:column>
+
+						<rich:column sortBy="#{_proveedor.prNombreReplgal}">
+							<f:facet name="header">
+								<h:outputText value="#{etiquetas['nom_rep_legal']}" />
+							</f:facet>
+							<h:outputText value="#{_proveedor.prNombreReplgal}">
+							</h:outputText>
+						</rich:column>
+
+					<rich:column
+						sortBy="#{_proveedor.tipoPrestamoProducto.nombreProducto}"
+						filterBy="#{_proveedor.tipoPrestamoProducto.nombreProducto}"
+						filterEvent="onkeyup">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['producto']}" />
+						</f:facet>
+						<h:outputText
+							value="#{_proveedor.tipoPrestamoProducto.descripcion}">
+						</h:outputText>
+					</rich:column>
+
+						<rich:column sortBy="#{_proveedor.estado}"
+							filterBy="#{_proveedor.estado}" filterEvent="onkeyup">
+							<f:facet name="header">
+								<h:outputText value="#{etiquetas['estado']}" />
+							</f:facet>
+							<h:outputText
+								value="#{_proveedor.estado=='ACT'?'Activo':'Inactivo'}">
+							</h:outputText>
+						</rich:column>
+
+					<rich:column width="100px">
+						<a4j:commandButton styleClass="boton"
+							style="border:0;width: 15px; height: 15px;" image="/img/edit.png"
+							onclick="put('#{_proveedor.prIdProveedor}');" process="btnEditar"
+							id="btnEditar">
+						</a4j:commandButton>
+					</rich:column>
+
+					<rich:column>
+						<a4j:commandButton styleClass="boton"
+							value="#{etiquetas['proveedor.generar.clave']}"
+							onclick="sendClave('#{_proveedor.prIdProveedor}');"
+							process="btnSendClave" id="btnSendClave"
+							rendered="#{_proveedor.tipoPrestamoProducto.codigo == 8}" />
+					</rich:column>
+				</rich:dataTable>
+			</h:panelGroup>
+			<br />
+			<a4j:commandButton styleClass="boton"
+				value="#{etiquetas['button.nuevo']}"
+				action="#{proveedorBean.agregar}" id="btnNuevo"
+				reRender="jpnlDatosProv" process="btnNuevo" />
+		</h:form>
+
+		<br />
+
+		<h:form id="formNuevo">
+			<rich:messages ajaxRendered="true">
+				<f:facet name="errorMarker">
+					<h:graphicImage url="/img/error.gif" />
+				</f:facet>
+				<f:facet name="infoMarker">
+					<h:graphicImage url="/img/information.jpg" />
+				</f:facet>
+			</rich:messages>
+
+			<a4j:outputPanel id="jpnlDatosProv">
+				<h:panelGroup id="pnlDatosProv" rendered="#{proveedorBean.newone}">
+					<fieldset>
+						<legend>#{etiquetas['proveedor.datos.generales']}</legend>
+						<h:panelGrid id="PGProvGen" columns="4"
+							columnClasses="col10,col40,col10,col40">
+
+							<h:outputText value="#{etiquetas['proveedor.ruc']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prRuc}"
+								id="prRucId" label="RUC" required="true"
+								onkeypress="return permitirValores(event, 'num')" maxlength="13" />
+
+							<h:outputText value="#{etiquetas['proveedor.codsuc']}" />
+							<h:inputText value="#{proveedorBean.proveedor.codigoSucursal}"
+								id="prCodSuc" label="Sucursal" required="true"
+								onkeypress="return permitirValores(event, 'num')" maxlength="4">
+								<a4j:support action="#{proveedorBean.obtenerDatosSucursal}"
+									event="onblur" reRender="PGProvGen,PGProvRep" ajaxSingle="true"
+									process="prRucId,prCodSuc" />
+							</h:inputText>
+
+							<h:outputText value="#{etiquetas['proveedor.nombre']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prNombre}"
+								label="Nombre proveedor" required="true" maxlength="120" />
+
+							<h:outputText value="#{etiquetas['proveedor.razonSocial']}" />
+							<h:inputText label="Razon Social"
+								value="#{proveedorBean.proveedor.razonSocial}" maxlength="100" />
+
+							<h:outputText value="#{etiquetas['proveedor.direccion']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prDireccion}"
+								label="Direccion" required="true" maxlength="250" />
+
+							<h:outputText value="#{etiquetas['proveedor.telefono']}" />
+							<h:inputText
+								value="#{proveedorBean.proveedor.prTelefonoProveedor}"
+								label="Telefono" required="true"
+								onkeypress="return permitirValores(event, 'num')" maxlength="20" />
+
+							<h:outputText value="#{etiquetas['proveedor.codigo.acceso']}" />
+							<h:inputText value="#{proveedorBean.proveedor.codigoAccesoWS}"
+								label="Codigo acceso WS" required="true" maxlength="20" />
+
+							<h:outputText value="#{etiquetas['proveedor.producto']}" />
+							<h:selectOneMenu id="SOMTipoProducto" required="true"
+								value="#{proveedorBean.idTipoProducto}" label="Tipo producto">
+								<f:selectItems value="#{proveedorBean.listaTipoProducto}" />
+								<a4j:support ajaxSingle="true" event="onchange"
+									process="SOMTipoProducto" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{etiquetas['proveedor.banco']}" />
+							<h:selectOneMenu id="SOMInstitucionFinanciera" required="true"
+								label="Institucion financiera"
+								value="#{proveedorBean.proveedor.prRucInstfinanciera}"
+								style="width:250px">
+								<f:selectItems
+									value="#{proveedorBean.listaInstitucionFinanciera}" />
+								<a4j:support ajaxSingle="true" event="onchange"
+									process="SOMInstitucionFinanciera" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{etiquetas['proveedor.tipoCuenta']}" />
+							<h:selectOneMenu id="SOMTipoCuenta"
+								value="#{proveedorBean.proveedor.prTipoCuenta}"
+								label="Tipo cuenta" required="true">
+								<f:selectItems value="#{proveedorBean.listaTipoCuenta}" />
+								<a4j:support event="onchange" process="SOMTipoCuenta"
+									ajaxSingle="true">
+								</a4j:support>
+							</h:selectOneMenu>
+
+							<h:outputText value="#{etiquetas['proveedor.numeroCuenta']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prNumCuenta}"
+								label="Numero cuenta" required="true"
+								onkeypress="return permitirValores(event, 'num')" maxlength="30" />
+
+							<h:outputText value="#{etiquetas['proveedor.estado']}" />
+							<h:selectOneMenu id="SOMEstado"
+								value="#{proveedorBean.proveedor.estado}" label="Estado"
+								required="true">
+								<f:selectItems value="#{proveedorBean.listaEstado}" />
+								<a4j:support event="onchange" process="SOMEstado"
+									ajaxSingle="true">
+								</a4j:support>
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+					</fieldset>
+
+					<fieldset>
+						<legend>#{etiquetas['proveedor.datos.replegal']}</legend>
+						<h:panelGrid id="PGProvRep" columns="4"
+							columnClasses="col10,col40,col10,col40">
+
+							<h:outputText value="#{etiquetas['proveedor.cedula']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prCedulaReplegal}"
+								label="Ced Rep legal" required="true"
+								onkeypress="return permitirValores(event, 'num')" maxlength="10" />
+
+							<h:outputText value="#{etiquetas['proveedor.nomRepLegal']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prNombreReplgal}"
+								label="Nombre Rep legal" required="true" maxlength="60" />
+
+							<h:outputText value="#{etiquetas['proveedor.telefonoRepLegal']}" />
+							<h:inputText
+								value="#{proveedorBean.proveedor.prTelefonoReplegal}"
+								label="Telefono Rep Legal" required="true" maxlength="20" />
+
+						</h:panelGrid>
+					</fieldset>
+
+					<fieldset>
+						<legend>#{etiquetas['proveedor.datos.contacto']}</legend>
+						<h:panelGrid id="PGProvCon" columns="4"
+							columnClasses="col10,col40,col10,col40">
+
+							<h:outputText value="#{etiquetas['proveedor.cedula']}" />
+							<h:inputText value="#{proveedorBean.proveedor.cedulaContacto}"
+								onkeypress="return permitirValores(event, 'num')" maxlength="10"
+								label="Cedula contacto" required="true">
+								<a4j:support action="#{proveedorBean.obtenerDatosContacto}"
+									event="onblur" reRender="PGProvCon" ajaxSingle="true" />
+							</h:inputText>
+
+							<h:outputText value="#{etiquetas['proveedor.nombre']}" />
+							<h:inputText value="#{proveedorBean.proveedor.nombreContacto}"
+								label="Nombre contacto" required="true" maxlength="50" />
+
+							<h:outputText value="#{etiquetas['proveedor.telefono']}" />
+							<h:inputText value="#{proveedorBean.proveedor.telefonoContacto}"
+								label="Telefono contacto" required="true"
+								onkeypress="return permitirValores(event, 'num')" maxlength="20" />
+
+							<h:outputText value="#{etiquetas['proveedor.direccion']}" />
+							<h:inputText value="#{proveedorBean.proveedor.direccionContacto}"
+								label="Direccion contacto" required="true" maxlength="250" />
+
+							<h:outputText value="#{etiquetas['proveedor.correo']}" />
+							<h:inputText value="#{proveedorBean.proveedor.prCorreoContacto}"
+								label="Correo contaco" required="true" />
+
+							<h:outputText value="#{etiquetas['proveedor.usuario']}" />
+							<h:inputText value="#{proveedorBean.proveedor.usuarioContacto}"
+								label="Usuario contacto" required="true" maxlength="20" />
+
+							<h:outputText value="#{etiquetas['proveedor.estado']}" />
+							<h:selectOneMenu
+								value="#{proveedorBean.proveedor.estadoContacto}"
+								label="Estado contacto" required="true">
+								<f:selectItems value="#{proveedorBean.listaEstado}" />
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+					</fieldset>
+
+					<rich:separator height="2px" />
+					<a4j:commandButton styleClass="boton"
+						value="#{etiquetas['button.guardar']}"
+						action="#{proveedorBean.guardar}"
+						reRender="PGUProveedor,jpnlDatosProv" process="formNuevo" />
+					<a4j:commandButton styleClass="boton"
+						value="#{etiquetas['button.cancelar']}"
+						action="#{proveedorBean.cancelar}" reRender="jpnlDatosProv"
+						process="formNuevo" immediate="true" />
+
+				</h:panelGroup>
+
+			</a4j:outputPanel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

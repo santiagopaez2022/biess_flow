@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+	#{titulos['sistema.titulo']}
+	</ui:define>
+	<ui:define name="contenido">
+	<a4j:keepAlive beanName="anuplahost"></a4j:keepAlive>
+	<h:panelGrid columns="1" width="100%" id="panel1">
+		<h:form>
+			<a4j:outputPanel layout="none">
+					<rich:panel styleClass="rich-panel" headerClass="rich-panel-header" bodyClass="rich-panel-body">
+						<f:facet name="header">
+					#{titulos['anulacionhost']}
+						</f:facet>
+				<f:subview>
+					<fieldset style="sizefielsdet">
+					<legend><h:outputText value="#{titulos['datosplanilla']}:" styleClass="etiqueta3"/></legend>
+				<rich:spacer height="10" />
+				
+					<h:panelGrid columns="1" style=" width : 793px;">
+						<h:outputText value="#{etiquetas.empleador} #{anuplahost.pla.nombreEmpleador}" styleClass="etiqueta2"/>
+					</h:panelGrid>
+					<h:panelGrid columns="4" style=" width : 793px;">
+						<h:outputText value="#{etiquetas.ruc}" styleClass="etiqueta2"/>
+						<h:outputText id="ruc" value="#{anuplahost.pla.pk.rucemp}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.sucursal}" styleClass="etiqueta2"/>
+						<h:outputText id="suc" value="#{anuplahost.pla.pk.codsuc}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.anio}" styleClass="etiqueta2"/>
+						<h:outputText id="ani" value="#{anuplahost.pla.pk.aniper}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.mes}" styleClass="etiqueta2"/>
+						<h:outputText id="mes" value="#{anuplahost.pla.pk.mesper}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.estado}" styleClass="etiqueta2"/>
+						<h:outputText id="est" value="#{anuplahost.pla.esttippla}" styleClass="etiqueta"/>
+					</h:panelGrid>
+					</fieldset>
+					</f:subview>
+				<br/>
+					
+				<f:subview>
+			<a4j:outputPanel id="det">					
+			<fieldset style="sizefielsdet">
+				<legend><h:outputText value="#{titulos['datosdetalle']}:" styleClass="etiqueta3"/></legend>
+				  <br/>
+				  <div align="center">
+					<div id="divTablahost">
+					<rich:dataTable id="tabpla" value="#{anuplahost.pladet}"
+							var="itemPla">
+								<rich:column style="" sortBy="#{itemPla.pk.numafi}">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['cedula']}"/>
+									</f:facet>
+			 						<h:outputText value="#{itemPla.pk.numafi}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="" sortBy="#{itemPla.nombreAfiliado}">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['nombre']}"/>
+									</f:facet>
+			 						<h:outputText value="#{itemPla.nombreAfiliado}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['valordividendo']}"/>
+									</f:facet>
+									<h:outputText value="#{itemPla.valtotdiv}"
+										style='color:black' />
+								</rich:column>
+					</rich:dataTable>
+					</div>
+					
+						<rich:spacer height="10" width="100%"/>
+								<fieldset style="width: 280px; height: 40px;">
+									<h:panelGrid columns="2">
+										<h:outputText value="TOTAL DE REGISTROS: " styleClass="etiqueta2"/>
+										<h:outputText value="#{anuplahost.numregpladet} " styleClass="etiqueta2"/>
+										<h:outputText value="VALOR PLANILLA: " styleClass="etiqueta2"/>
+										<h:outputText value="#{anuplahost.valorpladet}" styleClass="etiqueta2"/>
+									</h:panelGrid>
+								</fieldset>
+							</div>	
+							<br/>
+					</fieldset>
+			</a4j:outputPanel>					
+						<rich:spacer height="5" width="100%"/>
+				<a4j:outputPanel id="pie">					
+					<fieldset style="sizefielsdet">
+						<rich:spacer height="10" width="100%"/>
+						<h:panelGrid columns="3" rendered="#{!anuplahost.plaanu or anuplahost.pla.esttippla=='ECP' or !anuplahost.comanu==null}">
+							<h:outputText value="OBSERVACION: "/>
+							<h:inputTextarea id="obs" value="#{anuplahost.observacion}" style=" width : 529px;" required="true" requiredMessage="#{mensajes['campo.requerido']}" rows="3"/>
+							<a4j:outputPanel ajaxRendered="true">
+								<h:message errorClass="error" for="obs" />
+							</a4j:outputPanel>
+						</h:panelGrid>
+						<a4j:outputPanel id="msgErrorcom">
+							<rich:panel rendered="#{anuplahost.erroranucom!=null}">
+								<div class="requerido">
+								<h:graphicImage
+									value="/img/common/okay.gif" rendered="#{anuplahost.okOperacion}"></h:graphicImage>
+								<h:graphicImage 
+									value="/img/common/error.gif" rendered="#{!anuplahost.okOperacion}"></h:graphicImage>
+								<h:outputText
+									value="#{anuplahost.erroranucom}" styleClass="error"/></div>
+							</rich:panel>
+							<br />
+						</a4j:outputPanel> 
+						<a4j:outputPanel id="msgErrorpla">
+							<rich:panel rendered="#{anuplahost.erroranupla!=null}">
+								<div class="requerido">
+								<h:graphicImage
+									value="/img/common/okay.gif" rendered="#{anuplahost.okOperacion}"></h:graphicImage>
+								<h:graphicImage 
+									value="/img/common/error.gif" rendered="#{!anuplahost.okOperacion}"></h:graphicImage> 
+								<h:outputText
+									value="#{anuplahost.erroranupla}" styleClass="error"/></div>
+							</rich:panel>
+							<br />
+						</a4j:outputPanel> 
+			<div align="center">
+						<a4j:commandButton id="btnanucom" styleClass="boton1" value="#{botones['anularcomp']}" action="#{anuplahost.AnularComprobante}" disabled="#{anuplahost.pla.esttippla!='ECP' or anuplahost.erroranucom!=null}"
+						onclick="if(!confirm('Esta seguro que desea anular el comprobante?')){this.disabled=false;return false};" reRender="est,pie"/>
+						<a4j:commandButton id="btnanupla" styleClass="boton1" value="#{botones['anularplanilla']}" action="#{anuplahost.AnularPlanilla}" reRender="est,pie"
+						onclick="if(!confirm('Esta seguro que desea anular la planilla?')){this.disabled=false;return false};" disabled="#{anuplahost.plaanu or anuplahost.pla.esttippla=='ECP'}"/>
+						<h:commandButton id="btncan" styleClass="boton1" value="#{botones['salir']}" action="#{anuplahost.Salir}" immediate="true"/>
+			</div>			
+				</fieldset>
+			</a4j:outputPanel>					
+						<rich:spacer height="10" width="100%"/>
+				
+				</f:subview>
+									</rich:panel>
+				
+			</a4j:outputPanel>
+		</h:form>
+	</h:panelGrid>
+
+	</ui:define>
+</ui:composition>

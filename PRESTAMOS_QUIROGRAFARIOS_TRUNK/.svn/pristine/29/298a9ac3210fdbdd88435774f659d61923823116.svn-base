@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="principal::#pages#principal.xhtml"
+    NAME="output" PATH="/pages/principal.xhtml"
+    TARGET="rules:#pages#principal.xhtml" TITLE="principal" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#pages#salir.xhtml" NAME="output1"
+    PATH="/pages/salir.xhtml" TARGET="rules:#pages#salir.xhtml"
+    TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#ajustarplanillahl.xhtml"
+  PATH="/pages/ajustarplanillahl.xhtml" SHAPE="32,1009,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#ajustarplanillahl.xhtml:0" NAME="item"
+   PATH="/pages/ajustarplanillahl.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="buscarplanilla::#pages#ajustarplanillahlaccion.xhtml"
+    NAME="output" PATH="/pages/ajustarplanillahlaccion.xhtml"
+    TARGET="rules:#pages#ajustarplanillahlaccion.xhtml"
+    TITLE="buscarplanilla" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#ajustarplanillahost.xhtml"
+  PATH="/pages/ajustarplanillahost.xhtml" SHAPE="32,1121,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#ajustarplanillahost.xhtml:0"
+   NAME="item" PATH="/pages/ajustarplanillahost.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="buscarplanillahost::#pages#ajustarplanillahostaccion.xhtml"
+    NAME="output" PATH="/pages/ajustarplanillahostaccion.xhtml"
+    TARGET="rules:#pages#ajustarplanillahostaccion.xhtml"
+    TITLE="buscarplanillahost" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#anularplanillahost.xhtml"
+  PATH="/pages/anularplanillahost.xhtml" SHAPE="32,1233,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#anularplanillahost.xhtml:0" NAME="item"
+   PATH="/pages/anularplanillahost.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="buscarplanillahost::#pages#anularplanillahostaccion.xhtml"
+    NAME="output" PATH="/pages/anularplanillahostaccion.xhtml"
+    TARGET="rules:#pages#anularplanillahostaccion.xhtml"
+    TITLE="buscarplanillahost" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#anularplanillahl.xhtml"
+  PATH="/pages/anularplanillahl.xhtml" SHAPE="32,1345,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#anularplanillahl.xhtml:0" NAME="item"
+   PATH="/pages/anularplanillahl.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="buscarplanillahl::#pages#anularplanillahlaccion.xhtml"
+    NAME="output" PATH="/pages/anularplanillahlaccion.xhtml"
+    TARGET="rules:#pages#anularplanillahlaccion.xhtml"
+    TITLE="buscarplanillahl" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#ordenes#consultarOrdenes.xhtml"
+  PATH="/pages/ordenes/consultarOrdenes.xhtml" SHAPE="32,1457,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#ordenes#consultarOrdenes.xhtml:0"
+   NAME="item" PATH="/pages/ordenes/consultarOrdenes.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="imprimirConsulta::#pages#ordenes#imprimirConsultaOrdenes.xhtml"
+    NAME="output" PATH="/pages/ordenes/imprimirConsultaOrdenes.xhtml"
+    TARGET="rules:#pages#ordenes#imprimirConsultaOrdenes.xhtml"
+    TITLE="imprimirConsulta" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#aprobacion#cargarcedulasmasivas.xhtml"
+  PATH="/pages/aprobacion/cargarcedulasmasivas.xhtml"
+  SHAPE="32,1569,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#aprobacion#cargarcedulasmasivas.xhtml:0" NAME="item"
+   PATH="/pages/aprobacion/cargarcedulasmasivas.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="aprobarMasivo::#pages#aprobacion#aprobarsolicitudesmasivas.xhtml"
+    NAME="output"
+    PATH="/pages/aprobacion/aprobarsolicitudesmasivas.xhtml"
+    TARGET="rules:#pages#aprobacion#aprobarsolicitudesmasivas.xhtml"
+    TITLE="aprobarMasivo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#aprobacion#cargarcedulasmasivaspdv.xhtml"
+  PATH="/pages/aprobacion/cargarcedulasmasivaspdv.xhtml"
+  SHAPE="32,1681,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#aprobacion#cargarcedulasmasivaspdv.xhtml:0"
+   NAME="item" PATH="/pages/aprobacion/cargarcedulasmasivaspdv.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="aprobarMasivoPdv::#pages#aprobacion#aprobarsolicitudesmasivaspdv.xhtml"
+    NAME="output"
+    PATH="/pages/aprobacion/aprobarsolicitudesmasivaspdv.xhtml"
+    TARGET="rules:#pages#aprobacion#aprobarsolicitudesmasivaspdv.xhtml"
+    TITLE="aprobarMasivoPdv" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#creditos.xhtml"
+  PATH="/pages/comprobantesLiquidacion/creditos.xhtml"
+  SHAPE="304,177,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#pagIndSeleccion.xhtml"
+  PATH="/pages/comprobantesLiquidacion/pagIndSeleccion.xhtml"
+  SHAPE="576,161,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ordenes#imprimirConsultaOrdenes.xhtml"
+  PATH="/pages/ordenes/imprimirConsultaOrdenes.xhtml"
+  SHAPE="240,1473,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ajustarplanillahlaccion.xhtml"
+  PATH="/pages/ajustarplanillahlaccion.xhtml" SHAPE="240,1025,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#principal.xhtml"
+  PATH="/pages/principal.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#aprobacion#aprobarsolicitudesmasivas.xhtml"
+  PATH="/pages/aprobacion/aprobarsolicitudesmasivas.xhtml"
+  SHAPE="240,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ajustarplanillahostaccion.xhtml"
+  PATH="/pages/ajustarplanillahostaccion.xhtml" SHAPE="240,1137,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#comprobantesPago.xhtml"
+  PATH="/pages/comprobantesLiquidacion/comprobantesPago.xhtml"
+  SHAPE="576,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#anularplanillahlaccion.xhtml"
+  PATH="/pages/anularplanillahlaccion.xhtml" SHAPE="240,1361,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#salir.xhtml" PATH="/pages/salir.xhtml"
+  SHAPE="304,449,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#resultadoLiquidacion.xhtml"
+  PATH="/pages/comprobantesLiquidacion/resultadoLiquidacion.xhtml"
+  SHAPE="576,721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#detallePrestamo.xhtml"
+  PATH="/pages/comprobantesLiquidacion/detallePrestamo.xhtml"
+  SHAPE="576,865,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#calculoLiquidacion.xhtml"
+  PATH="/pages/comprobantesLiquidacion/calculoLiquidacion.xhtml"
+  SHAPE="576,577,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#aprobacion#aprobarsolicitudesmasivaspdv.xhtml"
+  PATH="/pages/aprobacion/aprobarsolicitudesmasivaspdv.xhtml"
+  SHAPE="240,1697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#pagIndSeleccionSaldos.xhtml"
+  PATH="/pages/comprobantesLiquidacion/pagIndSeleccionSaldos.xhtml"
+  SHAPE="576,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#anularplanillahostaccion.xhtml"
+  PATH="/pages/anularplanillahostaccion.xhtml" SHAPE="240,1249,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:" SHAPE="304,321,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="consultarCreditos::#pages#comprobantesLiquidacion#creditos.xhtml"
+    NAME="output" PATH="/pages/comprobantesLiquidacion/creditos.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#creditos.xhtml"
+    TITLE="consultarCreditos" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="principalSalir::#pages#principal.xhtml"
+    NAME="output1" PATH="/pages/principal.xhtml"
+    TARGET="rules:#pages#principal.xhtml" TITLE="principalSalir" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="pagIndSeleccion::#pages#comprobantesLiquidacion#pagIndSeleccion.xhtml"
+    NAME="output2"
+    PATH="/pages/comprobantesLiquidacion/pagIndSeleccion.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#pagIndSeleccion.xhtml"
+    TITLE="pagIndSeleccion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="pagIndSeleccionSaldos::#pages#comprobantesLiquidacion#pagIndSeleccionSaldos.xhtml"
+    NAME="output3"
+    PATH="/pages/comprobantesLiquidacion/pagIndSeleccionSaldos.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#pagIndSeleccionSaldos.xhtml"
+    TITLE="pagIndSeleccionSaldos" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="comprobantesPago::#pages#comprobantesLiquidacion#comprobantesPago.xhtml"
+    NAME="output4"
+    PATH="/pages/comprobantesLiquidacion/comprobantesPago.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#comprobantesPago.xhtml"
+    TITLE="comprobantesPago" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="calculoLiquidacion::#pages#comprobantesLiquidacion#calculoLiquidacion.xhtml"
+    NAME="output5"
+    PATH="/pages/comprobantesLiquidacion/calculoLiquidacion.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#calculoLiquidacion.xhtml"
+    TITLE="calculoLiquidacion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="resultadoLiquidacion::#pages#comprobantesLiquidacion#resultadoLiquidacion.xhtml"
+    NAME="output6"
+    PATH="/pages/comprobantesLiquidacion/resultadoLiquidacion.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#resultadoLiquidacion.xhtml"
+    TITLE="resultadoLiquidacion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="detallePrestamo::#pages#comprobantesLiquidacion#detallePrestamo.xhtml"
+    NAME="output7"
+    PATH="/pages/comprobantesLiquidacion/detallePrestamo.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#detallePrestamo.xhtml"
+    TITLE="detallePrestamo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="comprobanteDividendos::#pages#comprobantesLiquidacion#comprobantePagoDividendos.xhtml"
+    NAME="output8"
+    PATH="/pages/comprobantesLiquidacion/comprobantePagoDividendos.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#comprobantePagoDividendos.xhtml"
+    TITLE="comprobanteDividendos" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="liquidacionesPago::#pages#comprobantesLiquidacion#liquidacionesPago.xhtml"
+    NAME="output9"
+    PATH="/pages/comprobantesLiquidacion/liquidacionesPago.xhtml"
+    TARGET="rules:#pages#comprobantesLiquidacion#liquidacionesPago.xhtml"
+    TITLE="liquidacionesPago" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#comprobantePagoDividendos.xhtml"
+  PATH="/pages/comprobantesLiquidacion/comprobantePagoDividendos.xhtml"
+  SHAPE="528,273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#comprobantesLiquidacion#liquidacionesPago.xhtml"
+  PATH="/pages/comprobantesLiquidacion/liquidacionesPago.xhtml"
+  SHAPE="528,785,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"	
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/impresion.xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><ui:insert name="titulo">
+	<h:outputText value="#{titulos['sistema.titulo']}" />
+</ui:insert></title>
+<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/biess.css" />
+</head>
+	<ui:define name="contenido">
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.comprobante.pago.liquidacion']}</div>
+		<br />
+		<rich:panel styleClass="errorPanel"
+			rendered="#{creditoAccion.comprobantePago==null}">
+			<h:outputText value="#{messages['comprobante.no.encontrado']}"></h:outputText>
+		</rich:panel>
+
+
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="#{datos.solicitante!=null and creditoAccion.comprobantePago!=null}">
+			<f:facet name="header">
+				#{labels['comprobante.numero']}: #{creditoAccion.comprobantePago.pk.codComPagAfi}
+			</f:facet>
+
+			<table class="recuadroValoresTdLeft">
+				<tr>
+					<th>#{labels['comprobante.concepto']}:</th>
+					<td>#{creditoAccion.comprobantePago.tipoComprobante.descripcion}</td>
+					<th>#{labels['comprobante.emitido']}:</th>
+					<td><h:outputText
+						value="#{creditoAccion.comprobantePago.fechageneracionComprobante}">
+						<f:convertDateTime pattern="dd-MMM-yyyy" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<th>#{labels['comprobante.numero.cedula']}:</th>
+					<td>#{creditoAccion.comprobantePago.numeroAfiliado}</td>
+					<th>#{labels['comprobante.fecha.vigencia.pago']}:</th>
+					<td><h:outputText
+						value="#{creditoAccion.comprobantePago.fechaFinComprobante}">
+						<f:convertDateTime pattern="dd-MMM-yyyy" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<th>#{labels['comprobante.nombre']}:</th>
+					<td colspan="3">#{datos.solicitante.datosPersonales.apellidosNombres}</td>
+				</tr>
+				<tr>
+					<th>#{labels['comprobante.prestamo']}:</th>
+					<td colspan="3">#{creditoAccion.prestamoSeleccionado.destinoComercial.descripcion}</td>
+				</tr>
+				<tr>
+					<th>#{labels['comprobante.numero.prestamo']}:</th>
+					<td colspan="3">#{creditoAccion.prestamoSeleccionado.nut}</td>
+				</tr>
+			</table>
+			<br />
+			<rich:dataTable style="width:350px" styleClass="dt_panel"  rowClasses="prow1,prow2">
+				<f:facet name="header">
+					<rich:columnGroup columnClasses="dt_header">
+						<rich:column breakBefore="true" colspan="7">
+							<h:outputText value="#{labels['comprobante.detalle']}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<f:facet name="footer">
+					<rich:columnGroup>
+						<rich:column breakBefore="true" colspan="6">#{labels['comprobante.valor.sin.intereses']}</rich:column>
+						<rich:column style="text-align:right;">
+							<h:outputText
+								value="#{creditoAccion.comprobantePago.valComPagAfi}">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText>
+						</rich:column>
+						<rich:column breakBefore="true" colspan="6">#{labels['comprobante.interes.mora']}</rich:column>
+						<rich:column style="text-align:right;">
+							<h:outputText
+								value="#{creditoAccion.comprobantePago.interesMora}">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText>
+						</rich:column>
+						<rich:column breakBefore="true" colspan="6">#{labels['comprobante.subtotal']}</rich:column>
+						<rich:column style="text-align:right;">
+							<h:outputText
+								value="#{creditoAccion.comprobantePago.valorTotalComprobante}">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText>
+						</rich:column>
+						<rich:column breakBefore="true" colspan="6">#{labels['comprobante.total']}</rich:column>
+						<rich:column style="text-align:right;">
+							<h:outputText
+								value="#{creditoAccion.comprobantePago.valorTotalComprobante}">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText>
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+			</rich:dataTable>
+			<br />
+			<input type="button" class="botonbarra"
+				value="#{labels['button.imprimir.comprobante']}" id="imprimir2"
+				onclick="window.print();" />
+			<input type="button" class="botonbarra"
+				value="#{labels['button.cerrar']}" id="cerrar"
+				onclick="window.close();" />
+
+		</rich:panel>
+
+	</ui:define>
+</ui:composition>

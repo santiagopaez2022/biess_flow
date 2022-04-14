@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{labels['novacion.titulo']}</div>
+		
+
+
+		<rich:panel id="pnlDatosGenerales" styleClass="panel"
+			headerClass="pheader" bodyClass="pbody">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			<!-- mensajes de error -->
+			<a4j:outputPanel ajaxRendered="true">
+				<!--<rich:panel  styleClass="errorPanel">-->
+				<h:messages styleClass="errorPanel"
+					style="padding:10px 0px 15px 55px; margin: 0px;" />
+				<!--#{messages['garantias.valor']}-->
+				<!--</rich:panel>-->
+				<br />
+			</a4j:outputPanel>
+			<h:panelGrid columns="2" styleClass="panelInvisible">
+				<h:outputLabel for="txtCedula" value="#{labels.cedula}:" />
+				<h:inputText id="txtCedula"
+					value="#{datos.solicitante.datosPersonales.cedula}" readonly="true" />
+
+				<h:outputLabel for="txtApellidos"
+					value="#{labels.nombresApellidos}:" />
+				<h:inputText id="txtApellidos"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}"
+					readonly="true" size="60" />
+			</h:panelGrid>
+
+			<!--  Garantias  -->
+			
+			<!-- AFILIADO o ZAFRERO -->
+			<a4j:outputPanel
+				rendered="#{resultadoNovacion.garantia != null and !empty resultadoNovacion.garantia.detalleGarantiaList and (datos.solicitante.tipo=='AFILIADO' or datos.solicitante.tipo=='ZAFRERO_TEMPORAL')}">
+				<table width="99%" border="0" cellpadding="0" cellspacing="0" class="tablesinside">
+					<tr>
+						<th>
+							<h:outputText value="#{labels['garantias']}"/>
+						</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+					<c:forEach items="#{resultadoNovacion.garantia.detalleGarantiaList}" var="item">
+						<tr>
+							<td><h:outputText value="#{item.nombreGarantia}:" style="text-align: left;width: 200;"/></td>
+							<td class="tdCampoNum" style="text-align: right;"><h:outputText
+								value="#{item.valorGarantia}" style="text-align: right;">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText></td>
+							<td><h:outputText value="#{item.observacion}" style="text-align: right;color: red" /></td>
+						</tr>
+					</c:forEach>					
+					<tr>
+						<td><h:outputLabel for="txtGarantia"
+							value="#{labels['total.garantia.prerrequisitos']}:" /></td>
+						<td class="tdCampoNum"><h:outputText id="txtGarantia"
+							value="#{resultadoNovacion.garantia.totalGarantia}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText></td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</a4j:outputPanel>
+			
+			<a4j:outputPanel
+				rendered="#{resultadoNovacion.garantia != null and datos.solicitante.tipo=='JUBILADO'}">
+				<table width="99%" border="0" cellpadding="0" cellspacing="0" class="tablesinside">
+					<tr>
+						<th>
+							<h:outputText value="#{labels['pension.jubilacion']}"/>
+						</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+					<c:forEach items="#{resultadoNovacion.garantia.detalleGarantiaList}"
+						var="item">
+						<tr>
+							<td><h:outputText value="#{item.nombreGarantia}:" /></td>
+							<td class="tdCampoNum"><h:outputText
+								value="#{item.valorGarantia}" style="text-align: right;">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText></td>
+							<td>
+								<h:outputText
+								value="#{item.observacion}" style="text-align: right;color: red"/></td>
+						</tr>
+					</c:forEach>
+
+					<c:if test="#{resultadoNovacion.datos.mensajePrestacionJubilado!=null}">
+						<tr>
+							<td colspan="3">
+								<rich:panel styleClass="errorPanel"
+									rendered="#{resultadoNovacion.datos.mensajePrestacionJubilado!=null}">
+									<h:outputText value="#{resultadoNovacion.datos.mensajePrestacionJubilado}"></h:outputText>
+								</rich:panel>
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="#{resultadoNovacion.datos.mensajePrestacionJubilado==null}">
+						<tr>
+							<td></td>
+							<td><b>
+							#{labels['prestaciones.ingresos']}
+							</b></td>
+							<td><b>
+							#{labels['prestaciones.egresos']}
+							</b></td>
+						</tr>
+						<c:forEach
+							items="#{resultadoNovacion.datos.informacionIessServicio.informacionPrestacionPensionado.listaPrestaciones}"
+							var="_presta">
+							<tr>
+								<td>
+									<h:outputText value="#{_presta.descripcion}:" />
+								</td>
+								<td class="tdCampoNum">$<h:outputText
+										value="#{_presta.ingresos}"
+										style="text-align: right;">
+										<f:convertNumber groupingUsed="true"
+											maxFractionDigits="2" type="currency" />
+									</h:outputText>
+								</td>
+								<td class="tdCampoNum">$<h:outputText
+										value="#{_presta.egresos}"
+										style="text-align: right;">
+										<f:convertNumber groupingUsed="true"
+											maxFractionDigits="2" type="currency" />
+									</h:outputText>
+								</td>
+							</tr>
+						</c:forEach>
+							<tr>
+								<td><b>#{labels['prestaciones.total']}:</b></td>
+								<td class="tdCampoNum"><b>$#{resultadoNovacion.datos.informacionIessServicio.informacionPrestacionPensionado.totalIngresos}</b></td>
+								<td class="tdCampoNum"><b>$#{resultadoNovacion.datos.informacionIessServicio.informacionPrestacionPensionado.totalEgresos}</b></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+								<rich:panel styleClass="errorPanel"
+										rendered="#{resultadoNovacion.datos.informacionIessServicio.informacionPrestacionPensionado.valorAComprometer lt 0}">
+										<h:outputText value="#{resultadoNovacion.datos.mensajeValorNegativo}"></h:outputText>
+									</rich:panel>
+								</td>
+							</tr>
+					</c:if>
+			</table>
+		</a4j:outputPanel>
+			
+			
+			
+
+		</rich:panel>
+		
+		<a4j:status id="cargandoRequisitos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+		</a4j:status>
+		<h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['resultadoNovacion.precalificacion.requisitos']}
+				</f:facet>
+			<!-- <a4j:keepAlive beanName="resultado"></a4j:keepAlive> --> 
+				<a4j:jsFunction action="#{resultadoNovacion.cargarPrecalificacion}"
+					name="cargarRequisitos" status="cargandoRequisitos"
+					reRender="pnlRequisitos,pnlResultado,pnlDatosGenerales"></a4j:jsFunction>
+				<a4j:outputPanel id="pnlRequisitos">
+					<h:dataTable var="item"
+						value="#{resultadoNovacion.precalificacion.requisitos}"
+						rendered="#{resultadoNovacion.cargado}" styleClass="tablesinside"
+						headerClass="dt_header" rowClasses="prow1,prow2">
+						<h:column>
+							<f:facet name="header">#{labels.requisito}</f:facet>
+							<h:outputText value="#{item.descripcion}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{labels.aprueba}</f:facet>
+							<div align="center"><h:graphicImage
+								value="/files/images/content/icon-check.png" rendered="#{item.aprobado}"></h:graphicImage>
+							<h:graphicImage value="/img/common/no.png"
+								rendered="#{!item.aprobado}"></h:graphicImage></div>
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{labels.observacion}</f:facet>
+							<h:outputText value="#{item.observacion}" />
+							<h:outputText value="#{item.url}" rendered="#{item.url!=null}" />
+						</h:column>
+					</h:dataTable>
+				</a4j:outputPanel>
+			</rich:panel>
+			
+			<a4j:outputPanel id="pnlResultado">
+				<f:subview rendered="#{resultadoNovacion.cargado}">
+					<br />
+					<rich:panel styleClass="panelResults" headerClass="pheader"
+						bodyClass="pbody">
+						<f:facet name="header">	#{labels['resultado.final']} </f:facet>
+						<rich:panel styleClass="okayPanel"
+							rendered="#{resultadoNovacion.datos.solicitante.aprobado}">
+							<h:outputText value="#{messages['precalificacion.aceptada']}"
+								escape="false"></h:outputText>
+						</rich:panel>
+						<rich:panel styleClass="errorPanel"
+							rendered="#{!resultadoNovacion.datos.solicitante.aprobado}">
+							<h:outputText value="#{messages['precalificacion.negada']}"
+								escape="false"></h:outputText>
+						</rich:panel>
+					</rich:panel>
+					<br />
+					<div align="center"><!-- <h:commandButton action="imprimir" value="#{labels['button.imprimir']}" styleClass="boton"></h:commandButton>
+						<h:graphicImage value="/img/blanco.jpg" /> -->						
+						<h:commandButton 
+						action="#{concesionCredito.aceptar}"
+						value="#{labels['button.aceptar.continuar']}"
+						disabled="#{!resultadoNovacion.datos.solicitante.aprobado}"						
+						styleClass="botonbarra"
+						 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" ></h:commandButton>
+						
+						<h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:graphicImage
+						value="/img/blanco.jpg" /> <h:commandButton action="regresarNovacion"
+						value="#{labels['button.regresar']}" styleClass="botonbarra" immediate="true"></h:commandButton>
+					<h:commandButton action="#{principal.logout}"
+						value="#{labels['button.salir']}" styleClass="botonbarra"
+						immediate="true"></h:commandButton></div>
+				</f:subview>
+			</a4j:outputPanel>
+		</h:form>
+		
+		 <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+		<script type="text/javascript">
+			document.onkeydown = function(e){
+				tecla = (document.all) ? e.keyCode : e.which;
+				if (tecla == 116) {
+					return false
+				}
+			}
+		
+			cargarRequisitos();
+		</script>
+	</ui:define>
+</ui:composition>

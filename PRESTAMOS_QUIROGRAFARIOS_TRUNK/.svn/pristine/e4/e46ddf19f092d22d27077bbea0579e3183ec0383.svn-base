@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos" ajaxSingle="true" limitToList="true" />
+			<a4j:jsFunction action="#{creditoAccion.cleanOptions}" name="cleanOptions" ajaxSingle="true" limitToList="true" reRender="botonesCredito,pnlError"/>			
+		</h:form>
+
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.consulta.creditos']} <a4j:status>
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+		</a4j:status></div>
+
+
+		<a4j:outputPanel id="pnlError">
+			<rich:panel styleClass="errorPanel"	rendered="#{creditoAccion.msjError!=null}">
+				<h:outputText value="#{creditoAccion.msjError}"></h:outputText>
+			</rich:panel>
+		</a4j:outputPanel>
+
+		
+			<a4j:outputPanel id="pnlErrorSac">
+			<rich:panel styleClass="errorPanel"	rendered="#{consultaCredito.mensaje!=null}">
+				<h:outputText value="#{consultaCredito.mensaje}"></h:outputText>
+			</rich:panel>
+		</a4j:outputPanel>
+		
+
+		<a4j:outputPanel id="pnlDatosGenerales">
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody" rendered="${datos.solicitante!=null and consultaCredito.mensaje==null }">
+				<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+
+				<h:panelGrid columns="2" styleClass="panelInvisible">
+					<h:outputLabel value="#{labels.cedula}:" />
+					<h:outputText style="font-weight:bold"
+						value="#{datos.solicitante.datosPersonales.cedula}" />
+					<h:outputLabel value="#{labels.nombresApellidos}:" />
+					<h:outputText style="font-weight:bold"
+						value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+				</h:panelGrid>
+
+			</rich:panel>
+		</a4j:outputPanel>
+		
+		<a4j:region id="regionTable">
+			<a4j:outputPanel id="pnlLista">
+				<h:form rendered="${datos.solicitante!=null and consultaCredito.mensaje==null}">
+					<rich:panel styleClass="panel" headerClass="pheader"
+						bodyClass="pbody">
+						<f:facet name="header">
+							#{labels['titulo.lista.creditos']}
+						</f:facet>
+
+						<rich:panel styleClass="messagePanel" style="margin: 0px !important;">
+							<h:outputText value="#{labels['seleccione.un.credito.recaudacion']}" rendered="#{consultaCredito.creditosVigModel.rowCount gt 0}" />
+							<h:outputText value="No posee creditos vigentes." rendered="#{consultaCredito.creditosVigModel.rowCount eq 0}" />
+						</rich:panel>
+
+						<a4j:status>
+							<f:facet name="start">
+							
+								<rich:panel styleClass="panelInvisible">
+									<h:graphicImage value="/img/ajax/cargando.gif" />
+									<h:outputText value="#{messages.cargando}"></h:outputText>
+								</rich:panel>
+							</f:facet>
+						</a4j:status> 						
+						
+						<h:panelGrid columns="1">						
+						<a4j:outputPanel id="panelTablaCreditos"  layout="block" style="overflow:auto; width:612px; height:230px;">
+							<rich:extendedDataTable id="tablaCreditos" var="item" rows="3" selection="#{creditoAccion.selectedItem}"
+								value="#{consultaCredito.creditosVigModel}" selectionMode="single"
+								headerClass="dt_header" rowClasses="prow1,prow2" enableContextMenu="faLse" 
+								rendered="#{consultaCredito.creditosVigModel.rowCount gt 0}">
+								<a4j:support ajaxSingle="true" event="onselectionchange" action="#{creditoAccion.seleccionarCredito}"
+	                          		reRender="botonesCredito"/>
+								<rich:column style="text-align:center !important; " sortable="false" id="colPrestamo">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.producto']}" />
+									</f:facet>
+									<h:outputText value="#{item.clasePrestamo.descripcion}" />
+								</rich:column>
+								<rich:column style="text-align:center;" sortable="false" id="colEstado">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.estado']}" />
+									</f:facet>								
+									<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+								</rich:column>
+								<rich:column style="text-align:center;" sortable="false" id="colNut">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.numero.prestamo']}" />
+									</f:facet>
+									<h:outputText value="#{item.nut}" />
+								</rich:column>
+								<rich:column style="text-align:center;" sortable="false" id="colNumero">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.numero.solicitud']}" />
+									</f:facet>
+									<h:outputText value="#{item.prestamoPk.numpreafi}" />
+								</rich:column>
+								<rich:column style="text-align:center;" sortable="false" id="colPlazo">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.plazo.meses']}" />
+									</f:facet>								
+									<h:outputText value="#{item.plzmes}" />
+								</rich:column>
+								<rich:column style="text-align:center;" sortable="false" id="colFecha">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.fecha.concesion']}" />
+									</f:facet>								
+									<h:outputText value="#{item.fecpreafi}">
+										<f:convertDateTime pattern="dd-MMM-yyyy" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="text-align:right;" sortable="false" id="colMonto">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.monto.abrev']}" />
+									</f:facet>								
+									<h:outputText value="#{item.valsalcap}">
+										<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+											type="currency" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="text-align:center;" sortable="false" id="colDiasMora">
+									<f:facet name="header">
+	      								<h:outputText value="#{labels['credito.dias.mora.abrev']}" />
+									</f:facet>
+									<h:outputText value="#{item.diasMora}" />
+								</rich:column>
+					            <f:facet name="footer">
+					                <rich:datascroller id="tablaCreditosScroller" for="tablaCreditos" reRender="botonesCredito,pnlError"
+					                	action="#{creditoAccion.resetear}" ajaxSingle="true" limitToList="true"/>
+					            </f:facet>							
+							</rich:extendedDataTable>			
+						</a4j:outputPanel>								
+						<br />
+						<a4j:outputPanel id="botonesCredito" rendered="#{consultaCredito.creditosVigModel.rowCount gt 0}">
+							<h1><h:outputText value="Consultas" style="color:#A9A9A9" /> </h1>
+							<rich:separator height="2" />
+							<h:panelGrid columns="2" style="width:105%;">								
+								<a4j:outputPanel>
+									<br/><br/>
+									<div class="productitem" >
+										<h:commandLink action="#{creditoAccion.mostrarDetalle}" disabled="#{!creditoAccion.habilitarVerDetalle}"  onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+											<img src="${facesContext.externalContext.request.contextPath}/img/quirografario/detalle_prestamo.jpg" border="0" width="52" height="52" class="floatleft"/>
+									    </h:commandLink>
+										<p>
+											<strong> <a4j:commandLink 
+														action="#{creditoAccion.mostrarDetalle}" disabled="#{!creditoAccion.habilitarVerDetalle}" 
+														onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+														value="Muestra el detalle del crédito" styleClass="txt_producto">
+													</a4j:commandLink>
+											</strong>
+										</p>
+									</div>
+								</a4j:outputPanel>
+								
+								<a4j:outputPanel>
+									<br/><br/>
+									<div class="productitem">
+										<a4j:commandLink action="#{creditoAccion.consultarPagInd}" disabled="#{!creditoAccion.habilitarConsultaGC}" reRender="botonesCredito"  onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+											<img src="${facesContext.externalContext.request.contextPath}/img/quirografario/comprobante_individual.jpg" border="0" width="52" height="52" class="floatleft"/>
+									    </a4j:commandLink>										
+										<p>
+											<strong> <a4j:commandLink 
+														action="#{creditoAccion.consultarPagInd}" disabled="#{!creditoAccion.habilitarConsultaGC}" 
+														onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+														value="Reimpresión de comprobante de pago" styleClass="txt_producto" reRender="botonesCredito" immediate="true">											
+													</a4j:commandLink>
+											</strong>
+											<h:outputText style="font-weight:bold;color:#FF0000;font-style:italic" value="#{creditoAccion.msjConsultaGC} " />
+										</p>										
+									</div>
+								</a4j:outputPanel>
+								
+								<a4j:outputPanel>
+									<br/><br/>
+									<div class="productitem">
+										<a4j:commandLink reRender="botonesCredito, frmMenDiaHab" action="#{creditoAccion.consultarDiasHabiles}" oncomplete="Richfaces.showModalPanel('pnlMenDiaHab');" immediate="true">
+											<img src="${facesContext.externalContext.request.contextPath}/img/quirografario/informacion_comprobante.jpg" border="0" width="52" height="52" class="floatleft"/>
+									    </a4j:commandLink>										
+										<p>
+											<strong> <a4j:commandLink action="#{creditoAccion.consultarDiasHabiles}" 
+														oncomplete="Richfaces.showModalPanel('pnlMenDiaHab');" 
+														value="Días hábiles para generación de comprobantes de pago" styleClass="txt_producto" reRender="botonesCredito, frmMenDiaHab" immediate="true">											
+													</a4j:commandLink>
+											</strong>									
+										</p>										
+									</div>
+								</a4j:outputPanel>
+							</h:panelGrid>
+							<br/><br/>
+							<h1><h:outputText value="Opciones de Recaudación" style="color:#A9A9A9" /> </h1>
+							<rich:separator height="2" />
+							<h:panelGrid columns="2" style="width:105%;">								
+								<a4j:outputPanel>
+									<br/><br/>
+									<div class="productitem">
+										<a4j:commandLink action="#{creditoAccion.seleccionarDividendos}" disabled="#{!creditoAccion.habilitarGenerarComp}" 
+										reRender="botonesCredito, frmSrvCP" onclick="Richfaces.showModalPanel('pnl');" 
+										oncomplete="if (#{creditoAccion.panelMensajes}) {Richfaces.showModalPanel('pnlSrvCP');Richfaces.hideModalPanel('pnl');} else{Richfaces.hideModalPanel('pnl')}">
+											<img src="${facesContext.externalContext.request.contextPath}/img/quirografario/recaudacion.jpg" border="0" width="52" height="52" class="floatleft"/>
+											
+									    </a4j:commandLink>										
+										<p>
+											<strong> <a4j:commandLink 
+														action="#{creditoAccion.seleccionarDividendos}" disabled="#{!creditoAccion.habilitarGenerarComp}" 
+														onclick="Richfaces.showModalPanel('pnl');"
+														oncomplete="if (#{creditoAccion.panelMensajes}) {Richfaces.showModalPanel('pnlSrvCP');Richfaces.hideModalPanel('pnl');} else{Richfaces.hideModalPanel('pnl')}" 
+														value="Genera comprobante de pago individual" reRender="botonesCredito,frmSrvCP" styleClass="txt_producto">
+													</a4j:commandLink>
+											</strong>
+										</p>
+										<h:outputText style="font-weight:bold;color:#FF0000;font-style:italic" value="#{creditoAccion.msjGenerarComp}"  escape="false" />
+									</div>
+								</a4j:outputPanel>
+																
+								<a4j:outputPanel>
+									<br/><br/>
+									<div class="productitem">
+										<a4j:commandLink  disabled="#{!creditoAccion.habilitarCalcularLiq}" action="#{creditoAccion.calcularLiq}"  reRender="botonesCredito,frmSrvCP"  onclick="Richfaces.showModalPanel('pnl');" oncomplete="if (#{creditoAccion.panelMensajes}) {Richfaces.showModalPanel('pnlSrvCP');} else{Richfaces.hideModalPanel('pnl')}" >
+											<img src="${facesContext.externalContext.request.contextPath}/img/quirografario/liquidar_prestamo.jpg" border="0" width="52" height="52" class="floatleft"/>
+									    </a4j:commandLink>
+										<p>
+											<strong> <a4j:commandLink border="0"
+														action="#{creditoAccion.calcularLiq}" disabled="#{!creditoAccion.habilitarCalcularLiq}" 
+														onclick="Richfaces.showModalPanel('pnl');" oncomplete="if (#{creditoAccion.panelMensajes}) {Richfaces.showModalPanel('pnlSrvCP');} else{Richfaces.hideModalPanel('pnl')}" 
+														value="Realiza liquidación de crédito" styleClass="txt_producto" reRender="botonesCredito,frmSrvCP" immediate="true">
+													</a4j:commandLink>
+											</strong>
+										</p>
+										<h:outputText style="font-weight:bold;color:#FF0000;font-style:italic" value="#{creditoAccion.msjCalcularLiq}"  escape="false" />
+									</div>
+								</a4j:outputPanel>
+								
+								<a4j:outputPanel>
+									<br/><br/>
+									<div class="productitem" >
+										<a4j:commandLink  disabled="#{!creditoAccion.habilitarCalcularLiqFondos}" action="#{creditoAccion.cargarRequisitoCruceCuentas}"  reRender="botonesCredito,frmSrvCP"  onclick="Richfaces.showModalPanel('pnl');" oncomplete="if (#{creditoAccion.panelMensajes}) {Richfaces.showModalPanel('pnlSrvCP');} else{Richfaces.hideModalPanel('pnl')}" >
+											<img src="${facesContext.externalContext.request.contextPath}/img/quirografario/crucecuentas.JPG" border="0" width="52" height="52" class="floatleft"/>
+									    </a4j:commandLink>
+										<p>
+											<strong> <a4j:commandLink 
+														action="#{creditoAccion.cargarRequisitoCruceCuentas}" disabled="#{!creditoAccion.habilitarCalcularLiqFondos}" 
+														onclick="Richfaces.showModalPanel('pnl');" oncomplete="if (#{creditoAccion.panelMensajes}) {Richfaces.showModalPanel('pnlSrvCP');} else{Richfaces.hideModalPanel('pnl')}" styleClass="txt_producto" 
+														value="Realiza cruce de cuentas con valores disponibles de fondos de reserva" reRender="botonesCredito,frmSrvCP" immediate="true">											
+													</a4j:commandLink>
+											</strong>											
+										</p>
+										<h:outputText style="font-weight:bold;color:#FF0000;font-style:italic" value="#{creditoAccion.msjCalcularLiqFondos}"  escape="false" />										
+									</div>
+								</a4j:outputPanel>
+							</h:panelGrid>
+						</a4j:outputPanel>												
+						</h:panelGrid>						
+					</rich:panel>
+				</h:form>
+				<a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+				
+				<a4j:form id="frmMenDiaHab">
+					<rich:modalPanel id="pnlMenDiaHab" width="590" height="385">	
+						<br/>
+						<div id="basic-modal-content">
+							<h3 align="center" style="color: blue; font-size: 16px;">Días 
+								hábiles para generación de comprobantes de pago</h3>
+							<br/>
+							<table class="egt" border="1">
+							  <tr>
+							    <th scope="row" bgcolor="#DEDEDE">Tipo de Asegurado</th>
+							    <th bgcolor="#DEDEDE">Periodo para generación de comprobantes de pago</th>
+							    <th bgcolor="#DEDEDE">Tipo de Comprobante</th>
+							    <th bgcolor="#DEDEDE">Vencimiento del Comprobante</th>
+							  </tr>
+							  <tr>
+							    <td>Cesantes</td>
+							    <td>#{creditoAccion.periodoComprobanteCesante}</td>
+							    <td rowspan="5">Se podran generar los siguientes tipos: 
+							    			<br/><h:outputText value="#{creditoAccion.tipoComprobanteSB}" escape="false"/></td>
+							    <td rowspan="5">#{creditoAccion.vencimientoComprobante}</td>
+							  </tr>
+							  <tr>
+							    <td>Voluntarios</td>
+							    <td>#{creditoAccion.periodoComprobanteVoluntario}</td>							    
+							  </tr>
+							  <tr>
+							    <td>Unipersonales</td>
+							    <td>#{creditoAccion.periodoComprobanteUnipersonal}</td>							    
+							  </tr>
+							  <tr>
+							    <td>Jubilados</td>
+							    <td>#{creditoAccion.periodoComprobanteJubilado}</td>							    
+							  </tr>
+							  <tr>
+							    <td>Afiliados</td>
+							    <td>#{creditoAccion.periodoComprobanteAfiliado}</td>							    
+							  </tr>
+							</table>
+							<br/>						
+							<center>
+								<a onclick="Richfaces.hideModalPanel('pnlMenDiaHab');Richfaces.hideModalPanel('pnl');" href="#" style="font-size: 16px;">ACEPTAR</a>
+							</center>
+						</div>
+					</rich:modalPanel>	
+				</a4j:form>
+				
+				
+				<a4j:form id="frmSrvCP">
+					<rich:modalPanel id="pnlSrvCP" autosized="true" width="610"
+						styleClass="panel" headerClass="pheader" bodyClass="pbody">
+						<f:facet name="header">
+				   Mensaje Informativo
+						</f:facet>
+						<h:panelGroup id="debitoAutomatico"
+							rendered="#{creditoAccion.habilitaMensajeDebito}">
+							<table style="color: Navy; font-size: 14px;">
+								<tr>
+									<td><p style="text-align: left;">Estimado(a)
+											Asegurado(a)</p></td>
+								</tr>
+								<tr>
+									<td>
+										<p style="text-align: justify;">
+											Existe otro proceso de recaudación en trámite, su operación
+											se encuentra en Ejecución de Garantías* por tener valores
+											pendientes en mora por 60 o más días sin haberlos cancelado.<br />
+											<br /> En las próximas horas culminará este proceso, por lo
+											que se requiere su verificación del estado de su operación el
+											cual podrá ser "Cancelado" o "Vigente" - con valores
+											pendientes de pago". <br /> <br />En caso de existir un
+											saldo pendiente genere el comprobante de pago conforme a las
+											fechas habilitadas para la generación de comprobantes de pago
+											o diríjase a una de las oficinas BIESS a nivel nacional.
+										</p>
+
+									</td>
+								</tr>
+
+							</table>
+							<br />
+							<center>
+								<a onclick="Richfaces.hideModalPanel('pnlSrvCP');Richfaces.hideModalPanel('pnl');" href="#"
+									style="font-size: 16px;">ACEPTAR</a>
+							</center>
+						</h:panelGroup>
+					</rich:modalPanel>
+				</a4j:form>
+				
+			</a4j:outputPanel>
+		</a4j:region>
+		
+		
+		
+
+		<script type="text/javascript">
+			verificarDatos();
+			cleanOptions();
+			/* To disable drag-and-drop in the table columns */
+			DnD_ExtSimpleDraggable_colPrestamo.isDragEnabled=DnD_ExtSimpleDraggable_colEstado.isDragEnabled=
+			DnD_ExtSimpleDraggable_colNumero.isDragEnabled=DnD_ExtSimpleDraggable_colPlazo.isDragEnabled=
+			DnD_ExtSimpleDraggable_colFecha.isDragEnabled=DnD_ExtSimpleDraggable_colMonto.isDragEnabled=
+			function(){
+				return false;
+			}									
+		</script>
+	</ui:define>
+</ui:composition>

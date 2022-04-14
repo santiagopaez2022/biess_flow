@@ -1,0 +1,42 @@
+# Sistema Titulo
+sistema.titulo=Pr\u00E9stamos Quirografarios
+historico=Hist\u00F3rico
+depuracion.inicio=Inicio
+ajustehl=AJUSTE DE PLANILLAS DE HISTORIA LABORAL
+ajustehost=AJUSTE DE PLANILLAS DEL HOST
+anulacionhost=ANULACION DE PLANILLAS DEL HOST
+anulacionhl=ANULACION DE PLANILLAS DE HISTORIA LABORAL
+ingresodatos=Ingrese los siguientes datos de la Planilla del Empleador:
+datosplanilla=Datos de la Planilla del Empleador
+datosdetalle=Datos del Detalle de la Planilla
+busqueda B\u00FAsqueda
+aprobacion.titulo=Aprobar Solicitud de PQ Pendiente de Aprobaci\u00F3n
+ordenes.aprobar Ordenes por Aprobar
+ordenes.detalle Detalle de Orden
+consulta.ordenes Reporte de Ordenes de Pr\u00E9stamos Quirografarios
+regeneracion.amortizacion=Regenerar Tabla de Amortizaci\u00F3n
+amortizacion=Amortizaci\u00F3n
+informacion=Informaci\u00F3n
+estado=Estado Cuenta De Usuario
+
+
+# Comprobante y Liquidacion
+consulta.creditos Consulta de Cr\u00E9ditos
+datos.generales Datos Generales
+creditos.vigentes Lista de cr\u00E9ditos vigentes
+comprobante.pago.individual Comprobante de Pago Individual
+seleccionar.pagos.realizar=Seleccionar pagos a realizar
+comprobantes.pago=Lista de Comprobantes de Pago Individual
+comprobante.pago.dividendos=Comprobante de Pago para Dividendos
+precalculo.liquidacion=Pre-c\u00E1lculo de la liquidaci\u00F3n
+subtotal.liquidacion=Subtotal Liquidaci\u00F3n
+resultado.liquidacion=Liquidaci\u00F3n Procesada
+sistema.titulo=Préstamos Quirografarios
+comprobante.pago.liquidacion=Comprobante de Pago para Liquidaci\u00F3n de Pr\u00E9stamos
+liquidaciones.pago Listado Liquidaciones de PQ
+anulacion.comprobante Anulaci\u00F3n de Comprobantes
+anulacion.de de
+anulacion.generados Generados
+detalle.prestamo.vigente=Detalle de Pr\u00E9stamo Quirografario
+datos.cuenta.bancaria=Datos de la cuenta en la que se efectu\u00F3 el dep\u00F3sito
+confirmacion Confirmaci\u00F3n

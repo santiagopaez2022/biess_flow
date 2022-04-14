@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['titulo.productos.seleccion']}</h1>
+
+		<h:form id="formProductosSel">
+			<a4j:jsFunction action="#{productos.load}" name="load"
+				reRender="pnlProductos"></a4j:jsFunction>
+
+			<a4j:outputPanel id="pnlProductos">
+				<rich:panel style="width:100%;">
+					<rich:panel id="rchPnlErrorMensajes" styleClass="errorPanel"
+						rendered="#{!empty productos.errorMsg and productos.tipoSolicitud == 1}">
+						#{productos.errorMsg}
+					</rich:panel>
+
+					<h:panelGrid columns="2">
+						<rich:panel id="pnlProductoPensiones"
+							rendered="#{!datos.bloqueoFinesSemana}">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/pensiones_alimenticias.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarTipoOtrosProducto}"
+											value="#{labels['pensiones.alimenticias.titulo.link']}">
+											<f:setPropertyActionListener value="PEN"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+						
+						<rich:panel id="pnlEcuadorTurismo">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/turismo_ecuador.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarTipoOtrosProducto}"
+											value="#{labels['etiqueta.producto.ecuador.turistico']}">
+											<f:setPropertyActionListener value="ECU_TUR"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+						
+						<rich:panel id="pnlProductoFerrocarriles"
+							rendered="#{!datos.bloqueoFinesSemana}">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/train_transportation.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarTipoOtrosProducto}"
+											value="#{labels['ferrocarril.titulo.link']}">
+											<f:setPropertyActionListener value="TREN"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+
+						<rich:panel id="pnlProductoCreditur"
+							rendered="#{!datos.bloqueoFinesSemana}">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/primero_ecuador.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarTipoOtrosProducto}"
+											value="#{labels['creditur.titulo.link']}">
+											<f:setPropertyActionListener value="TUR"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+						<rich:panel id="pnlProductoFocalizados">
+							<div class="productitem">
+								<img
+									src="${facesContext.externalContext.request.contextPath}/files/images/content/cocinas-induccion.png"
+									alt="" width="52" height="52" class="floatleft" />
+								<p>
+									<strong> <h:commandLink
+											action="#{productos.seleccionarTipoOtrosProducto}"
+											value="#{labels['pq.focalizados.titulo.link']}">
+											<f:setPropertyActionListener value="FOC"
+												target="#{productos.codigoTipoProducto}" />
+										</h:commandLink>
+									</strong>
+								</p>
+							</div>
+						</rich:panel>
+
+					</h:panelGrid>
+				</rich:panel>
+				<h:commandButton action="regresar"
+					value="#{labels['button.regresar']}" styleClass="botonbarra"
+					immediate="true"></h:commandButton>
+			</a4j:outputPanel>
+		</h:form>
+
+
+		<script type="text/javascript">
+		   load();
+	    </script>
+	</ui:define>
+</ui:composition>

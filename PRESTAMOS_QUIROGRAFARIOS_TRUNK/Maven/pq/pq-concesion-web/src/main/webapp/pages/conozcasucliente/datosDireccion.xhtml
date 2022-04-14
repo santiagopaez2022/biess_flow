@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+	<ui:define name="tituloPagina">
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="idForm">
+			<link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/conozcasucliente.css" />
+
+
+			<script type="text/javascript"> 
+				function inhabilitar(){ 
+				   	return false 
+				} 
+				document.oncontextmenu=inhabilitar;
+
+				window.onload = function() {
+		  			document.getElementById('idForm:inputTextTelefonoDomicilio').onpaste = function(e) { return false; }
+		  		} 
+			</script>
+
+			<rich:panel style="width: 100%;">
+				<h:panelGrid columns="1" style="width: 100%;">
+					<rich:panel header="#{labels.conozcacliente_lbl_direccion_domicilio_titulo}">
+						<rich:messages passedLabel="Data is allowed to be stored." layout="list" styleClass="#{conozcaCliente.estiloPaneles}">
+							<f:facet name="header">
+								<h:outputText value="Entered Data Status:"></h:outputText>
+							</f:facet>
+							<f:facet name="infoMarker">
+								
+							</f:facet>
+							<f:facet name="errorMarker">
+								
+							</f:facet>
+						</rich:messages>
+						<h:panelGrid columns="3" columnClasses="columna10,columna3,columna20,columna12" cellpadding="2" cellspacing="2">
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_provincia}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuProvincia" styleClass="ui-selectonemenu" value="#{conozcaCliente.provinciaSelec}" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_provincia}" style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaProvinciaItems}" />
+								<a4j:support event="onchange" action="#{conozcaCliente.cargarCanton}" process="@this" global="false" partialSubmit="true"
+									reRender="selectOneMenuCanton,selectOneMenuParroquia" ajaxSingle="true" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_canton}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuCanton" styleClass="ui-selectonemenu" value="#{conozcaCliente.cantonSelec}" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_canton}" style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaCantonItems}" />
+								<a4j:support event="onchange" action="#{conozcaCliente.cargarParroquia}" process="@this" global="false" partialSubmit="true"
+									reRender="selectOneMenuParroquia" ajaxSingle="true" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_parroquia}:" />
+							<span style="color: red;">*</span>
+							<h:selectOneMenu id="selectOneMenuParroquia" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.parroquia}" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_parroquia}" style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaParroquiaItems}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_calle_principal}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" style="width: 96%;" value="#{conozcaCliente.cliente.direccion}" id="inputTextDomicilioCallePrincipal"
+								size="40" maxlength="450" required="true" onkeypress="return validarCaracteresEspeciales(event)"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_calle_principal}">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_numero_propiedad}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text-mediano" value="#{conozcaCliente.cliente.domicilioNumeroPropiedad}" id="inputTextDomicilioNumeroPropiedad"
+								size="20" maxlength="20" required="true" onkeypress="return validarNomenclatura(event)" style="width: 96%;"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_numero_propiedad}">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_calle_secundaria}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.domicilioCalleSecundaria}" id="inputTextDomicilioCalleSecundaria"
+								size="40" style="width: 96%;" maxlength="450" required="true" onkeypress="return validarCaracteresEspeciales(event)"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_calle_secundaria}">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_referencia}:" />
+							<span style="color: red">*</span>
+							<h:inputText styleClass="input-text" value="#{conozcaCliente.cliente.direccionReferencia}" id="inputTextDireccionReferencia" size="40"
+								style="width: 96%;" maxlength="450" required="true" onkeypress="return validarCaracteresEspeciales(event)"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_referencia}:">
+							</h:inputText>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_referencia_tipo_vivienda}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuReferenciaTipo" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.referenciaTipo}"
+								required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_referencia_tipo_vivienda}:"
+								style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaReferenciaTipoItems}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_tipo_vivienda}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuTipoVivienda" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.tipoVivienda}" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_tipo_vivienda}" style="width: 100%;">
+								<f:selectItems value="#{conozcaCliente.listaTipoViviendaItems}" />
+								<a4j:support event="onchange" action="#{conozcaCliente.renderedMontoVivienda}" process="@this" global="false" partialSubmit="true"
+									reRender="idPanelMontoViviendaLabel,idPanelMontoVivienda,idPanelMontoViviendaObli" ajaxSingle="true" />
+							</h:selectOneMenu>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_tiempo_residencia}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="3">
+								<h:inputText styleClass="input-text-numeros" value="#{conozcaCliente.cliente.tiempoResidencia}" id="inputTextTiempoResidencia" size="10"
+									maxlength="3" required="true"
+									requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_tiempo_residencia}"
+									onkeypress="return validarNumeros(event)" style="width: 100%;">
+								</h:inputText>
+								<h:outputLabel value="" style="width: 1%;"/>
+								<h:outputLabel id="outputTextTiempoResidencia" value="#{labels.conozcacliente_lbl_direccion_domicilio_tiempo_residencia_mensaje}"
+									styleClass="output-text-mensajes" style="width: 100%;" />
+							</h:panelGrid>
+
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_telefono}:" />
+							<span style="color: red">*</span>
+							<h:panelGrid styleClass="panel-sin-borde" columns="2">
+								<h:inputText styleClass="input-text-telefono" value="#{conozcaCliente.telefonoDomicilio}" id="inputTextTelefonoDomicilio" size="15"
+									maxlength="9" required="true" requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_telefono}"
+									onkeypress="return validarNumeros(event)" style="width: 100%;">
+									<f:validator validatorId="trimValidator" />
+									<f:validator validatorId="TelefonoValidator" />
+								</h:inputText>
+								<h:outputLabel id="outputTextTelefonoDomicilio" styleClass="output-text-mensajes"
+									value="#{labels.conozcacliente_lbl_direccion_domicilio_telefono_mensaje}" />
+							</h:panelGrid>
+							
+							<h:outputText value="#{labels.conozcacliente_lbl_direccion_domicilio_horario_contacto}:" />
+							<span style="color: red">*</span>
+							<h:selectOneMenu id="selectOneMenuHorarioContacto" styleClass="ui-selectonemenu" value="#{conozcaCliente.cliente.horarioContacto}"
+								style="width: 100%;" required="true"
+								requiredMessage="#{labels.msg_valor_requerido} : #{labels.conozcacliente_lbl_direccion_domicilio_horario_contacto}">
+								<f:selectItems value="#{conozcaCliente.listaHorarioContactoItems}" />
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+					</rich:panel>
+
+					<h:panelGrid columns="3" style="width: 100%;">
+						<a4j:commandButton value="&lt;&lt;#{conozcaCliente.valorAtras}" style="float:left" immediate="true" action="#{conozcaCliente.regresarDatosPersonales}" styleClass="botonbarra" />
+						<rich:spacer width="400px;"></rich:spacer>
+						<a4j:commandButton value="Siguiente &gt;&gt;" style="float:right" action="#{conozcaCliente.eventoValidarDireccion}" styleClass="boton" onclick="window.scrollTo(0, 0);" />
+					</h:panelGrid>
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

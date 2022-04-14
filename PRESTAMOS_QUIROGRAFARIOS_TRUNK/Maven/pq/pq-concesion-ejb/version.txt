@@ -1,0 +1,2020 @@
+pq-concesion-ejb
+Version: 1.0.1
+Requerimiento: INC-1953
+Cambios: 		
+pq-web / Modificación de aplicativo - corrección de novación
+clase	ec.fin.biess.creditos.pq.servicio.impl.RegistroCivilBiessServicioImpl.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.RegistroCivilBiessServicio.java	(M)
+clase	ec.gov.iess.creditos.pq.util.Utilities.java	(C) 
+
+===========================================
+Version: 1.0.2
+Requerimiento: INC-1835
+Cambios: 	
+clse	ec.fin.biess.creditos.pq.servicio.DatosPersonalesAfiliadoBiessServicio.java	(M) 
+clase	ec.fin.biess.creditos.pq.servicio.impl.DatosPersonalesAfiliadoBiessServicioImpl.java	(M) 
+clase	ec.fin.biess.creditos.pq.servicio.AfiliadoServicioBiess.java	(M) 
+clase	ec.fin.biess.creditos.pq.servicio.impl.AfiliadoServicioBiessImpl.java	(M) 
+clase	ec.fin.biess.creditos.pq.exception.EmailException.java	(M) 
+
+============================================
+Version: 1.0.3
+Requerimiento: INC-1835
+Cambios: 	
+clase	ec.fin.biess.creditos.pq.excepcion.AfiliadoDiscapacitadoException.java	(C) 
+clase	ec.fin.biess.creditos.pq.excepcion.DatosPersonalesAfiliadoBiessException.java	(E) 
+clase	ec.fin.biess.creditos.pq.dao.DatosPersonalesAfiliadoBiessDao.java	(M)
+clase	ec.fin.biess.creditos.pq.dao.ejb.DatosPersonalesAfiliadoBiessDaoEjb.java	(M)
+clase	ec.fin.biess.creditos.pq.modelo.persistencia.DatosPersonalesAfiliadoBiess.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.DatosPersonalesAfiliadoBiessServicio.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.impl.DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.precalificacion.CalificacionGeneral.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.precalificacion.CalificarAfiliado.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.precalificacion.CalificarZafrero.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.reglas.ReglasAfiliado.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.reglas.ReglasZafrero.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.PrecalificacionServicio.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.PrecalificacionServicioRemote.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.PrecalificacionServicioUsaResumenImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.util.ValidadorPrecalificacion.java	(M)
+clase	ec.fin.biess.creditos.pq.enumeracion.DiscapacitadosEnum.java	(C) 
+clase	ec.fin.biess.creditos.pq.exception.RegistroCivilException.java	(C) 
+clase	ec.fin.biess.creditos.pq.servicio.RegistroCivilBiessServicio.java	(C) 
+clase	ec.fin.biess.creditos.pq.servicio.impl.RegistroCivilBiessServicioImpl.java	(C) 
+clase	ec.fin.biess.creditos.pq.modelo.dto.ParamsReglasPrecalificacion.java	(C) 
+clase	ec.fin.biess.creditos.pq.modelo.dto.ValidarRequisitosPrecalificacionBiess.java	(C) 
+clase	ec.gov.iess.creditos.pq.util.Utilities.java	(C) 
+jar	/lib/jdom/jdom-2.0.4.jar	(C) 
+jar	/lib/logging-ejb/logging-ejb-1.0.0.jar	(C) 
+jar	/lib/registro-civil/WSRegCiv.jar	(C) 
+properties	/lib/lib.properties	(M)
+xml	build.xml	(M)
+
+Version: 1.0.4
+Requerimiento: INC-1719
+Cambios: 
+jar	/lib/jdom/jdom-2.0.4.jar	(C)
+properties	/lib/lib.properties	(M)
+jar	/lib/logging-ejb/logging-ejb-1.0.0.jar	(C)
+jar	/lib/registro-civil/WSRegCiv.jar	(C)
+xml	build.xml	(M)
+clase	ec.fin.biess.creditos.pq.dao.DatosPersonalesAfiliadoBiessDao.java	(M)
+clase	ec.fin.biess.creditos.pq.dao.ejb.DatosPersonalesAfiliadoBiessDaoEjb.java	(M)
+clase	ec.fin.biess.creditos.pq.enumeracion.DiscapacitadosEnum.java	(C)
+clase	ec.fin.biess.creditos.pq.excepcion.AfiliadoDiscapacitadoException.java	(C)
+clase	ec.fin.biess.creditos.pq.excepcion.DatosPersonalesAfiliadoBiessException.java	eliminar
+clase	ec.fin.biess.creditos.pq.exception.RegistroCivilException.java	(C)
+clase	ec.fin.biess.creditos.pq.modelo.dto.ParamsReglasPrecalificacion.java	(C)
+clase	ec.fin.biess.creditos.pq.modelo.dto.ValidarRequisitosPrecalificacionBiess.java	(C)
+clase	ec.fin.biess.creditos.pq.modelo.persistencia.DatosPersonalesAfiliadoBiess.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.DatosPersonalesAfiliadoBiessServicio.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.impl.DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.impl.RegistroCivilBiessServicioImpl.java	(C)
+clase	ec.fin.biess.creditos.pq.servicio.RegistroCivilBiessServicio.java	(C)
+clase	ec.gov.iess.creditos.pq.helper.precalificacion.CalificacionGeneral.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.precalificacion.CalificarAfiliado.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.precalificacion.CalificarZafrero.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.reglas.ReglasAfiliado.java	(M)
+clase	ec.gov.iess.creditos.pq.helper.reglas.ReglasZafrero.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.PrecalificacionServicioUsaResumenImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.PrecalificacionServicio.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.PrecalificacionServicioRemote.java	(M)
+clase	ec.gov.iess.creditos.pq.util.Utilities.java	(C)
+clase	ec.gov.iess.creditos.pq.util.ValidadorPrecalificacion.java	(M)
+
+==========================================
+Version: 1.0.5
+Requerimiento: INC-2005
+Cambios: 
+interface	ec.gov.iess.creditos.pq.servicio.GarantiaCreditoServicio.java	(M)
+interface	ec.gov.iess.creditos.pq.servicio.GarantiaCreditoServicioRemote.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.GarantiaCreditoServicioImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.PrecalificacionServicioUsaResumenImpl.java	(M)
+interface	ec.gov.iess.creditos.pq.servicio.PrecalificacionServicio.java	(M)
+interface	ec.gov.iess.creditos.pq.servicio.PrecalificacionServicioRemote.java	(M)
+
+==========================================
+Version: 1.0.6
+Requerimiento: INC-1800
+Cambios:  
+interfaz	ec.fin.biess.creditos.pq.dao.ListaBlancaDao.java	(C) 
+interfaz	ec.fin.biess.creditos.pq.dao.PrestamoBiessDao.java	(M)
+clase	ec.fin.biess.creditos.pq.dao.ejb.ListaBlancaDaoEjb.java	(C) 
+clase	ec.fin.biess.creditos.pq.dao.ejb.PrestamoBiessDaoEjb.java	(M)
+clase	ec.fin.biess.creditos.pq.modelo.persistencia.PrestamoBiess.java	(M)
+interfaz	ec.gov.iess.creditos.pq.servicio.CuentaBancariaAprobadaServicioRemote.java	(M)
+interfaz	ec.gov.iess.creditos.pq.servicio.CuentaBancariaAprobadaServicioLocal.java	(M)
+interfaz	ec.gov.iess.creditos.pq.servicio.PrestamoServicio.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.SolicitanteServicioImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.PrecalificacionServicioUsaResumenImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.PrestamoServicioImpl.java	(M)
+interfaz	ec.gov.iess.creditos.pq.servicio.SolicitanteServicio.java	(M)
+clase	ec.gov.iess.creditos.pq.servicio.impl.CuentaBancariaAprobadaServicioImpl.java	(M)
+clase	ec.gov.iess.creditos.pq.util.Utilities.java	(M)
+
+==========================================
+Version: 1.0.7
+Requerimiento: INC-20140523 (Regularización, sin Jtrac)
+Cambios:  
+clase	ec.fin.biess.creditos.pq.dao.ejb.ResiduosCesantiaDaoEjb.java	(M)
+excepcion	ec.fin.biess.creditos.pq.exception.MSPBiessException.java	(C) 
+interface	ec.fin.biess.creditos.pq.servicio.ConsultaMSPDiscapacitadosServicio.java	(C) 
+clase	ec.fin.biess.creditos.pq.servicio.impl.DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+clase	ec.fin.biess.creditos.pq.servicio.impl.ConsultaMSPDiscapacitadosServicioImpl.java	(C) 
+jar	/lib/biesclient-gestorMSPDisc/biess-client-gestorMSPDisc.jar	(C) 
+jar	/lib/biess-util/biess-util.jar	(C) 
+jar	/lib/loggin-ejb/loggin-ejb.jar	(C) 
+arch. Config	lib.properties	(M)
+xml	build.xml	(M)
+
+==========================================
+Version: 1.0.8
+Requerimiento: INC-2139
+Cambios: 
+clase	ec.fin.biess.creditos.pq.dao.ejb. CambioClaveDaoEjb.java	(M)
+
+==========================================
+Version: 1.0.8
+Requerimiento: INC-2139
+Cambios: 
+clase	ec.fin.biess.creditos.pq.dao.ejb. CambioClaveDaoEjb.java	(M)
+
+==========================================
+Version: 1.0.9
+Requerimiento: INC-2114 / Atención de RF para control de generación de comprobantes individuales en aplicativo web 
+Cambios: 
+clases:
+(C) ec.fin.biess.creditos.pq.dao.ParametroPQDao.java
+(C) ec.fin.biess.creditos.pq.dao.ejb.ParametroPQDaoEjb.java
+(C) ec.fin.biess.creditos.pq.dao.modelo.persistencia.ParametroPQ.java
+(M) ec.gov.iess.creditos.pq.util.CalculoCreditoHelperSingleton.java
+
+==========================================
+Version: 1.0.10
+Requerimiento: INC-2203 / Control monto mínimo PQ
+Cambios: 
+Clases:	
+(M) ec.gov.iess.creditos.pq.servicio.PrestamoServicio.java
+(M) ec.gov.iess.creditos.pq.servicio.impl.PrestamoServicioImpl.java
+
+==========================================
+Version: 1.0.11
+Requerimiento: INC-2135 / Modificación aplicativo - Incluir consumo WS de pensiones para determinar valores de concesión
+Cambios: 
+Clases:	
+(M) ec.fin.biess.creditos.pq.dao.ejb.PrestacionesBiessDaoEjb.java
+(C) ec.fin.biess.creditos.pq.dao.ejb.RolPeriodoDetalleDaoEjb.java
+(C) ec.fin.biess.creditos.pq.dao.ejb.TipoPrestacionDaoEjb.java
+(C) ec.fin.biess.creditos.pq.excepcion.PrestacionPensionadosException.java
+(C)	ec.fin.biess.creditos.pq.modelo.dto.InformacionPrestacionPensionado
+(M) ec.fin.biess.creditos.pq.modelo.dto.ParamsReglasPrecalificacion.java
+(C) ec.fin.biess.creditos.pq.modelo.dto.PrestacionPensionado.java
+(C) ec.fin.biess.creditos.pq.modelo.persistencia.RolPeriodoDetalle.java
+(C) ec.fin.biess.creditos.pq.modelo.persistencia.RolPeriodoDetallePk.java
+(C) ec.fin.biess.creditos.pq.modelo.persistencia.TipoPrestacion.java
+(C) ec.fin.biess.creditos.pq.modelo.persistencia.TipoPrestacionPk.java
+(C) ec.fin.biess.creditos.pq.modelo.persistencia.TipoSeguro.java
+(M) ec.fin.biess.creditos.pq.servicio.impl.ConsultaMSPDiscapacitadosServicioImpl.java
+(C) ec.fin.biess.creditos.pq.servicio.impl.ConsultaPrestacionPensionadosServicioImpl.java
+(M) ec.fin.biess.creditos.pq.servicio.impl.PrestacionesBiessServicioImpl.java
+(C) ec.fin.biess.creditos.pq.servicio.impl.RolPeriodoDetalleServicioImpl.java
+(M) ec.gov.iess.creditos.pq.helper.precalificacion.CalificarJubilado.java
+(M) ec.gov.iess.creditos.pq.helper.reglas.ReglasJubilado.java
+(M) ec.gov.iess.creditos.pq.servicio.impl.GarantiaCreditoServicioImpl.java
+(M) ec.gov.iess.creditos.pq.servicio.impl.PrecalificacionServicioUsaResumenImpl.java
+(M)	ec.gov.iess.creditos.pq.util.GeneradorListaPrestaciones.java
+(M) ec.gov.iess.creditos.pq.util.ValidadorPrecalificacion.java
+(C) lib/biesclient-consultaprestacion/	dir
+(M) ec.fin.biess.creditos.pq.dao.PrestacionesBiessDao.java	interfaz
+(C) ec.fin.biess.creditos.pq.dao.RolPeriodoDetalleDao.java	interfaz
+(C) ec.fin.biess.creditos.pq.dao.TipoPrestacionDao.java	interfaz
+interfaz:
+(C) ec.fin.biess.creditos.pq.servicio.ConsultaPrestacionPensionadosServicioLocal.java	
+(M) ec.fin.biess.creditos.pq.servicio.PrestacionesBiessServicio.java	
+(C) ec.fin.biess.creditos.pq.servicio.RolPeriodoDetalleServicioLocal.java	
+(M) ec.gov.iess.creditos.pq.servicio.GarantiaCreditoServicio.java	
+(M) ec.gov.iess.creditos.pq.servicio.GarantiaCreditoServicioRemote.java	
+(M) ec.gov.iess.creditos.pq.servicio.PrecalificacionServicio.java	
+(M) ec.gov.iess.creditos.pq.servicio.PrecalificacionServicioRemote.java	
+jar:	
+(C) lib/biesclient-consultaprestacion/biess-client-consultaprestacion-1.0.jar	
+(M)	lib/biess-util/biess-util.jar	
+(M) lib	lib/logging-ejb/logging-ejb-1.0.3.jar	
+properties:
+(M) lib/lib.properties	
+xml:
+(M) build.xml	
+
+==========================================
+Version: 1.0.12
+Requerimiento: INC-2272 / Implementación de cambios en la funcionalidad Préstamos Quirografarios para Pago de Pensiones Alimenticias. 
+Cambios: 
+Clases:	
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/dao/PrestamoBiessDao.java										(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/dao/ejb/PrestamoBiessDaoEjb.java									(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/excepcion/BeneficiarioCreditoExcepcion.java						(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/BeneficiarioCreditoServicio.java						(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/EstadoPrestamoServicio.java							(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/ProveedorServicio.java								(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/TipoCuentaBiessServicio.java							(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/TipoPrestamoServicio.java								(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/BeneficiarioCreditoServicioImpl.java					(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/EstadoPrestamoServicioImpl.java						(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ProveedorServicioImpl.java							(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/TipoCuentaBiessServicioImpl.java						(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/TipoPrestamoServicioImpl.java						(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicio.java		(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/CatalogoServicio.java									(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java						(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CatalogoServicioImpl.java								(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java			(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java						(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoEstadoHistoricoServicioImpl.java				(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java				(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java								(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/TablaReferenciaCreditoServicioImpl.java				(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java							(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java						(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrestamoEstadoHistoricoServicio.java					(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java									(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java							(M)
+jar			/pq-concesion-ejb/lib/creditos-1.0.0/creditos-core.jar																(M)
+
+==========================================
+Version: 1.0.13
+Requerimiento: INC-2148 / Requerimiento Refugiados PQ.- Personas refugiadas y extranjeros que trabajan en relación de dependencia y son afiliados al Instituto Ecuatoriano de Seguridad Social  
+Cambios: 
+Clases:	
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java			(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java	(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java		(M)
+Clase	ec.gov.iess.creditos.pq.servicio.impl. AdministracionOrdenCompraProveedorServicioImpl.java			(M)
+Interfaz	ec.gov.iess.creditos.pq.servicio																(M)
+Jar	lib/ creditos-1.0.0 /creditos-pq-core.jar																(M)
+
+==========================================
+Version: 1.0.14
+Requerimiento: INC-2292 / Actualización información pasaporte de refugiados en la tabla de créditos aplicación  
+Cambios: 
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/excepcion/RegistroCivilExtranjeroExcepcion .java		(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java					(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/RegistroCivilExtranjeroServicioImpl.java	(C)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java				(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java						(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/RegistroCivilExtranjeroServicio.java		(C)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/SolicitanteServicio.java					(M)
+Jar			lib/ creditos-1.0.0 /creditos-pq-core.jar																(M)
+
+==========================================
+Version: 1.0.15
+Requerimiento: INC-2286 / Préstamo Quirografario - Ferrocarriles del Ecuador
+Cambios: 
+Interfaz	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/ProveedorServicio.java								(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicio.java		(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ProveedorServicioImpl.java							(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java			(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java						(M)
+Clase	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java								(M)
+Interfaz	/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java									(M)
+jar			lib/creditos-1.0.0/creditos-pq-core.jar																				(M)
+
+
+
+=================================================================================
+Version: 1.0.16
+Requerimiento: INC-2129 / Cambio en aplicativo - control en generación de comprobantes. 
+Cambios: 
+
+Interfaz
+/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicio.java				(M)
+
+Clase
+/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java	(M)
+
+Jar
+/pq-concesion-ejb/lib/creditos-1.0.0/creditos-pq-core.jar												(M)
+
+
+
+=================================================================================
+Version: 1.0.17
+Requerimiento: INC-2300 / Implementación requerimiento funcional estructura R24 
+Cambios: 
+
+Clase
+/pq-concesion-ejb/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java						(M)
+/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+
+Interfaz
+/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/DatosPersonalesAfiliadoBiessServicio.java				(M)
+Dir
+/pq-concesion-ejb/lib/conozcasucliente-ejb										(C)
+
+Jar
+/pq-concesion-ejb/lib/conozcasucliente-ejb/13_conozcasucliente-ejb.jar			(C)
+/pq-concesion-ejb/lib/creditos-1.0.0/creditos-pq-core.jar 						(M)
+
+Properties
+/pq-concesion-ejb/lib/lib.properties											(M)
+
+Xml
+/pq-concesion-ejb/build.xml														(M)
+
+
+=================================================================================
+Version: 1.0.18
+Requerimiento: INC-2383 / ACTUALIZACION CLIENTE MQ QUE CONSUME EL SERVIVIO SNAP MSP 
+Cambios: 
+
+Clase	
+/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ConsultaMSPDiscapacitadosServicioImpl.java		(M)
+/pq-concesion-ejb/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+.classpath	
+/pq-concesion-ejb/.classpath																						(M)
+Jar	
+/pq-concesion-ejb/lib/biess-client-gestorMSPDisc/biess-client-consultasnap-1.0.jar									(C)
+/pq-concesion-ejb/lib/biess-client-gestorMSPDisc/biess-client-gestorMSPDisc.jar										(E) 
+
+
+=================================================================================
+Version: 1.0.19
+Requerimiento: INC-2430 / Corrección de error al anular créditos de tipo ferrocarril 
+Cambios: 
+
+
+clase	
+ec.gov.iess.creditos.pq.servicio.impl. DividendoPrestamoServicioImpl.java	(M)
+ec.gov.iess.creditos.pq.servicio.impl. PrestamoServicioImpl.java			(M)
+
+=================================================================================
+Version: 1.0.20
+Requerimiento: INC-2350 / IMPLEMENTACION AUTOMATIZADA DE VERIFICACION EN LISTA DE CONTROL DE USUARIOS PQ 
+Cambios: 
+Paquete:
+ec.fin.biess.listaobservados.constant																(C)
+Clases:	
+ejbModule/ec/fin/biess/creditos/pq/modelo/dto/ParamsReglasPrecalificacion.java						(M)
+ejbModule/ec/fin/biess/creditos/pq/servicio/impl/PrecalificacionListaObservadosServicioImpl.java	(C)
+ejbModule/ec/fin/biess/listaobservados/constant/ConstantesListaObservadosWS.java					(C)
+ejbModule/ec/gov/iess/creditos/pq/excepcion/ PrecalificacionListaObservadosException.java			(C)
+ejbModule/ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java					(M)
+ejbModule/ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java									(M)
+ejbModule/ec/gov/iess/creditos/pq/util/Utilities.java												(M)
+ejbModule/ec/gov/iess/creditos/pq/util/ValidadorPrecalificacion.java								(M)
+ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java							(M)
+ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java			(M)
+Interfaz:
+ejbModule/ec/fin/biess/creditos/pq/servicio/PrecalificacionListaObservadosServicioLocal.java		(C)
+ejbModule/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java									(M)
+Dir:		
+lib/listasObservadosWSClient																		(C)
+Properties:
+lib/lib.properties																					(M)
+Xml:	
+build.xml																							(M)
+Jar:	
+lib/listasObservadosWSClient/biess-client-listasObservados.jar										(C)
+lib/conozcasucliente-ejb/conozcasucliente-ejb.jar													(M)
+lib/creditos-1.0.0/creditos-pq-core.jar																(M)
+
+
+=================================================================================
+Version: 1.0.21
+Requerimiento: INC-2465 / AJUSTE DE LISTA DE OBSERVADOS PQ
+Cambios:
+
+Interface	ec/fin/biess/listaobservados/constant/ConstantesListaObservadosWS.java		(M)
+
+
+
+=================================================================================
+Version: 1.0.22
+Requerimiento: INC-2465 / Implementación cambios código seguro para Apps PQ
+Cambios:
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/auditoria/AuditorDatosAfiliado.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/BeneficiarioCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ConsultaMSPDiscapacitadosServicioImpl.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ConsultaPrestacionPensionadosServicioImpl.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ParametroCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/PrecalificacionListaObservadosServicioImpl.java
+Clase	(M)	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/RegistroCivilBiessServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/excepcion/CancelaLiquidacionException.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/excepcion/DividendoPrestamoException.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarAfiliado.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarJubilado.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarZafrero.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/reglas/ReglasJubilado.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/reglas/ReglasZafrero.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/helper/simulacion/SimulacionCreditoMejorOpcion.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CancelarLiquidacionServicioImp.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CatalogoRechazoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CondicionCalculoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/ConsultaBuroServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/ConsultaCesantiaServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/ConsultaFondosReservaServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CuentaBancariaAprobadaServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/DetalleCatalogoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/DetalleSolicitudCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/EstadosCalificacionServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/GarantiaPrestamoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionGenericaBigServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionGenericaServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/OrigenJubiladoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/RegistroCivilExtranjeroServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/ResumenCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/ResumenFinPrestamoservicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SeguroSaldoCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitudCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitudPagoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/TablaReferenciaCreditoServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/TipoSeguroServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/TipoSolicitudServicioImpl.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/CalculoCreditoHelperSingleton.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/CalculoPeriodoGracia.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/CalculoTablaReferencia.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/CalculoTablaReferenciaSinDocFinanciero.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/CalculoValoresCredito.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/OrigenJubiladoHelper.java
+Clase	(M)	ejbModule/ec/gov/iess/creditos/pq/util/ValidadorPrecalificacion.java
+Carpeta	(C)	lib/codigo_seguro
+xml		(M)	build.xml
+jar		(C)	lib/codigo_seguro/codigo-seguro-1.0.1.jar
+jar		(M)	lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.3.jar
+jar		(M)	lib/creditos-1.0.0/13_creditos-pq-core-1.0.9.jar
+jar		(M)	lib/ utilitariosgenericos/utilitariosgenericos-1.0.2.jar 
+Properties	(M)	lib/lib.properties
+
+=================================================================================
+Version: 1.0.23
+Requerimiento: INC-2495 / bug detectado en la captura de las direcciones IPs
+Cambios:
+Clase	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ConsultaMSPDiscapacitadosServicioImpl.java		(M)
+Clase	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ConsultaPrestacionPensionadosServicioImpl.java	(M)
+Clase	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+Clase	ejbModule/ec/fin/biess/creditos/pq/servicio/impl/RegistroCivilBiessServicioImpl.java			(M)
+Interface	ejbModule/ec/fin/biess/creditos/pq/servicio/ConsultaMSPDiscapacitadosServicio.java			(M)
+Interface	ejbModule/ec/fin/biess/creditos/pq/servicio/ConsultaPrestacionPensionadosServicioLocal.java	(M)
+Interface	ejbModule/ec/fin/biess/creditos/pq/servicio/DatosPersonalesAfiliadoBiessServicio.java		(M)
+Interface	ejbModule/ec/fin/biess/creditos/pq/servicio/RegistroCivilBiessServicio.java					(M)
+CLasspath	.classpath																					(M)
+
+=================================================================================
+Version: 1.0.24
+Requerimiento: INC-2506 / CAMBIAR MÉTODO DE OBTECIÓN DEL SECUENCIAL DE CRÉDITOS PQ.
+Cambios:
+
+
+clase		ejbModule/ec/gov/iess/creditos/pq/excepcion/SecuenciaCreditoException.java				(C)
+clase		ejbModule/ec/gov/iess/creditos/pq/excepcion/SecuenciaSolicitudException.java			(C)
+clase		ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java	(M)
+clase		ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java				(M)
+clase		ejbModule/ec/gov/iess/creditos/pq/servicio/impl/VariablePrestamoServicioImpl.java		(M)
+clase		ejbModule/ec/gov/iess/creditos/pq/servicio/impl/VariableSolicitudServicioImpl.java		(C)
+interfaz	ejbModule/ec/gov/iess/creditos/pq/servicio/VariablePrestamoServicio.java				(M)
+interfaz	ejbModule/ec/gov/iess/creditos/pq/servicio/VariablePrestamoServicioRemote.java			(M)
+interfaz	ejbModule/ec/gov/iess/creditos/pq/servicio/VariableSolicitudServicio.java				(C)
+interfaz	ejbModule/ec/gov/iess/creditos/pq/servicio/VariableSolicitudServicioRemote.java			(C)
+
+
+=================================================================================
+Version: 1.0.25
+Requerimiento: INC-2460 / Módulo de conozca a su cliente en PQ. 
+Cambios:
+
+Clase	ec/gov/iess/creditos/pq/excepcion/DeterminarRolException.java		(C)
+Clase	ec/gov/iess/creditos/pq/servicio/impl/DefinirRolServicioImpl.java	(C)
+Clase	ec/gov/iess/creditos/pq/servicio/impl/ParametroServicioImpl.java	(M)
+Interface	ec/gov/iess/creditos/pq/servicio/DefinirRolServicioLocal.java	(C)
+Interface	ec/gov/iess/creditos/pq/servicio/ParametroServicio.java			(M)
+Interface	ec/gov/iess/creditos/pq/servicio/ParametroServicioRemote.java	(M)
+Jar			lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.4.jar		(M)
+Jar			lib/creditos-1.0.0/13_creditos-pq-core-1.0.10.jar				(M)
+
+=================================================================================
+Version: 1.0.26
+Requerimiento: INC-2533 / Bug de ajuste proveedor ferrocarriles y redirección de página de conozca a su cliente. 
+Cambios:
+
+Clase	ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java		(M)
+JAR		/lib/creditos-1.0.0/13_creditos-pq-core-1.0.11.jar				(M)
+
+=================================================================================
+Version: 1.0.27
+Requerimiento: INC-2524 / Implementar las tablas de amortizaci�n en PQ 
+Cambios:
+
+Paquete		/ejbModule/ec/fin/biess/creditos/pq/constant											(C)
+Interfaz	/ejbModule/ec/fin/biess/creditos/pq/constant/ContantesPQ.java							(C)
+Clase		/ejbModule/ec/fin/biess/creditos/pq/excepcion/MontosMaximosException.java				(C)
+Clase		/ejbModule/ec/fin/biess/creditos/pq/excepcion/TablaAmortizacionException.java			(C)
+Interfaz	/ejbModule/ec/fin/biess/creditos/pq/servicio/PersonalizarCreditoService.java			(C)
+Interfaz	/ejbModule/ec/fin/biess/creditos/pq/servicio/PrestamoCalculoService.java				(C)
+Interfaz	/ejbModule/ec/fin/biess/creditos/pq/servicio/TablaAmortizacionService.java				(C)
+Clase		/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java	(C)
+Clase		/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/PrestamoCalculoServiceImpl.java		(C)
+Clase		/ejbModule/ec/fin/biess/creditos/pq/servicio/impl/TablaAmortizacionServiceImpl.java		(C)
+Interfaz	/ejbModule/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicio.java					(M)
+Interfaz	/ejbModule/ec/gov/iess/creditos/pq/servicio/SimularCreditoServicio.java					(M)
+Clase		/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java		(M)
+Clase		/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java		(M)
+Clase		/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java		(M)
+Clase		/ejbModule/ec/gov/iess/creditos/pq/util/CalculoCreditoHelperSingleton.java				(M)
+Carpeta		/lib/biessclient-general																(C)
+JAR			/lib/biessclient-general/ biess-client-clienteGeneral-1.0.0.jar							(C)
+Carpeta		/lib/biessclient-servicios-pq															(C)
+JAR			/lib/biessclient-servicios-pq/ biess-client-servicios-pq-3.0.1.jar						(C)
+JAR			/lib/creditos-1.0.12																	(M)
+Properties	/lib/lib.properties																		(M)
+XML			/build.xml																				(M)
+
+
+=================================================================================
+Version: 1.0.28
+Requerimiento: INC-2539 / Bug del aplicativo intranet PQ 
+Cambios:
+
+Clase	/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+Clase	/ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java	(M)
+
+=================================================================================
+Version: 1.1.0
+Requerimiento: INC-2399 / Aplicativo de CREDITUR en PQ WEB. 
+Cambios:
+Clase		ec/fin/biess/creditos/pq/servicio/impl/PrestamoCalculoServiceImpl.java				(M)
+Clase		ec/fin/biess/creditos/pq/servicio/impl/ProveedorServicioImpl.java					(M)
+Interfaz	ec/fin/biess/creditos/pq/servicio/ProveedorServicio.java							(M)
+Clase		ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java				(M)
+Clase		ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java							(M)
+Clase		ec/gov/iess/creditos/pq/helper/reglas/ReglasJubilado.java							(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java				(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java						(M)
+Interfaz	ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java								(M)
+Interfaz	ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java						(M)
+Clase		ec/gov/iess/creditos/pq/util/Utilities.java											(M)
+JAR			lib/creditos-1.0.0/13_creditos-pq-core-1.1.0.jar									(M)
+
+=================================================================================
+Version: 1.1.1
+Requerimiento: INC-2588 / Verificación en las listas de control del afiliado/jubilado/pensionista después de la creación del crédito Quirografario
+Cambios:
+Clase	ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+Clase	ejbModule/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java					(M)
+
+=================================================================================
+Version: 1.1.2
+Requerimiento: INC-2607 / Bug impresion valor consola
+Cambios:
+
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImp					(M)
+
+
+=================================================================================
+Version: 1.1.3
+Requerimiento: INC-2624 / Ajuste de bug de recálculo de tabla de amortización cuando se aprueban préstamos en estado PDA o PDC.
+Cambios:
+
+Clase	ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java						(M)
+
+
+==========================================
+Version: 1.1.4
+Requerimiento: INC-2643 / Parametrización para concesión de créditos quirografarios: tasas de interés y montos máximos de crédito.
+Cambios:
+
+Clase		ec/fin/biess/creditos/pq/servicio/impl/ParametroCreditoServicioImpl.java				(M)
+Interfaz	ec/fin/biess/creditos/pq/servicio/ParametroCreditoServicio.java							(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/CondicionCalculoServicioImpl.java					(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java					(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java					(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java			(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java							(M)
+Interfaz	ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicio.java							(M)
+Interfaz	ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicioRemoto.java					(M)
+Interfaz	ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java									(M)
+Interfaz	ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java							(M)
+Carpeta		lib/core-biess-ejb																		(C)
+JAR			lib/core-biess-ejb/14_core-biess-ejb-1.1.5.jar											(C)
+JAR			lib/creditos-1.0.0/13_creditos-pq-core-1.1.1.jar										(M)
+Properties	lib/lib.properties																		(M)
+XML			build.xml																				(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl	(M)
+Clase		ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java								(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java		(M)
+
+==========================================
+Version: 1.1.5
+Requerimiento: INC-2671 / Restricción Responsabilidad Patronal PQ y PH
+Cambios:
+Paquete		ejbModule/ec/gov/iess/creditos/pq/dto											(C)
+Clase		ejbModule/ec/gov/iess/creditos/pq/dto/MoraPatronalBiessRequestDto.java			(C)
+Clase		ejbModule/ec/gov/iess/creditos/pq/dto/MoraPatronalBiessResponseDto.java			(C)
+Clase		ejbModule/ec/gov/iess/creditos/pq/servicio/impl/MoraPatronalServicioImpl.java	(C)
+Clase		ejbModule/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java	(M)
+Interfaz	ejbModule/ec/gov/iess/creditos/pq/servicio/MoraPatronalServicioLocal.java		(C)
+Interfaz	ejbModule/ec/gov/iess/creditos/pq/servicio/MoraPatronalServicioRemote.java		(C)
+Properties	ejbModule/messages.properties													(M)
+Properties	lib/lib.properties																(M)
+Carpeta		lib/gson																		(C)
+JAR			lib/gson/gson-2.6.2.jar															(C)
+XML			build.xml																		(M)
+
+==========================================
+Version: 1.1.6
+Requerimiento: INC-2648 / Almacenamiento de bandera para manejo de estado del crédito
+Cambios:
+
+Clase	ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java				(M)
+Clase	ec/gov/iess/creditos/pq/servicio/impl/VariableSolicitudServicioImpl.java			(M)
+Clase	ec/gov/iess/creditos/pq/servicio/impl/VariablePrestamoServicioImpl.java				(M)	
+Jar		lib/creditos-1.0.0/13_creditos-pq-core-1.1.3.jar									(M)
+
+
+==========================================
+Version: 1.1.7
+Requerimiento: INC-2683 / Ajuste para consumo de servicio del SNAP para personas con discapacitados.
+Cambios:
+
+Clase		ejbModule/ec/fin/biess/creditos/pq/servicio/impl/ConsultaMSPDiscapacitadosServicioImpl.java		(M)
+Clase		ejbModule/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java	(M)
+PROPERTIES	lib/lib.properties																				(M)
+Carpeta		lib/cliente-ws-snap-servicios																	(C)
+JAR			lib/cliente-ws-snap-servicios/cliente-ws-snap-servicios-2.0.0.jar								(C)
+XML			build.xml																						(M)
+
+==========================================
+Version: 1.1.8
+Requerimiento: INC-2686 / Ajuste para no almacenar ningún valor en el campo CR_VALIDACION de la tabla KSCRETCREDITOS al crear un préstamo quirografario.
+Cambios:
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java		(M)
+
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilación de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE 
+(C)	Archivo	.classpath
+(C)	Archivo	.project
+(C)	Carpeta	.settings
+(C)	Archivo	.settings/org.eclipse.jdt.core.prefs
+(C)	Archivo	.settings/org.eclipse.m2e.core.prefs
+(C)	Archivo	.settings/org.hibernate.eclipse.console.prefs
+(C)	Xml		pom.xml
+(C)	Carpeta	src
+(C)	Carpeta	src/main
+(C)	Carpeta	src/main/java
+(C)	Carpeta	src/main/java/ec
+(C)	Carpeta	src/main/java/ec/fin
+(C)	Carpeta	src/main/java/ec/fin/biess
+(C)	Carpeta	src/main/java/ec/fin/biess/creditos
+(C)	Carpeta	src/main/java/ec/fin/biess/creditos/pq
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/auditoria
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/auditoria/AuditorDatosAfiliado.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/constant
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/constant/ContantesPQ.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/dao
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/AfiliadoDaoBiess.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/CambioClaveDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/DatosPersonalesAfiliadoBiessDao.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/dao/ejb
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/AfiliadoDaoBiessEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/CambioClaveDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/DatosPersonalesAfiliadoBiessDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/ListaBlancaDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/ParametroCreditoDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/ParametroPQDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/PrestacionesBiessDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/PrestamoBiessDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/ResiduosCesantiaDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/RolPeriodoDetalleDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ejb/TipoPrestacionDaoEjb.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ListaBlancaDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ParametroCreditoDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ParametroPQDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/PrestacionesBiessDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/PrestamoBiessDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/ResiduosCesantiaDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/RolPeriodoDetalleDao.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/dao/TipoPrestacionDao.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/enumeracion
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/enumeracion/DiscapacitadosEnum.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/excepcion
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/AfiliadoDiscapacitadoException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/AfiliadoExceptionBiess.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/BeneficiarioCreditoExcepcion.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/EmailException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/MontosMaximosException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/MSPBiessException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/ParametroCreditoException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/PrestacionPensionadosException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/RegistroCivilBiessException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/RegistroCivilExtranjeroException.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/excepcion/TablaAmortizacionException.java
+(C)	Carpeta	src/main/java/ec/fin/biess/creditos/pq/modelo
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/modelo/dto
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/dto/InformacionPrestacionPensionado.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/dto/ParamsReglasPrecalificacion.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/dto/PrestacionPensionado.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/dto/ValidarRequisitosPrecalificacionBiess.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/ClasePrestamo.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/DatosPersonalesAfiliadoBiess.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/EstadoPrestamo.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/ParametroCredito.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/ParametroPQ.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/PrestamoBiess.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/PrestamoBiessPK.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/RolPeriodoDetalle.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/RolPeriodoDetallePk.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/TipoPrestacion.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/TipoPrestacionPk.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/TipoSeguro.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/servicio
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/AfiliadoServicioBiess.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/BeneficiarioCreditoServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/ConsultaMSPDiscapacitadosServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/ConsultaPrestacionPensionadosServicioLocal.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/DatosPersonalesAfiliadoBiessServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/EstadoPrestamoServicio.java
+(C)	Paquete	src/main/java/ec/fin/biess/creditos/pq/servicio/impl
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/AfiliadoServicioBiessImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/BeneficiarioCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ConsultaMSPDiscapacitadosServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ConsultaPrestacionPensionadosServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/EstadoPrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ParametroCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PrecalificacionListaObservadosServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PrestacionesBiessServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PrestamoCalculoServiceImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ProveedorServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/RegistroCivilBiessServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/RolPeriodoDetalleServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/TablaAmortizacionServiceImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/TipoCuentaBiessServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/impl/TipoPrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/ParametroCreditoServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/PersonalizarCreditoService.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/PrecalificacionListaObservadosServicioLocal.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/PrestacionesBiessServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/PrestamoCalculoService.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/ProveedorServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/RegistroCivilBiessServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/RolPeriodoDetalleServicioLocal.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/TablaAmortizacionService.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/TipoCuentaBiessServicio.java
+(C)	Clase	src/main/java/ec/fin/biess/creditos/pq/servicio/TipoPrestamoServicio.java
+(C)	Carpeta	src/main/java/ec/fin/biess/listaobservados
+(C)	Paquete	src/main/java/ec/fin/biess/listaobservados/constant
+(C)	Clase	src/main/java/ec/fin/biess/listaobservados/constant/ConstantesListaObservadosWS.java
+(C)	Carpeta	src/main/java/ec/gov
+(C)	Carpeta	src/main/java/ec/gov/iess
+(C)	Carpeta	src/main/java/ec/gov/iess/creditos
+(C)	Carpeta	src/main/java/ec/gov/iess/creditos/pq
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/dto
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/dto/MoraPatronalBiessRequestDto.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/dto/MoraPatronalBiessResponseDto.java
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/excepcion
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ActualizarPrestamoEstadoHistoricoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/BloquearCreditoExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CalculoCreditoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CalculoInteresMoraException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CambiarEstadoLiquidacionHistoricoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CancelaLiquidacionException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CondicionCalculoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ConsultaAgenciaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ConsultaCoeficienteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ConsultarTasaInteresException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CrearCreditoQuirografarioException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/CrearSolicitudCreditoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/DesbloqueoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/DescomprometerGarantiaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/DeterminarEmpleadorParaDescontarPrestamoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/DeterminarRolException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/DividendoPrestamoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/EntidadNoEncontradaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/EsperanzaVidaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/GarantiaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/GenerarComprobanteIndividualExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/GenerarLiquidacionException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/HitoControlException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/InsertarCabeceraLiquidacionException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/InsertarDetalleLiquidacionException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/InsertarHistoricoLiquidacionException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/MasDeUnCostoOperativoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/MasDeUnDividendoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/MasDeUnDividendoHistoricoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/MasDeUnRegistroException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/MasDeUnSolicitanteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExisteCostoOperativoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExisteDividendoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExisteDividendoHistoricoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExistePlazoEndeudamiento.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoexisteTasaActuarialException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoexisteTasaSeguroDesgravamenException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExisteTasaSeguroSaldo.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExisteTipoRolSolicitanteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoExisteTipoSolicitanteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoTieneComprobanteVigenteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NoTieneLiquidacionVigenteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/NovarCreditoQuirografarioException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ObtenerProductosExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ObtenerRolesExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/OrdenCompraException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PagoAnteriorNoRealizadoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PagoEnProcesoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PagoRealizadoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PlazoMaximoEndeudamientoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PrecalificacionExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PrecalificacionListaObservadosException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/PrestamoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ProveedorException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/RecalculoAmortizacionException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/ResumenConsolidadoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SecuenciaBloqueadaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SecuenciaCreditoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SecuenciaSolicitudException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SeguroSaldoException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SemanaTasaInteresBancoCentralException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SituacionPrestamoNoExisteException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SolicitanteExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SolicitanteNoEncontradoExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/SolicitudException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TablaReferenciaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaActuarialCeroException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaActuarialException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaActurialDuplicadaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaBancoCentralCeroException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaDesgravamenCeroException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaDesgravamenDuplicadaException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaInteresBancoCentralException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TasaSeguroDesgravamen.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TiendaVirtualExcepcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/TransaccionErrorBDDException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/excepcion/VerificacionRegCivilExcepcion.java
+(C)	Carpeta	src/main/java/ec/gov/iess/creditos/pq/helper
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarAfiliado.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarJubilado.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarZafrero.java
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/helper/reglas
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/reglas/Messages.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasJubilado.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasZafrero.java
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/helper/simulacion
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/simulacion/SimulacionCreditoFactory.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/simulacion/SimulacionCreditoMejorOpcion.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/simulacion/SimularCredito.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/simulacion/SimularCreditoCuota.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/helper/simulacion/SimularCreditoMonto.java
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/servicio
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ActividadEconomicaServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ActividadEconomicaServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CancelaCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CancelarLiquidacionServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CancelarLiquidacionServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoRechazoServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoRechazoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoTipoBienServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicioRemoto.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaBuroServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaBuroServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaCesantiaServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaCesantiaServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaFondosReservaServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaFondosReservaServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CuentaBancariaAprobadaServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/CuentaBancariaAprobadaServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DatosPersonalesUsuarioServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DatosPersonalesUsuarioServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DefinirRolServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DestinoCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DestinoCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DetalleCatalogoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DetalleSolicitudCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DetalleSolicitudCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DiasFeriadoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/EstadoProcesoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/EstadoProcesoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/EstadosCalificacionServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/EstadosCalificacionServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaPrestamoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaPrestamoServicioRemote.java
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/servicio/impl
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ActividadEconomicaServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CancelarLiquidacionServicioImp.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CatalogoRechazoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CatalogoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CatalogoTipoBienServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CondicionCalculoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaBuroServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaCesantiaServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaFondosReservaServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CuentaBancariaAprobadaServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DatosPersonalesUsuarioServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DefinirRolServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DestinoCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DetalleCatalogoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DetalleSolicitudCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DiasFeriadoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/EstadoProcesoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/EstadosCalificacionServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaPrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionGenericaBigServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionGenericaServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/MoraPatronalServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/OficinaIessException.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/OrigenJubiladoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ParametrosCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ParametroServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestacionConcesionServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoEstadoHistoricoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/RegistroCivilExtranjeroServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ResumenCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ResumenFinPrestamoservicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SaldoLiquidacionPrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SeguroSaldoCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitudCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitudPagoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/TablaReferenciaCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/TipoSeguroServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/TipoSolicitudServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/VariablePrestamoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/VariableSolicitudServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/VerificacionCreditoServicioImpl.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionGenericaBigServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionGenericaBigServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionGenericaServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionGenericaServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/MoraPatronalServicioLocal.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/MoraPatronalServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/OrigenJubiladoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/OrigenJubiladoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ParametrosCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ParametrosCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ParametroServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ParametroServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestacionConcesionServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestacionConcesionServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamocabeceraServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamocabeceraServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoEstadoHistoricoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoEstadoHistoricoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoQuirografarioServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/RegistroCivilExtranjeroServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ResumenCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ResumenCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ResumenFinPrestamoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/ResumenFinPrestamoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SaldoLiquidacionPrestamoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SeguroSaldoCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SeguroSaldoCreditoServicioRemoto.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SimularCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitanteServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitanteServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudPagoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudPagoServicioRemoto.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/TablaReferenciaCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/TablaReferenciaCreditoServicioRemoto.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/TipoSeguroServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/TipoSeguroServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/TipoSolicitudServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/TipoSolicitudServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/VariablePrestamoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/VariablePrestamoServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/VariableSolicitudServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/VariableSolicitudServicioRemote.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/VerificacionCreditoServicio.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/VerificacionCreditoServicioRemoto.java
+(C)	Paquete	src/main/java/ec/gov/iess/creditos/pq/util
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoCreditoHelperSingleton.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoPeriodoGracia.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoSeguroSaldos.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoTablaReferencia.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoTablaReferenciaConDocFinanciero.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoTablaReferenciaFactory.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoTablaReferenciaSinDocFinanciero.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CalculoValoresCredito.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CompararDatosCredito.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/CondicionCalculoHelperSingleton.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/GeneradorListaPrestaciones.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/MailSend.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/OrigenJubiladoHelper.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/SucursalIessHelper.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/Util.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/Utilities.java
+(C)	Clase	src/main/java/ec/gov/iess/creditos/pq/util/ValidadorPrecalificacion.java
+(C)	Carpeta	src/main/resources
+(C)	Carpeta	src/main/resources/ec
+(C)	Carpeta	src/main/resources/ec/gov
+(C)	Carpeta	src/main/resources/ec/gov/iess
+(C)	Carpeta	src/main/resources/ec/gov/iess/creditos
+(C)	Carpeta	src/main/resources/ec/gov/iess/creditos/pq
+(C)	Carpeta	src/main/resources/ec/gov/iess/creditos/pq/util
+(C)	Xml		src/main/resources/ec/gov/iess/creditos/pq/util/afiliado-r.xml
+(C)	Xml		src/main/resources/ec/gov/iess/creditos/pq/util/afiliado.xml
+(C)	Xml		src/main/resources/ec/gov/iess/creditos/pq/util/general-r.xml
+(C)	Xml		src/main/resources/ec/gov/iess/creditos/pq/util/general.xml
+(C)	Xml		src/main/resources/ec/gov/iess/creditos/pq/util/jubilado-r.xml
+(C)	Xml		src/main/resources/ec/gov/iess/creditos/pq/util/jubilado.xml
+(C)	Archivo de propiedades	src/main/resources/messages.properties
+(C)	Carpeta	src/main/resources/META-INF
+(C)	Xml		src/main/resources/META-INF/persistence.xml
+
+======================================================================
+Version: 2.0.1
+Requerimiento: INC-2707 / Cambio para productos de Mora Patronal que se debe aplicar basados en la Ley Orgánica para el Equilibrio de las finanzas públicas
+Cambios: ACCION/TIPO/NOMBRE 
+
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitudCreditoServicioImpl.java
+(M)	Interfaz	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicio.java
+(M)	Interfaz	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicioRemote.java
+(C)	Enumeración	src/main/java/ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java
+
+======================================================================
+Version: 2.0.2
+Requerimiento: INC-2707 / Considerar las planillas impagas durante los 60 días que tienen prórroga para pagar de acuerdo a lo que establece la ley, a excepción de las planillas para pagos de dividendos de préstamos hipotecarios y quirografarios
+Cambios: ACCION/TIPO/NOMBRE 
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+(M)	Classpath	.classpath
+
+
+======================================================================
+Version: 2.0.3
+Requerimiento: INC-MORA PUBLICOS_V2 / MORA PUBLICOS VERSION 2
+Cambios: ACCION/TIPO/NOMBRE 
+(M)	Clase		src/main/java/ec/fin/biess/creditos/pq/modelo/dto/ParamsReglasPrecalificacion.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java
+(C)	Clase		src/main/java/ec/gov/iess/creditos/pq/helper/reglas/DatosBiessPublicos.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java
+(M)	Interfaz	src/main/java/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicio.java
+(M)	Interfaz	src/main/java/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicioRemote.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+
+======================================================================
+Version: 2.0.4
+Requerimiento: INC-2695 / Zona Cero.- Requerimiento de Cambio Préstamos Quirografarios Biess Emergente
+Cambios: ACCION/TIPO/NOMBRE
+(C)	Classpath	.classpath
+(C)	xml			pom.xml
+(C)	Enumeración	ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java
+(C)	Enumeración	ec/fin/biess/creditos/pq/enumeracion/ConfiguracionPQEnum.java
+(C)	Enumeración	ec/fin/biess/creditos/pq/enumeracion/CreditoEspecialEnum.java
+(M)	Enumeración	ec/fin/biess/creditos/pq/enumeracion/TipoProductoEnum.java
+(M)	Clase		ec/fin/biess/creditos/pq/modelo/dto/ParamsReglasPrecalificacion.java
+(M)	Clase		ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java
+(M)	Clase		ec/fin/biess/creditos/pq/servicio/impl/TablaAmortizacionServiceImpl.java
+(M)	Interface	ec/fin/biess/creditos/pq/servicio/PersonalizarCreditoService.java
+(M)	Interface	ec/fin/biess/creditos/pq/servicio/TablaAmortizacionService.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/precalificacion/CalificarAfiliado.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/precalificacion/CalificarZafrero.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/reglas/DatosBiessEmergente.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/simulacion/SimulacionCreditoMejorOpcion.java
+(M)	Clase		ec/gov/iess/creditos/pq/helper/simulacion/SimularCreditoCuota.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicio.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicioRemoto.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicio.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicioRemote.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/CondicionCalculoServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/MoraPatronalServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java
+(M)	Clase		ec/gov/iess/creditos/pq/servicio/impl/SolicitudCreditoServicioImpl.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicio.java
+(M)	Interface	ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicioRemote.java
+(M)	Clase		ec/gov/iess/creditos/pq/util/CreditosEspecialesUtil.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java
+(M)	Interfaz	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitanteServicio.java
+(M)	Interfaz	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitanteServicioRemote.java
+
+======================================================================
+Version: 2.0.5
+Requerimiento: INC-2713 / BUG.- AJUSTE DE BUG PARA CORREGIR VALORES TOTALIZADOS EN LA CABECERA DEL CRÉDITO QUIROGRAFARIO EMERGENTE 
+Cambios: ACCION/TIPO/NOMBRE
+(M)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java
+(M)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java
+
+
+======================================================================
+Version: 2.0.6
+Requerimiento: INC-2718 / Ajuste de bug para aprobaci�n de cr�ditos emergentes desde aplicativo PQ Intranet. 
+Cambios: ACCION/TIPO/NOMBRE
+(M) Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java
+
+======================================================================
+Version: 2.0.7
+Requerimiento: INC-2722 / Ajuste de bug Validación Mora en los aplicativos de PQ
+Cambios: ACCION/TIPO/NOMBRE
+(M)	Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+
+======================================================================
+Version: 2.0.8
+Requerimiento: INC-2729 / Crédito Hipotecario Mora Patronal de PQ
+Cambios: ACCION/TIPO/NOMBRE
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicio.java
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/DividendoPrestamoServicioRemote.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitudCreditoServicioImpl.java
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicio.java
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitudCreditoServicioRemote.java
+
+
+======================================================================
+Version: 2.0.9
+Requerimiento: INC-2735 / Requisito para condiciones de mora patronal en el Sector Privado con Acuerdo de Pagos Parciales
+Cambios: ACCION/TIPO/NOMBRE
+(C)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AportacionesServicioImpl.java		
+(C)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/AportacionesServicioRemote.java				
+(C) Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/AportacionesServicioLocal.java				
+(C)	Clase		src/main/java/ec/gov/iess/creditos/pq/excepcion/AportacionesException.java					
+(C)	Clase		src/main/java/ec/gov/iess/creditos/pq/dto/AportacionesBiessRequestDto.java					
+(C)	Clase		src/main/java/ec/gov/iess/creditos/pq/dto/InformacionAportacionResponseDto.java			
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+(M)	Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java		
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicioRemote.java			
+(M)	Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicio.java				
+(C)	Enumeracion	src/main/java/ec/fin/biess/creditos/pq/enumeracion/TipoCalculoEnum.java						
+
+
+======================================================================
+Version: 2.0.10
+Requerimiento: INC-2744 / Ajuste en las consultas para validar la mora patronal
+ e individual en pr�stamos emergentes y beneficiarios del sector p�blico.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java					(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java							(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java						(M)
+
+
+======================================================================
+Version: 2.0.11
+Requerimiento: INC-2743 / Validaci�n para inhabilitar las opciones de generaci�n
+ de comprobantes y liquidaci�n de cr�ditos
+Cambios: ACCION/TIPO/NOMBRE
+
+
+Enumeraci�n		src/main/java/ec/fin/biess/creditos/pq/enumeracion/ DocumentoHabilitacionEnum.java		(C)
+Enumeraci�n		src/main/java/ec/fin/biess/creditos/pq/enumeracion/TipoEmpleadorEnum.java				(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java	(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionServicioImpl.java		(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PeriodoComprobanteServicioImpl.java	(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicio.java				(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicioRemote.java		(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PeriodoComprobanteServicio.java			(C)
+Properties		src/main/resources/messages.properties 													(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/DefinirRolServicioLocal.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DefinirRolServicioImpl.java 		(M)
+
+
+======================================================================
+Version: 2.0.12
+Requerimiento: INC-2756 / Bug de inconsistencia en las tablas de amortizaci�n para cr�ditos de alivio econ�mico.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java						(M)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java				(M)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+
+
+
+======================================================================
+Version: 2.0.13
+Requerimiento: INC-2769 / Consultar en l�nea el valor de cesant�a disponible de
+ un afiliado a trav�s del aplicativo web de pr�stamos quirografarios
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/fin/biess/creditos/pq/modelo/dto/InformacionCesantia.java						(C)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaCesantiaServicio.java					(M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaCesantiaServicioRemote.java				(M)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaCesantiaServicioImpl.java			(M)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java			(M)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+xml			/classpath.xml	(M)
+xml			/pom.xml		(M)
+
+
+======================================================================
+Version: 2.0.14
+Requerimiento: INC-2773 / Ajuste en el c�lculo del inter�s del periodo de gracia para pr�stamos emergentes.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/fin/biess/creditos/pq/servicio/impl/TablaAmortizacionServiceImpl.java		(M)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java		(M)
+
+
+======================================================================
+Version: 2.0.15
+Requerimiento: INC-2777 / Ajuste en el valor del inter�s de gracia en la cabecera de pr�stamos quirografarios.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java		(M)
+
+
+=====================================================================
+Version: 2.0.16
+Requerimiento: INC-2790 Requerimiento de pq focalizados para créditos para cocinas de inducción.
+Cambios: ACCION/TIPO/NOMBRE
+
+Enumeración		src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java						(C)
+Enumeración		src/main/java/ec/fin/biess/creditos/pq/enumeracion/RespuestaCatalogoFocalizadoEnum.java			(C)
+Clase			src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ProveedorServicioImpl.java					(M)
+Interface		src/main/java/ec/fin/biess/creditos/pq/servicio/ProveedorServicio.java							(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/excepcion/CalculoCreditoException.java					(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/excepcion/OTPException.java								(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/excepcion/PrestamosFocalizadosException.java				(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/BloqueoUsuarioServicioImpl.java				(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CatalogoFocalizadosServicioImpl.java		(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CreditoValidacionServicioImpl.java			(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DetalleFocalizadoServicioImpl.java			(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/OTPServicioImpl.java						(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java			(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java		(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java					(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/BloqueoUsuarioServicioLocal.java					(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/BloqueoUsuarioServicioRemote.java				(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoFocalizadosServicioLocal.java			(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoFocalizadosServicioRemote.java			(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoValidacionServicioLocal.java				(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoValidacionServicioRemote.java				(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/DetalleFocalizadoServicioLocal.java				(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/DetalleFocalizadoServicioRemote.java				(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/OTPServicioLocal.java							(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/OTPServicioRemote.java							(C)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java							(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java						(M)
+
+======================================================================
+Version: 2.0.17
+Requerimiento: INC-2797 Ajuste en la consulta de tasa de inter�s para concesi�n de cr�ditos 
+quirografarios de tabla ya no utilizada.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CondicionCalculoServicioImpl.java			(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/VariablePrestamoServicioImpl.java			(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/VariableSolicitudServicioImpl.java			(M)
+Interfaz		src/main/java/ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicio.java					(M)
+Interfaz		src/main/java/ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicioRemoto.java				(M)
+
+
+======================================================================
+Version: 2.0.18
+Requerimiento: INC-2799 Mensaje personalizado cuando existen problemas de integraci�n con servicios web del IESS, o por problemas de disponibilidad del servicio. 
+Cambios: ACCION/TIPO/NOMBRE
+
+
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/MoraPatronalServicioImpl.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AportacionesServicioImpl.java				(M)
+
+======================================================================
+Version: 2.0.19
+Requerimiento: INC-2808 / Modificaci�n de condiciones PQ
+Cambios: ACCION/TIPO/NOMBRE 
+
+enumeraci�n	src/main/java/ec/fin/biess/creditos/pq/enumeracion/ConfiguracionPQEnum.java								(M)
+enumeraci�n	src/main/java/ec/fin/biess/creditos/pq/enumeracion/TipoProductoEnum.java								(M)
+interface	src/main/java/ec/fin/biess/creditos/pq/servicio/PersonalizarCreditoService.java							(M)
+clase		src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java				(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicio.java								(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicioRemote.java						(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicio.java							(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/CondicionCalculoServicioRemoto.java						(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicio.java								(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicioRemote.java						(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java									(M)
+interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java								(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CondicionCalculoServicioImpl.java					(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java					(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java				(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java							(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java					(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java						(M)
+clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionServicioImpl.java						(M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicio.java									(M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicioRemote.java							(M)
+
+======================================================================
+Version: 2.0.20
+Requerimiento: INC-2818 / CONTROL PQ'S DUPLICADOS
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java				(M)
+
+======================================================================
+Version: 2.0.21
+Requerimiento: INC-2824 / INCORPORACION DE CÓDIGO PARA IDENTIFICAR LA COCINA ESCOGIDA
+Cambios: ACCION/TIPO/NOMBRE
+
+Enumeración		src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java					(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CatalogoFocalizadosServicioImpl.java	(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoFocalizadosServicioLocal.java		(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/CatalogoFocalizadosServicioRemote.java		(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitudCreditoServicioImpl.java		(M)
+
+======================================================================
+Version: 2.0.22
+Requerimiento: INC-2821 / REQUERIMIENTO SRI
+Cambios: ACCION/TIPO/NOMBRE
+
+Enumeración		src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java					(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java		(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicio.java					(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicioRemote.java			(M)
+
+======================================================================
+Version: 2.0.23
+Requerimiento: INC-2856 / Banca Virtual e implementación de simulador
+Cambios: ACCION/TIPO/NOMBRE
+
+clase			ec/fin/biess/creditos/pq/modelo/dto/ValidarRequisitosPrecalificacionBiess.java				(M)
+clase			ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java									(M)
+clase			ec/gov/iess/creditos/pq/helper/reglas/ReglasJubilado.java									(M)
+clase			ec/gov/iess/creditos/pq/helper/reglas/ReglasZafrero.java									(M)
+interface		ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java								(M)
+interface		ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java							(M)
+clase			ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java			(M)
+clase			ec/gov/iess/creditos/pq/util/EstadosCredito.java											(C)
+clase			ec/gov/iess/creditos/pq/util/PrecalificacionUtil.java										(C)
+clase			ec/gov/iess/creditos/pq/util/TiposCredito.java												(C)
+clase			ec/gov/iess/creditos/pq/util/TiposCreditoPh.java											(C)
+clase			rc/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java			(M)
+
+======================================================================
+Version: 2.0.24
+Requerimiento: INC-2863 / Referencia Historica INC-2856.
+Cambios: ACCION/TIPO/NOMBRE
+
+Enumeración		src/main/java/ec/fin/biess/creditos/pq/enumeracion/TipoInformacionServicioIessEnum.java			(C)
+Clase			src/main/java/ec/fin/biess/creditos/pq/modelo/dto/InformacionIessServicioDto.java				(C)
+Clase			src/main/java/ec/fin/biess/creditos/pq/modelo/dto/ParamsReglasPrecalificacion.java				(M)
+Clase			src/main/java/ec/fin/biess/creditos/pq/servicio/impl/InformacionIessServicioImpl.java			(C)
+Interface		src/main/java/ec/fin/biess/creditos/pq/servicio/InformacionIessServicio.java					(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/dto/AportacionesBiessRequestDto.java						(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/dto/InformacionAportacionResponseDto.java					(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/dto/MoraPatronalBiessRequestDto.java						(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarAfiliado.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarZafrero.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java							(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasJubilado.java							(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasZafrero.java							(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java			(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java					(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java				(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicio.java						(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicioRemote.java				(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java						(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java				(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java							(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java						(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/util/ValidadorPrecalificacion.java						(M)
+
+
+======================================================================
+Version: 2.0.25
+Requerimiento: INC-2877 / Cr�dito menor al 50% SBU en estado ELT
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/creditos/pq/dto/EvaluaReglaMontoMinimoDto.java							(C)
+Clase		src/main/java/ec/gov/iess/creditos/pq/excepcion/DiasNoPermitidosNovacionException.java				(C)
+Clase		src/main/java/ec/gov/iess/creditos/pq/excepcion/MontoMinimoException.java							(C)
+Clase		src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java						(M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java								(M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java							(M)
+
+
+======================================================================
+Version: 2.0.26
+Requerimiento: INC-2891 / CAMBIO WEB SERVICE REGISTRO CIVIL PQ
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/fin/biess/creditos/pq/modelo/dto/InformacionRegistroCivil.java						(C)
+Clase		src/main/java/ec/fin/biess/creditos/pq/servicio/impl/RegistroCivilBiessServicioImplT.java			(C)
+Interface	src/main/java/ec/fin/biess/creditos/pq/servicio/RegistroCivilBiessServicioT.java					(C)
+XML			pom.xml																								(C)
+
+
+======================================================================
+Version: 2.0.27
+Requerimiento: INC-2880 / Aclaración mensaje aplicativo
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/gov/iess/creditos/pq/excepcion/NoServicioPrestadoSucursalException.java					(C)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java		(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java				(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java					(M)
+Clase			src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java							(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicio.java				(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicioRemote.java		(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitanteServicio.java										(M)
+Interface		src/main/java/ec/gov/iess/creditos/pq/servicio/SolicitanteServicioRemote.java								(M)
+Properties		src/main/resources/messages.properties
+
+======================================================================
+Version: 2.0.28
+Requerimiento: INC-2892 / Corrección de aportes afiliados
+Cambios: ACCION/TIPO/NOMBRE
+	
+Clase	    src/main/java/ec/gov/iess/creditos/pq/excepcion/CabeceraCreditoQuirografarioException.java	(C)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java	    (M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java	(M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java	            (M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamocabeceraServicio.java	            (M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamocabeceraServicioRemote.java	        (M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoQuirografarioServicio.java	        (M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java	                    (M)
+Interface	src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java	                (M)
+Properties	src/main/resources/messages.properties	   																		(M)
+
+======================================================================
+Version: 2.0.29
+Requerimiento: INC-2794 / Implementaci�n de Requerimiento logs de auditoria-Proceso de Pr�stamos Quirografarios
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase	       src/main/java/ec/fin/biess/creditos/pq/auditoria/AuditorDatosAfiliado.java	                               (M)
+Paquete	       src/main/java/ec/fin/biess/creditos/pq/helper	                                                           (C)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/helper/AuditoriaHelperPqConcesion.java	                           (C)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/AfiliadoServicioBiessImpl.java	                       (M)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ConsultaMSPDiscapacitadosServicioImpl.java	           (M)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ConsultaPrestacionPensionadosServicioImpl.java	       (M)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/DatosPersonalesAfiliadoBiessServicioImpl.java	       (M)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/RegistroCivilBiessServicioImpl.java	                   (M)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/RegistroCivilBiessServicioImplT.java	               (M)
+Clase	       src/main/java/ec/fin/biess/creditos/pq/servicio/impl/ServicioAuditoriaPqConcesionEjbImpl.java	           (C)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/AfiliadoServicioBiess.java	                               (M)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/ConsultaMSPDiscapacitadosServicio.java	                   (M)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/ConsultaPrestacionPensionadosServicioLocal.java	           (M)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/DatosPersonalesAfiliadoBiessServicio.java	               (M)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/RegistroCivilBiessServicio.java	                           (M)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/RegistroCivilBiessServicioT.java	                           (M)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/ServicioAuditoriaPqConcesionEjbLocal.java	               (C)
+Interface	   src/main/java/ec/fin/biess/creditos/pq/servicio/ServicioAuditoriaPqConcesionEjbRemote.java	               (C)
+XML	           pom.xml	                                                                                                   (M)
+
+
+
+======================================================================
+Version: 2.0.30
+Requerimiento: INC-2869 /  	Implementaci�n de OTP en sistema de pr�stamos Quirografarios
+Cambios: /TIPO/NOMBRE/ACCION
+
+
+Clase			ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java												(M)
+Interface		ec/gov/iess/creditos/pq/servicio/OTPServicioRemote.java														(M)
+Interface		ec/gov/iess/creditos/pq/servicio/OTPServicioLocal.java														(M)
+Clase			ec/gov/iess/creditos/pq/servicio/ impl/ OTPServicioImpl.java												(M)
+
+
+======================================================================
+Version: 2.0.31
+Requerimiento: INC-2838 / CAMBIOS APROBACI�N PQ
+Cambios: TIPO/NOMBRE/ACCION
+
+
+Clase		ec/fin/biess/creditos/pq/excepcion/AprobacionCreditoSenderException.java					(C)
+Paquete		ec/fin/biess/creditos/pq/longtime															(C)
+Clase		ec/fin/biess/creditos/pq/longtime/AprobacionCreditoSender.java								(C)
+Paquete		ec/fin/biess/creditos/pq/longtime/rp														(C)
+Clase		ec/fin/biess/creditos/pq/longtime/rp/AprobacionCreditoSenderRp.java							(C)
+Clase		ec/fin/biess/creditos/pq/modelo/dto/AprobacionDto.java										(C)
+Clase		ec/fin/biess/creditos/pq/modelo/dto/AprobacionMasivaDto.java								(C)
+Clase		ec/fin/biess/creditos/pq/helper/AuditoriaHelperPqConcesion.java								(M)
+Interface	ec/fin/biess/creditos/pq/servicio/ServicioAuditoriaPqConcesionEjbLocal.java					(M)
+Interface	ec/fin/biess/creditos/pq/servicio/ServicioAuditoriaPqConcesionEjbRemote.java				(M)
+Clase		ec/fin/biess/creditos/pq/servicio/impl/ServicioAuditoriaPqConcesionEjbImpl.java				(M)
+Interface	ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicio.java			(M)
+Interface	ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicioRemote.java		(M)
+Interface	ec/gov/iess/creditos/pq/servicio/AprobacionCreditoServicio.java								(C)
+Interface	ec/gov/iess/creditos/pq/servicio/AprobacionCreditoServicioRemote.java						(C)
+Interface	ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java										(M)
+Interface	ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java								(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java	(M)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/AprobacionCreditoServicioImpl.java					(C)
+Clase		ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java								(M)
+Clase		ec/gov/iess/creditos/pq/util/MailSend.java													(M)
+Clase		ec/gov/iess/creditos/pq/util/Utilities.java													(M)
+Paquete		ec/gov/iess/creditos/pq/alertas																(C)
+Paquete		ec/gov/iess/creditos/pq/alertas/templates													(C)
+Paquete		ec/gov/iess/creditos/pq/alertas/templates/email												(C)
+Ftl			ec/gov/iess/creditos/pq/alertas/templates/email/aprobacionMasiva.ftl						(C)
+xml			pom.xml																						(M)
+
+======================================================================
+Version: 2.0.32
+Requerimiento: INC-2940 /  	Requerimiento de Negocio Ecuador tu lugar en el mundo
+Cambios: TIPO/NOMBRE/ACCION
+
+
+Enumeraci�n			src/main/java/ec/fin/biess/creditos/pq/enumeracion/CodigosRespuestaPaqueteTuristicoEnum.java			(C)
+Enumeraci�n			src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java								(M)
+Clase				ec/gov/iess/cr�ditos/pq/excepcion/CalculoCreditoException.java											(M)
+Clase				src/main/java/ec/gov/iess/creditos/pq/excepcion/CodigoReservaPaqueteTuristicoException.java				(C)
+Clase				src/main/java/ec/gov/iess/creditos/pq/excepcion/PrestamosTuristicosException.java						(C)
+Clase				src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java						(M)
+Clase				src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java					(M)
+Clase				src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java							(M)
+Clase				src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoTuristicoServiceImpl.java					(C)
+Clase				src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java					(M)
+Interface			src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java									(M)
+Interface			src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java								(M)
+Interface			src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoTuristicoLocalService.java						(C)
+Interface			src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoTuristicoRemoteService.java						(C)
+Properties			src/main/resources/messages.properties	
+
+=====================================================================
+Version: 2.0.33
+Requerimiento:  INC-2946 Soluci�n de indisponibilidad del aplicativo web de PQ
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java		(M)
+Clase	src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java	(M)
+
+
+=====================================================================
+Version: 2.0.34
+Requerimiento:  INC-2964 Caso inusual de concesi�n de cr�dito normal en fin de semana
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	    src/main/java/ec/gov/iess/creditos/pq/excepcion/BloqueoFinSemanaException.java	    (C)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java	    (M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java	            (M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java	        (M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/util/ValidaCreacionCreditoUtil.java	        (C)
+Properties	src/main/resources/messages.properties	                                            (M)
+Enumeraci�n	src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java	        (M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AportacionesServicioImpl.java	(M)
+Clase	    src/main/java/ec/gov/iess/creditos/pq/servicio/impl/MoraPatronalServicioImpl.java	(M)
+
+
+=====================================================================
+Version: 2.0.35
+Requerimiento:  REQ-15 PAR�METROS PRESTAMOS QUIROGRAFARIOS
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	    ec/fin/biess/creditos/pq/modelo/dto/ParametroResponseDto.java	                    (C)
+Interface	ec/gov/iess/creditos/pq/servicio/ConsultaParametroServicioLocal.java	            (C)
+Interface	ec/gov/iess/creditos/pq/servicio/ConsultaParametroServicioRemote.java	            (C)
+Clase	    ec/gov/iess/creditos/pq/servicio/impl/ConsultaParametroServicioImpl.java	        (C)
+Clase	    ec/gov/iess/creditos/pq/servicio/impl/DefinirRolServicioImpl.java	                (M)
+Clase	    ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+
+
+=====================================================================
+Version: 2.0.36
+Requerimiento:  REQ-90 Requerimiento de Negocio - PQ Mujer
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase		src/main/java/ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java		(M)
+
+
+=====================================================================
+Version: 2.0.37
+Requerimiento:  REQ-117 Parametrizaci�n Pr�stamo Quirografario Gracias Mam�  
+
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	src/main/java/ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java	(M)
+
+=====================================================================
+Version: 2.0.38
+Requerimiento: REQ-126 /  	Requerimiento Para ti Papá
+
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicioRemote.java						(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionGenericaServicioImpl.java			(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java				(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionServicioImpl.java					(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SeguroSaldoCreditoServicioImpl.java			(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicio.java						(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicioRemote.java					(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicio.java							(M)
+Clase    /src/main/java/ec/gov/iess/creditos/pq/util/Utilities.java											(M)
+Clase    /src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/PrestamoBiess.java						(M)
+Clase    /src/main/java/ec/fin/biess/creditos/pq/dao/ejb/PrestamoBiessDaoEjb.java							(M)
+Clase    /src/main/java/ec/fin/biess/creditos/pq/dao/PrestamoBiessDao.java									(M)
+Clase    /src/main/java/ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java						(M)
+Clase    /src/main/java/ec/fin/biess/creditos/pq/enumeracion/TipoEmpleadorEnum.java							(M)
+
+=====================================================================
+Version: 2.0.39
+Requerimiento: REQ-122 /  	Requerimiento de negocio "Modificar la parametrización de Cálculo de Intereses Convencionales y de Mora"
+
+Cambios: TIPO/NOMBRE/ACCION
+
+
+
+/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java		(M)
+
+
+
+=====================================================================
+Version: 2.0.40
+Requerimiento: REQ-134 / Requerimiento préstamo quirografario “Vive Ecuado 2/3
+
+Carpeta     /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/dinamico          						 (C)
+clase     /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/dinamico/PqDinamicoHelper.java   			 (C)
+clase      /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoDinamicoRemoteService.java 	 (C)
+clase      /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoDinamicoImpl.java			 (C)
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java			 (M)
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java		 (M)
+clase      /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoDinamicoLocalService.java		 (C)
+clase      /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/ConecSrvPqDinamicoException.java		 (C)
+clase     /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/ConsultaDataPqDinamicoException.java	 (C)
+clase     /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/ExisteCodigoContratoException.java		 (C)
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java			     (M)
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java			     (M)
+
+
+
+======================================================================
+Version: 2.0.41
+Requerimiento: REQ-142 / Requerimiento préstamo quirografario “Edúcate con BIESS"
+
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoDinamicoRemoteService.java		(M)
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoDinamicoImpl.java			(M)
+clase   /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java		(M)
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoDinamicoLocalService.java		(M)
+clase     /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/ParamCategoriaException.java			(A)
+clase   /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/enumeracion/ParametrosBiessEnum.java				(M)
+
+
+======================================================================
+Version: 2.0.42
+Requerimiento: REQ-171 / ACTUALIZACION, CONDICIONES DE NOVACION DE PRESTAMOS QUIROGRAFARIOS
+
+clase		/maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java							(M)
+clase		/maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java   (M)
+clase		/maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java                    (M)
+
+=====================================================================================
+
+Version: 2.0.43
+Requerimiento: REQ-243 / NUEVA OPCION CREDITICIA APLICATIVO PQ PARA SOLVENTAR LA EMERGENCIA POR EL COVID-19
+
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DividendoPrestamoServicioImpl.java				(M)
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java				(M)
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java		(M)
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java						(M)
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java								(M)
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java			(M)
+clase        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/enumeracion/BiessEmergenteEnum.java							(M)
+
+
+
+
+=====================================================================================
+
+Version: 2.0.44
+Requerimiento: REQ-249 / SOLVENTAR ICONSISTENCIAS EN EL PRODUCTO PQ EMERGENTE POR COVID 19
+
+
+clase    /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java   (M)
+
+
+
+=====================================================================================
+
+Version: 2.0.45
+Requerimiento: REQ-250 / IMPLEMENTACION, MEDIDA ALTERNA MIENTRAS ENTRA EN PRODUCCION EL REQUERIMIENTO DE NEGOCIO �CONCESION DE PR�STAMOS QUIROGRAFARIOS EN FINES DE SEMANA Y FERIADOS
+
+
+clase   /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java    (M)
+
+
+================================================================================================
+
+Version: 2.0.46
+Requerimiento: REQ-103 Centralizaci�n de Cartera - Pr�stamos Quirografarios WEB BIESS, Integraci�n SAC / Pr�stamos Quirografarios WEB BIESS Novaci�n, Integraci�n SAC
+
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificacionGeneral.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarAfiliado.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarZafrero.java				(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarJubilado.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java						(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasGeneral.java							(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionCancelacionSacServicioRemoto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/TablaAmortizacionOperacionSacServicioLocal.java	(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicioRemote.java				(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoPQExigibleSacServicioRemoto.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoQuirografarioServicio.java				(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/DatoOperacionSacRemote.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoPQEmpSacServicioLocal.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicio.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiasPorOperacionSacServicioRemoto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CancelaOperacionSacServicio.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimularCreditoServicio.java						(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionValorExigibleSacServicioRemoto.java	(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/ValidarPHEnTramiteServicioLocal.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PeticionRestSacServicio.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiasPorOperacionSacServicioImpl.java	(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoQuirografarioServicioImpl.java		(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaFondosReservaServicioImpl.java		(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionValorExigibleSacServicioImpl.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCancelacionSacServicioImpl.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CancelaOperacionSacServicioImpl.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DatoOperacionSacServicioImpl.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CreditoPQExigibleSacServicioImpl.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CreditoPQOpEmplSacServicioImpl.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PeticionRestSacServicioImpl.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionTablaAmortizacionSacServicioImpl.java    (A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionPrecancelacionSacServicioImpl.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AdministracionOrdenCompraProveedorServicioImpl.java (M)	
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/TablaAmortizacionOperacionSacServicioImpl.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java							(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaCesantiaServicioImpl.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoCabeceraServicioImpl.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/LiquidacionServicioImpl.java						(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaPrestamoServicioImpl.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ValidarPHEnTramiteServicioImpl.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CrearOperacionPQSacServicioImpl.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionValorExigibleMontoSacServicioImpl.java   (A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiasSacServicioImpl.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicio.java		(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionPrecancelacionSacServicioLocal.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicioRemote.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicio.java								(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaPrestamoServicio.java						(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoPQExigibleSacServicioLocal.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/TablaAmortizacionOperacionSacServicioRemote.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiasSacServicioLocal.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CalculoCreditoServicio.java							(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiasPorOperacionSacServicio.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoPQCrearOperacionSacServicioLocal.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionCancelacionSacServicio.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicioRemote.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaPrestamoServicioRemote.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/LiquidacionServicioRemote.java						(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/DatoOperacionSacLocal.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java					(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/ValidarPHEnTramiteServicioRemote.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CancelaOperacionSacServicioRemoto.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionValorExigibleMontoSacServicioRemoto.java	(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicio.java							(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/CreditoPQCrearOperacionSacServicioRemoto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiasSacServicioRemoto.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionTablaAmortizacionSacServicioRemote.java	(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java								(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionValorExigibleMontoSacServicioLocal.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/AdministracionOrdenCompraProveedorServicioRemote.java	(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicioRemote.java								(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionPrecancelacionSacServicioRemoto.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java								(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionValorExigibleSacServicioLocal.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/SimulacionTablaAmortizacionSacServicioLocal.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/OperacionRequestDto.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/MensajeSacResponseDto.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/DatoDeudaDto.java								(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/ClienteRequestDto.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionPQExigibleResponseDto.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/GarantiasComprometidasDto.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/CreditoExigibleDto.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/PrestamoRequestDto.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/DatoDesembolsoDto.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/DatoReferencia.java								(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionCreditosGarantiasRequestDto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/DividendoDto.java									(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionPQExigible.java						(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionTablaAmortizacionResponseDto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/OperacionSacRequest.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/DatoCaptacionDto.java								(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionCrearOperacion.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/CalificacionRequisitosResponseDto.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionGarantiasResponseDto.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionPQOperacionRequestDto.java				(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/OperacionSacResponse.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/migracion											(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/migracion/cartera									(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/migracion/cartera/DataPersonalizacionDto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/migracion/cartera/MensajeRespuestaDto.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/TablaAmortizacionSac.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/InformacionGarantias.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/DatoDemograficoDto.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/SimulacionValorExigibleException.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/CancelacionOperacionSacException.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/GarantiasSacException.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/PHEnTramiteException.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/PQExigibleException.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/TablaAmortizacionSacException.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/CreacionOperacionSacException.java			(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/PeticionSacException.java					(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/SimulacionCancelacionSacException.java		(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/FuncionesUtilesSac.java							(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/TiposCredito.java								(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/ConstantesSAC.java								(A)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/EstadosCredito.java								(M)							
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/modelo/dto/ParamsReglasPrecalificacion.java			(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/PrestamoBiess.java				(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/dao/ejb/PrestamoBiessDaoEjb.java						(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/dao/PrestamoBiessDao.java							(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/servicio/PersonalizarCreditoService.java				(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java	(M)
+clase                        /maven/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/enumeracion/TipoIdentificacionSacEnum.java			(A)
+
+
+================================================================================================
+
+Version: 2.0.47
+Requerimiento: REQ-320 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ- �Simulador Novaci�n� y �Novaci�n�
+
+clase				 /pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/modelo/persistencia/PrestamoBiess.java  								(M)
+
+
+========================================================================================
+Version: 2.0.48
+Requerimiento: REQ-325 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- GENERACION DE COMPROBANTES Y VALIDACION PRECALIFICACION DE REQUISITOS
+
+clase         /pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java											(M)
+clase         /pq/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java   				(M)
+
+
+========================================================================================
+Version: 2.0.49
+Requerimiento: REQ-327 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ- TABLA DE AMORTIZACION ALEMANA MONTO MAXIMO
+
+clase		/pq/pq-concesion-ejb/src/main/java/ec/fin/biess/creditos/pq/servicio/impl/PersonalizarCreditoServiceImpl.java							(M)
+
+
+
+
+========================================================================================
+Version: 2.0.50
+Requerimiento: REQ-329 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB
+
+clase                /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/reglas/ReglasAfiliado.java				(M)
+clase                /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java	(M)
+clase                /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java	(M)
+clase                /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/FuncionesUtilesSac.java						(M)
+clase                /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/ConstantesSAC.java							(M)
+
+
+
+
+
+
+========================================================================================
+Version: 2.0.51
+Requerimiento: REQ-339 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- PUNTOS VARIOS
+
+clase            /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/helper/precalificacion/CalificarZafrero.java		(M)
+clase            /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SimulacionCreditoServicioImpl.java   (M)
+
+
+========================================================================================
+Version: 2.0.52
+Requerimiento: REQ-350 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- NOVACION, DIVIDENDOS EN ESTADO EN PLANILLA
+
+clase        /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/AportacionesServicioImpl.java					(M)
+clase        /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java		(M)
+
+
+========================================================================================
+Version: 2.0.53
+Requerimiento: REQ-364 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ
+
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaFechaEfectivaGafImpl.java		(A)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java				(M)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/CalculoCreditoServicioImpl.java		(M)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/ConsultaFechaEfectivaGafLocal.java			(A)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java						(M)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/dto/migracion/cartera/FechaEfectivaDto.java			(A)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/excepcion/CalculoCreditoException.java				(M)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/FuncionesUtilesSac.java							(M)
+
+========================================================================================
+Version: 2.0.54
+Requerimiento: REQ-374 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ- COMPROMETIMIENTO DE GARANTIAS Y NOVACION
+
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java		(M)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaCesantiaServicioImpl.java		(M)
+clase      /pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaPrestamoServicioImpl.java		(M)
+
+========================================================================================
+Version: 2.0.55
+Requerimiento: REQ-399 	Control de Consultas Aplicativo Web de Pr�stamos Quirografarios
+ACCI�N / OBJETO
+
+M	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicio.java
+
+M	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/GarantiaCreditoServicioRemote.java
+
+M	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/GarantiaCreditoServicioImpl.java
+
+M	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrecalificacionServicioUsaResumenImpl.java
+
+M	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicio.java
+
+M	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrecalificacionServicioRemote.java
+
+========*******************************************************************============
+Version: 2.0.56
+
+Requerimiento: REQ-440 	Requerimineto control de genero Registro Civil
+EMERGENTE
+Cambios: ACCION/NOMBRE
+
+M       pq-concesion-ejb\src\main\java\ec\gov\iess\creditos\pq\servicio\impl\SolicitanteServicioImpl.java
+
+========*******************************************************************============
+Version: 2.0.57
+
+Requerimiento: REQ-408 Parametrizaci�n PQ- Administrador de Par�metros- Fechas para Comprobantes de Pago y Novaciones
+
+Cambios: ACCION/NOMBRE   
+
+M 	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/DefinirRolServicioImpl.java
+M 	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/ComprobantePagoServicio.java
+M 	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ComprobantePagoServicioImpl.java
+M 	/pq-concesion-ejb/src/main/java/ec/gov/iess/creditos/pq/util/Utilities.java
+M	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/ConsultaParametroServicioImpl.java
+M 	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/SolicitanteServicioImpl.java
+M 	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/PrestamoServicio.java
+M 	/pq-concesionejb/src/main/java/ec/gov/iess/creditos/pq/servicio/impl/PrestamoServicioImpl.java   

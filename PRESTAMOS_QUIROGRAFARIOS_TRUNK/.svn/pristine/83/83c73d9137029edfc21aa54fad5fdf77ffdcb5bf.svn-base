@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+	<ui:define name="contenido">
+
+		<h:form id="form" prependId="false">
+			<a4j:jsFunction name="put" reRender="jpnlDatosParam">
+				<a4j:actionparam name="codParametro"
+					assignTo="#{ingresoParametrizacionBean.codParametro}"
+					actionListener="#{ingresoParametrizacionBean.seleccionarParametro}" />
+			</a4j:jsFunction>
+
+			<h:panelGroup id="PGUParametro">
+				<h:outputText value="#{mensajes['param.ingreso.titulo']}" escape="false" /><br /><br />
+				<rich:dataTable id="dtParametro"
+					value="#{ingresoParametrizacionBean.listaParametrizacionPQ}"
+					var="_param" width="100%">
+
+					<rich:column sortBy="#{_param.plazoMinimo}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.plazo.minimo']}" />
+						</f:facet>
+						<h:outputText value="#{_param.plazoMinimo}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.plazoMaximo}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.plazo.maximo']}" />
+						</f:facet>
+						<h:outputText value="#{_param.plazoMaximo}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.capacidadPago}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.capacidad.pago']}" />
+						</f:facet>
+						<h:outputText value="#{_param.capacidadPago}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.montoMaximoGarantia}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.porcentaje.garantias']}" />
+						</f:facet>
+						<h:outputText value="#{_param.montoMaximoGarantia}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.tasaInteres}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.tasa.interes']}" />
+						</f:facet>
+						<h:outputText value="#{_param.tasaInteres}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.montoMaximoSBU}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.porcentaje.sbu']}" />
+						</f:facet>
+						<h:outputText value="#{_param.montoMaximoSBU}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.montoMinimoSBU}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.monto.minimo.sbu']}" />
+						</f:facet>
+						<h:outputText value="#{_param.montoMinimoSBU}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.tipoProducto}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.tipo.producto']}" />
+						</f:facet>
+						<h:outputText value="#{_param.tipoProducto}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.rangoEdadInicial}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.rango.edad.desde']}" />
+						</f:facet>
+						<h:outputText value="#{_param.rangoEdadInicial}">
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column sortBy="#{_param.rangoEdadFinal}">
+						<f:facet name="header">
+							<h:outputText
+								value="#{etiquetas['parametrizacion.rango.edad.hasta']}" />
+						</f:facet>
+						<h:outputText value="#{_param.rangoEdadFinal}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column sortBy="#{_param.estado}">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['parametrizacion.pq.estado']}" />
+						</f:facet>
+						<h:outputText
+							value="#{_param.estado == 'P' ? 'Pendiente' : _param.estado == 'A' ? 'Aprobado' : 'Rechazado'}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['parametrizacion.pq.editar']}" />
+						</f:facet>
+						<center>
+							<a4j:commandButton styleClass="boton"
+								style="border:0;width: 15px; height: 15px;"
+								image="/img/edit.png" onclick="put('#{_param.codParametro}');"
+								process="btnEditar" id="btnEditar"
+								rendered="#{_param.estado == 'P'}">
+							</a4j:commandButton>
+						</center>
+					</rich:column>
+
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputText value="#{etiquetas['parametrizacion.pq.eliminar']}" />
+						</f:facet>
+						<center>
+							<a4j:commandButton styleClass="boton"
+								style="border:0;width: 15px; height: 15px;"
+								image="/img/common/error.gif"
+								onclick="put('#{_param.codParametro}');" process="btnEliminar"
+								id="btnEliminar"
+								action="#{ingresoParametrizacionBean.noMuestraPanel}"
+								reRender="jpnlDatosParam"
+								oncomplete="Richfaces.showModalPanel('panelEliminarParam', {top:'50px', left:'200px', width:'300px', height:'150px'})" >
+							</a4j:commandButton>
+						</center>
+					</rich:column>
+
+					<f:facet name="footer">
+						<rich:datascroller renderIfSinglePage="false" for="dtParametro"
+							maxPages="10"></rich:datascroller>
+					</f:facet>
+
+				</rich:dataTable>
+			</h:panelGroup>
+
+			<br />
+
+			<a4j:commandButton styleClass="boton"
+				value="#{etiquetas['button.nuevo']}"
+				action="#{ingresoParametrizacionBean.agregar}" id="btnNuevo"
+				reRender="jpnlDatosParam" process="btnNuevo" />
+
+		</h:form>
+
+		<br />
+
+		<h:form id="formNuevo">
+			<rich:messages ajaxRendered="true">
+				<f:facet name="errorMarker">
+					<h:graphicImage url="/img/error.gif" />
+				</f:facet>
+				<f:facet name="infoMarker">
+					<h:graphicImage url="/img/information.jpg" />
+				</f:facet>
+			</rich:messages>
+
+			<a4j:outputPanel id="jpnlDatosParam">
+				<h:panelGroup id="pnlDatosProv"
+					rendered="#{ingresoParametrizacionBean.nuevo}">
+					<fieldset>
+						<legend>#{etiquetas['parametrizacion.pq']}</legend>
+						<h:panelGrid id="PGProvGen" columns="3"
+							columnClasses="col10,col40,col10,col40">
+
+							<h:outputText
+								value="#{etiquetas['parametrizacion.plazo.minimo']}" />
+							<h:inputText id="txtPlazoMinimo" required="true"
+								requiredMessage="#{mensajes['param.plazo.minimo.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.plazoMinimo}"
+								onkeypress="return isNumberKey(event)" maxlength="2" />
+							<rich:message for="txtPlazoMinimo" showSummary="false"
+								showDetail="true" style="color: red" />
+
+							<h:outputText
+								value="#{etiquetas['parametrizacion.plazo.maximo']}" />
+							<h:inputText id="txtPlazoMaximo" required="true"
+								requiredMessage="#{mensajes['param.plazo.maximo.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.plazoMaximo}"
+								onkeypress="return isNumberKey(event)" maxlength="2" />
+							<rich:message for="txtPlazoMaximo" showSummary="false"
+								showDetail="true" style="color: red" />
+
+							<h:outputText
+								value="#{etiquetas['parametrizacion.capacidad.pago']}" />
+							<h:inputText id="txtCapacidadPago" required="true"
+								requiredMessage="#{mensajes['param.capacidad.pago.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.capacidadPago}" />
+							<rich:message for="txtCapacidadPago" showSummary="false"
+								showDetail="true" style="color: red" />
+
+							<h:outputText
+								value="#{etiquetas['parametrizacion.tasa.interes']}" />
+							<h:inputText id="txtTasaInteres" required="true" maxlength="8"
+								requiredMessage="#{mensajes['param.tasa.interes.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.tasaInteres}"
+								onkeypress="return validarNumerosMonetarios(event, 'formNuevo:txtTasaInteres')" />
+							<rich:message for="txtTasaInteres" showSummary="false"
+								showDetail="true" style="color: red" />
+
+							<h:outputText
+								value="#{etiquetas['parametrizacion.porcentaje.garantias']}" />
+							<h:inputText id="txtMontoMaximoGarantia" required="true"
+								requiredMessage="#{mensajes['param.monto.maximo.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.montoMaximoGarantia}" />
+							<rich:message for="txtMontoMaximoGarantia" showSummary="false"
+								showDetail="true" style="color: red" />
+
+							<h:outputText
+								value="#{etiquetas['parametrizacion.porcentaje.sbu']}" />
+							<h:inputText id="txtMontoMaximoSBU" required="true"
+								requiredMessage="#{mensajes['param.monto.maximo.sbu.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.montoMaximoSBU}" />
+							<rich:message for="txtMontoMaximoSBU" showSummary="false"
+								showDetail="true" style="color: red" />
+								
+							<h:outputText
+								value="#{etiquetas['parametrizacion.monto.minimo.sbu']}" />
+							<h:inputText id="txtMontoMinimoSBU" required="true"
+								requiredMessage="#{mensajes['param.monto.maximo.sbu.requerido']}"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.montoMinimoSBU}" />
+							<rich:message for="txtMontoMinimoSBU" showSummary="false"
+								showDetail="true" style="color: red" />
+								
+							<h:outputText value="#{etiquetas['parametrizacion.tipo.producto']}" />
+							<h:selectOneMenu id="menTipoProducto" required="true"
+								value="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto}" label="#{etiquetas['parametrizacion.tipo.producto']}">
+								<f:selectItems value="#{ingresoParametrizacionBean.listaTipoProducto}" />
+								<a4j:support ajaxSingle="true" event="onchange" reRender="panelEdadesDesde1, panelEdadesDesde2, panelEdadesHasta1, panelEdadesHasta2"
+									process="menTipoProducto" />
+							</h:selectOneMenu>
+							<rich:message for="menTipoProducto" showSummary="false"
+								showDetail="true" style="color: red" />
+								
+							<a4j:outputPanel id="panelEdadesDesde1">
+								<h:outputText rendered="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto == 'JUB-PEN'}"
+									value="#{etiquetas['parametrizacion.rango.edad.desde']}" />
+							</a4j:outputPanel>
+							<a4j:outputPanel id="panelEdadesDesde2">
+								<h:inputText id="txtEdadInicio" required="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto == 'JUB-PEN'}"
+									requiredMessage="#{mensajes['param.edad.inicio.param']}"
+									rendered="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto == 'JUB-PEN'}"
+									value="#{ingresoParametrizacionBean.parametrizacionPQ.rangoEdadInicial}" />
+							</a4j:outputPanel>
+							<rich:message for="txtEdadInicio" showSummary="false" 
+								showDetail="true" style="color: red" />
+									
+							<a4j:outputPanel id="panelEdadesHasta1">
+								<h:outputText rendered="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto == 'JUB-PEN'}"
+									value="#{etiquetas['parametrizacion.rango.edad.hasta']}" />
+							</a4j:outputPanel>
+							<a4j:outputPanel id="panelEdadesHasta2">
+								<h:inputText id="txtEdadFinal" required="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto == 'JUB-PEN'}"
+									rendered="#{ingresoParametrizacionBean.parametrizacionPQ.tipoProducto == 'JUB-PEN'}"
+									requiredMessage="#{mensajes['param.edad.inicio.param']}"
+									value="#{ingresoParametrizacionBean.parametrizacionPQ.rangoEdadFinal}" />
+							</a4j:outputPanel>
+							<rich:message for="txtEdadFinal" showSummary="false"
+								showDetail="true" style="color: red" />
+							
+
+						</h:panelGrid>
+					</fieldset>
+
+					<rich:separator height="2px" />
+
+					<a4j:commandButton styleClass="boton"
+						value="#{etiquetas['button.guardar']}"
+						action="#{ingresoParametrizacionBean.guardar}"
+						reRender="PGUParametro,jpnlDatosParam,dtParametro"
+						process="formNuevo" />
+
+					<a4j:commandButton styleClass="boton"
+						value="#{etiquetas['button.cancelar']}"
+						action="#{ingresoParametrizacionBean.cancelar}"
+						reRender="jpnlDatosParam" process="formNuevo" immediate="true" />
+
+				</h:panelGroup>
+
+			</a4j:outputPanel>
+		</h:form>
+
+		<!-- PANEL PARA ELIMINAR PARAMETRO -->
+		<rich:modalPanel id="panelEliminarParam" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+					value="#{etiquetas['parametrizacion.pq.confirmar.eliminar.titulo']}" />
+			</f:facet>
+
+			<a4j:form>
+				<a4j:outputPanel ajaxRendered="true">
+					<h:panelGrid columns="2">
+						<h:outputText
+							value="#{etiquetas['parametrizacion.pq.confirmar.eliminar.mensaje']}" />
+						<rich:spacer></rich:spacer>
+
+						<rich:spacer></rich:spacer>
+						<rich:spacer></rich:spacer>
+						
+						<h:panelGrid columns="2">
+							<h:outputText value="#{etiquetas['parametrizacion.plazo.minimo']}" />
+							<h:outputText value="#{ingresoParametrizacionBean.parametrizacionPQ.plazoMinimo}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.plazo.maximo']}" />
+							<h:outputText value="#{ingresoParametrizacionBean.parametrizacionPQ.plazoMaximo}" />
+							
+							<h:outputText value="#{etiquetas['parametrizacion.tasa.interes']}" />
+							<h:outputText value="#{ingresoParametrizacionBean.parametrizacionPQ.tasaInteres}" />
+						</h:panelGrid>
+						<rich:spacer></rich:spacer>
+
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['parametrizacion.pq.eliminar']}"
+							ajaxSingle="true" id="btnRechazar"
+							action="#{ingresoParametrizacionBean.eliminar}"
+							oncomplete="Richfaces.hideModalPanel('panelEliminarParam');"
+							process="@this" styleClass="boton"
+							reRender="PGUParametro,dtParametro,jpnlDatosParam">
+						</a4j:commandButton>
+
+						<a4j:commandButton style="width:100px"
+							value="#{etiquetas['parametrizacion.pq.cancelar']}"
+							ajaxSingle="true" id="btnCancelarRec"
+							action="#{ingresoParametrizacionBean.cancelar}"
+							oncomplete="Richfaces.hideModalPanel('panelEliminarParam');"
+							styleClass="boton" reRender="jpnlDatosParam">
+						</a4j:commandButton>
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</a4j:form>
+		</rich:modalPanel>
+
+	</ui:define>
+</ui:composition>

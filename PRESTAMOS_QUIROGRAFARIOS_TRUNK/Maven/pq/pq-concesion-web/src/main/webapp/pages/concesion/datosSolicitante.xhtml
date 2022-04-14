@@ -1,0 +1,1028 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/base-panel-menu-vertical.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos"></a4j:jsFunction>
+		</h:form>
+		<f:subview id="subViewControlSesion"
+			rendered="#{datos.solicitante!=null}">
+			<a4j:keepAlive beanName="combosDireccion"></a4j:keepAlive>
+			<div class="text_mensaje_pagina">
+			#{labels['titulo.actualizacion.datos']}</div>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['datos.generales']}
+				</f:facet>
+				<h:panelGroup rendered="#{datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}">
+					<fieldset>
+						<legend>#{labels['datos.personales']}</legend>
+							<a4j:region id="regDireccion">
+								<h:form id="formDireccion">
+									<table>
+										<tr>
+											<td colspan="3"><h:panelGroup
+													rendered="#{datos.beneficiarioRefugiado}">
+													<rich:panel styleClass="notePanelBottom"
+														rendered="#{datos.solicitante.datosPersonales.registroCivilExtranjero.numeroIdentificacion!=null}">
+														<h:outputText
+															value="#{messages['credito.refugiado.mensaje.cuenta']} #{datos.solicitante.datosPersonales.registroCivilExtranjero.numeroIdentificacion} #{messages['credito.refugiado.mensaje.cuenta.tipo']} #{datos.solicitante.datosPersonales.registroCivilExtranjero.tipoDocumento.descripcion}"
+															escape="false"
+															/>
+													</rich:panel>
+		
+													<rich:panel styleClass="errorPanel"
+														rendered="#{datos.solicitante.datosPersonales.registroCivilExtranjero.numeroIdentificacion==null}">
+														<h:outputText
+															value="#{messages['credito.refugiado.mensaje.requerido.documento']}"
+															escape="false" />
+													</rich:panel>
+												</h:panelGroup></td>
+										</tr>
+										<tr>
+										<td><h:outputLabel for="txtCedula"
+											value="#{labels.cedula}:" rendered="#{!datos.beneficiarioRefugiado}"/>
+											<h:outputLabel for="txtCedula"
+											value="#{labels['creditos.refugiados.cedula']}" rendered="#{datos.beneficiarioRefugiado}"/></td>
+										<td><h:inputText id="txtCedula"
+											value="#{datos.solicitante.datosPersonales.cedula}"
+											readonly="true" /></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									
+									<tr>
+										<td><h:outputLabel for="txtTipoDocumentoRefugiado"
+											value="#{labels['creditos.refugiados.documento.tipo']}" rendered="#{datos.beneficiarioRefugiado}"/></td>
+										<td><h:inputText id="txtTipoDocumentoRefugiado"
+											value="#{datos.solicitante.datosPersonales.registroCivilExtranjero.tipoDocumento.descripcion}"
+											readonly="true"  rendered="#{datos.beneficiarioRefugiado}"/></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg"  rendered="#{datos.beneficiarioRefugiado}"/></td>
+									</tr>
+									
+									<tr>
+										<td><h:outputLabel for="txtDocumentoRefugiado"
+											value="#{labels['creditos.refugiados.documento.numero']}" rendered="#{datos.beneficiarioRefugiado}"/></td>
+										<td><h:inputText id="txtDocumentoRefugiado"
+											value="#{datos.solicitante.datosPersonales.registroCivilExtranjero.numeroIdentificacion}"
+											readonly="true"  rendered="#{datos.beneficiarioRefugiado}"/></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg"  rendered="#{datos.beneficiarioRefugiado}"/></td>
+									</tr>
+									
+									<tr>
+										<td><h:outputLabel for="txtApellidos"
+											value="#{labels.nombresApellidos}:" /></td>
+										<td><h:inputText id="txtApellidos"
+											value="#{datos.solicitante.datosPersonales.apellidosNombres}"
+											readonly="true" size="60" style=" width : 290px;" /></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="txtNacionalidad"
+											value="#{labels.nacionalidad}:" /></td>
+										<td><h:inputText id="txtNacionalidad"
+											value="#{datos.solicitante.datosPersonales.nacionalidad}"
+											readonly="true" /></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="txtGenero"
+											value="#{labels.genero}:" /></td>
+										<td><h:inputText id="txtGenero"
+											value="#{(conozcaCliente.cliente.genero=='F')?'FEMENINO':'MASCULINO'}"
+											readonly="true" /></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="txtFechaNacimiento"
+											value="#{labels['fecha.nacimiento']}:"></h:outputLabel></td>
+										<td><h:inputText id="txtFechaNacimiento"
+											value="#{datos.solicitante.datosPersonales.fechaNacimiento}"
+											readonly="true">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="txtEstadoCivil"
+											value="#{labels['estado.civil']}:" /></td>
+										<td><h:inputText id="txtEstadoCivil"
+											value="#{datos.solicitante.datosPersonales.estadoCivil}"
+											readonly="true" /></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<rich:panel rendered="false">
+									<tr>
+										<td colspan="4"><rich:separator height="1"
+											lineType="dotted" /></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="txtDireccionDomicilio"
+											value="#{labels['direccion.domicilio']}:">
+											<span class="obligatorio">*</span>
+										</h:outputLabel></td>
+										<td><h:inputText id="txtDireccionDomicilio"
+											value="#{datos.solicitante.datosPersonales.direccionDomicilio}"
+											required="true" requiredMessage="#{errores['direccion.requerido']}"
+											styleClass="normal" size="64" maxlength="64"
+											style=" width : 250px;" /></td>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="txtDireccionDomicilio" />
+										</a4j:outputPanel></td>							
+									</tr>							
+									<tr>
+										<td><h:outputLabel for="txtTelefono"
+											value="#{labels['telefono.domicilio']}:">
+											<span class="obligatorio"> *</span>
+											</h:outputLabel>
+										</td>
+										<td><h:inputText id="txtTelefono"
+											value="#{datos.solicitante.datosPersonales.telefono}"
+											required="true" requiredMessage="#{errores['telefono.requerido']}"
+											styleClass="normal" size="20" maxlength="9"
+											validator="TelefonoValidator" /></td>
+										<td>
+											<h:outputText styleClass="mensajeAyuda" value="#{messages['mensaje.telefono']}" />																					
+										</td>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="txtTelefono" />
+										</a4j:outputPanel></td>							
+									</tr>														
+									<tr>
+										<td><h:outputLabel for="txtTelefonoCelular"
+											value="#{labels['telefono.celular']}:">
+											<span class="obligatorio"> *</span>
+											</h:outputLabel>
+										</td>
+										<td><h:inputText id="txtTelefonoCelular"
+											value="#{datos.mascaraCelular}"
+											styleClass="normal" size="20" maxlength="10"/></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="txtEmail" value="#{labels.email}:">
+											<span class="obligatorio"> *</span>
+											</h:outputLabel>
+										</td>
+										<td><h:inputText id="txtEmail"
+											value="#{datos.mascaraEmail}"
+											styleClass="normal" size="32"
+											maxlength="32">
+										</h:inputText></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>													
+									<tr>
+										<td><h:outputLabel for="cmbProvincia"
+											value="#{labels.provincia}:">
+											<span class="obligatorio">*</span>
+										</h:outputLabel></td>
+										<td><h:selectOneMenu id="cmbProvincia"
+											value="#{combosDireccion.solicitante.datosPersonales.provinciaId}"
+											styleClass="listBox" required="true"
+											requiredMessage="#{errores['provincia.requerido']}">
+											<a4j:support event="onchange"
+												action="#{combosDireccion.cambiarProvincia}"
+												reRender="cmbCanton,cmbParroquia" ajaxSingle="true">
+											</a4j:support>
+											<f:selectItems value="#{combosDireccion.provinciaList}" />
+										</h:selectOneMenu></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="cmbProvincia" />
+										</a4j:outputPanel></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="cmbCanton"
+											value="#{labels.canton}:">
+											<span class="obligatorio">*</span>
+										</h:outputLabel></td>
+										<td><h:selectOneMenu id="cmbCanton"
+											value="#{combosDireccion.solicitante.datosPersonales.cantonId}"
+											styleClass="listBox" required="true"
+											requiredMessage="#{errores['canton.requerido']}">
+											<a4j:support event="onchange"
+												action="#{combosDireccion.cambiarCanton}"
+												reRender="cmbParroquia" ajaxSingle="true">
+											</a4j:support>
+											<f:selectItems value="#{combosDireccion.cantonList}" />
+										</h:selectOneMenu></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="cmbCanton" />
+										</a4j:outputPanel></td>
+									</tr>
+									<tr>
+										<td><h:outputLabel for="cmbParroquia"
+											value="#{labels.parroquia}:">
+											<span class="obligatorio">*</span>
+										</h:outputLabel></td>
+										<td width="300" style="width: 300px;"><h:selectOneMenu
+											id="cmbParroquia"
+											value="#{combosDireccion.solicitante.datosPersonales.parroquiaId}"
+											styleClass="listBox" style=" width : 300px;" required="true"
+											requiredMessage="#{errores['parroquia.requerido']}">
+											<f:selectItems value="#{combosDireccion.parroquiaList}" />
+										</h:selectOneMenu></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="cmbParroquia" />
+										</a4j:outputPanel></td>
+									</tr>
+									
+									<tr>
+									
+										<td>
+										<h:outputLabel value="#{labels['cargas.familiares']}:"  >
+											<span class="obligatorio">*</span>
+										</h:outputLabel>
+										</td>
+										<td width="100" style="width: 30px;"><h:selectOneMenu id="CargasFamiliares"
+												value="#{datos.solicitante.numeroCargas}"
+											styleClass="listBox" required="true"
+											requiredMessage="#{errores['cargas.requerido']}">
+											<f:selectItems value="#{combosDireccion.cargasList}" />
+										</h:selectOneMenu></td>
+										<td colspan="2"><h:graphicImage value="/img/blanco.jpg" /></td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="CargasFamiliares" />
+										</a4j:outputPanel></td>
+									</tr>														
+										
+									<tr>
+										<td><h:outputLabel for="chkPoseeVivienda"
+											value="#{labels['vivienda.propia']}">
+											<span class="obligatorio">*</span>
+										</h:outputLabel></td>
+										<td colspan="3">
+											<table width="100%">
+												<tr>
+													<td width="140px">
+														<h:selectOneRadio required="true"
+															requiredMessage="#{errores['vivienda.requerido']}" id="chkPoseeVivienda"
+															value="#{datos.solicitante.datosPersonales.poseeVivienda}">
+															<f:selectItem itemLabel="SI" itemValue="true" />
+															<f:selectItem itemLabel="NO" itemValue="false" />
+														</h:selectOneRadio>
+													</td>
+													<td>
+														<h:graphicImage value="/img/blanco.jpg" />												
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td><h:graphicImage value="/img/blanco.jpg" /></td>
+										<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+											<h:message errorClass="requerido" for="chkPoseeVivienda" />
+										</a4j:outputPanel></td>							
+									</tr>
+									</rich:panel>
+		
+									</table>
+		
+								<br />
+								<h:outputText value="#{messages['campo.requerido']}" styleClass="requerido" rendered="false"></h:outputText>
+		
+		
+								<a4j:status for="regDireccion">
+									<f:facet name="start">
+										<rich:panel styleClass="messageWaiting">
+											<h:outputText value="#{messages['actualizando.datos.personales']}" />
+										</rich:panel>
+									</f:facet>
+								</a4j:status>
+		
+								<a4j:outputPanel id="msgError">
+									<rich:panel styleClass="warningPanel" rendered="#{datosSolicitante.error!=null}">
+										<h:outputText value="#{datosSolicitante.error}" />
+									</rich:panel>
+									<br />
+								</a4j:outputPanel>
+								
+								<a4j:outputPanel id="msgErrorConCli">
+									<rich:panel styleClass="warningPanel" rendered="#{conozcaCliente.error!=null}">
+										<h:outputText value="#{conozcaCliente.error}" />
+									</rich:panel>
+									<br />
+								</a4j:outputPanel>
+		
+								<a4j:outputPanel id="msgErrorDiscapacitado">
+									<rich:panel styleClass="warningPanel" rendered="#{datosSolicitante.errorDiscapacitado != null}">
+										<h:outputText value="#{errores['error.discapacitado']}"></h:outputText>
+									</rich:panel>
+								</a4j:outputPanel>
+		
+								<div align="center"><a4j:commandButton id="btnGrabar"
+									value="#{labels['button.actualizar']}" rendered="false"
+									reRender="cmdAceptarContinuar,msgDatosActualizados,msgError,formDireccion"
+									styleClass="botonbarra">
+								</a4j:commandButton></div>
+							</h:form>
+		
+						</a4j:region>
+					</fieldset>
+			</h:panelGroup>
+			<br />
+				
+			<!-- DISCAPACITADOS -->
+			<fieldset>
+				<legend>#{labels['persona.con.discapacidad']}</legend>
+				<rich:panel styleClass="messagePanel" style="margin:0px;">
+					<h:outputText value="#{messages['mensaje.discapacitado']}" />
+				</rich:panel>
+				
+				<a4j:region id="regDiscapacitados">
+					<h:form id="formDiscapacitados">
+						<table>
+							<tr>
+								<td><h:outputLabel value="#{labels['persona.con.discapacidad']}:" /></td>
+								<td colspan="3">
+									<h:selectBooleanCheckbox value="#{datos.discapacitado}">
+										<a4j:support event="onchange" action="#{datosSolicitante.confirmarDiscapacidad}"
+											reRender="msgErrorDiscapacitado,formDiscapacitados" />
+									</h:selectBooleanCheckbox>
+								</td>
+							</tr>
+						</table>
+						
+						<a4j:status for="regDiscapacitados">
+							<f:facet name="start">
+								<rich:panel styleClass="messageWaiting">
+									<h:outputText value="#{messages['confirmando.discapacidad']}" />
+								</rich:panel>
+							</f:facet>
+						</a4j:status>
+
+						<a4j:outputPanel id="msgInfoDiscapacitado">
+							<rich:panel styleClass="okayPanel" rendered="#{datosSolicitante.infoDiscapacitado != null}">
+								<h:outputText value="#{datosSolicitante.infoDiscapacitado}"></h:outputText>
+							</rich:panel>
+						</a4j:outputPanel>
+
+						<a4j:outputPanel id="msgErrorDiscapacitado">
+							<rich:panel styleClass="warningPanel" rendered="#{datosSolicitante.errorDiscapacitado != null}">
+								<h:outputText value="#{datosSolicitante.errorDiscapacitado}"></h:outputText>
+							</rich:panel>
+						</a4j:outputPanel>
+					</h:form>
+				</a4j:region>
+			</fieldset>
+
+			<br />
+							
+			<!-- INSTITUCION FINANCIERA  muestra para PQ NORMAL-->
+			<f:subview rendered="#{datos.categoriaTipoProductoPq=='CAT_NORMALES'}">			
+				<fieldset>
+					<legend>#{labels['institucion.financiera']}</legend>
+					<rich:panel styleClass="warningPanel" rendered="#{datos.solicitante.cuentaBancaria == null}">
+						<h:outputText value="#{labels['cuentaBancaria.noRegistro']}"></h:outputText>
+					</rich:panel> 
+					<h:panelGrid columns="2" rendered="#{datos.solicitante.cuentaBancaria!=null}">
+						<h:outputLabel for="txtIntitucion" value="#{labels['institucion.financiera']}:" />
+						<h:inputText id="txtIntitucion" value="#{datos.solicitante.cuentaBancaria.institucionFinanciera.descripcion}" readonly="true" size="50" />
+						<h:outputLabel for="txtTipoCuenta" value="#{labels['tipo.cuenta']}:" />
+						<h:inputText id="txtTipoCuenta" value="#{datos.solicitante.cuentaBancaria.tipoCuenta.descripcion}" readonly="true" size="40" />
+						<h:outputLabel for="txtNumeroCuenta" value="#{labels['numero.cuenta']}:" />
+						<h:inputText id="txtNumeroCuenta" value="#{datos.solicitante.cuentaBancaria.numeroCuenta}" readonly="true"/>
+					</h:panelGrid>
+					<rich:spacer style="display:block;" height="10px;" /> 
+					<rich:panel styleClass="errorPanel" rendered="#{datosSolicitante.verificaIfiInactiva}">
+	    				<h:outputText value="#{labels['cuenta.bancaria.ifi.inactiva']}" escape="false" />
+					</rich:panel>
+					<rich:spacer style="display:block;" height="10px;" /> 
+					<rich:panel styleClass="messagePanel">
+	    				<h:outputText value="#{labels['cuenta.bancaria.texto']}" escape="false" />
+					</rich:panel>
+				</fieldset>
+			</f:subview>
+				<!-- INC-2286 Ferrocarriles -->
+				<!-- INSTITUCION FINANCIERA  PQ SERVICIOS -->
+				<f:subview
+					rendered="#{(datos.categoriaTipoProductoPq=='CAT_SERVICIOS' or datos.categoriaTipoProductoPq=='CAT_FOCALIZADOS') and datos.tiposProductosPq!='PEN'}">
+					<fieldset>
+						<legend>#{labels['institucion.financiera']}</legend>
+						<rich:panel styleClass="warningPanel"
+							rendered="#{datos.institucionFinancieraProveedor == null}">
+							<h:outputText value="#{labels['cuentaBancaria.noRegistro']}"></h:outputText>
+						</rich:panel>
+						<rich:panel styleClass="messagePanel" style="margin:0px;">
+							<h:outputText value="#{messages['mensaje.ifi.ferrocarriles']}" />
+						</rich:panel>
+						<h:panelGrid columns="2"
+							rendered="#{datos.solicitante.cuentaBancaria!=null}">
+							<h:outputLabel for="txtIntitucion"
+								value="#{labels['institucion.financiera']}:" />
+							<h:inputText id="txtIntitucion"
+								value="#{datos.institucionFinancieraProveedor.institucion}"
+								readonly="true" size="50" />
+							<h:outputLabel for="txtTipoCuenta"
+								value="#{labels['tipo.cuenta']}:" />
+							<h:inputText id="txtTipoCuenta"
+								value="#{datos.institucionFinancieraProveedor.tipoCuenta}"
+								readonly="true" size="40" />
+							<h:outputLabel for="txtNumeroCuenta"
+								value="#{labels['numero.cuenta']}:" />
+							<h:inputText id="txtNumeroCuenta"
+								value="#{datos.institucionFinancieraProveedor.numeroCuenta}"
+								readonly="true" />
+							<h:outputLabel for="txtRUC" value="#{labels['ifi.ruc']}:" />
+							<h:inputText id="txtNRUC" value="#{datos.proveedor.prRuc}"
+								readonly="true" />
+							<h:outputLabel for="txtBeneficiario"
+								value="#{labels['ifi.beneficiario']}:" />
+							<h:inputText id="txtBeneficiario"
+								value="#{datos.proveedor.prNombre}" readonly="true" />
+						</h:panelGrid>
+						<rich:panel styleClass="errorPanel"
+							rendered="#{datosSolicitante.verificaIfiInactiva}">
+							<h:outputText value="#{labels['cuenta.bancaria.ifi.inactiva']}"
+								escape="false" />
+						</rich:panel>
+						<rich:panel styleClass="notePanelBottom" rendered="#{datos.tiposProductosPq != 'DINAMICO'}" >
+							<p align='left'>
+								<strong>#{messages['comun.nota']}:</strong>
+							</p>
+							<!-- INC-2286 Ferrocarriles -->
+							<h:outputFormat value="#{messages['nota.ifi']}" escape="false" rendered="#{datos.tiposProductosPq == 'TREN' or datos.tiposProductosPq == 'TUR'}">
+								<f:param value="#{datos.proveedor.prNombre}" />
+							</h:outputFormat>
+							<h:outputFormat value="#{datosSolicitante.mensajeCreditoFocalizado}" escape="false" rendered="#{datos.categoriaTipoProductoPq=='CAT_FOCALIZADOS'}">
+							</h:outputFormat>
+							<h:outputFormat value="#{messages['ecuador.turismo.info.solicitud.transferencia']}" escape="false" rendered="#{datos.tiposProductosPq == 'ECU_TUR'}" />
+						</rich:panel>
+
+					</fieldset>
+				</f:subview>
+
+				<!-- INC-2272 PENSIONES ALIMENTICIAS -->
+			<f:subview id="subviewPensionAlimenticia" rendered="#{productos.datos.tiposProductosPq=='PEN'}">			
+				<fieldset id="fieldsetPensionAlimenticia">
+					<legend id="legendPensionAlimenticia">#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.titulo']}</legend>
+
+						<rich:panel styleClass="messagePanel" style="margin:0px;">
+							<h:outputText
+								value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.informativo']}"></h:outputText>
+						</rich:panel>
+
+						<rich:panel styleClass="errorPanel" style="margin:0px;"
+							id="panelMensajerequerido"
+							rendered="#{datosSolicitante.mensajePensionesAlimenticias!=null}">
+							<h:outputText
+								value="#{datosSolicitante.mensajePensionesAlimenticias}"></h:outputText>
+						</rich:panel>
+
+						<rich:panel styleClass="errorPanel" style="margin:0px;"
+							id="panelMensajerequeridoRC"
+							rendered="#{datosSolicitante.mensajeErrorRegCivil!=null}">
+							<h:outputText value="#{datosSolicitante.mensajeErrorRegCivil}"></h:outputText>
+						</rich:panel>
+
+						<a4j:region id="regionPensionAlimenticia">
+						
+							<a4j:outputPanel id="pnlPensionAlimenticia">
+								<h:form id="formPensionAlimenticia">
+
+									<table>
+										<!-- Cedula -->
+										<tr>
+											<td><h:outputLabel for="inputTextPACedula"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.cedula']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPACedula"
+													value="#{datos.beneficiarioCredito.numeroBeneficiario}"
+													size="20" maxlength="10"
+													onkeypress="return permitirValores(event, 'num')"
+													required="true"
+													requiredMessage="#{errores['cedula.requerida']}">
+													<a4j:support event="onblur"
+														actionListener="#{datosSolicitante.obtenerDatosBeneficiarioRegistroCivil}"
+														reRender="inputTextPACedula,inputTextPABeneficiario,cmdAceptarContinuar" ajaxSingle="true" />
+												</h:inputText></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido" for="inputTextPACedula" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Nombres y Apellidos -->
+										<tr>
+											<td><h:outputLabel for="inputTextPABeneficiario"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.beneficiario']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPABeneficiario"
+													value="#{datos.beneficiarioCredito.beneficiario}" size="40"
+													maxlength="200" required="true" disabled="true"
+													requiredMessage="#{errores['nombre.requerido']}" /></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPABeneficiario" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Nombres Menores -->
+										<tr>
+											<td><h:outputLabel for="inputTextPANombreMenores"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.nombre.menores']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPANombreMenores"
+													value="#{datos.beneficiarioCredito.nombreMenor}" size="40"
+													maxlength="500" required="true"
+													requiredMessage="#{errores['nombre.menores.requerido']}">
+													<a4j:support event="onblur"
+														reRender="inputTextPANombreMenores,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+												</h:inputText></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPANombreMenores" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Institucion Financiera -->
+										<tr>
+											<td><h:outputLabel
+													for="selectOneMenuPAInstitucionFinanciera"
+													value="#{labels['institucion.financiera']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:selectOneMenu
+													id="selectOneMenuPAInstitucionFinanciera"
+													value="#{datos.cuentaBancariaBeneficiarioCredito.institucionFinanciera.ruc}"
+													required="true"
+													requiredMessage="#{errores['institucion.financiera.requerida']}">
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems
+														value="#{combosDireccion.institucionFinancieraList}" />
+													<a4j:support event="onchange"
+														reRender="selectOneMenuPAInstitucionFinanciera,cmdAceptarContinuar"
+														ajaxSingle="true">
+													</a4j:support>
+												</h:selectOneMenu></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="selectOneMenuPAInstitucionFinanciera" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Numero Cuenta -->
+										<tr>
+											<td><h:outputLabel for="inputTextPANumeroCuenta"
+													value="#{labels['numero.cuenta']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPANumeroCuenta"
+													value="#{datos.cuentaBancariaBeneficiarioCredito.numeroCuenta}"
+													size="20" maxlength="20" required="true"
+													requiredMessage="#{errores['numero.cuenta.requerido']}"
+													onkeypress="return permitirValores(event, 'num')">
+													<a4j:support event="onblur"
+														reRender="inputTextPANumeroCuenta,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+												</h:inputText></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPANumeroCuenta" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Tipo Cuenta -->
+										<tr>
+											<td><h:outputLabel for="inputTextPATipoCuenta"
+													value="#{labels['tipo.cuenta']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:selectOneMenu id="inputTextPATipoCuenta"
+													value="#{datos.cuentaBancariaBeneficiarioCredito.tipoCuenta.codigo}"
+													required="true"
+													requiredMessage="#{errores['tipo.cuenta.requerido']}">
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems value="#{combosDireccion.listaTipoCuenta}" />
+													<a4j:support event="onchange"
+														reRender="inputTextPATipoCuenta,cmdAceptarContinuar"
+														ajaxSingle="true">
+													</a4j:support>
+												</h:selectOneMenu></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPATipoCuenta" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Numero Causa -->
+										<tr>
+											<td><h:outputLabel for="inputTextPANumeroCausa"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.numero.causa']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPANumeroCausa"
+													value="#{datos.beneficiarioCredito.numeroCausa}" size="20"
+													maxlength="15" required="true"
+													requiredMessage="#{errores['numero.causa.requerido']}"
+													onkeypress="return permitirAlfanumericoConvertirMayusculas(event, this)"
+													style="text-transform: uppercase">
+													<a4j:support event="onblur"
+														reRender="inputTextPANumeroCausa,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+												</h:inputText></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPANumeroCausa" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Numero Kardex -->
+										<tr>
+											<td><h:outputLabel for="inputTextPANumeroKardex"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.numero.kardex']}:">
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPANumeroKardex"
+													value="#{datos.beneficiarioCredito.numeroKardex}" size="20"
+													maxlength="15"
+													requiredMessage="#{errores['numero.causa.requerido']}"
+													onkeypress="return permitirAlfanumericoConvertirMayusculas(event, this)"
+													style="text-transform: uppercase">
+													<a4j:support event="onblur"
+														reRender="inputTextPANumeroKardex,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+												</h:inputText></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPANumeroKardex" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Numero Juzgado -->
+										<tr>
+											<td><h:outputLabel for="inputTextPANumeroJuzgado"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.numero.juzgado']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:inputText id="inputTextPANumeroJuzgado"
+													value="#{datos.beneficiarioCredito.numeroJuzgado}"
+													size="20" maxlength="100" required="true"
+													requiredMessage="#{errores['numero.juzgado.requerido']}">
+													<a4j:support event="onblur"
+														reRender="inputTextPANumeroJuzgado,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+												</h:inputText></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="inputTextPANumeroJuzgado" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Provincia Juicio -->
+										<tr>
+											<td><h:outputLabel for="selectOneMenuPAProvinciaJuicio"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.provincia.juicio']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:selectOneMenu id="selectOneMenuPAProvinciaJuicio"
+													value="#{datos.beneficiarioCredito.provinciaJuicio}"
+													styleClass="listBox" required="true"
+													requiredMessage="#{errores['provincia.requerido']}">
+													<a4j:support event="onchange"
+														action="#{datosSolicitante.cambiarProvinciaPA}"
+														reRender="selectOneMenuPAProvinciaJuicio,selectOneMenuPACiudadJuicio,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems value="#{combosDireccion.provinciaList}" />
+												</h:selectOneMenu></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="selectOneMenuPAProvinciaJuicio" />
+												</a4j:outputPanel></td>
+										</tr>
+
+										<!-- Ciudad Juicio -->
+										<tr>
+											<td><h:outputLabel for="inputTextPACiudadJuicio"
+													value="#{labels['pension.alimenticia.beneficiariocredito.patriapotestad.ciudad.juicio']}:">
+													<span class="obligatorio">*</span>
+												</h:outputLabel></td>
+											<td><h:selectOneMenu id="selectOneMenuPACiudadJuicio"
+													value="#{datos.beneficiarioCredito.ciudadJuicio}"
+													styleClass="listBox" required="true"
+													requiredMessage="#{errores['ciudad.requerido']}">
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems value="#{combosDireccion.ciudadList}" />
+													<a4j:support event="onchange"
+														reRender="selectOneMenuPACiudadJuicio,cmdAceptarContinuar" ajaxSingle="true">
+													</a4j:support>
+												</h:selectOneMenu></td>
+											<td colspan="2"><h:graphicImage value="/img/blanco.jpg" />
+											</td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/img/blanco.jpg" /></td>
+											<td colspan="2"><a4j:outputPanel ajaxRendered="true">
+													<h:message errorClass="requerido"
+														for="selectOneMenuPACiudadJuicio" />
+												</a4j:outputPanel></td>
+										</tr>
+									</table>
+
+								</h:form>
+
+							</a4j:outputPanel>
+						</a4j:region>
+					</fieldset>
+			</f:subview>
+			
+			<!-- Autorizacion de pago BIESS a proveedores -->
+			<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody" rendered="#{datos.tiposProductosPq == 'TUR' or datos.tiposProductosPq == 'TREN'}">
+				<f:facet name="header">
+					#{labels['titulo.productos.autorizacion']}
+				</f:facet>
+				<f:subview>
+					<fieldset><legend>#{condiciones['afiliados']}</legend> 
+					  <table width="100%">
+						<tr>
+							<td>
+							      <div>
+							          <h:outputText>
+					                       #{datos.datosOrdenCompra.mensageAutorizacion}
+				                      </h:outputText>
+							      </div>
+							</td>
+						</tr>
+					  </table>
+					</fieldset>
+				</f:subview>
+			</rich:panel>
+			
+				<br />
+				
+				<!-- EMPLEADOR  -->
+				
+				<h:panelGroup rendered="#{datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}">
+					<fieldset>
+						<legend>#{labels['empleador.actual']}</legend>
+							<h:panelGrid columns="2" styleClass="panelInvisible">
+								<h:outputText rendered="#{datos.solicitante.tipo=='AFILIADO'}">
+									#{labels['fecha.afiliacion']}:
+								</h:outputText>
+								<h:outputText rendered="#{datos.solicitante.tipo=='JUBILADO'}">
+									#{labels['fecha.jubilacion']}:
+								</h:outputText>
+								<h:inputText value="#{datos.solicitante.empleador.fechaAfiliacion}"
+									rendered="#{datos.solicitante.tipo=='AFILIADO'}" readonly="true">
+									<span>(dd/mm/yyyy)</span>
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:inputText>
+								<h:inputText value="#{datos.solicitante.empleador.fechaJubilacion}"
+									rendered="#{datos.solicitante.tipo=='JUBILADO'}" readonly="true">
+									<span>(dd/mm/yyyy)</span>
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:inputText>
+								<h:outputLabel for="txtNombreEmpleador"
+									value="#{labels['empleador.nombre']}:" />
+								<h:inputText id="txtNombreEmpleador"
+									value="#{datos.solicitante.empleador.empleadorActual}"
+									readonly="true" size="60" />
+								<h:outputLabel for="txtRucEmpleador"
+									value="#{labels['ruc.empleador']}:" />
+								<h:inputText id="txtRucEmpleador"
+									value="#{datos.solicitante.empleador.rucEmpleador}"
+									readonly="true" />
+								<h:outputLabel for="txtNombreSucursal"
+									value="#{labels['nombre.sucursal']}:" />
+								<h:inputText id="txtNombreSucursal"
+									value="#{datos.solicitante.empleador.nombreSucursal}"
+									readonly="true" size="60" />
+							</h:panelGrid>
+						<rich:panel styleClass="notePanelBottom">
+							<b>#{labels.nota}:</b>
+							<h:outputText value="#{messages['informacion.concesion']}"
+									escape="false"></h:outputText>					 
+						</rich:panel>
+					</fieldset>
+				</h:panelGroup>
+			</rich:panel>
+			
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['aprobacion.condiciones']}
+				</f:facet>
+				<f:subview  >
+					<fieldset><legend>#{condiciones['afiliados']}</legend> <br />
+					#{condiciones['autorizacion']}<br />
+					
+					<ul>
+						
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion1']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion2']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion3']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion4']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion5']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion6']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion7']}" escape="false"/></li>
+						<li><h:outputText value="#{condiciones['pq.dinamico.condicion8']}" escape="false"/></li>
+						<li><h:outputFormat value="#{condiciones['pq.dinamico.condicion9']}" escape="false"  rendered="#{!datos.pagoPensionesAlimenticias}">
+									<f:param  value="#{datos.institucionFinancieraProveedor.institucion==null?datos.solicitante.cuentaBancaria.institucionFinanciera.descripcion:datos.institucionFinancieraProveedor.institucion}"></f:param>
+									<f:param  value="#{datos.institucionFinancieraProveedor.tipoCuenta==null?datos.solicitante.cuentaBancaria.tipoCuenta.descripcion:datos.institucionFinancieraProveedor.tipoCuenta}"></f:param>
+									<f:param  value="#{datos.institucionFinancieraProveedor.numeroCuenta==null?datos.solicitante.cuentaBancaria.numeroCuenta:datos.institucionFinancieraProveedor.numeroCuenta}"></f:param>
+									
+								
+						</h:outputFormat>
+						<h:outputText value="#{condiciones['pq.condicion.pensiones']}" escape="false" rendered="#{datos.pagoPensionesAlimenticias}"/>
+						</li>	
+						<li>#{condiciones['pq.dinamico.condicion10']}</li>
+						<li>#{condiciones['pq.dinamico.condicion11']}</li>
+						
+				
+						<h:outputText rendered="#{datos.pagoPensionesAlimenticias}">
+							<li style="color:#2271b3">#{condiciones['solicitante.item8']}</li>
+						</h:outputText>
+						<h:outputText rendered="#{datos.categoriaTipoProductoPq == 'CAT_FOCALIZADOS'}">
+							<li style="color:#2271b3">#{condiciones['focalizado.item1']}</li>
+							<li style="color:#2271b3">#{condiciones['focalizado.item2']}</li>
+						</h:outputText>
+						<h:panelGroup rendered="#{datos.categoriaTipoProductoPq == 'CAT_SERVICIOS' and datos.tiposProductosPq == 'ECU_TUR'}">
+							<li style="color:#2271b3">#{condiciones['ecuador.turismo.item1']}</li>
+							<li style="color:#2271b3">#{condiciones['ecuador.turismo.item2']}</li>
+						</h:panelGroup>
+						<!-- INC-2286 Ferrocarriles -->
+						<h:panelGroup rendered="#{datos.categoriaTipoProductoPq == 'CAT_SERVICIOS' and (datos.tiposProductosPq == 'TREN' or datos.tiposProductosPq == 'TUR')}">
+							<li>
+								<h:outputFormat value="#{condiciones['solicitante.item9']}" >
+									<f:param value="#{datos.tiposProductosPq == 'TREN' ? 'Empresa' : 'Operadora'}"></f:param>
+									<f:param value="#{datos.proveedor.prNombre}"></f:param>
+								</h:outputFormat>
+							</li>
+							<li>
+								<h:outputFormat value="#{condiciones['solicitante.item10']}" >
+									<f:param value="#{datos.tiposProductosPq == 'TREN' ? 'Empresa' : 'Operadora'}"></f:param>
+									<f:param value="#{datos.proveedor.prNombre}"></f:param>
+								</h:outputFormat>
+							</li>
+						</h:panelGroup>
+					</ul>
+					</fieldset>
+				</f:subview>
+				
+				
+			</rich:panel>
+			<br />
+			<h:form>
+				<div align="center">
+				<!-- <h:commandButton id="cmdAceptarContinuar"
+								 disabled="#{!datos.actualizado || empty contactos.lista}"
+								 action="aceptar" value="#{labels['button.aceptar.continuar']}"
+								 styleClass="botonbarra"></h:commandButton> 
+				<h:graphicImage	value="/img/blanco.jpg" />--> <h:commandButton
+					id="cmdAceptarContinuar" disabled="#{datosSolicitante.disableBotonAceptar}"
+					action="#{datosSolicitante.aceptarContinuar}" value="#{labels['button.aceptar.continuar']}"
+					styleClass="botonbarra"
+					 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" 
+>
+					<a4j:support event="onclick" reRender="panelMensajerequerido"></a4j:support>
+					</h:commandButton> <h:graphicImage
+					value="/img/blanco.jpg" /> <h:commandButton
+					action="#{principal.logout}" value="#{labels['button.salir']}"
+					styleClass="botonbarra" immediate="true"></h:commandButton></div>
+			</h:form>
+		</f:subview>
+
+		<rich:modalPanel id="panelDetalleCredito" autosized="true">
+			<f:facet name="header">
+				<h:outputText
+					value="#{etiquetas['prestamo.detalle.dialogo.titulo']}" />
+			</f:facet>
+
+			<rich:panel styleClass="errorPanel"
+				rendered="#{seguimientoCredito.msjError!=null}">
+				<h:outputText value="#{seguimientoCredito.msjError}"></h:outputText>
+			</rich:panel>
+
+			<a4j:outputPanel id="pnlPrestamo">
+				<div id="divDestalleCredito"
+					style="width: 800px; height: 480px; overflow: scroll;">
+
+					<rich:panel id="pnlDatosPrestamo" styleClass="panel"
+						headerClass="pheader" bodyClass="pbody">
+						<img src="../../files/images/content/Biess-Ecuador.png" />
+						<h:outputText id="outputTextFAT"
+							value="#{datosSolicitante.textoFAT}" escape="false" />
+					</rich:panel>
+
+				</div>
+			</a4j:outputPanel>
+
+			<center>
+				<rich:panel styleClass="panel" headerClass="pheader"
+					bodyClass="pbody">
+					<h:panelGrid columns="2" styleClass="panelInvisible"
+						id="panelGridBotones">
+						<input type="button" class="botonbarra"
+							value="#{labels['button.imprimir']}" id="imprimir2"
+							onclick="imprimirTextoSeleccionado('pnlDatosPrestamo');" />
+
+						<input type="button" class="botonbarra"
+							value="#{labels['button.cerrar']}" id="cerrar"
+							onclick="Richfaces.hideModalPanel('panelDetalleCredito');" />
+
+					</h:panelGrid>
+				</rich:panel>
+			</center>
+
+ <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+
+		</rich:modalPanel>
+
+		<script type="text/javascript">
+			verificarDatos();
+		</script>
+	</ui:define>
+</ui:composition>

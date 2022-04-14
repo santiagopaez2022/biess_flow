@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.comprobante.pago.individual']}</div>
+		<br />
+
+		<h:form id="formSaldos">
+
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['seleccionar.pagos.realizar']}
+				</f:facet>
+				<rich:panel styleClass="messagePanel">
+					#{labels['aqui.puede.revisar']}
+				</rich:panel>
+				
+				<h:panelGrid columns="1">
+				
+					<a4j:outputPanel id="outputPanelTodos" ajaxRendered="true">
+						<h:outputText value="#{labels['dividendo.todos']}" />
+					       <h:selectBooleanCheckbox id="checkSeleccionarTodos" title="#{labels['dividendo.todos']}" 
+					       		valueChangeListener="#{creditoAccion.seleccionarTodos}" value="#{creditoAccion.todos}">
+					           <a4j:support event="onclick" reRender="outputPanelDividendos"  ajaxSingle="true" />
+					       </h:selectBooleanCheckbox>
+					</a4j:outputPanel>
+					
+					<a4j:outputPanel id="outputPanelDividendos" ajaxRendered="true">
+					
+						<rich:dataTable id="dataTableDividendo" var="saldo"
+							value="#{creditoAccion.saldosLiq}" styleClass="dt_panel"
+							headerClass="dt_header" rowClasses="prow1,prow2">
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['dividendo.fecha.pago']}</f:facet>
+								<h:outputText value="#{saldo.dividendoPrestamo.fecpagdiv}">
+									<f:convertDateTime pattern="dd-MMM-yyyy" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['liquidacion.anio']}</f:facet>
+								<h:outputText value="#{saldo.dividendoPrestamo.aniper}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['liquidacion.mes']}</f:facet>
+								<h:outputText value="#{saldo.dividendoPrestamo.mesper}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['liquidacion.num.dividendo']}</f:facet>
+								<h:outputText
+									value="#{saldo.dividendoPrestamo.dividendoPrestamoPk.numdiv}" />
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['saldo.capital.amortizado']}</f:facet>
+								<h:outputText value="#{saldo.salValCapAmo}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['saldo.interes.capital.amo']}</f:facet>
+								<h:outputText value="#{saldo.salIntSalCap}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['saldo.capital.periodo.gracia']}</f:facet>
+								<h:outputText value="#{saldo.salIntPerGra}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['saldo.interes']}</f:facet>
+								<h:outputText value="#{saldo.salIntPerMor}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+
+							<rich:column style="text-align:center;">
+								<f:facet name="header">#{labels['pagind.pagar']}</f:facet>
+								<h:panelGroup>
+								
+									<h:commandLink action="#{creditoAccion.seleccionarSaldo}" rendered="#{!saldo.seleccionado}">
+										<f:setPropertyActionListener target="#{creditoAccion.saldoLiquidacionPrestamoSeleccionado}" value="#{saldo}" />
+										<h:graphicImage value="../../files/images/content/check-blank.png"/>
+										<a4j:support event="onclick" reRender="outputPanelTodos"  ajaxSingle="true" />
+									</h:commandLink>
+									
+									<h:commandLink action="#{creditoAccion.deseleccionarSaldo}" rendered="#{saldo.seleccionado}">
+										<f:setPropertyActionListener target="#{creditoAccion.saldoLiquidacionPrestamoSeleccionado}" value="#{saldo}" />
+										<h:graphicImage value="../../files/images/content/check-select.png"/>
+										<a4j:support event="onclick" reRender="outputPanelTodos"  ajaxSingle="true" />
+									</h:commandLink>
+
+								</h:panelGroup>
+							</rich:column>
+						</rich:dataTable>
+					</a4j:outputPanel>
+
+				</h:panelGrid>
+				
+				<br />
+				<rich:panel styleClass="errorPanel"
+					rendered="#{creditoAccion.msjErrorPagInd!=null}">
+					<h:outputText value="#{creditoAccion.msjErrorPagInd}"></h:outputText>
+
+				</rich:panel>
+				<br />
+				<a4j:commandButton action="#{creditoAccion.generarPagIndSaldos}"
+					styleClass="botonbarra"
+					value="#{labels['button.pagar.dividendos']}" reRender="formSaldos" />
+				<rich:spacer />
+				<rich:spacer />
+				<h:commandButton action="consultaCreditos" styleClass="botonbarra"
+					value="#{labels['button.consulta.creditos']}" />
+				<rich:spacer />
+				<rich:spacer />
+				<a4j:status>
+					<f:facet name="start">
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</f:facet>
+				</a4j:status>
+			</rich:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

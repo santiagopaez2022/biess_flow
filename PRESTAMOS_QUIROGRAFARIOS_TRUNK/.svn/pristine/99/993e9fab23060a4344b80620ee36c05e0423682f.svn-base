@@ -1,0 +1,163 @@
+unlock-ejb
+Version: 1.0.0 
+Requerimiento: INC-1835
+Cambios: 		
+jar			/lib/alerts-ejb/13p-alerts-ejb-1.0.0.jar	(C) 
+jar			/lib/creditos-core/13-creditos-core-1.0.0.jar	(C) 
+jar			/lib/encode/encode.jar	(C) 
+jar			/lib/freemarjker/freemarker-2.3.20.jar	(C) 
+properties	/lib/lib.properties	(C) 
+xml			/META-INF/ejb-jar.xml	(C) 
+xml			/META-INF/persistence.xml	(C) 
+properties	build.properties	(C) 
+xml			build.xml	(C) 
+xml			common.xml	(C) 
+interface	ec.fin.biess.unlock.dao.BloqueoUsuarioDao.java	(C) 
+interface	ec.fin.biess.unlock.dao.BloqueoUsuarioHistoricoDao.java	(C) 
+interface	ec.fin.biess.unlock.dao.DatosPersonalesIessDao.java	(C) 
+interface	ec.fin.biess.unlock.dao.GenericDao.java	(C) 
+clase		ec.fin.biess.unlock.dao.impl.BloqueoUsuarioDaoImpl.java	(C) 
+clase		ec.fin.biess.unlock.dao.impl.BloqueoUsuarioHistoricoDaoImpl.java	(C) 
+clase		ec.fin.biess.unlock.dao.impl.DatosPersonalesIessDaoImpl.java	(C) 
+clase		ec.fin.biess.unlock.dao.impl.GenericDaoImpl.java	(C) 
+clase		ec.fin.biess.unlock.excepciones.UnlockException.java	(C) 
+clase		ec.fin.biess.unlock.helper.AlertsHelper.java	(C) 
+clase		ec.fin.biess.unlock.helper.JmsHelper.java	(C) 
+clase		ec.fin.biess.unlock.helper.PropertiesHelper.java	(C) 
+clase		ec.fin.biess.unlock.modelo.BloqueoUsuario.java	(C) 
+clase		ec.fin.biess.unlock.modelo.BloqueoUsuarioHistorico.java	(C) 
+properties	ec.fin.biess.unlock.resources.mensajes_es.properties	(C) 
+interface	ec.fin.biess.unlock.servicio.DesbloqueoCuentaOnlineServicio.java	(C) 
+interface	ec.fin.biess.unlock.servicio.DesbloqueoCuentaServicio.java	(C) 
+interface	ec.fin.biess.unlock.servicio.GenerarEmailDesbloqueoServicio.java	(C) 
+clase		ec.fin.biess.unlock.servicio.impl.DesbloqueoCuentaOnlineServicioImpl.java	(C) 
+clase		ec.fin.biess.unlock.servicio.impl.DesbloqueoCuentaServicioImpl.java	(C) 
+clase		ec.fin.biess.unlock.servicio.impl.GenerarEmailDesbloqueoServicioImpl.java	(C) 
+ftl			ec.fin.biess.unlock.templates.email.unlockaccount.ftl	(C) 
+clase		ec.fin.biess.unlock.util.MD5Helper.java	(C) 
+clase		ec.fin.biess.unlock.util.Utilities.java	(C) 
+
+
+==========================================
+Version: 1.0.1
+Requerimiento: INC-1864 / Implementación de la norma 2148 en los aplicativos PH
+Cambios:
+
+properties	
+build.properties					(M)
+
+XML	
+build.xml							(M)
+common.xml							(M)
+/ejbModule/META-INF/persistence.xml	(M)
+
+
+==========================================
+Version: 1.0.2
+Requerimiento: En relación INC-1864 para la implementación de Junta Bancaria 2148
+Cambios:
+Clase	/ejbModule/ec/fin/biess/unlock/servicio/impl/GenerarEmailDesbloqueoServicioImpl.java	(M)
+
+==========================================
+Version: 1.0.3
+Requerimiento: INC-2455 / Envío de correo cuando el usuario es bloqueado por exceder el límite de intentos de acceso.
+Cambios:
+
+Clase	ec/fin/biess/unlock/helper/AlertsHelper.java								(M)
+Clase	ec/fin/biess/unlock/servicio/impl/GenerarEmailDesbloqueoServicioImpl.java	(M)
+Jar		lib/alerts-ejb/13p-alerts-ejb-1.0.2.jar										(M)
+
+
+==========================================
+Version: 1.0.4
+Requerimiento: INC-2487 / Implementación cambios código seguro para Apps PQ
+Cambios:
+
+Clase	ejbModule/ec/fin/biess/unlock/helper/AlertsHelper.java								(M)
+Clase	ejbModule/ec/fin/biess/unlock/servicio/impl/DesbloqueoCuentaOnlineServicioImpl.java	(M)
+Clase	ejbModule/ec/fin/biess/unlock/servicio/impl/GenerarEmailDesbloqueoServicioImpl.java	(M)
+Clase	ejbModule/ec/fin/biess/unlock/util/MD5Helper.java									(M)
+Archivo	lib/lib.properties																	(M)
+Archivo	build.xml																			(M)
+carpeta	lib/codigo_seguro 																	(C)
+jar		codigo-seguro-1.0.1 																(C)
+jar		lib/alerts-ejb/13p-alerts-ejb-1.0.3.jar 											(M)
+
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilación de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE 
+(C)	Carpeta	unlock-ejb
+(C)	XML		pom.xml
+(C)	Eclipse	.project
+(C)	Eclipse	.classpath
+(C)	Eclipse	.settings
+(C)	Carpeta	src
+(C)	Carpeta	src\main
+(C)	Carpeta	src\test
+(C)	Carpeta	src\main\java
+(C)	Carpeta	src\main\resources
+(C)	Carpeta	src\main\java\ec
+(C)	Carpeta	src\main\java\ec\fin
+(C)	Carpeta	src\main\java\ec\fin\biess
+(C)	Carpeta	src\main\java\ec\fin\biess\unlock
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\dao
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\excepciones
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\helper
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\modelo
+(C)	Paquete	src\main\resurces\ec\fin\biess\unlock\resources
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\servicio
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\util
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\BloqueoUsuarioDao.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\BloqueoUsuarioHistoricoDao.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\DatosPersonalesIessDao.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\GenericDao.java
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\dao\impl
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\impl\BloqueoUsuarioDaoImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\impl\BloqueoUsuarioHistoricoDaoImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\impl\DatosPersonalesIessDaoImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\dao\impl\GenericDaoImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\excepciones\UnlockException.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\helper\AlertsHelper.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\helper\JmsHelper.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\helper\PropertiesHelper.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\modelo\BloqueoUsuario.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\modelo\BloqueoUsuarioHistorico.java
+(C)	Archivo de propiedades	src\main\resources\ec\fin\biess\unlock\resources\mensajes_es.properties
+(C)	Clase	src\main\java\ec\fin\biess\unlock\servicio\DesbloqueoCuentaOnlineServicio.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\servicio\DesbloqueoCuentaServicio.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\servicio\GenerarEmailDesbloqueoServicio.java
+(C)	Paquete	src\main\java\ec\fin\biess\unlock\servicio\impl
+(C)	Clase	src\main\java\ec\fin\biess\unlock\servicio\impl\DesbloqueoCuentaOnlineServicioImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\servicio\impl\DesbloqueoCuentaServicioImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\servicio\impl\GenerarEmailDesbloqueoServicioImpl.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\util\MD5Helper.java
+(C)	Clase	src\main\java\ec\fin\biess\unlock\util\Utilities.java
+(C)	Carpeta	src\main\resources\META-INF
+(C)	XML		src\main\resources\META-INF\ejb-jar.xml
+(C)	XML		src\main\resources\META-INF\persistence.xml
+(C)	Carpeta	src\test\java
+(C)	Carpeta	src\test\java\ec
+(C)	Carpeta	src\test\java\ec\fin
+(C)	Carpeta	src\test\java\ec\fin\biess
+(C)	Carpeta	src\test\java\ec\fin\biess\unlock
+(C)	Paquete	src\test\java\ec\fin\biess\unlock\test
+(C)	Clase	src\test\java\ec\fin\biess\unlock\test\TemplateTest.java
+(C)	Carpeta	src\test\resources
+(C)	Carpeta	src\main\resources\ec
+(C)	Carpeta	src\main\resources\ec\fin
+(C)	Carpeta	src\main\resources\ec\fin\biess
+(C)	Carpeta	src\main\resources\ec\fin\biess\unlock
+(C)	Carpeta	src\main\resources\ec\fin\biess\unlock\templates
+(C)	Carpeta	src\main\resources\ec\fin\biess\unlock\templates\email
+(C)	Archivo FTL	src\main\resources\ec\fin\biess\unlock\templates\email\unlockaccount.ftl
+
+
+=========================================================================================
+Version: 2.0.1
+Requerimiento: REQ-287 / ACTUALIZACION MENSAJES INFORMATIVOS APLICATIVOS WEB PH Y PQ
+Cambios: ACCION/TIPO/NOMBRE 
+
+ftl    		 /maven/pq/unlock-ejb/src/main/resources/ec/fin/biess/unlock/templates/email/unlockaccount.ftl  (M)
+directorio   /maven/pq/unlock-ejb																		    (M)
+

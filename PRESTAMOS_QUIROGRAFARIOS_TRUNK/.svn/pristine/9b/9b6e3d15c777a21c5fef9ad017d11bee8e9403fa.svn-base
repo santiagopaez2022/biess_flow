@@ -1,0 +1,19 @@
+/* Hoja de estilos para impresion
+ * @author Daniel Cardenas - danielkard@gmail.com
+ */
+ 
+#divMenu, .imgMenu, #botones, #cabecera {
+	display: none;
+}
+
+div#contenido, div.contenedor_titsistema {
+	margin: 0px;
+}
+
+.text_mensaje_pagina, .rich-panel-header{
+	color:black;
+}
+
+#pie {
+	text-align:left;
+}

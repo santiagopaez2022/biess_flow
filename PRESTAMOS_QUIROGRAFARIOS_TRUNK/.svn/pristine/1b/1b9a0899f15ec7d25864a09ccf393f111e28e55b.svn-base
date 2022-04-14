@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/base-panel-menu-vertical.xhtml">	
+
+	<ui:define name="contenido">
+	
+	<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos"></a4j:jsFunction>
+	</h:form>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['condiciones.novacion']}
+				</f:facet>
+				<f:subview>
+					<fieldset> 
+					<ul>
+					    <li><b>#{condiciones['novacion.titulo1']}</b></li> 
+					    <p>#{condiciones['novacion.item1']} </p>
+					    <p><h:outputText value="#{condiciones['novacion.itemTitulo']} #{productos.rangoHabiNovAfi}" escape="false" />  </p>
+					 
+					    <ol>
+					            <li><p>#{condiciones['novacion.item4']}</p></li>
+						        <li><p>#{condiciones['novacion.item5']}</p></li>
+						        <li><p><h:outputText value="#{productos.periodoGeneracionComprobantes}" escape="false" /></p></li>
+						        <li><p>#{condiciones['novacion.item7']}</p>
+						         <p> #{condiciones['novacion.item2']}</p>
+						         </li>
+					    </ol>
+					     <li><p><b>#{condiciones['novacion.tituloJub']}</b></p></li>
+					        <p>#{condiciones['novacion.titulo2']}</p>
+					    <p><h:outputText value="#{condiciones['novacion.titulo8']} #{productos.rangoHabiNovAfiJub}" escape="false" /></p>
+					   
+					</ul>
+					</fieldset>
+				</f:subview>
+					<a4j:outputPanel id="pnlError">
+			<rich:panel styleClass="errorPanel"	rendered="#{productos.msgErrNovacion!=null}">
+				<h:outputText value="#{productos.msgErrNovacion}"></h:outputText>
+			</rich:panel>
+		</a4j:outputPanel>
+			</rich:panel>
+			<br />
+			<h:form>
+				<div align="center"> 
+					<h:commandButton
+						id="cmdAceptarContinuar" action="#{productos.verificarERCConcesion}" value="#{labels['button.aceptar.continuar']}"
+						styleClass="botonbarra" disabled="#{productos.datos.bloqueoNovaPlanillaje}">
+					</h:commandButton> 
+					<h:graphicImage	value="/img/blanco.jpg" />			   	
+					<h:commandButton action="#{principal.logout}" value="#{labels['button.salir']}"
+						styleClass="botonbarra" immediate="true">
+					</h:commandButton>
+				</div>
+			</h:form>
+		<script type="text/javascript">
+			verificarDatos();
+		</script>
+	</ui:define>
+</ui:composition>

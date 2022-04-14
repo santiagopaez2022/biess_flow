@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.detalle.prestamo.vigente']}</div>
+		<br />
+
+
+		<rich:panel id="pnlDatosGenerales" styleClass="panel"
+			headerClass="pheader" bodyClass="pbody">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			<!-- mensajes de error -->
+			<a4j:outputPanel ajaxRendered="true">
+				<!--<rich:panel  styleClass="errorPanel">-->
+				<h:messages styleClass="errorPanel"
+					style="padding:10px 0px 15px 55px; margin: 0px;" />
+				<!--#{messages['garantias.valor']}-->
+				<!--</rich:panel>-->
+				<br />
+			</a4j:outputPanel>
+			<h:panelGrid columns="2" styleClass="panelInvisible">
+				<h:outputText value="#{labels.cedula}:" />
+				<h:outputText id="txtCedula"
+					value="#{datos.solicitante.datosPersonales.cedula}" />
+
+				<h:outputText value="#{labels.nombresApellidos}:" />
+				<h:outputText id="txtApellidos"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+			</h:panelGrid>
+
+		</rich:panel>
+		<br />
+
+		<a4j:outputPanel id="pnlPrestamo">
+			<rich:panel id="pnlDatosPrestamo" styleClass="panel"
+				headerClass="pheader" bodyClass="pbody">
+				<f:facet name="header">
+				#{labels['datos.credito.concedido']}
+			</f:facet>
+				<h:panelGrid columns="3" styleClass="panelInvisible">
+					<h:outputText value="Estado del Prestamo:" />
+					<h:outputText id="txtEstadoPrestamo"
+						value="#{consultaCredito.prestamoBean.prestamo.estadoPrestamo.desestpre}" />
+					<h:outputText value="" />
+
+					<h:outputText value="Producto:" />
+					<h:outputText id="txtCodprecla"
+						value="#{consultaCredito.prestamoBean.prestamo.destinoComercial.descripcion}" />
+					<h:outputText value="" />
+
+					<h:outputText value="#{labels['credito.numero.prestamo']}:" />
+					<h:outputText id="txtNumpreafi"
+						value="#{consultaCredito.prestamoBean.prestamo.nut!=null?consultaCredito.prestamoBean.prestamo.nut:consultaCredito.prestamoBean.prestamo.prestamoPk.numpreafi}" />
+					<h:outputText value="" />
+
+
+					<h:outputText value="#{labels['credito.monto']}:" />
+					<h:outputText id="txtValorPrestamo"
+						value="#{consultaCredito.prestamoBean.prestamo.valsalcap}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency" />
+					</h:outputText>
+					<h:outputText value="(A)" />
+
+					<h:outputText value="Valor del Dividendo:" />
+					<h:outputText id="txtValorDividendo"
+						value="#{consultaCredito.prestamoBean.prestamo.valtotdiv}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency" />
+					</h:outputText>
+					<h:outputText value="" />
+
+					<h:outputText value="#{labels['credito.seguro.saldos']}:" />
+					<h:outputText id="txtValorSeguroSaldos"
+						value="#{consultaCredito.prestamoBean.prestamo.valsegsal}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency" />
+					</h:outputText>
+					<h:outputText value="(B)" />
+					<h:outputText value="#{labels['credito.periodo.gracia.total']}"
+					              rendered="#{consultaCredito.prestamoBean.prestamo.clasePrestamo.codPreCla == 22}" />
+					<h:outputText id="txtValorDiasGraciaTotal"
+						value="#{consultaCredito.intPrimerDividendo}"
+						rendered="#{consultaCredito.prestamoBean.prestamo.clasePrestamo.codPreCla == 22}" >
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency"
+							rendered="#{consultaCredito.prestamoBean.prestamo.clasePrestamo.codPreCla == 22}" />
+					</h:outputText>
+					<h:outputText value="(#{messages['credito.periodo.gracia.total']})" 
+					              rendered="#{consultaCredito.prestamoBean.prestamo.clasePrestamo.codPreCla == 22}"/>
+
+					<h:outputText value="Plazo(meses):" />
+					<h:outputText id="txtPlazoPrestamo"
+						value="#{consultaCredito.prestamoBean.prestamo.plzmes}" />
+					<h:outputText value="" />
+
+					<h:outputText value="#{labels['credito.tasa']}:" />
+					<h:outputText id="txtTazaInteres"
+						value="#{consultaCredito.prestamoBean.prestamo.tasint}%">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency" />
+					</h:outputText>
+					<h:outputText value="" />
+					
+					<h:outputText value=" #{labels['credito.liquidacion.prestamo.anterior']}"
+					              rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}" />
+					<h:outputText id="txtLiqPqNovacion"
+						value="#{consultaCredito.prestamoBean.prestamo.valliqnov}"
+						rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency" 
+							rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}"/>
+					</h:outputText>
+					<h:outputText value="(C)" rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}" />
+
+					<h:outputText value="#{labels['credito.liquido.pagar']}:"
+					              rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}" />
+					<h:outputText id="txtValorRecibido"
+						value="#{consultaCredito.prestamoBean.prestamo.valsalcap - consultaCredito.prestamoBean.prestamo.valsegsal}"
+						rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency"
+							rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}" />
+					</h:outputText>
+					<h:outputText value="(A) - (B)"
+					               rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov==null}" />
+					
+					<h:outputText value="#{labels['credito.liquido.pagar']}:"
+					              rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}" />
+					<h:outputText id="txtValorRecibidoNovacion"
+						value="#{consultaCredito.prestamoBean.prestamo.valsalcap - consultaCredito.prestamoBean.prestamo.valsegsal - consultaCredito.prestamoBean.prestamo.valliqnov}"
+						rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}">
+						<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+							type="currency" />
+					</h:outputText>
+					<h:outputText value="(A) - (B + C)" 
+					              rendered="#{consultaCredito.prestamoBean.prestamo.valliqnov!=null}"/>
+
+					<h:outputText value="Fecha del primer dividendo:" />
+					<h:outputText id="txtFechaPrimerPago"
+						value="#{consultaCredito.prestamoBean.prestamo.fecinipre}">
+						<f:convertDateTime pattern="MM - yyyy" />
+					</h:outputText>
+					<h:outputText value="" />
+
+					<h:outputText value="Fecha del ultimo dividendo" />
+					<h:outputText id="txtFechaUltimoPago"
+						value="#{consultaCredito.prestamoBean.prestamo.fecfinpre}">
+						<f:convertDateTime pattern="MM - yyyy" />
+					</h:outputText>
+					<h:outputText value="" />
+
+					<h:outputText value="Fecha de Concesion:" />
+					<h:outputText id="txtFechaConcesion"
+						value="#{consultaCredito.prestamoBean.prestamo.fecpreafi}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+					<h:outputText value="" />
+					
+					<h:outputText value="#{labels['simulacion.tipo.tabla']}:" />
+					<h:outputText id="txtTipoAmor"
+						value="#{consultaCredito.prestamoBean.prestamo.tipoTablaAmortizacion}" />
+					<h:outputText value="" />
+				</h:panelGrid>
+			</rich:panel>
+			<rich:panel id="pnlDatosCuentaBancaria" styleClass="panel"
+				headerClass="pheader" bodyClass="pbody">
+				<f:facet name="header">
+			#{labels['titulo.datos.cuenta.bancaria']}
+		</f:facet>
+				<h:panelGrid columns="2" styleClass="panelInvisible">
+					<h:outputText value="Institucion Financiera:" />
+					<h:outputText id="txtInstitucionFinanciera"
+						value="#{consultaCredito.prestamoBean.institucionFinanciera.nomemp}" />
+					<h:outputText value="Tipo de Cuenta:" />
+					<h:outputText id="txtTipoCuenta"
+						value="#{consultaCredito.prestamoBean.prestamo.tipoCuenta.descripcion}" />
+					<h:outputText value="Numero de Cuenta:" />
+					<h:outputText id="txtNumeroCuenta"
+						value="#{consultaCredito.prestamoBean.prestamo.numctaban}" />
+				</h:panelGrid>
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<h:form>
+			<div align="center" id="divBotones1">
+				<h:panelGrid columns="3" styleClass="panelInvisible"
+					id="pnlBotones1">
+					<h:commandButton action="#{consultaCredito.regresarPagina}" id="regresar1cre"
+						value="#{labels['button.regresar']}" styleClass="boton"
+						immediate="true" />
+					<input class="botonbarra" type="button"
+					value="#{labels['button.imprimir']}"
+						onclick="window.open('impDetallePrestamo.jsf','_blank','scrollbars=yes,height=800,width=800,top=150,left=300');" />
+				<h:commandButton action="#{principal.logout}"
+						value="#{labels['button.salir']}" styleClass="botonbarra"
+						immediate="true"></h:commandButton>
+				</h:panelGrid>
+			</div>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{labels['tab.tabla.amortizacion']}
+				</f:facet>
+
+				<a4j:outputPanel id="pnlListaCreditos">
+					<rich:dataTable id="tablaDividendos"
+						value="#{consultaCredito.prestamoBean.prestamo.dividendosPrestamo}"
+						var="dividendo"
+						rendered="#{consultaCredito.prestamoBean.prestamo.dividendosPrestamo!=null}"
+						styleClass="dt_panel" headerClass="dt_header"
+						rowClasses="prow1,prow2">
+						<f:facet name="header">
+							<rich:columnGroup rowClasses="dt_header">
+								<rich:column>No</rich:column>
+								<rich:column>Capital Amortizado</rich:column>
+								<rich:column>#{labels['credito.interes']}</rich:column>
+								<rich:column>*#{labels['credito.dividendo.interes.gracia']}</rich:column>
+								<rich:column>#{labels['credito.dividendo.valor']}</rich:column>
+								<rich:column>#{labels['credito.saldo.capital']}</rich:column>
+								<rich:column>Fecha Pago Dividendo (MM - yyyy)</rich:column>
+								<rich:column>Estado del dividendo</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:columnGroup rowClasses="prow1,prow2">
+							<rich:column style="width: 5%; text-align: center;">
+								<h:outputText value="#{dividendo.dividendoPrestamoPk.numdiv}" />
+							</rich:column>
+							<rich:column style="width: 10%;" styleClass="tdCampoNum">
+								<h:outputText value="#{dividendo.valcapamo}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="width: 10%;" styleClass="tdCampoNum">
+								<h:outputText value="#{dividendo.intsalcap}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="width: 10%;" styleClass="tdCampoNum">
+								<h:outputText value="#{dividendo.intpergra}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="width: 10%;" styleClass="tdCampoNum">
+								<h:outputText
+									value="#{dividendo.valcapamo + dividendo.intsalcap + dividendo.intpergra}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="width: 10%;" styleClass="tdCampoNum">
+								<h:outputText value="#{dividendo.saldoCapital}">
+									<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+										type="currency" />
+								</h:outputText>
+
+							</rich:column>
+							<rich:column style="width: 15%; text-align: center;">
+								<h:outputText value="#{dividendo.fecpagdiv}">
+									<f:convertDateTime pattern="MM - yyyy" />
+								</h:outputText>
+							</rich:column>
+							<rich:column style="width: 15%; text-align: center;">
+								<h:outputText
+									value="#{dividendo.estadoDividendoPrestamo.desestdiv}" />
+							</rich:column>
+						</rich:columnGroup>
+						<f:facet name="footer">
+							<rich:columnGroup rowClasses="dt_header">
+								<rich:column style="text-align: center;">TOTAL</rich:column>
+								<rich:column style="text-align: right;">
+									<h:outputText value="#{consultaCredito.totalCapital}">
+										<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+											type="currency" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="text-align: right;">
+									<h:outputText value="#{consultaCredito.totalInteres}">
+										<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+											type="currency" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="text-align: right;">
+									<h:outputText value="#{consultaCredito.totalInteresGracia}">
+										<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+											type="currency" />
+									</h:outputText>
+								</rich:column>
+								<rich:column></rich:column>
+								<rich:column></rich:column>
+								<rich:column></rich:column>
+								<rich:column></rich:column>
+							</rich:columnGroup>
+						</f:facet>
+
+					</rich:dataTable>
+				</a4j:outputPanel>
+			</rich:panel>
+			<br />
+			<div align="center" id="divBotones2">
+				<h:panelGrid columns="3" styleClass="panelInvisible"
+					id="pnlBotones2">
+					<h:commandButton action="#{consultaCredito.regresarPagina}" id="regresar2cre"
+						value="#{labels['button.regresar']}" styleClass="boton"
+						immediate="true" />
+					<input class="botonbarra" type="button"
+					value="#{labels['button.imprimir']}"	
+						onclick="window.open('impDetallePrestamo.jsf','_blank','scrollbars=yes,height=800,width=800,top=150,left=300');" />
+				<h:commandButton action="#{principal.logout}"
+						value="#{labels['button.salir']}" styleClass="botonbarra"
+						immediate="true"></h:commandButton>
+				</h:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

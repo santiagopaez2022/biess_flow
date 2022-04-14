@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	template="/templates/impresion.xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>
+		<ui:insert name="titulo">
+			<h:outputText value="#{titulos['sistema.titulo']}" />
+		</ui:insert>
+	</title>
+	<link rel="stylesheet" type="text/css"
+		href="${facesContext.externalContext.request.contextPath}/css/biess.css" />
+	</head>
+	<ui:define name="contenido">
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.resultado.prestamo']}
+		</div>
+		<br />
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody">
+			<f:facet name="header">
+			#{labels['datos.generales']}
+		</f:facet>
+
+			<table>
+				<tr>
+					<td><h:outputLabel for="txtCedula" value="#{labels.cedula}:" /></td>
+					<td><h:inputText id="txtCedula"
+						value="#{datos.solicitante.datosPersonales.cedula}"
+						readonly="true" /></td>
+					<td><h:outputLabel for="txtApellidos"
+						value="#{labels.nombresApellidos}:" /></td>
+					<td><h:inputText id="txtApellidos"
+						value="#{datos.solicitante.datosPersonales.apellidosNombres}"
+						readonly="true" size="50" /></td>
+				</tr>
+				<tr>
+					<td colspan="4"><rich:separator height="1" lineType="dotted" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtIntitucion"
+						value="#{labels['institucion.financiera']}:"
+						rendered="#{datos.solicitante.cuentaBancaria!=null}" /></td>
+					<td><h:inputText id="txtIntitucion"
+						rendered="#{datos.solicitante.cuentaBancaria!=null}"
+						value="#{datos.solicitante.cuentaBancaria.institucionFinanciera.descripcion}"
+						readonly="true" size="70" /></td>
+					<td><h:outputLabel for="txtNumeroCuenta"
+						rendered="#{datos.solicitante.cuentaBancaria!=null}"
+						value="#{labels['numero.cuenta']}:" /></td>
+					<td><h:inputText id="txtNumeroCuenta"
+						rendered="#{datos.solicitante.cuentaBancaria!=null}"
+						value="#{datos.solicitante.cuentaBancaria.numeroCuenta}"
+						readonly="true" /></td>
+				</tr>
+				<tr>
+					<td colspan="4"><rich:separator height="1" lineType="dotted" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="txtEmpleadorActual"
+						value="#{labels['empleador.nombre']}:" /></td>
+					<td><h:inputText id="txtEmpleadorActual"
+						value="#{datos.solicitante.empleador.empleadorActual}"
+						readonly="true" size="70" /></td>
+					<td><h:outputLabel for="txtRucEmpleador"
+						value="#{labels['ruc.empleador']}:" /></td>
+					<td><h:inputText id="txtRucEmpleador"
+						value="#{datos.solicitante.empleador.rucEmpleador}"
+						readonly="true" /></td>
+				</tr>
+			</table>
+
+		</rich:panel>
+		<br />
+		
+		<h:form id="formResultadoPrestamo33">
+			
+			<a4j:outputPanel id="pnlRequisitos">
+				<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody">					
+					<a4j:outputPanel id="pnlResultado" rendered="#{concesionCredito.prestamoOk}">
+						<f:facet name="header">	#{labels['transferencia.detalles']} </f:facet>
+						<rich:panel id="uiOK" styleClass="okayPanel" rendered="#{concesionCredito.prestamoOk}">
+							<h:outputText value="#{messages['concesion.satisfactoria']}" escape="false"></h:outputText>
+						</rich:panel>
+						
+						<br/>
+						#{messages['transferencia.detalles']}
+					</a4j:outputPanel>
+					<a4j:outputPanel id="pnlResultadoError" rendered="#{concesionCredito.message!=null and concesionCredito.message!=''}">
+						<rich:panel id="uiErr" styleClass="errorPanel" rendered="#{concesionCredito.message!=null and concesionCredito.message!=''}">
+							<h:outputText value="#{messages['concesion.fallida']}" escape="false"></h:outputText>
+							<br/><br/>
+							<h:outputText value="#{concesionCredito.message}"></h:outputText>
+							<br />
+						</rich:panel>
+					</a4j:outputPanel>
+				</rich:panel>
+			</a4j:outputPanel>
+			<div align="center">				
+				<input type="button" class="boton" value="Imprimir"
+					onclick="window.print();" />				
+				<h:graphicImage id="uiBlanco01" value="/img/blanco.jpg" />
+				<h:graphicImage id="uiBlanco02" value="/img/blanco.jpg" />
+				<input type="button" class="botonbarra" value="#{labels['button.cerrar']}"
+				onclick="self.close ()" />
+			</div>
+			<br />
+			<a4j:outputPanel id="pnlResultado2">
+				<f:subview rendered="#{concesionCredito.prestamoOk}">
+					<rich:panel styleClass="notePanelBottom" >
+						<b>#{labels['nota.importante']}:</b> #{labels['nota.interes.reajustable.texto']}
+					</rich:panel>
+					<br />
+					<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody">
+						<f:facet name="header">	#{labels['datos.credito.concedido']}</f:facet>
+						<table style="width: 100%;">
+							<tr>
+								<td>#{labels['credito.monto']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoMonto"
+									value="#{concesionCredito.prestamoCalculo.valorCredito}">
+									<f:convertNumber pattern="$ ####.00" />
+								</h:outputText> <!--#{labels.moneda}--></td>
+								<td>( A )</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>#{labels['credito.seguro.saldo']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoSS"
+									value="#{concesionCredito.prestamoCalculo.seguroSaldo.valor}">
+									<f:convertNumber pattern="$ ####.00" />
+								</h:outputText> <!--#{labels.moneda}--></td>
+								<td>( B )</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>#{labels['credito.liquidacion.prestamo.anterior']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoCanNov"
+									value="#{concesionCredito.prestamoCalculo.montoCanceladoNovacion}">
+									<f:convertNumber pattern="$ ####.00" />
+								</h:outputText> <!--#{labels.moneda}--></td>
+								<td>( C )</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>#{labels['credito.liquido.pagar']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoLP"
+									value="#{concesionCredito.prestamoCalculo.liquidoPagar}">
+									<f:convertNumber pattern="$ ####.00" />
+								</h:outputText> <!--#{labels.moneda}--></td>
+								<td>( = A - (B + C) )</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="4"><rich:separator height="1" lineType="dotted" /></td>
+							</tr>
+							<tr>
+								<td>#{labels['credito.tasa']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoTasa"
+									value="#{concesionCredito.calculoCredito.condicionCalculo.tasaInteres}">
+									<f:convertNumber pattern="####.00" />
+								</h:outputText>%</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>#{labels['credito.plazo']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoPlazo"
+								value="#{concesionCredito.prestamoCalculo.plazoMeses}"></h:outputText>
+								#{labels.meses}</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>#{labels['credito.periodo.gracia']}:</td>
+								<td class="tdCampoNum"><h:outputText id="uiCreditoPG"
+									value="#{concesionCredito.prestamoCalculo.periodoGracia.valor}">
+									<f:convertNumber pattern="$ ####.00" />
+								</h:outputText> <!--#{labels.moneda}--></td>
+								<td><h:outputText id="uiCreditoPerGra"
+									value="(#{messages['credito.periodo.gracia']})"></h:outputText></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td width="45%"><h:outputText id="outSistAmortizacion"
+										style="font-weight:bold" value="#{labels['sistema.amortizacion']}:" /></td>
+								<td width="20%"><h:outputText id="outSistAmortizacionValor"
+										value="#{concesionCredito.simulacion.tipoSimulacion}">										
+									</h:outputText></td>
+								<td width="35%"></td>
+
+							</tr>
+							<tr>
+								<td><h:outputText id="outTotalInteres"
+									 style="font-weight:bold" value="#{labels['total.interes']}:" /></td>
+								<td><h:outputText id="outTotalInteresValor"
+										value="#{concesionCredito.totalInteres}">
+										<f:convertNumber pattern="$ ####.00" />
+									</h:outputText></td>
+								<td></td>
+
+							</tr>
+						</table>
+					</rich:panel>
+					
+					<rich:panel id="uiPnlSimTabla" styleClass="messagePanel">
+					<h:outputFormat value="#{messages['credito.mensaje.amortizacion']}">
+										<f:param
+											value="#{concesionCredito.simulacion.tipoSimulacion}" />
+										
+					</h:outputFormat>
+					</rich:panel>
+					
+					<br />
+					<rich:panel styleClass="panel" headerClass="pheader"
+					bodyClass="pbody">
+						<c:if
+							test="${concesionCredito.simulacion.tipoSimulacion=='FRANCESA'}">
+							<f:facet name="header"> #{labels['tab.sist.amortizacion.francesa']}	</f:facet>
+						</c:if>
+
+						<c:if
+							test="${concesionCredito.simulacion.tipoSimulacion=='ALEMANA'}">
+							<f:facet name="header"> #{labels['tab.sist.amortizacion.alemana']}</f:facet>				
+						</c:if>
+
+						<rich:dataTable id="tablaDividendos"
+							value="#{concesionCredito.prestamoCalculo.dividendoCalculoList}"
+							var="dividendo"
+							rendered="#{concesionCredito.prestamoCalculo.dividendoCalculoList!=null}"
+							styleClass="dt_panel" headerClass="dt_header"
+							rowClasses="prow1,prow2">
+							<f:facet name="header">
+								<rich:columnGroup rowClasses="dt_header">
+									<rich:column>#{labels['credito.dividendo.numero']}</rich:column>
+									<rich:column>#{labels['credito.capital.amortizado']}</rich:column>
+									<rich:column>#{labels['credito.interes']}</rich:column>
+									<rich:column>#{labels['credito.dividendo.interes.gracia']}</rich:column>
+									<rich:column>#{labels['credito.dividendo.valor']}</rich:column>
+									<rich:column>#{labels['credito.saldo.capital']}</rich:column>
+									<rich:column>#{labels['credito.dividendo.fechaPago']}</rich:column>
+								</rich:columnGroup>
+							</f:facet>
+							<rich:columnGroup rowClasses="prow1,prow2">
+								<rich:column style="width: 15%; text-align: center;">
+									<h:outputText id="uiNo#{dividendo.numeroDividendo}"
+										value="#{dividendo.numeroDividendo}" />
+								</rich:column>
+								<rich:column style="width: 15%;" styleClass="tdCampoNum">
+									<h:outputText id="uiCA#{dividendo.numeroDividendo}"
+										value="#{dividendo.valorAbonoCapital}">
+										<f:convertNumber pattern="$ ####.00" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="width: 15%;" styleClass="tdCampoNum">
+									$<h:outputText id="uiInt#{dividendo.numeroDividendo}"
+										value="#{dividendo.valorInteres}">
+										<f:convertNumber pattern="####.00" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="width: 15%;" styleClass="tdCampoNum">
+									<h:outputText id="uiIntGra#{dividendo.numeroDividendo}"
+										value="#{dividendo.valorIntPerGra}">
+										$
+										<f:convertNumber pattern="####.00" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="width: 15%;" styleClass="tdCampoNum">
+									<h:outputText id="uiVD#{dividendo.numeroDividendo}"
+										value="#{dividendo.valorDividendo}">
+										<f:convertNumber pattern="$ ####.00" />
+									</h:outputText>
+								</rich:column>
+								<rich:column styleClass="tdCampoNum">
+									<h:outputText id="uiSC#{dividendo.numeroDividendo}"
+										value="#{dividendo.valorSaldoCapital}">
+										<f:convertNumber pattern="$ ####.00" />
+									</h:outputText>
+								</rich:column>
+								<rich:column style="width: 15%; text-align: center;">
+									<h:outputText id="uiFPD#{dividendo.numeroDividendo}"
+										value="#{dividendo.fechapagoDividendo}"
+										rendered="#{dividendo.numeroDividendo!=0}">
+										<f:convertDateTime pattern="MM - yyyy" />
+									</h:outputText>
+								</rich:column>
+							</rich:columnGroup>
+						</rich:dataTable>						
+					</rich:panel>
+				</f:subview>
+			</a4j:outputPanel>
+			<br />
+			<div align="center">				
+				<input type="button" class="boton" value="Imprimir"
+					onclick="window.print();" />				
+				<h:graphicImage id="uiBlanco301" value="/img/blanco.jpg" />
+				<h:graphicImage id="uiBlanco302" value="/img/blanco.jpg" />
+				<input type="button" class="botonbarra" value="#{labels['button.cerrar']}"
+				onclick="self.close ()" />
+			</div>
+		</h:form>			
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="contenido">
+		<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody"
+			rendered="${creditoAccion.datos.solicitante!=null}">
+			<f:facet name="header">
+				#{titulos['datos.generales']}
+			</f:facet>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{etiquetas['comp.liq.cedula']}:" />
+				<h:outputText style="font-weight:bold"
+					value="#{creditoAccion.datos.solicitante.datosPersonales.cedula}" />
+
+				<h:outputLabel value="#{etiquetas['comp.liq.nombresApellidos']}:" />
+				<h:outputLabel style="font-weight:bold"
+					value="#{creditoAccion.datos.solicitante.datosPersonales.apellidosNombres}" />
+
+			</h:panelGrid>
+
+		</rich:panel>
+
+		<br />
+		<div align="center">
+		<h:form id="frmCreditosLiquidacionPago">
+		
+			<f:subview>
+				<a4j:outputPanel id="oppCreditosLiquidacionPago">
+		
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody">
+				<f:facet name="header">
+					#{titulos['liquidaciones.pago']}
+				</f:facet>
+
+				<rich:dataTable var="liquidacion"
+					value="#{creditoAccion.listaLiquidaciones}" styleClass="dt_panel"
+					headerClass="dt_header" rowClasses="prow1,prow2">
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{etiquetas['tabla.liquidacion.numero.prestamo']}</f:facet>
+						<h:outputText value="#{liquidacion.numPreAfi}">
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{etiquetas['tabla.liquidacion.prestamo']}</f:facet>
+						<h:outputText value="#{liquidacion.prestamo.clasePrestamo.descripcion}">
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{etiquetas['tabla.liquidacion.fecha']}</f:facet>
+						<h:outputText value="#{liquidacion.fechaLiquidacion}">
+							<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" />
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:right;">
+						<f:facet name="header">#{etiquetas['tabla.liquidacion.numero']}</f:facet>
+						<h:outputText value="#{liquidacion.numeroLiquidacion}">
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">#{etiquetas['tabla.liquidacion.estado']}</f:facet>
+						<h:outputText value="#{liquidacion.estadoLiquidacion.descripcion}">
+						</h:outputText>
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<f:facet name="header">
+							<rich:spacer />
+						</f:facet>
+						<!-- RT: se cambio este boton innecesariamente y se le devolvio al estado anterior INC-5654 -->
+						<a4j:commandButton
+							action="#{creditoAccion.seleccionarLiquidacion}"
+							value="#{botones['ver.detalle']}" styleClass="boton1"></a4j:commandButton>
+					</rich:column>
+				</rich:dataTable>
+
+			</rich:panel>
+			<br />
+			
+			</a4j:outputPanel>
+			</f:subview>
+		</h:form></div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="contenido">
+
+	
+
+		<div class="text_mensaje_pagina">AVISO</div>
+		<br />
+						
+						
+								<img
+										src="#{facesContext.externalContext.request.contextPath}/files/images/content/BANNER-CARTERA-CASTIGADA.png"
+										alt="" width="100%" height="80%" class="floatleft" />
+			
+			
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+		<title>
+			#{titulos['sistema.titulo']}
+		</title>
+
+		<!-- Estilos generales -->
+		<link href="#{facesContext.externalContext.request.contextPath}/files/css/styles.css" rel="stylesheet" type="text/css" />
+	</head>
+ 
+	<body oncontextmenu="return false;" >	
+		
+		<div id="top">
+			<div id="toplinks">
+				<a href="mailto:ayudaprestamos@biess.fin.ec">#{titulos['sistema.ayuda']}</a>
+			</div>
+		</div>
+
+		<div id="bodywrapper"> 
+		  <!-- HEADER --> 
+		  <div id="header">
+		    <h1>#{titulos['sistema.titulo']}</h1>
+		  </div>
+		  
+		  <div id="content">
+		    <div id="contentwrapper">
+		       	<ui:insert name="contenido">
+		      		Contenido
+		      	</ui:insert>			       		    
+		    </div>
+		  </div>		    
+		  
+		  <!-- LIBRERIA DEL FOOTER (FOOTER.LIB) --> 
+		  <!-- #BeginLibraryItem "/bancalinea/ph/files/Library/footer.lbi" -->
+		  <div id="footer">
+		    <div id="footertext">
+		    	#{labels['copyright']}
+		    </div>
+		  </div>
+	  	  <!-- #EndLibraryItem -->
+	  	
+	  	</div>
+	</body>
+</html>

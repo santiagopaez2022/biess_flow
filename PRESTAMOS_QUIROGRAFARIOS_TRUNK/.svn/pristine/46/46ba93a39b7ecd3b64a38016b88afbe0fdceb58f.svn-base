@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+		#{titulos['administracion.ordenes']} 
+	</ui:define>
+
+	<ui:define name="contenido">
+		<h:form id="busqueda">
+			<a4j:region id="busq">
+				<div><h:messages globalOnly="true"></h:messages> <f:subview
+					rendered="#{funcionario.cedula==null}">
+					<div class="mensajeError">#{errores['datos.sesion']}</div>
+					<br />
+				</f:subview> <f:subview rendered="#{funcionario.cedula!=null}">
+					<h:panelGrid columns="1" columnClasses="mitad" cellspacing="0"
+						cellpadding="0" style="width:100%;">
+						<rich:panel>
+							<f:facet name="header">#{titulos['busqueda']}</f:facet>
+							<h:panelGrid columns="6"
+								columnClasses="etiqueta,info,info,info,info">
+								<b>#{etiquetas['periodo']} #{etiquetas['fecha.desde']}</b>
+								<a4j:outputPanel id="fechaDe" layout="block">
+									<rich:calendar value="#{consulta.fechaConsultaDesde}"
+										popup="true" required="false" datePattern="dd-MM-yyyy"
+										immediate="true" showApplyButton="false"
+										requiredMessage="#{errores['fecha.requerido']}"
+										enableManualInput="false" showFooter="false" cellWidth="15px"
+										cellHeight="22px">
+									</rich:calendar>
+								</a4j:outputPanel>
+								<b>#{etiquetas['fecha.hasta']}</b>
+								<a4j:outputPanel id="fechaHa" layout="block">
+									<rich:calendar value="#{consulta.fechaConsultaHasta}"
+										popup="true" required="false" datePattern="dd-MM-yyyy"
+										immediate="true" showApplyButton="false"
+										requiredMessage="#{errores['fecha.requerido']}"
+										enableManualInput="false" showFooter="false" cellWidth="15px"
+										cellHeight="22px">
+									</rich:calendar>
+								</a4j:outputPanel>
+								<rich:spacer width="20" />
+								<a4j:commandButton reRender="datosSaldos,mensajes,totals"
+									action="#{consulta.obtenerOrdenesFecha}"
+									value="#{botones['generar.reporte']}" styleClass="boton" />
+								<rich:spacer width="20" />#{etiquetas['formato']}<rich:spacer
+									width="20" />#{etiquetas['formato']}<rich:spacer width="20" />
+								<rich:spacer width="20" />
+								<b>#{etiquetas['orden.estado']}:</b>
+								<h:selectOneMenu value="#{consulta.estadoOrden}"
+									style="width:100%;">
+									<f:selectItem itemLabel="Todas" itemValue="TODOS" />
+									<f:selectItem itemLabel="Aprobadas" itemValue="APR" />
+									<f:selectItem itemLabel="Rechazadas" itemValue="REC" />
+								</h:selectOneMenu>
+								<rich:spacer />
+								<rich:spacer />
+								<rich:spacer />
+								<rich:spacer />
+							</h:panelGrid>
+						</rich:panel>
+					</h:panelGrid>
+					<a4j:outputPanel id="mensajes">
+						<h:messages />
+						<rich:panel rendered="#{consulta.error != null}">
+							<div class="mensajeError"><h:outputText
+								value="#{consulta.error}" /><br />
+							</div>
+						</rich:panel>
+					</a4j:outputPanel>
+				</f:subview></div>
+			</a4j:region>
+		</h:form>
+		<br />
+		<f:subview id="sub2">
+			<a4j:outputPanel id="datosSaldos">
+				<rich:panel rendered="#{not empty consulta.listaOrdenes}">
+					<f:facet name="header">#{titulos['consulta.ordenes']}</f:facet>
+					<h:panelGrid columns="1" columnClasses="info" width="100%">
+						<rich:dataTable binding="#{consulta.tablaOrdenesPorAprobar}"
+							var="item" value="#{consulta.listaOrdenes}" id="tabla"
+							width="100%" rendered="#{not empty consulta.listaOrdenes}">
+							<f:facet name="header">
+								<rich:columnGroup>
+									<rich:column style="width:8%;">#{etiquetas['orden.prestamo.num']}</rich:column>
+									<rich:column style="width:10%;">#{etiquetas['orden.cedula']}</rich:column>
+									<rich:column style="width:40%;">#{etiquetas['orden.nombres']}</rich:column>
+									<rich:column style="width:8%;">#{etiquetas['orden.fecha']}</rich:column>
+									<rich:column style="width:8%;">#{etiquetas['prestamo.valor']}</rich:column>
+									<rich:column style="width:8%;">#{etiquetas['prestamo.seguro']}</rich:column>
+									<rich:column style="width:8%;">#{etiquetas['orden.valor']}</rich:column>
+									<rich:column>#{etiquetas['orden.plazo']}</rich:column>
+									<rich:column>#{etiquetas['orden.estado']}</rich:column>
+									<rich:column>#{etiquetas['orden.numero']}</rich:column>
+									<rich:column>#{etiquetas['orden.factura']}</rich:column>
+									<rich:column>#{etiquetas['orden.fec.confirmacion']}</rich:column>
+								</rich:columnGroup>
+							</f:facet>
+							<rich:column id="a1">
+								<h:outputText value="#{item.prestamo.prestamoPk.numpreafi}" />
+							</rich:column>
+							<rich:column id="a2">
+								<h:outputText value="#{item.prestamo.numafi}" />
+							</rich:column>
+							<rich:column id="a3">
+								<h:outputText value="#{item.nombres}" />
+							</rich:column>
+							<rich:column id="a4">
+								<h:outputText value="#{item.ocFecGeneracion}">
+									<f:convertDateTime pattern="dd/MM/yy" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="a5">
+								<h:outputText value="#{item.prestamo.mntpre}">
+									<f:convertNumber pattern="$###,###.##" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="a6">
+								<h:outputText value="#{item.prestamo.valsegsal}">
+									<f:convertNumber pattern="$###,###.##" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="a7">
+								<h:outputText value="#{item.ocValor}">
+									<f:convertNumber pattern="$###,###.##" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="a8">
+								<h:outputText value="#{item.prestamo.plzmes}">
+									<f:convertNumber pattern="##m" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="a9">
+								<h:outputText
+									value="#{item.detalleCatalogo.id.dcCodigo=='APR'?'Aprobada':'Rechazada'}" />
+							</rich:column>
+							<rich:column id="a10">
+								<h:outputText value="#{item.ocCodOrdCompra}" />
+							</rich:column>
+							<rich:column id="a11">
+								<h:outputText value="#{item.numFactura}" />
+							</rich:column>
+							<rich:column id="a12">
+								<h:outputText value="#{item.fecConfirmacion}">
+									<f:convertDateTime pattern="dd/MM/yy" />
+								</h:outputText>
+							</rich:column>
+						</rich:dataTable>
+					</h:panelGrid>
+					<a4j:outputPanel id="totals">
+					<h:panelGrid columns="6" columnClasses="etiqueta2,info,etiqueta2,info,etiqueta2,info" width="100%">
+						#{etiquetas['total.prestamos']}:<h:outputText value="#{consulta.totalPrestamos}" ><f:convertNumber pattern="$###,###.##" /></h:outputText>
+						#{etiquetas['total.seguros']}:<h:outputText value="#{consulta.totalSeguros}" ><f:convertNumber pattern="$###,###.##" /></h:outputText>
+						#{etiquetas['total.ordenes']}:<h:outputText value="#{consulta.totalOrdenes}"  ><f:convertNumber pattern="$###,###.##" /></h:outputText>
+					</h:panelGrid>
+					</a4j:outputPanel>
+				</rich:panel>
+				<br />
+				<h:commandButton class="boton" value="#{botones['imprimir']}" rendered="#{consulta.ordenesPresentes}"
+					id="impr" action="#{consulta.imprimirConsulta}"
+					onclick="window.open('imprimirConsultaOrdenes.jsf','','dependent=yes, menubar=no, toolbar=0, scrollbars=1, width=1000'); return false;" />
+			</a4j:outputPanel>
+		</f:subview>
+	</ui:define>
+</ui:composition>

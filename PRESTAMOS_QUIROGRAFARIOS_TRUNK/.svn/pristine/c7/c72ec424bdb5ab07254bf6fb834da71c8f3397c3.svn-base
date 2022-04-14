@@ -1,0 +1,90 @@
+simulador-pq-ejb
+
+Version: 1.0.0
+Requerimiento: INC-2856 / Banca Virtual e implementaciÃ³n de simulador
+Cambios: ACCION/TIPO/NOMBRE 
+
+paquete			src/main/java/ec/fin/biess/pq/simulacion/dto															(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/dto/DatosSimulacionCuotaMontoDto.java							(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/dto/DatosSimulacionDto.java									(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/dto/DetalleEgresosDto.java										(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/dto/DetalleIngresosDto.java									(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/dto/ParametrosCalculoCreditoResponseDto.java					(C)
+paquete			src/main/java/ec/fin/biess/pq/simulacion/exception														(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/exception/SimuladorPqException.java							(C)
+paquete			src/main/java/ec/fin/biess/pq/simulacion/service														(C)
+interface		src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqServicioLocal.java					(C)
+interface		src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqServicioRemote.java					(C)
+paquete			src/main/java/ec/fin/biess/pq/simulacion/service/impl													(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServicioImpl.java				(C)
+paquete			src/main/java/ec/fin/biess/pq/simulacion/util															(C)
+clase			src/main/java/ec/fin/biess/pq/simulacion/util/Utiltario.java											(C)
+xml				pom.xml																									(C)
+
+======================================================================
+Version: 1.0.1
+Requerimiento: INC-2863 / Referencia Historica INC-2856.
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase			src/main/java/ec/fin/biess/pq/simulacion/dto/DatosSimulacionDto.java									(M)
+Clase			src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServicioImpl.java				(E)
+Clase			src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServiceImpl.java				(C)
+Clase			src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServicioImpl.java				(E)
+Interface		src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqLocalService.java					(C)
+Interface		src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqRemoteService.java					(C)
+Interface		src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqServicioLocal.java					(E)
+Interface		src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqServicioRemote.java					(E)
+
+
+
+======================================================================
+Version: 1.0.2
+
+Requerimiento: REQ-103 Centralización de Cartera - Préstamos Quirografarios WEB BIESS, Integración SAC / Préstamos Quirografarios WEB BIESS Novación, Integración SAC
+
+clase                        /maven/pq/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServiceImpl.java		(M)
+clase                        /maven/pq/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqLocalService.java			(M)
+clase                        /maven/pq/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqRemoteService.java			(M)
+clase                        /maven/pq/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/dto/DatosSimulacionDto.java							(M)
+clase                        /maven/pq/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/dto/DatosSimulacionCuotaMontoDto.java					(M)
+
+==================================================================================================================
+Version: 1.0.3
+
+Requerimiento: REQ-318 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB 
+
+
+clase         /simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServiceImpl.java		(M)
+clase         /simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/SimulacionCreditoPqLocalService.java			(M)
+
+
+
+==================================================================================================================
+Version: 1.0.4
+
+Requerimiento: REQ-329 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB
+
+clase                /simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServiceImpl.java   (M)
+
+
+==================================================================================================================
+Version: 1.0.5
+Requerimiento: REQ-364 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ
+
+clase      /simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServiceImpl.java		 (M)
+
+==================================================================================================================
+Version: 1.0.6
+Requerimiento: REQ-399 	Control de Consultas Aplicativo Web de Préstamos Quirografarios
+ACCIÓN / OBJETO
+
+M	/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/dto/DatosSimulacionDto.java
+
+M	/simulador-pq-ejb/src/main/java/ec/fin/biess/pq/simulacion/service/impl/SimulacionCreditoPqServiceImpl.java
+
+
+
+
+
+
+

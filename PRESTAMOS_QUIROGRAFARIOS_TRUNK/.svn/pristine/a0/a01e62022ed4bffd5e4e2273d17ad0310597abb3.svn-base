@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" template="plantillas/impresion.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+	<h4>#{labels['tab.tabla.amortizacion']}</h4>
+	
+	<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody">
+		<f:facet name="header">
+			#{labels['datos.generales']}
+		</f:facet>
+		#{messages['concesion.satisfactoria']}
+	</rich:panel>
+	
+	<rich:dataTable id="tablaDividendos" value="#{concesionCredito.prestamoCalculo.dividendoCalculoList}" var="dividendo" rendered="#{concesionCredito.prestamoCalculo.dividendoCalculoList!=null}">
+					<rich:column>
+						<f:facet name="header">N&uacute;mero</f:facet>
+						<h:outputText value="#{dividendo.numeroDividendo}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Capital Amortizado</f:facet>
+						<h:outputText value="#{dividendo.valorAbonoCapital}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Interes</f:facet>
+						<h:outputText value="#{dividendo.valorInteres}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Interes de Gracia</f:facet>
+						<h:outputText value="#{dividendo.valorIntPerGra}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Dividendo</f:facet>
+						<h:outputText value="#{dividendo.valorCuota}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Saldo Capital</f:facet>
+						<h:outputText value="#{dividendo.valorSaldoCapital}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Fecha Pago Dividendo (dd/mm/yyyy)</f:facet>
+						<h:outputText value="#{dividendo.fechapagoDividendo}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</rich:column>
+				</rich:dataTable>  
+	</ui:define>
+</ui:composition>

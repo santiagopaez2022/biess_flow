@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+		<title>
+			<ui:insert name="titulo">#{titulos['sistema.titulo']}</ui:insert>
+		</title>
+		<link href="${facesContext.externalContext.request.contextPath}/files/css/styles.css" rel="stylesheet" type="text/css" />
+		<link href="${facesContext.externalContext.request.contextPath}/files/css/impresion.css" 
+			rel="stylesheet" type="text/css" media="print" />
+		
+		<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/util.js"></script>
+		<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/control-tabs.js"></script>
+		<!-- INC-2272 Pensiones Alimenticias -->
+		<script type="text/javascript" src="${facesContext.externalContext.request.contextPath}/js/teclado/TecladoVirtual.js"></script>
+		
+		<script type="text/javascript" src="${facesContext.externalContext.request.contextPath}/js/validador.js" />
+	</head>
+
+	<body>
+		<!-- <a4j:outputPanel ajaxRendered="true">
+			<script type="text/javascript">
+				var sessionTimeOut = '${facesContext.externalContext.request.session.maxInactiveInterval}';
+				var sessionTimeOutMillis = parseInt(sessionTimeOut) * 1000;
+		     	setTimeout("window.location.href='#{facesContext.externalContext.request.contextPath}/pages/index.jsp';", 
+				     	sessionTimeOutMillis);
+		 	</script>
+		</a4j:outputPanel> -->
+	
+		<div id="top">
+			<ui:insert name="encabezado">
+				<h:form> 
+    				<a4j:jsFunction name="logoutJsFunction" action="#{principal.logout}"/>
+    				<a4j:jsFunction name="forzarLogoutJsFunction" action="#{principal.forzarLogout}"/>
+ 				</h:form>			
+				<div id="toplinks"><a href="mailto:ayudaprestamos@biess.fin.ec">#{titulos['sistema.ayuda']}</a> <a href="" onclick="logoutFuntion();" class="cursorHand"><img src="${facesContext.externalContext.request.contextPath}/files/images/layout/btn-salir.png" alt="Salir" width="47" height="14" border="0" /></a></div>
+			</ui:insert>
+		</div>
+
+		<div id="bodywrapper"> 
+		  <!-- HEADER --> 
+		  <!-- #BeginLibraryItem "/bancalinea/pq/files/Library/head.lbi" -->
+		  <div id="header">
+		    <h1>#{titulos['sistema.titulo']}</h1>
+		  </div>
+		  <!-- #EndLibraryItem -->
+		  
+		  <div id="content">
+		    <!-- ZONA DE USUARIO -->
+		    <div id="userlogged"><strong>Bienvenido</strong><rich:spacer width="4px" height="1"/><a href="#{facesContext.externalContext.request.contextPath}/pages/concesion/roles.jsf">#{funcionario.nombreCompleto} (${facesContext.externalContext.request.remoteUser})</a></div>		    		  
+		    <ui:fragment rendered="#{datos.esAmaDeCasa and datos.prestamoVigenteAmaCasa or roles.habilitarAfi and !datos.esAmaDeCasa or roles.habilitarJub or roles.habilitarZafrero}">
+		    <div id="contentwrapper">
+
+		      <div id="leftcol"> 
+		        <!--MENU PRINCIPAL CON SUBMENUS-->
+		        <div id="navigationwrapper">
+		          <ui:insert name="retornoPaginaPrincipal">
+		        	<img src="#{facesContext.externalContext.request.contextPath}/files/images/content/back.png" width="8" height="8" alt="Regresar" /> <a href="#{facesContext.externalContext.request.contextPath}/pages/concesion/roles.jsf" class="smallfont"><strong>Página Principal</strong></a>
+		          </ui:insert>
+		          <div id="navigation">
+
+						<h:form id="formTree">
+						<h:panelGroup>
+							<h:outputText value="#{errores['no.existe.opciones.menu']}"
+								rendered="#{empty panelMenuHandler.items}"
+								style="color: red;" />						
+
+							<c:forEach items="#{panelMenuHandler.items}" var="item">						
+								<f:subview rendered="#{item.urlOpcion == '#'}" >
+									<h3>
+										<h:outputText value="#{item.etiquetaOpcionMenu}" />
+									</h3>
+								</f:subview>								
+								<c:forEach items="#{item.opcionMenuList}" var="child_0">
+									<f:subview rendered="#{child_0.urlOpcion != '#'}">
+										<li><h:commandLink
+												value="#{child_0.etiquetaOpcionMenu}"
+												action="#{principal.solicitarItem}"
+												 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" >
+												<f:param value="#{child_0.urlOpcion}" name="url" />
+											</h:commandLink>
+										</li>
+									</f:subview>
+									<f:subview rendered="#{child_0.urlOpcion == '#'}" >
+										<h3>
+											<h:outputText value="#{child_0.etiquetaOpcionMenu}" />
+										</h3>
+									</f:subview>
+									<c:forEach items="#{child_0.opcionMenuList}" var="child_1">
+										<f:subview rendered="#{child_1.urlOpcion != '#'}" >
+											<li>
+												<h:commandLink value="#{child_1.etiquetaOpcionMenu}" action="#{principal.solicitarItem}" >
+													<f:param value="#{child_1.urlOpcion}" name="url"/>
+												</h:commandLink>
+											</li>
+										</f:subview>
+										<f:subview rendered="#{child_1.urlOpcion == '#'}" >
+											<h3>
+												<h:outputText value="#{child_0.etiquetaOpcionMenu}" />
+											</h3>
+										</f:subview>
+										<c:forEach items="#{child_1.opcionMenuList}" var="child_2">
+											<f:subview rendered="#{child_2.urlOpcion != '#'}" >
+												<li>
+													<h:commandLink value="#{child_2.etiquetaOpcionMenu}" action="#{principal.solicitarItem}" >
+														<f:param value="#{child_2.urlOpcion}" name="url"/>
+													</h:commandLink>
+												</li>
+											</f:subview>
+											<f:subview rendered="#{child_2.urlOpcion == '#'}" >		
+												<h:outputText value="#{errores['nivel.menu.no.soportado']}" style="color: red;"/>
+											</f:subview>																		
+										</c:forEach>																																				
+									</c:forEach>																	
+								</c:forEach>
+							</c:forEach>																				
+						</h:panelGroup> 
+						</h:form>
+ <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+				
+					<a4j:form rendered="#{roles.mostrarMensaje==2}">
+						<rich:modalPanel id="pnlMenInf" width="580" height="345">	
+							<div id="basic-modal-content">
+								<h3 align="center" style="color: red; font-size: 18px;">MENSAJE
+									INFORMATIVO</h3>
+								<br/>
+								<p
+									style="text-align: justify; margin: 4px 4px 4px 4px; color: black; font-size: 15px;">Estimado(a)
+									Asegurado(a):</p>
+								<br/>
+								<p
+									style="text-align: justify; margin: 4px 4px 4px 4px; color: black; font-size: 15px;">Nos 
+									encontramos generando las planillas para el descuento mensual de la(s) cuota(s) de 
+									su(s) préstamo(s) que se realiza(n) a través de su empleador.</p>
+								<br/>
+								<p
+									style="text-align: justify; margin: 4px 4px 4px 4px; color: black; font-size: 15px;">
+									Una vez finalizado el mencionado proceso a partir del día #{roles.diaDesdeGeneraComprobante} 
+									del presente mes, podrá acceder a las diferentes opciones del
+									aplicativo web tales como: “Generación de Comprobantes de Pago", 
+									“Liquidación o Cruce de Cuentas” y para la opción de “Novación” 
+									conforme a las fechas indicadas en el cuadro informativo al acceder 
+									en la sección de “Novación”.</p>
+								<br/>
+								<p
+									style="text-align: justify; margin: 4px 4px 4px 4px; color: black; font-size: 15px;">Gracias
+									por su comprensión.</p>
+								<br/>
+								<center>
+									<a onclick="Richfaces.hideModalPanel('pnlMenInf');" href="#" style="font-size: 16px;">ACEPTAR</a>
+								</center>
+							</div>
+						</rich:modalPanel>
+	
+					</a4j:form>
+
+		          </div>
+		        </div>
+		      </div>
+
+		      <!-- COLUMNA DERECHA -->		      
+		      <div id="centercol">
+			      <ui:insert name="contenido">
+			      	Contenido
+			      </ui:insert>
+		      </div>		      
+
+		    </div>
+		    </ui:fragment>
+		    
+		    <ui:fragment rendered="#{datos.esAmaDeCasa and !datos.prestamoVigenteAmaCasa}" >        
+            	<div class="alertbox" style="margin: 0 auto;">#{errores['msg.ama.casa']}</div>        
+        	</ui:fragment>
+		  </div>		    
+		  
+		  <!-- LIBRERIA DEL FOOTER (FOOTER.LIB) --> 
+		  <!-- #BeginLibraryItem "/bancalinea/ph/files/Library/footer.lbi" -->
+		  <div id="footer">
+		    <div id="footertext">
+		    	<ui:insert name="pie">#{labels['copyright']}</ui:insert>
+		    </div>
+		  </div>
+	  	  <!-- #EndLibraryItem -->		 	
+		 		  	
+	  	</div>
+	  	
+	  	<script type="text/javascript">
+			 var _gaq = _gaq || [];
+			 _gaq.push(['_setAccount', 'UA-2745673-2']);
+			 _gaq.push(['_trackPageview']);
+			
+			 (function() {
+			   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			 })();
+		</script> 
+	  	
+	  	<script type="text/javascript">
+			function logoutFuntion() {
+    			logoutJsFunction();
+			}
+			function forzarLogoutFunction() {
+				forzarLogoutJsFunction();
+			}			
+		</script>
+	</body>
+</html>

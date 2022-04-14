@@ -1,0 +1,192 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+		<a4j:region id="cargaInicialRegion">
+		<h:form id="frmCargaInicial">
+			<a4j:jsFunction action="#{consultaContrato.cargarDataProducto}"
+				name="cargarDataProducto"
+				reRender="opnlPqConsultaDinamico,msgGlobal,dataProducto"></a4j:jsFunction>
+
+		</h:form>
+		</a4j:region>
+
+		<a4j:outputPanel ajaxRendered="true" id="formularioProducto">
+			<a4j:status for="cargaInicialRegion">
+				<f:facet name="start">
+					<rich:panel styleClass="panelInvisible">
+						<h:graphicImage id="uiBlanco12" value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages['pq.dinamico.esperando']}"></h:outputText>
+					</rich:panel>
+				</f:facet>
+			</a4j:status>
+			<a4j:region id="dataProducto"
+				rendered="#{consultaContrato.habilitaForm}">
+
+				<div class="text_mensaje_pagina">
+					<h:outputText
+						value="#{consultaContrato.datos.dataProductoDinamico.titulo}" />
+				</div>
+				<a4j:outputPanel ajaxRendered="true">
+					<h:messages styleClass="errorPanel" globalOnly="true"
+						showDetail="false" showSummary="true" id="msgGlobal" />
+				</a4j:outputPanel>
+
+
+				<a4j:outputPanel id="opnlPqConsultaDinamico">
+
+					<h:form id="frmConsultaContrato">
+						<a4j:jsFunction action="#{consultaContrato.cargarDataProducto}"
+							name="cargarDataProducto"
+							reRender="opnlPqConsultaDinamico,msgGlobal"></a4j:jsFunction>
+
+						<rich:panel id="pnlProveedor" styleClass="panel"
+							headerClass="pheader" bodyClass="pbody"
+							rendered="#{consultaContrato.cantidadProveedores > 1}">
+							<f:facet name="header">
+							Escoja el proveedor deseado
+				</f:facet>
+
+							<a4j:region id="regProveedor">
+								<h:panelGrid columns="2">
+									<h:outputText value="Seleccion:" />
+
+									<h:selectOneMenu id="selectTablaProveedor"
+										value="#{consultaContrato.inputFormContrt.rucSeleccionado}">
+										<f:selectItem itemValue="" itemLabel="Seleccione ..." />
+										<f:selectItems value="#{consultaContrato.proveedores}" />
+										<a4j:support event="onchange" process="btnConsultarContrato"
+											action="#{consultaContrato.habilitarBusqueda}"
+											ajaxSingle="true" reRender="btnConsultarContrato" />
+									</h:selectOneMenu>
+								</h:panelGrid>
+							</a4j:region>
+						</rich:panel>
+						<rich:panel id="pnlReservaEcuTur" styleClass="panel"
+							headerClass="pheader" bodyClass="pbody">
+							<f:facet name="header">
+							Ingreso #{consultaContrato.datos.dataProductoDinamico.nombreBusqueda}
+				</f:facet>
+
+							<a4j:region id="regPqDinamico">
+								<h:panelGrid columns="1">
+									<rich:panel id="uiMensage1" styleClass="messagePanel">
+										<b> <h:outputText
+												value="#{consultaContrato.datos.dataProductoDinamico.descripcion}"
+												escape="false"></h:outputText>
+										</b>
+									</rich:panel>
+								</h:panelGrid>
+
+								<h:panelGrid columns="4">
+									<h:outputText
+										value="#{consultaContrato.datos.dataProductoDinamico.nombreBusqueda}" />
+
+									<h:inputText id="txtNumeroContrato"
+										value="#{consultaContrato.inputFormContrt.numContrtIng}"
+										styleClass="calc-write" maxlength="30" />
+									<a4j:commandButton id="btnConsultarContrato"
+										action="#{consultaContrato.consultarNumContrato}"
+										value="Consultar" styleClass="boton"
+										disabled="#{consultaContrato.buscaHabilitada}"
+										reRender="cmdAceptarContinuar">
+
+									</a4j:commandButton>
+									<a4j:outputPanel ajaxRendered="true">
+										<h:message for="txtNumeroContrato" errorClass="requerido" />
+									</a4j:outputPanel>
+									<rich:spacer />
+								</h:panelGrid>
+
+								<a4j:status for="regPqDinamico">
+									<f:facet name="start">
+										<rich:panel styleClass="panelInvisible">
+											<h:graphicImage id="uiBlanco7" value="/img/ajax/cargando.gif" />
+											<h:outputText value="#{messages['pq.dinamico.validando']}"></h:outputText>
+										</rich:panel>
+									</f:facet>
+								</a4j:status>
+
+
+							</a4j:region>
+
+
+						</rich:panel>
+						<a4j:outputPanel id="infoRespProveedor">
+							<rich:panel id="pnlDatosHeader" styleClass="panel"
+								headerClass="pheader" bodyClass="pbody">
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+
+
+								<h:panelGrid columns="2" id="infoResHeader">
+									<c:forEach var="campo"
+										items="#{consultaContrato.datos.dataRespGenericaResponseDto.header}">
+
+										<h:outputText value="#{campo.item}" />
+										<h:outputText value="#{campo.valor}" />
+
+
+									</c:forEach>
+								</h:panelGrid>
+
+
+
+
+							</rich:panel>
+
+
+							<rich:panel id="pnlDatosBody" styleClass="panel"
+								headerClass="pheader" bodyClass="pbody">
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+
+								<h:panelGrid columns="2" id="infoRespBody">
+									<c:forEach var="campo"
+										items="#{consultaContrato.datos.dataRespGenericaResponseDto.body}">
+
+										<h:outputText value="#{campo.item}" />
+										<h:outputText value="#{campo.valor}" />
+
+
+									</c:forEach>
+								</h:panelGrid>
+
+
+
+							</rich:panel>
+
+						</a4j:outputPanel>
+						<rich:separator height="3" />
+						<br />
+
+						<div align="center">
+							<h:commandButton id="cmdAceptarContinuar" value="Aceptar"
+								action="#{consultaContrato.aceptar}" styleClass="botonbarra"
+								disabled="#{consultaContrato.habilitAcept}">
+							</h:commandButton>
+							<h:graphicImage value="/img/blanco.jpg" />
+							<a4j:commandButton action="#{consultaContrato.cancelar}"
+								value="Cancelar" styleClass="botonbarra"  reRender="@form"/>
+						
+						</div>
+
+					</h:form>
+				</a4j:outputPanel>
+
+			</a4j:region>
+		</a4j:outputPanel>
+		<script type="text/javascript">
+	window.onload =cargarDataProducto();
+		</script>
+	</ui:define>
+</ui:composition>

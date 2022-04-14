@@ -1,0 +1,70 @@
+/* 
+ * Copyright 2007 INSTITUTO ECUATORIANO DE SEGURIDAD SOCIAL - ECUADOR 
+ * Licensed under the IESS License, Version 1.0 (the "License"); you may not use this 
+ * file. You may obtain a copy of the License at http://www.iess.gov.ec Unless required 
+ * by applicable law or agreed to in writing, software distributed under the License is 
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * express or implied. See the License for the specific language governing permissions 
+ * and limitations under the License.
+ */
+
+package ec.gov.iess.creditos.sp;
+
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.object.StoredProcedure;
+
+import ec.gov.iess.creditos.enumeracion.TipoLiquidacion;
+import ec.gov.iess.creditos.modelo.persistencia.pk.PrestamoPk;
+
+/**
+ * Incluir aquí la descripción de la clase.
+ *  
+ * @version $Revision: 1.1 $  [Sep 19, 2007]
+ * @author pablo
+ */
+public class CalcularLiquidacion extends StoredProcedure {
+
+	private static final String SQL = "KSCREKPRELIQ.CALTOTLIQPRE";
+
+	public CalcularLiquidacion(DataSource ds) {
+		setDataSource(ds);
+		setSql(SQL);
+
+		// Parametros de entrada
+		declareParameter(new SqlParameter("NUMPREAFI", Types.NUMERIC));
+		declareParameter(new SqlParameter("CODPRECLA", Types.NUMERIC));
+		declareParameter(new SqlParameter("CODPRETIP", Types.NUMERIC));
+		declareParameter(new SqlParameter("ORDPREAFI", Types.NUMERIC));
+		declareParameter(new SqlParameter("CODTIPLIQ", Types.VARCHAR));
+
+		// Parametros de salida
+		declareParameter(new SqlOutParameter("AONACUDIVTOT", Types.NUMERIC));
+		declareParameter(new SqlOutParameter("AONTOTCANLIQ", Types.NUMERIC));
+		declareParameter(new SqlOutParameter("AONINTMORACU", Types.NUMERIC));
+		declareParameter(new SqlOutParameter("AONVALSEGSALACU", Types.NUMERIC));
+		declareParameter(new SqlOutParameter("AOCFECINI", Types.TIMESTAMP));
+		declareParameter(new SqlOutParameter("AOCFECFIN", Types.TIMESTAMP));
+		declareParameter(new SqlOutParameter("AONMONPRE", Types.NUMERIC));
+		declareParameter(new SqlOutParameter("AOCCODESTPRE", Types.VARCHAR));
+		declareParameter(new SqlOutParameter("AOCRESPRO", Types.VARCHAR));
+		declareParameter(new SqlOutParameter("AOCMENERR", Types.VARCHAR));
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map execute(PrestamoPk prestamoPk, TipoLiquidacion tipoLiquidacion) {
+		Map input = new HashMap();
+		input.put("NUMPREAFI", prestamoPk.getNumpreafi());
+		input.put("ORDPREAFI", prestamoPk.getOrdpreafi());
+		input.put("CODPRETIP", prestamoPk.getCodpretip());
+		input.put("CODPRECLA", prestamoPk.getCodprecla());
+		input.put("CODTIPLIQ", tipoLiquidacion);
+		return execute(input);
+	}
+}

@@ -1,0 +1,2700 @@
+pq-concesion-web
+
+release-1_0
+release-1_0_1
+release-1_0_2
+release-1_0_3
+release-1_0_4
+release-1_1
+release-1_1_1
+release-1_1_2
+release-1_1_3
+release-1_1_4
+release-1_1_5
+	-ec.gov.iess.pq.concesion.web.backing.ContactosBean Ajustandose a las refactorizaciones de PKs del nuevo jar de HL
+	-build.xml Actualización de versión
+	-Actualización de librería hl-ejb, usando versión 1.0.3
+	-Actualización de librería creditos-pq-ejb a versión 1.2
+	-actualizando jbos-web.xml para usar  <security-domain>java:/jaas/iessSecurity</security-domain>
+	-login.xhtml elminando texto que indica la necesidad de aprobar un buró de crédito
+	-resultadoPrecalificacion.xhtml  eliminando evaluación de buró de crédito en la precalificación
+	-Se creó el archivo de cambios
+release-1_1_6
+	-Por jvaca. 
+		ConcesionCreditoBean.java Uso de nuevo método genérico para determinar el id de variedad de crédito en cada uno de los métodos de calculo y simulación de créditos.  Determinación de si es necesario guardar las garantías dependiendo del tipo de jubilado.
+		Actualización de libreria creditos-pq-ejb-1.2 a creditos-pq-ejb-1.3
+		Actualización de librería hl-ejb-1.0.4 a hl-ejb-1.0.5
+		concesionCredito.xhtml Mostrando el total de garantías cuando es un afiliado o es zafrero
+		resultadoPrecalificacion.xhtml Mostrando el total de garantías cuando es un afiliado o es zafrero
+		build.xml Actualización de versión de 1.1.5 a 1.1.6
+		
+Version: 1.0.7
+Requerimiento: INC-1953
+Cambios: 		
+pq-web / Modificación de aplicativo - corrección de novación
+clase:	ec.gov.iess.pq.concesion.web.backing.VerificacionRegistroCivilBean.java	(M)
+
+=======================	
+Version: 1.0.8
+Requerimiento: INC-1953
+Cambios: 		
+pq-web / Modificación de aplicativo - corrección de novación
+clase	ec.gov.iess.pq.concesion.web.backing.ConcesionCreditoBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.VerificacionRegistroCivilBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.bean.DatosBean.java	(M)
+js	/WebContent/js/util.js	(M)
+xhtml	/WebContent/pages/concesion/concesionCredito.xhtml	(M)
+xhtml	/WebContent/pages/novacion/concesionCreditoNovacion.xhtml	(M)
+lib	/lib/pq-concesion-ejb/14-pq-concesion-ejb-1.0.0.jar	(M)
+
+========================
+Version: 1.0.9
+Requerimiento: INC-1835
+Cambios: 	
+clase	ec.gov.iess.pq.concesion.web.backing.ActualizarDatosPersonalesBean.java	(C) 
+clase	ec.gov.iess.pq.concesion.web.backing.DesbloqueoOnlineBean.java	(C) 
+clase	ec.gov.iess.pq.concesion.web.backing.EmailDesbloqueoBean.java	(C) 
+clase	ec.gov.iess.pq.concesion.web.handler.MenuTreeHandler.java	(M) 
+properties	ec.gov.iess.pq.concesion.web.resources.errores.properties	(M) 
+properties	ec.gov.iess.pq.concesion.web.resources.messages.properties	(M) 
+jsp	/WebContent/error/login-error.jsp	(M) 
+css	/WebContent/files/css/styles.css	(M) 
+js	/WebContent/js/teclado/TecladoVirtual.js	(M) 
+xhtml	/WebContent/pages/concesion/datosSolicitante.xhtml	(M) 
+xhtml	/WebContent/pages/novacion/datosSolicitante.xhtml	(M) 
+xhtml	/WebContent/templates/base-panel-menu-vertical.xhtml	(M) 
+xhtml	/WebContent/templates/baseSinSesion.xhtml	(M) 
+jsp	/WebContent/unlock/onlineUnlock.jsp	(C) 
+jsp	/WebContent/unlock/emailUnlock.jsp	(C) 
+xhtml	/WebContent/update/updatePersonalData.xhtml	(C) 
+xml	/WebContent/WEB-INF/faces-config.xml	(M) 
+xml	/WebContent/WEB-INF/web.xml	(M) 
+xml	/WebContent/WEB-INF/jboss-web.xml	(M) 
+properties	/lib/lib.properties	(M) 
+jar	/lib/pq-concesion-ejb/14-pq-concesion-ejb-1.0.0.jar	(M) 
+jar	/lib/seguridades-ejb/11_seguridades-biess-ejb-1.0.jar	(M) 
+jar	/lib/unlock-ejb/13q_unlock-ejb-1.0.0.jar	(M) 
+xml	build.xml	(M) 
+jsp	/WebContent/pages/login.jsp	(M) 
+ftl	"ec.fin.biess.creditos.pq.alertas.templates.email.actdatos.ftl (este template ya debe haber sido versionado con el INC-1817)"	(C) 
+java	"ec.fin.biess.creditos.pq.alertas.util.AlertUtil.java (esta clase ya debe haber sido versionada con el INC-1817)"	(C) 
+jar	"/lib/alerts-ejb/13p_alerts-ejb-1.0.0.jar (esta libreria ya debe haber sido versionada con el INC-1817)"	(C) 
+
+========================
+Version: 1.0.10
+Requerimiento: INC-1719
+Cambios: 
+clase	ec.gov.iess.pq.concesion.web.backing.DatosSolicitanteBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.ResultadoPrecalificacionBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.ResultadoPrecalificacionNovacionBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.RolesBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.bean.DatosBean.java	(M)
+xhtml	/WebContent/pages/concesion/datosSolicitante.xhtml	(M)
+clase	/WebContent/pages/novacion/datosSolicitante.xhtml	(M)
+css	/WebContent/files/css/styles.css	(M)
+properties	ec.gov.iess.pq.concesion.web.resources.errores.properties	(M)
+properties	ec.gov.iess.pq.concesion.web.resources.labels.properties	(M)
+properties	ec.gov.iess.pq.concesion.web.resources.messages.properties	(M)
+
+========================
+Version: 1.0.11
+Requerimiento: INC-2005
+Cambios: 
+clase	ec.gov.iess.pq.concesion.web.backing.ConsultaCreditoBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.ResultadoPrecalificacionBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.ResultadoPrecalificacionNovacionBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.RolesBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.bean.DatosBean.java	(M)
+lib	/lib/pq-concesion-ejb/14-pq-concesion-ejb-1.0.0.jar	(M)
+
+========================
+Version: 1.0.12
+Requerimiento: INC-1800
+Cambios: 
+clase	ec.gov.iess.pq.concesion.web.backing.TipoProductosBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.ConcesionCreditoBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.DatosSolicitanteBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.bean.DatosBean.java	(M)
+properties	ec.gov.iess.pq.concesion.web.resources.messages.properties	(M)
+jar	lib/pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+css	WebContent.files.css.styles.css	(M)
+xhtml	WebContent.pages.concesion.datosSolicitante.xhtml	(M)
+Fecha: 16/06/2014
+
+========================
+Version: 1.0.13
+Requerimiento: INC-20140523 (Regularización, sin Jtrac)
+Cambios: 
+arch. Config	ec.gov.iess.pq.concesion.web.resources.labels.properties	(M)
+arch. Config	ec.gov.iess.pq.concesion.web.resources.errores.properties	(M)
+jar	logging-ejb	(M)
+jar	pq-concesion-ejb	(M)
+xhtml	pages/concesion/datosSolicitante.xhtml	(M)
+xhtml	pages/novacion/datosSolicitante.xhtml	(M)
+jar	/lib/loggin-ejb/loggin-ejb.jar	(M)
+jar	/lib/pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+
+========================
+Version: 1.0.14 
+Requerimiento: INC-2128 / verificar con el incidente INC-2110 según si se aplica por separado
+Cambios: 
+clase	ec.fin.biess.creditos.pq.alertas.util. AlertUtil.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.ConcesionCreditoBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.CreditoAccionBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.DatosSolicitanteBean.java	(M)
+clase	ec.gov.iess.pq.concesion.web.backing.RolesBean.java	(M)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.actdatos.ftl	(M)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.compagind.ftl	(M)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.credito.ftl	(M)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.crucefr.ftl	(M)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.liqcredito.ftl	(M)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.login.ftl	(C)
+ftl	ec.fin.biess.creditos.pq.alertas.templates.email.novavion.ftl	(M)
+
+========================
+Version: 1.0.15 
+Requerimiento: INC-2128 / Corrección de BUG: Mejora de notificaciones, inclusión de nombres en mensajes. Inclusión de notificación en mensaje de inicio de sesión
+Cambios: 
+ftl		ec.fin.biess.creditos.pq.alertas.templates.email.compagind.ftl	(M)
+ftl		ec.fin.biess.creditos.pq.alertas.templates.email.liqcredito.ftl	(M)
+
+========================
+Version: 1.0.16
+Requerimiento: INC-2114 / Atención de RF para control de generación de comprobantes individuales en aplicativo web
+Cambios: 
+Paquetes:
+(E)	ec.fin.biess.cii	
+(C) Paquete	ec.fin.biess.creditos.pq.filtros	
+Clase	
+(C) ec.fin.biess.creditos.pq.filtros. ProcesoRunningFilter.java	
+(M)	ec.gov.iess.pq.concesion.web.backing.RolesBean.java	
+(M) ec.gov.iess.pq.concesion.web.bean.DatosBean.java	
+Properties:
+(M)	ec.gov.iess.pq.concesion.web.resources.labels.properties	 
+(M)	ec.gov.iess.pq.concesion.web.resources.messages.properties	
+Xml:	
+(M) WebContent/WEB-INF/web.xml	
+Xhtml:	
+(C) WebContent/pages/concesion/bloqueoProceso.xhtml	
+Jar:	
+(M) lib/ pq-concesion-ejb/ pq-concesion-ejb.jar
+
+========================
+Version: 1.0.17
+Requerimiento: INC-2203 / Control monto mínimo PQ
+Cambios: 
+Clase:	
+(M) ec.gov.iess.pq.concesion.web.backing.ConcesionCreditoBean.java
+Jar:	
+(M) lib/ pq-concesion-ejb/ pq-concesion-ejb.jar
+
+========================
+Version: 1.0.18
+Requerimiento: INC-2135 / Modificación aplicativo - Incluir consumo WS de pensiones para determinar valores de concesión
+Cambios: 
+Clases:	
+(M) ec.gov.iess.pq.concesion.web.backing.ConcesionCreditoBean.java
+(M) ec.gov.iess.pq.concesion.web.backing.DatosBean.java
+(M) ec.gov.iess.pq.concesion.web.backing.DatosSolicitanteBean.java
+(M) ec.gov.iess.pq.concesion.web.backing.ResultadoPrecalificacionBean.java
+(M) ec.gov.iess.pq.concesion.web.backing.ResultadoPrecalificacionNovacionBean.java
+(M) ec.gov.iess.pq.concesion.web.backing.RolesBean.java
+jar:
+(M) lib/logging-ejb/logging-ejb.jar
+(M) lib/pq-concesion-ejb/pq-concesion-ejb.jar
+properties:
+(M) ec.gov.iess.pq.concesion.web.resources.labels.properties
+xhtml:
+(M) WebContent/pages/concesion/concesionCredito.xhtml
+(M) WebContent/pages/concesion/datosSolicitante.xhtml
+(M) WebContent/pages/concesion/resultadoPrecalificacion.xhtml
+(M) WebContent/pages/novacion/concesionCreditoNovacion.xhtml
+(M) WebContent/pages/novacion/datosSolicitante.xhtml
+(M) WebContent/pages/novacion/resultadoPrecalificacion.xhtml
+
+========================
+Version: 1.0.19
+Requerimiento: INC-2135 / CORRECCION BUG: Modificación aplicativo - Incluir consumo WS de pensiones para determinar valores de concesión
+Cambios: 
+xhtml:
+(M) WebContent/pages/concesion/resultadoPrecalificacion.xhtml
+(M) WebContent/pages/novacion/resultadoPrecalificacion.xhtml
+
+========================
+Version: 1.0.20
+Requerimiento: INC-2272 / Implementación de cambios en la funcionalidad Préstamos Quirografarios para Pago de Pensiones Alimenticias.
+Cambios: 
+Clase	/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/constante/Modulo.java	(C)
+Clase	/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/converter/TipoPrestamoProductoConverter.java	(C)
+ftl	/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferencia.ftl	(C)
+paquete	ec.fin.biess.creditos.pq.constante	(C)
+Paquete	ec.fin.biess.creditos.pq.converter	(C)
+paquete	ec.fin.biess.creditos.pq.formularios	(C)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/CombosDireccionBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/DatosBean.java	(M)
+Properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/botones.properties	(M)
+Properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/condiciones.properties	(M)
+Properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/errores.properties	(M)
+Properties	
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties	(M)
+Properties	
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/util/CedulaUtil.java	(C)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/validator/CedulaValidator.java	(C)
+Css	/pq-concesion-web/WebContent/files/css/styles.css	(M)
+Css	/pq-concesion-web/WebContent/files/css/stylesImpresionFormulario.css	(C)
+Png	/pq-concesion-web/WebContent/files/images/content/Biess-Ecuador.png	(C)
+Png	/pq-concesion-web/WebContent/files/images/content/laptop.png	(C)
+Png	/pq-concesion-web/WebContent/files/images/content/pensiones_alimenticias.png	(C)
+Png	/pq-concesion-web/WebContent/files/images/content/product.png	(C)
+Png	/pq-concesion-web/WebContent/files/images/layout/headerImpresionFormulario.png	(C)
+JS	/pq-concesion-web/WebContent/js/util.js	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/autorizacionTransferencia.xhtml	(C)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/concesionCredito.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/productosVarios.xhtml	(C)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/resultadoPrecalificacion.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/resultadoPrestamo.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/concesion/tipoProductos.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/autorizacionTransferencia.xhtml	(C)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/concesionCreditoNovacion.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/productosVariosNovacion.xhtml	(C)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/resultadoPrestamoNovacion.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/tipoProductosNovacion.xhtml	(C)
+Xhtml	/pq-concesion-web/WebContent/pages/novacion/tipoProductosNovacion.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/templates/base-panel-menu-vertical.xhtml	(M)
+Xhtml	/pq-concesion-web/WebContent/templates/impresionFormulario.xhtml	(C)
+Xml	/pq-concesion-web/WebContent/WEB-INF/faces-config.xml	(M)
+Xml	/pq-concesion-web/WebContent/WEB-INF/web.xml	(M)
+jar	/pq-concesion-web/lib/creditos-core/creditos-core.jar	(M)
+jar	/pq-concesion-web/lib/cuenta-bancaria-1.0.2/cuentabancaria-ejb.jar	(M)
+jar	/pq-concesion-web/lib/pq-concesion-ejb/creditos-core-pq.jar	(M)
+
+==========================================
+Version: 1.0.21
+Requerimiento: INC-2148 / Requerimiento Refugiados PQ.- Personas refugiadas y extranjeros que trabajan en relación de dependencia y son afiliados al Instituto Ecuatoriano de Seguridad Social  
+Cambios: 
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java (M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/CombosDireccionBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/DatosBean.java	(M)
+properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/resultadoPrestamo.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/novacion/resultadoPrestamoNovacion.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml	(M)
+ftl	/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferencia.ftl	(M)
+Css	/pq-concesion-web/WebContent/files/css/styles.css	(M)
+Jar	lib/ creditos-1.0.0 /creditos-pq-core.jar	(M)
+Jar	lib/ pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+
+==========================================
+Version: 1.0.22
+Requerimiento: INC-2292 / Actualización información pasaporte de refugiados en la tabla de créditos aplicación  
+Cambios: 
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java			(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties	(M) 
+properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties	(M) 
+xhtml	/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml							(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/resultadoPrestamo.xhtml						(M)
+xhtml	/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml							(M)
+xhtml	/pq-concesion-web/WebContent/pages/novacion/resultadoPrestamoNovacion.xhtml					(M)
+Jar	lib/ creditos-1.0.0 /creditos-pq-core.jar														(M)
+Jar	lib/ pq-concesion-ejb/pq-concesion-ejb.jar														(M)
+
+
+==========================================
+Version: 1.0.23
+Requerimiento: INC-2292 / Correción del Bug 3: Actualización información pasaporte de refugiados en la tabla de créditos aplicación.
+Cambios: 
+xhtml
+/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml									(M)
+/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml									(M)
+
+==========================================
+Version: 1.0.24
+Requerimiento: INC-2315 / Cambio de imagenes aplicativo PQ
+Cambios: 
+image	/pq-concesion-web/WebContent/files/images/content/foto-principal.jpg	(M)
+image	/pq-concesion-web/WebContent/files/images/content/foto-pq.jpg			(M)
+xhtml	/pq-concesion-web/WebContent/pages/principal.xhtml						(M)
+
+==========================================
+Version: 1.0.25
+Requerimiento: INC-2286 / Préstamo Quirografario - Ferrocarriles del Ecuador 
+Cambios: 
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/DesbloqueoClienteBacking.java	(M)
+Clase	/planillaspq-web/src/ec/gov/iess/planillaspq/web/backing/dm/DesbloqueoClienteDM.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java	(M)
+Clase 	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/DatosBean.java	(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/DetallePrestamoBean.java	(M)
+Properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/condiciones.properties	(M)
+properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties	(M)
+Properties	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties	(M)
+CSS	/pq-concesion-web/WebContent/files/css/styles.css	(M)
+Imagen	/pq-concesion-web/WebContent/files/images/content/train_transportation.png	(C)
+js	/pq-concesion-web/WebContent/js/util.js	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/concesionCredito.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/productosVarios.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/proveedores.xhtml	(C)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/resultadoPrestamo.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/consulta/seguimientoPrestamoQuirografario.xhtml	(M)
+xhtml	/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml	
+Xhtml	/planillaspq-web/WebContent/pages/ordenes/desbloqueoCliente.xhtml	(M)
+ftl	/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl	(C)
+xml	/pq-concesion-web/WebContent/WEB-INF/faces-config.xml	(M)
+xml	/pq-concesion-web/WebContent/WEB-INF/jboss-web.xml	(M)
+xml	/pq-concesion-web/WebContent/WEB-INF/web.xml	(M)
+jar	lib/ creditos-core/creditos-pq-core.jar	(M)
+Jar	lib/ pq-concesion-ejb/pq-concesion-ejb.jar	(M)
+
+==========================================
+Version: 1.0.26
+Requerimiento: INC-2318 / Modificación en aplicativo para desactivar la concesión los dias sabados y domingos 
+Cambios: 
+/ec/fin/biess/creditos/pq/filtros/FinSemanaFilter.java											(C)
+/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl		(M)
+/ec/gov/iess/pq/concesion/web/resources/labels.properties										(M)
+/ec/gov/iess/pq/concesion/web/resources/messages.properties										(M)
+WebContent/pages/concesion/bloqueoFinSemana.xhtml												(C)
+WebContent/pages/concesion/datosSolicitante.xhtml												(M)
+WebContent/pages/novacion/datosSolicitante.xhtml												(M)
+WebContent/WEB-INF/web.xml																		(M)
+ 
+==========================================
+Version: 1.0.27
+Requerimiento: INC-2286 / Correción BUG.- Préstamo Quirografario - Ferrocarriles del Ecuador 
+Cambios: 
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java								(M)
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java								(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml														(M)
+xhtml	/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml														(M)
+ftl		/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl	(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/productosVarios.xhtml														(M)
+xhtml	/pq-concesion-web/WebContent/pages/concesion/resultadoPrestamo.xhtml													(M)
+
+==========================================
+Version: 1.0.28
+Requerimiento: INC-2286 / Correción BUG 2.- Préstamo Quirografario - Ferrocarriles del Ecuador 
+Cambios: 
+Clase	/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java		(M)
+
+
+=================================================================================
+Version: 1.0.29
+Requerimiento: INC-2129 / Cambio en aplicativo - control en generación de comprobantes. 
+Cambios: 
+
+Clase
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java			(M)
+
+Properties
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties				(M)
+
+Xhtml
+/pq-concesion-web/WebContent/pages/consulta/pagIndSeleccion.xhtml									(M)
+/pq-concesion-web/WebContent/pages/consulta/pagIndSeleccionSaldos.xhtml								(M)
+
+Imagen
+/pq-concesion-web/WebContent/files/images/content/check-blank.png									(C)
+/pq-concesion-web/WebContent/files/images/content/check-select.png									(C)
+
+Jar
+/pq-concesion-ejb/lib/creditos-core/creditos-pq-core.jar											(M)
+lib/ pq-concesion-ejb/pq-concesion-ejb.jar															(M)
+
+INTEGRACION DE CAMBIOS CON EL INCIDENTE INC-2129 / Cambio en aplicativo - control en generación de comprobantes. 
+Requerimiento: INC-2338 / Remover opción para crear Préstamos Quirografarios destinados a la compra de computadores.
+Cambios:
+
+Xhtml
+/WebContent/pages/concesion/productosVarios.xhtml					(M)
+
+
+=================================================================================
+Version: 1.0.30
+Requerimiento: INC-2300 / Implementación requerimiento funcional estructura R24 
+Cambios: 
+
+Clase	
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java	(M)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java			(M)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/bean/CombosDireccionBean.java		(M)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/util/MensajesUtil.java			(C)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/util/ValidaDatosUtil.java			(C)
+/pq-concesion-webJavaSource/ec/gov/iess/pq/concesion/web/util/CedulaUtil.java				(M)
+
+Properties	
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/errores.properties		(M)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+Xhtml	
+/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml				(M)
+/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml				(M)
+Dir	
+/pq-concesion-web/lib/conozcasucliente-ejb										(C)
+Jar	
+/pq-concesion-web/lib/conozcasucliente-ejb/13_conozcasucliente-ejb.jar			(C)
+Properties	
+/pq-concesion-web/lib/lib.properties											(M)
+Xml	
+/pq-concesion-web/build.xml 													(M)
+Jar 	
+/pq-concesion-web/lib/creditos-core/creditos-pq-core.jar 						(M)
+/pq-concesion-web/lib/pq-concesion-ejb/pq-concesion-ejb.jar 					(M)
+
+=================================================================================
+Version: 1.0.31
+Requerimiento: INC-2300 / Adición de campos en la estructura R24 según acta de trabajo  
+Cambios: 
+
+Clase	
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java			(M)
+
+Xhtml
+/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml					(M)
+/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml					(M)
+
+Properties
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+
+Jar
+/pq-concesion-web/lib/conozcasucliente-ejb/13_conozcasucliente-ejb.jar				(M)
+
+
+=================================================================================
+Version: 1.0.32
+Requerimiento: INC-2344 / PENSIONES ALIMENTICIAS.
+Por pedido de la Jefatura Nacional de Préstamos Quirografarios se realiza el siguiente incidente:
+Se elimina formulario anterior (mal subido) para la autorización de transferencia de fondos de pensiones alimenticias por no ser el consensuado entre las áreas, el que se adjunta es el firmado y el que se autorizó para este producto.
+  
+Cambios: 
+
+Ftl
+/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferencia.ftl				(M)
+/pq-concesion-web/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl			(M)
+
+Clase
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+/pq-concesion-web/JavaSource/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java				(M)
+
+Xhtml
+/pq-concesion-web/WebContent/pages/concesion/autorizacionTransferencia.xhtml								(M)
+/pq-concesion-web/WebContent/pages/concesion/datosSolicitante.xhtml											(M)
+/pq-concesion-web/WebContent/pages/concesion/resultadoPrestamo.xhtml										(M)
+/pq-concesion-web/WebContent/pages/novacion/autorizacionTransferencia.xhtml									(M)
+/pq-concesion-web/WebContent/pages/novacion/datosSolicitante.xhtml											(M)
+/pq-concesion-web/WebContent/pages/novacion/resultadoPrestamoNovacion.xhtml									(M)
+/pq-concesion-web/WebContent/templates/impresionFormulario.xhtml											(M)
+
+QA
+Version.txt					(M)
+build.properties			(M)
+
+=================================================================================
+Version: 1.0.33
+Requerimiento: INC-2350 / IMPLEMENTACION AUTOMATIZADA DE VERIFICACION EN LISTA DE CONTROL DE USUARIOS PQ
+Cambios: 
+
+Clases:
+JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java					(M)
+JavaSource/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+JavaSource/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+JavaSource/ec/gov/iess/pq/concesion/web/bean/DatosBean.java									(M)
+JavaSource/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java					(M)
+JavaSource/ec/gov/iess/pq/concesion/web/util/DireccionIPUtil.java							(C)
+Properties:
+JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties							(M)
+JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties						(M)
+Xhtmls:
+WebContent/pages/concesion/resultadoPrecalificacion.xhtml									(M)
+WebContent/pages/concesion/resultadoPrestamo.xhtml											(M)
+WebContent/pages/novacion/resultadoPrecalificacion.xhtml									(M)
+WebContent/pages/novacion/resultadoPrestamoNovacion.xhtml									(M)
+WebContent/pages/concesion/concesionCredito.xhtml											(M)
+WebContent/pages/consulta/seguimientoPrestamoQuirografario.xhtml							(M)
+Jar:
+lib/conozcasucliente-ejb/conozcasucliente-eje.jar											(M)
+lib/creditos-core/creditos-pq-core.jar														(M)
+lib/pq-concesion-ejb/pq-concesion-ejb.jar													(M)
+
+=================================================================================
+Version: 1.0.34
+Requerimiento: INC-2452 / REGULARIZACION ESTADO PRÉSTAMOS PEP'S
+Cambios: 
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+
+=================================================================================
+Version: 1.0.35
+Requerimiento: INC-2454 / Envío de correo cuando el usuario es bloqueado por exceder el límite de intentos de acceso.
+Cambios: 
+
+Clase	ec/fin/biess/creditos/pq/alertas/util/AlertUtil.java					(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/ActualizarDatosPersonalesBean.java	(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java			(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java				(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java			(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/RolesBean.java						(M)
+Jar		lib/alerts-ejb/13p-alerts-ejb-1.0.2.jar									(M)
+
+=================================================================================
+Version: 1.0.36
+Requerimiento: INC-2487 / Implementación cambios código seguro para Apps PQ
+Cambios: 
+Clase	(M)	JavaSource/ec/fin/biess/creditos/pq/alertas/util/AlertUtil.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/ActualizarDatosPersonalesBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/ContactosBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/DesbloqueoOnlineBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/EmailDesbloqueoBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/PagIndHelper.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/PrincipalBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/backing/VerificacionRegCivilBean.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/converter/DineroConverter.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/handler/FuncionarioHandler.java
+Clase	(M)	JavaSource/ec/gov/iess/pq/concesion/web/handler/MenuTreeHandler.java
+Jar		(M)	lib/alerts-ejb/13p-alerts-ejb-1.1.3.jar
+carpeta	(C)	lib/codigo_seguro
+xml		(M)	ant/build.xml
+jar		(C)	lib/codigo_seguro/codigo-seguro-1.1.1
+jar		(M)	lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.1.3.jar
+jar		(M)	lib/creditos-core/13_creditos-pq-core-1.1.9
+jar		(M)	lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.22
+jar		(M)	lib/unclock-ejb/13q_unclock-ejb-1.1.4
+Properties	(M)	lib/lib.properties
+
+
+=================================================================================
+Version: 1.0.37
+Requerimiento: INC-2487 / BUG para corregir el acceso a las paginas de novaciones desde los DIAS 27 a fin de mes (enero a noviembre) y del 25 al 31 de diciembre.
+Cambios: 
+
+Clase		ec/fin/biess/creditos/pq/filtros/FinSemanaFilter.java			(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/RolesBean.java				(M)
+Clase		ec/gov/iess/pq/concesion/web/bean/DatosBean.java				(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+XHTML		WebContent/pages/conozcasucliente/informativo.xhtml				(C)
+XHTML		WebContent/pages/novacion/bloqueoNovacion.xhtml					(C)
+XHTML		WebContent/templates/base-panel-menu-vertical.xhtml				(M)
+XML			WebContent/WEB-INF/web.xml										(M)
+Carpeta		WebContent/pages/conozcasucliente								(C)
+
+
+=================================================================================
+Version: 1.0.38
+Requerimiento: INC-2495 / bug detectado en la captura de las direcciones IPs
+Cambios:
+
+
+Clase	JavaSource/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java		(M)
+Clase	JavaSource/ec/gov/iess/pq/concesion/web/backing/VerificacionRegCivilBean.java	(M)
+Properties	JavaSource/ec/gov/iess/pq/concesion/web/resources/errores.properties		(M)
+jar			/lib/pq-concesion-ejb/14_pq-concesion-ejb-1.0.22.jar						(M)
+Classpath	.classpath																	(M)
+
+
+=================================================================================
+Version: 1.0.39
+Requerimiento: INC-2460 / Módulo de conozca a su cliente en PQ. 
+Cambios:
+
+Clase	ec/fin/biess/creditos/pq/filtros/FinSemanaFilter.java	( E )
+Clase	ec/fin/biess/creditos/pq/filtros/BloqueosAccesosFilter.java	( C )
+Paquete	ec/gov/iess/pq/concesion/conozcacliente	( C )
+Paquete	ec/gov/iess/pq/concesion/conozcacliente/backing	( C )
+Clase	ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	( C )
+Paquete	ec/gov/iess/pq/concesion/conozcacliente/constant	( C )
+Interface	ec/gov/iess/pq/concesion/conozcacliente/constant/ConozcaClienteWebConstante.java	( C )
+Enumeración	ec/gov/iess/pq/concesion/conozcacliente/constant/UnidadFecha.java	( C )
+Clase	ec/gov/iess/pq/concesion/web/validator/TelefonoValidator.java	( M )
+Clase	ec/gov/iess/pq/concesion/conozcacliente/constant/Validador.java	( C )
+Paquete	ec/gov/iess/pq/concesion/conozcacliente/templates	( C )
+FTL	ec/gov/iess/pq/concesion/conozcacliente/templates/actualizacionDatos.ftl	( C )
+Paquete	ec/gov/iess/pq/concesion/conozcacliente/util	( C )
+Enumeración	ec/gov/iess/pq/concesion/conozcacliente/util/FormatoValidacionUtil.java	( C )
+Clase	ec/gov/iess/pq/concesion/conozcacliente/util/MensajeUtil.java	( C )
+Paquete	ec/gov/iess/pq/concesion/conozcacliente/validator	( C )
+Clase	ec/gov/iess/pq/concesion/conozcacliente/validator/FechasUltimoTrabajoValidator.java	( C )
+Clase	ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java	( M )
+Clase	ec/gov/iess/pq/concesion/web/backing/RolesBean.java	( M )
+Clase	ec/gov/iess/pq/concesion/web/bean/DatosBean.java	( M )
+Properties	ec/gov/iess/pq/concesion/web/resources/botones.properties	( M )
+Properties	ec/gov/iess/pq/concesion/web/resources/labels.properties	( M )
+Properties	ec/gov/iess/pq/concesion/web/resources/messages.properties	( M )
+Paquete	ec/gov/iess/pq/concesion/web/enumeration	( C )
+Enumeración	ec/gov/iess/pq/concesion/web/util/UnidadFechaEnum.java	( C )
+Clase	ec/gov/iess/pq/concesion/web/util/Utilities.java	( M )
+JAR	lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.3.jar	( M )
+JAR	/lib/creditos-core/13_creditos-pq-core-1.0.9.jar	( M )
+JAR	lib/pq-concesion-ejb/14_pq-concesion-ejb-1.0.23.jar	( M )
+XHTML	WebContent/pages/concesion/datosSolicitante.xhtml	( M )
+XHTML	WebContent/pages/novacion/datosSolicitante.xhtml	( M )
+XHTML	WebContent/pages/conozcasucliente/confirmacion.xhtml	( C )
+XHTML	WebContent/pages/conozcasucliente/datosDireccion.xhtml	( C )
+XHTML	WebContent/pages/conozcasucliente/datosEconomica.xhtml	( C )
+XHTML	WebContent/pages/conozcasucliente/datosIngresosEgresos.xhtml	( C )
+XHTML	WebContent/pages/conozcasucliente/datosPersonales.xhtml	( C )
+XHTML	WebContent/pages/conozcasucliente/datosReferencias.xhtml	( C )
+XHTML	WebContent/pages/conozcasucliente/informativo.xhtml	( M )
+XML	WebContent/WEB-INF/faces-config.xml	( M )
+XML	WebContent/WEB-INF/web.xml	( M )
+CSS	WebContent/css/conozcasucliente.css	( C )
+PNG	WebContent/img/error.png	( C )
+GIF	WebContent/img/exito.gif	( C )
+JS	WebContent/js/validador.js	( M )
+XHTML	WebContent/templates/base-panel-menu-vertical.xhtml	( M )
+Clase	/ec/gov/iess/pq/concesion/web/util/Constantes.java	( M )
+CSS	WebContent/files/css/styles.css	( M )
+Classpath	.classpath	( M )
+
+
+=================================================================================
+Version: 1.0.40
+Requerimiento: INC-2515 / REMOVER BOTON REGISTRO CUENTA BANCARIA DE APP PQ-WEB 
+Cambios:	TIPO|NOMBRE|ESTADO
+clase		JavaSource/ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	(M)
+Properties	JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties						(M)
+Jpg			WebContent/files/images/content/foto-pq.jpg												(M)
+Jpg			WebContent/files/images/content/foto-principal.jpg										(M)
+Xhtml		WebContent/pages/concesion/datosSolicitante.xhtml										(M)
+xhtml		WebContent/pages/novacion/datosSolicitante.xhtml										(M)
+
+
+
+=================================================================================
+Version: 1.0.41
+Requerimiento: INC-2527 / Bug para ajuste al mostrar mensajes de validación de conozca a su cliente 
+Cambios:
+
+Clase		ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/errores.properties					(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/labels.properties					(M)
+Clase		ec/gov/iess/pq/concesion/web/validator/TelefonoValidator.java				(M)
+XHTML		WebContent/pages/conozcasucliente/datosEconomica.xhtml						(M)
+XHTML		WebContent/pages/conozcasucliente/datosPersonales.xhtml						(M)
+
+=================================================================================
+Version: 1.0.42
+Requerimiento: INC-2533 / Bug de ajuste proveedor ferrocarriles y redirección de página de conozca a su cliente. 
+Cambios:
+
+FTL		ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl	(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java	(M)
+Clase	ec/gov/iess/pq/concesion/web/bean/DatosBean.java	(M)
+JAR		lib/creditos-core/13_creditos-pq-core-1.0.10.jar	(M)
+JAR		lib/pq-concesion-ejb/14_pq-concesion-ejb-1.0.25.jar	(M)
+XHTML	WebContent/pages/concesion/resultadoPrestamo.xhtml	(M)
+XHTML	WebContent/pages/consulta/seguimientoPrestamoQuirografario.xhtml	(M)
+XML		WebContent/WEB-INF/faces-config.xml	(M)
+
+=================================================================================
+Version: 1.0.43
+Requerimiento: INC-2524 / Implementar las tablas de amortizaci�n en PQ 
+Cambios:
+
+Template	/JavaSource/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl	(M)
+Clase		/JavaSource/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java								(M)
+Clase		/JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java											(M)
+Clase		/JavaSource/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java							(M)
+Properties	/JavaSource/ec/gov/iess/pq/concesion/web/resources/errores.properties									(M)
+Properties	/JavaSource/ec/gov/iess/pq/concesion/web/resources/labels.properties									(M)
+Properties	/JavaSource/ec/gov/iess/pq/concesion/web/resources/messages.properties									(M)
+JAR			/lib/creditos-core/13_creditos-pq-core-1.0.12															(M)
+JAR			/lib/pq-concesion-ejb/14_pq-concesion-ejb-1.0.27														(M)
+XHTML		/WebContent/pages/concesion/concesionCredito.xhtml														(M)
+XHTML		/WebContent/pages/concesion/detallePrestamo.xhtml														(M)
+XHTML		/WebContent/pages/concesion/impResultadoPrestamo.xhtml													(M)
+XHTML		/WebContent/pages/concesion/resultadoPrestamo.xhtml														(M)
+XHTML		/WebContent/pages/consulta/seguimientoPrestamoQuirografario.xhtml										(M)
+XHTML		/WebContent/pages/novacion/concesionCreditoNovacion.xhtml												(M)
+XHTML		/WebContent/pages/novacion/impResultadoNovacion.xhtml													(M)
+XHTML		/WebContent/pages/novacion/resultadoPrecalificacion.xhtml												(M)
+XHTML		/WebContent/pages/novacion/resultadoPrestamoNovacion.xhtml												(M)
+
+=================================================================================
+Version: 1.0.44
+Requerimiento: INC-2554 / Almacenamiento de pistas de auditor�a de los requisitos de pre calificaci�n de pr�stamos quirografarios. 
+Cambios:
+
+Clase		ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+XML			ant/build.xml	(M)
+Carpeta		lib/auditoria-ejb	(C)
+JAR			lib/auditoria-ejb/03_auditoria-ejb-1.1.jar	(C)
+Properties	lib/lib.properties	(M)
+Clase		ec/fin/biess/creditos/pq/filtros/BloqueosAccesosFilter.java	(M)
+Clase		ec/fin/biess/creditos/pq/filtros/ProcesoRunningFilter.java	(M)
+
+
+=================================================================================
+Version: 1.1.0
+Requerimiento: INC-2399 /  Aplicativo de CREDITUR en PQ WEB
+Cambios:
+FTL		ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFEEP.ftl	(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java		(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java		(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java	(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java			(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/condiciones.properties	(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/errores.properties		(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+JAR			lib/creditos-core/13_creditos-pq-core-1.1.0.jar					(M)
+JAR			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.0.jar				(M)
+CSS			WebContent/files/css/styles.css									(M)
+PNG			WebContent/files/images/content/plane_ticket.png				(C)
+PNG			WebContent/files/images/content/primero_ecuador.png				(C)
+XTHML		WebContent/pages/concesion/concesionCredito.xhtml				(M)
+XHTML		WebContent/pages/concesion/datosSolicitante.xhtml				(M)
+XHTML		WebContent/pages/concesion/detallePrestamo.xhtml				(M)
+XHTML		WebContent/pages/concesion/impResultadoPrestamo.xhtml			(M)
+XHTML		WebContent/pages/concesion/productosVarios.xhtml				(M)
+XHML		WebContent/pages/concesion/proveedores.xhtml					(M)
+XHTML		WebContent/pages/concesion/resultadoPrestamo.xhtml				(M)
+
+
+=================================================================================
+Version: 1.1.1
+Requerimiento: INC-2571 /  Bug de creditur al mostrar tipo de cuenta del proveedor
+Cambios:
+
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java		(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java			(M)
+XHTML	WebContent/pages/concesion/concesionCredito.xhtml					(M)
+
+=================================================================================
+Version: 1.1.2
+Requerimiento: INC-2588 / Verificación en las listas de control del afiliado/jubilado/pensionista después de la creación del crédito Quirografario
+Cambios:
+Clase		ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/messages.properties						(M)
+XHTML		WebContent/pages/concesion/resultadoPrecalificacion.xhtml						(M)
+XHTML		WebContent/pages/concesion/resultadoPrestamo.xhtml								(M)
+XHTML		pages/novacion/resultadoPrestamoNovacion.xhtml									(M)
+XHTML		WebContent/pages/novacion/resultadoPrecalificacion.xhtml						(M)
+Jar			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.1.jar								(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/labels.properties						(M)
+
+=================================================================================
+Version: 1.1.3
+Requerimiento: INC-2530 / Adicion de campos para estructura P02
+Cambios:
+
+Clase		ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java		(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/RolesBean.java								(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/labels.properties						(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/messages.properties						(M)
+Jar			/lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.5.jar						(M)
+XHTML		WebContent/pages/conozcasucliente/datosDireccion.xhtml							(M)
+XHTML		WebContent/pages/conozcasucliente/datosPersonales.xhtml							(M)
+XHTML		WebContent/pages/conozcasucliente/informacionExtranjeros.xhtml					(C)
+XML			WebContent/WEB-INF/faces-config.xml												(M)
+
+
+=================================================================================
+Version: 1.1.4
+Requerimiento: INC-2610 / Bug estado PDC para prestamos quirografarios de pensiones alimenticias
+Cambios:
+
+Clase		ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+
+=================================================================================
+Version: 1.1.5
+Requerimiento: INC-2612 / Ajuste de bug para almacenamiento de informacion de extranjeros de conozca a su cliente.
+Cambios:
+
+Clase	ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	(M)
+JAR		/lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.6.jar					(M)
+
+=================================================================================
+Version: 1.1.6
+Requerimiento: INC-2622 / Ajuste de bug de valor total de dividendo y ajuste de bug de nacionalidad en el formulario de conozca su cliente.
+Cambios:
+
+Clase	ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java  (M)
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java			    (M)
+XHTML	WebContent/pages/concesion/concesionCredito.xhtml							(M)
+XHTML	WebContent/pages/novacion/concesionCreditoNovacion.xhtml					(M)
+
+=================================================================================
+Version: 1.1.7
+Requerimiento: INC-2638 / Ajuste de bug del formulario de conozca a su cliente para extranjeros.
+Cambios:
+Clase	ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	(M)
+Jar		lib/conozcasucliente-ejb/13_conozcasucliente-ejb-1.0.7.jar					(M)
+
+
+==========================================
+Version: 1.1.8
+Requerimiento: INC-2643 / Parametrización para concesión de créditos quirografarios: tasas de interés y montos máximos de crédito.
+Cambios:
+
+Clase		ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java	(M)
+Properties	ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+XML			ant/build.xml													(M)
+Carpeta		lib/core-biess-ejb												(C)
+JAR			lib/core-biess-ejb/14_core-biess-ejb-1.1.2.jar					(C)
+JAR			lib/creditos-core/13_creditos-pq-core-1.1.0.jar					(M)
+JAR			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.1.jar				(M)
+Properties	lib/lib.properties												(M)
+XHTML		WebContent/pages/concesion/concesionCredito.xhtml				(M)
+XHTML		WebContent/pages/novacion/concesionCreditoNovacion.xhtml		(M)
+XHTML		WebContent/pages/novacion/creditosNovacion.xhtml				(M)
+
+==========================================
+Version: 1.1.9
+Requerimiento: INC-2642 / Requerimiento para bloqueo de creación de préstamos para afiliados "amas de casa"
+Cambios:
+
+Clase		JavaSource/ec/gov/iess/pq/concesion/web/backing/RolesBean.java			(M)
+Clase		JavaSource/ec/gov/iess/pq/concesion/web/bean/DatosBean.java				(M)
+XHTML		WebContent/templates/base-panel-menu-vertical.xhtml						(M)
+XHTML		WebContent/pages/conozcasucliente/informativo.xhtml						(M)
+XHTML		WebContent/pages/novación/bloqueoNovacion.xhtml							(M)
+Properties	JavaSource/ec/gov/iess/pq/concesion/web/resources/errores.properties	(M)
+Jar			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.0.jar						(M)
+
+
+==========================================
+Version: 1.1.10
+Requerimiento: INC-2648 / Almacenamiento de bandera para manejo de estado del crédito
+Cambios:
+
+Clase		ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java			(M)
+Enumeración	ec/gov/iess/pq/concesion/web/enumeration/ValidacionPrestamoEnum.java	(C)
+Jar			lib/creditos-core/13_creditos-pq-core-1.1.3.jar							(M)
+Jar			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.6.jar						(M)
+
+==========================================
+Version: 1.1.11
+Requerimiento: INC-2677 / Cambio de mensaje en el envío de correo electrónico en la concesión de créditos.
+Cambios:
+FTL			ec/fin/biess/creditos/pq/alertas/templates/email/credito.ftl	(M)
+FTL			ec/fin/biess/creditos/pq/alertas/templates/email/novacion.ftl	(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+JAR			lib/pq-concesion-ejb/14_pq-concesion-ejb-1.1.7.jar				(M)
+
+========*******************************************************************============
+Version: 2.0.0
+Requerimiento: INC-2631 / Cambio de la forma de compilación de proyectos de ANT a Maven (Convenio QA/Desarrollo para version 2.0.0)
+Cambios: ACCION/TIPO/NOMBRE 
+(C)	XML		pom.xml
+(C)	Eclipse	.project
+(C)	Eclipse	.classpath
+(C)	Eclipse	.settings
+(C)	Carpeta	src
+(C)	Carpeta	src\main
+(C)	Carpeta	src\main\resources
+(C)	Carpeta	src\main\webapp
+(C)	Carpeta	src\main\java
+(C)	Carpeta	src\main\java\ec
+(C)	Carpeta	src\main\java\ec\gov
+(C)	Carpeta	src\main\java\ec\fin
+(C)	Carpeta	src\main\java\ec\fin\biess
+(C)	Carpeta	src\main\java\ec\fin\biess\creditos
+(C)	Carpeta	src\main\java\ec\fin\biess\creditos\pq
+(C)	Carpeta	src\main\java\ec\fin\biess\creditos\pq\alertas
+(C)	Paquete	src\main\java\ec\fin\biess\creditos\pq\constante
+(C)	Paquete	src\main\java\ec\fin\biess\creditos\pq\converter
+(C)	Paquete	src\main\java\ec\fin\biess\creditos\pq\filtros
+(C)	Paquete	src\main\java\ec\fin\biess\creditos\pq\alertas\util
+(C)	Clase	src\main\java\ec\fin\biess\creditos\pq\alertas\util\AlertUtil.java
+(C)	Clase	src\main\java\ec\fin\biess\creditos\pq\constante\Modulo.java
+(C)	Clase	src\main\java\ec\fin\biess\creditos\pq\converter\TipoPrestamoProductoConverter.java
+(C)	Clase	src\main\java\ec\fin\biess\creditos\pq\filtros\BloqueosAccesosFilter.java
+(C)	Clase	src\main\java\ec\fin\biess\creditos\pq\filtros\ProcesoRunningFilter.java
+(C)	Carpeta	src\main\java\ec\gov\iess
+(C)	Paquete	src\main\java\ec\gov\iess\evaluador
+(C)	Carpeta	src\main\java\ec\gov\iess\pq
+(C)	Clase	src\main\java\ec\gov\iess\evaluador\Evaluador.java
+(C)	Paquete	src\main\java\ec\gov\iess\evaluador\strings
+(C)	Clase	src\main\java\ec\gov\iess\evaluador\strings\EvaluadorOtroStringLleno.java
+(C)	Clase	src\main\java\ec\gov\iess\evaluador\strings\EvaluadorStringLleno.java
+(C)	Clase	src\main\java\ec\gov\iess\evaluador\strings\EvaluadorStrings.java
+(C)	Carpeta	src\main\java\ec\gov\iess\pq\concesion
+(C)	Carpeta	src\main\java\ec\gov\iess\pq\concesion\conozcacliente
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\enumeraciones
+(C)	Carpeta	src\main\java\ec\gov\iess\pq\concesion\web
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\backing
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\constant
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\util
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\validator
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\backing\ConozcaClienteBacking.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\constant\ConozcaClienteWebConstante.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\constant\UnidadFecha.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\constant\Validador.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\util\FormatoValidacionUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\util\MensajeUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\conozcacliente\validator\FechasUltimoTrabajoValidator.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\enumeraciones\EnvioMail.java
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\backing
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\bean
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\converter
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\enumeration
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\exception
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\handler
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\helper
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\util
+(C)	Paquete	src\main\java\ec\gov\iess\pq\concesion\web\validator
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\ActualizarDatosPersonalesBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\ConcesionCreditoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\ConsultaCreditoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\ContactosBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\CreditoAccionBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\DatosSolicitanteBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\DesbloqueoOnlineBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\EmailDesbloqueoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\EstadoMenuBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\PagIndHelper.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\PrincipalBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\ResultadoPrecalificacionBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\ResultadoPrecalificacionNovacionBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\RolesBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\SeguimientoCreditoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\TasaInteresBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\TipoProductosBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\backing\VerificacionRegCivilBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\bean\CombosDireccionBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\bean\DatosBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\bean\DetallePrestamoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\bean\DetalleSeguimientoCreditoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\bean\PrestamoBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\converter\DineroConverter.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\enumeration\UnidadFechaEnum.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\enumeration\ValidacionPrestamoEnum.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\exception\PagIndException.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\exception\RegistroCivilException.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\exception\ValidacionMontoCtaBcoException.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\handler\FuncionarioHandler.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\handler\MenuTreeHandler.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\helper\PrestamoDataProvider.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\BaseBean.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\CedulaUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\Constantes.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\DireccionIPUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\EstadosCredito.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\MensajesUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\TiposCredito.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\TiposCreditoPh.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\Utilities.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\util\ValidaDatosUtil.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\validator\BaseValidator.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\validator\CedulaValidator.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\validator\EmailValidator.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\validator\RequeridoValidator.java
+(C)	Clase	src\main\java\ec\gov\iess\pq\concesion\web\validator\TelefonoValidator.java
+(C)	Carpeta	src\main\resources\ec
+(C)	Carpeta	src\main\resources\ec\fin
+(C)	Carpeta	src\main\resources\ec\gov
+(C)	Carpeta	src\main\resources\ec\fin\biess
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos\pq
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos\pq\alertas
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos\pq\formularios
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\actdatos.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\compagind.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\credito.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\crucefr.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\liqcredito.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\login.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\alertas\templates\email\novacion.ftl
+(C)	Carpeta	src\main\resources\ec\fin\biess\creditos\pq\formularios\templates
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\formularios\templates\formularioAutorizacionTransferencia.ftl
+(C)	FTL	src\main\resources\ec\fin\biess\creditos\pq\formularios\templates\formularioAutorizacionTransferenciaFEEP.ftl
+(C)	Carpeta	src\main\resources\ec\gov\iess
+(C)	Carpeta	src\main\resources\ec\gov\iess\pq
+(C)	Carpeta	src\main\resources\ec\gov\iess\pq\concesion
+(C)	Carpeta	src\main\resources\ec\gov\iess\pq\concesion\conozcacliente
+(C)	Carpeta	src\main\resources\ec\gov\iess\pq\concesion\web
+(C)	Carpeta	src\main\resources\ec\gov\iess\pq\concesion\conozcacliente\templates
+(C)	FTL	src\main\resources\ec\gov\iess\pq\concesion\conozcacliente\templates\actualizacionDatos.ftl
+(C)	Carpeta	src\main\resources\ec\gov\iess\pq\concesion\web\resources
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\pq\concesion\web\resources\botones.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\pq\concesion\web\resources\condiciones.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\pq\concesion\web\resources\errores.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\pq\concesion\web\resources\labels.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\pq\concesion\web\resources\messages.properties
+(C)	Archivo de propiedades	src\main\resources\ec\gov\iess\pq\concesion\web\resources\titulos.properties
+(C)	Paquete	src\main\webapp\css
+(C)	Paquete	src\main\webapp\error
+(C)	Carpeta	src\main\webapp\files
+(C)	Paquete	src\main\webapp\img
+(C)	Paquete	src\main\webapp\img-biess
+(C)	Paquete	src\main\webapp\js
+(C)	Paquete	src\main\webapp\swf
+(C)	Paquete	src\main\webapp\templates
+(C)	Paquete	src\main\webapp\unlock
+(C)	Paquete	src\main\webapp\update
+(C)	Paquete	src\main\webapp\WEB-INF
+(C)	CSS	src\main\webapp\css\basic.css
+(C)	CSS	src\main\webapp\css\basic_ie.css
+(C)	CSS	src\main\webapp\css\biess.css
+(C)	CSS	src\main\webapp\css\conozcasucliente.css
+(C)	CSS	src\main\webapp\css\iess.css
+(C)	Paquete	src\main\webapp\css\manual
+(C)	CSS	src\main\webapp\css\print-pq.css
+(C)	CSS	src\main\webapp\css\transicion-pq.css
+(C)	CSS	src\main\webapp\css\manual\multibox.css
+(C)	HTML	src\main\webapp\error\403.xhtml
+(C)	HTML	src\main\webapp\error\404.xhtml
+(C)	HTML	src\main\webapp\error\error-aplicacion.xhtml
+(C)	HTML	src\main\webapp\error\errorRedirect.xhtml
+(C)	JSP	src\main\webapp\error\login-error.jsp
+(C)	Paquete	src\main\webapp\files\css
+(C)	Carpeta	src\main\webapp\files\images
+(C)	Paquete	src\main\webapp\files\scripts
+(C)	CSS	src\main\webapp\files\css\impresion.css
+(C)	CSS	src\main\webapp\files\css\styles.css
+(C)	CSS	src\main\webapp\files\css\stylesImpresionFormulario.css
+(C)	Paquete	src\main\webapp\files\images\content
+(C)	Paquete	src\main\webapp\files\images\keyboard
+(C)	Paquete	src\main\webapp\files\images\layout
+(C)	PNG	src\main\webapp\files\images\content\add-user.png
+(C)	PNG	src\main\webapp\files\images\content\adquisicion.png
+(C)	PNG	src\main\webapp\files\images\content\back.png
+(C)	PNG	src\main\webapp\files\images\content\Biess-Ecuador.png
+(C)	GIF	src\main\webapp\files\images\content\cargando.gif
+(C)	PNG	src\main\webapp\files\images\content\check-blank.png
+(C)	PNG	src\main\webapp\files\images\content\check-select.png
+(C)	PNG	src\main\webapp\files\images\content\compraterreno.png
+(C)	PNG	src\main\webapp\files\images\content\confirmacion.png
+(C)	PNG	src\main\webapp\files\images\content\construccion.png
+(C)	PNG	src\main\webapp\files\images\content\delete.png
+(C)	JPG	src\main\webapp\files\images\content\foto-pq.jpg
+(C)	PNG	src\main\webapp\files\images\content\foto-pq.png
+(C)	JPG	src\main\webapp\files\images\content\foto-principal.jpg
+(C)	PNG	src\main\webapp\files\images\content\icon-afiliado.png
+(C)	PNG	src\main\webapp\files\images\content\icon-alert.png
+(C)	PNG	src\main\webapp\files\images\content\icon-check.png
+(C)	PNG	src\main\webapp\files\images\content\icon-infobig.png
+(C)	PNG	src\main\webapp\files\images\content\icon-infosmall.png
+(C)	PNG	src\main\webapp\files\images\content\icon-jubilado.png
+(C)	PNG	src\main\webapp\files\images\content\icon-lock.png
+(C)	PNG	src\main\webapp\files\images\content\icon-success.png
+(C)	PNG	src\main\webapp\files\images\content\icon-uncheck.png
+(C)	PNG	src\main\webapp\files\images\content\icon-warning.png
+(C)	PNG	src\main\webapp\files\images\content\icon-zafrero.png
+(C)	PNG	src\main\webapp\files\images\content\laptop.png
+(C)	PNG	src\main\webapp\files\images\content\normal.png
+(C)	PNG	src\main\webapp\files\images\content\oficinas.png
+(C)	PNG	src\main\webapp\files\images\content\pensiones_alimenticias.png
+(C)	PNG	src\main\webapp\files\images\content\plane_ticket.png
+(C)	PNG	src\main\webapp\files\images\content\primero_ecuador.png
+(C)	PNG	src\main\webapp\files\images\content\product.png
+(C)	PNG	src\main\webapp\files\images\content\remodelacion.png
+(C)	PNG	src\main\webapp\files\images\content\sustitucion.png
+(C)	PNG	src\main\webapp\files\images\content\terminada.png
+(C)	PNG	src\main\webapp\files\images\content\title-info.png
+(C)	PNG	src\main\webapp\files\images\content\train_transportation.png
+(C)	PNG	src\main\webapp\files\images\content\usergeneric.png
+(C)	PNG	src\main\webapp\files\images\keyboard\borrar.png
+(C)	PNG	src\main\webapp\files\images\keyboard\btn-manualteclado.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l0.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l1.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l10.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l11.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l12.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l13.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l14.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l15.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l16.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l17.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l18.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l19.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l2.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l20.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l21.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l22.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l23.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l24.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l25.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l3.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l4.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l5.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l6.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l7.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l8.png
+(C)	PNG	src\main\webapp\files\images\keyboard\l9.png
+(C)	PNG	src\main\webapp\files\images\keyboard\mayusc.png
+(C)	PNG	src\main\webapp\files\images\keyboard\mayuscula.png
+(C)	PNG	src\main\webapp\files\images\keyboard\minuscula.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n0.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n1.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n2.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n3.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n4.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n5.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n6.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n7.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n8.png
+(C)	PNG	src\main\webapp\files\images\keyboard\n9.png
+(C)	PNG	src\main\webapp\files\images\keyboard\regresar.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl0.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl1.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl10.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl11.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl12.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl13.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl14.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl15.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl16.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl17.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl18.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl19.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl2.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl20.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl21.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl22.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl23.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl24.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl25.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl3.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl4.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl5.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl6.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl7.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl8.png
+(C)	PNG	src\main\webapp\files\images\keyboard\xl9.png
+(C)	PNG	src\main\webapp\files\images\layout\bg-body.jpg
+(C)	PNG	src\main\webapp\files\images\layout\bg-btn-action.jpg
+(C)	PNG	src\main\webapp\files\images\layout\bg-btn-active.jpg
+(C)	PNG	src\main\webapp\files\images\layout\bg-btn-generic.jpg
+(C)	PNG	src\main\webapp\files\images\layout\bg-btn-hover.jpg
+(C)	PNG	src\main\webapp\files\images\layout\bg-footer.png
+(C)	PNG	src\main\webapp\files\images\layout\btn-salir.png
+(C)	PNG	src\main\webapp\files\images\layout\header.png
+(C)	PNG	src\main\webapp\files\images\layout\headerImpresionFormulario.png
+(C)	Carpeta	src\main\webapp\files\Library
+(C)	LBI	src\main\webapp\files\Library\footer.lbi
+(C)	LBI	src\main\webapp\files\Library\headerPQ.lbi
+(C)	JS	src\main\webapp\files\scripts\jquery.js
+(C)	JS	src\main\webapp\files\scripts\jquery.tabify.js
+(C)	JS	src\main\webapp\files\scripts\jquery.tabify.source.js
+(C)	JPG	src\main\webapp\img\abono.jpg
+(C)	Carpeta	src\main\webapp\img\ajax
+(C)	GIF	src\main\webapp\img\arrow-on.gif
+(C)	Paquete	src\main\webapp\img\autentificacion
+(C)	JPG	src\main\webapp\img\aviso.jpg
+(C)	JPG	src\main\webapp\img\back.jpg
+(C)	JPG	src\main\webapp\img\backderheader.jpg
+(C)	JPG	src\main\webapp\img\backfinal.jpg
+(C)	JPG	src\main\webapp\img\back_barra.jpg
+(C)	JPG	src\main\webapp\img\back_boton.png
+(C)	JPG	src\main\webapp\img\back_cabecera.jpg
+(C)	JPG	src\main\webapp\img\back_cabecera.png
+(C)	JPG	src\main\webapp\img\back_enlace.jpg
+(C)	JPG	src\main\webapp\img\back_footer.jpg
+(C)	JPG	src\main\webapp\img\back_login.png
+(C)	JPG	src\main\webapp\img\back_sol.jpg
+(C)	JPG	src\main\webapp\img\back_topder.jpg
+(C)	JPG	src\main\webapp\img\back_topizq.jpg
+(C)	PNG	src\main\webapp\img\back_usuario.png
+(C)	GIF	src\main\webapp\img\bajar.gif
+(C)	JPG	src\main\webapp\img\blanco.jpg
+(C)	JPG	src\main\webapp\img\botaqui.jpg
+(C)	Paquete	src\main\webapp\img\botones
+(C)	GIF	src\main\webapp\img\bot_teclado.gif
+(C)	GIF	src\main\webapp\img\bot_tecladoOn.gif
+(C)	GIF	src\main\webapp\img\btn_cerrar.gif
+(C)	JPG	src\main\webapp\img\btn_cerrarOn.jpg
+(C)	JPG	src\main\webapp\img\cab3.jpg
+(C)	PNG	src\main\webapp\img\cab_calendario.png
+(C)	GIF	src\main\webapp\img\Calendar.gif
+(C)	Paquete	src\main\webapp\img\common
+(C)	GIF	src\main\webapp\img\construccion.gif
+(C)	JPG	src\main\webapp\img\construccion.jpg
+(C)	GIF	src\main\webapp\img\cuadro.gif
+(C)	GIF	src\main\webapp\img\cuadroNumero.gif
+(C)	PNG	src\main\webapp\img\cuadro_ingresar.png
+(C)	GIF	src\main\webapp\img\elcambio.gif
+(C)	GIF	src\main\webapp\img\error.gif
+(C)	PNG	src\main\webapp\img\error.png
+(C)	Paquete	src\main\webapp\img\estilos
+(C)	GIF	src\main\webapp\img\exito.gif
+(C)	JPG	src\main\webapp\img\familia.jpg
+(C)	JPG	src\main\webapp\img\familiaPeque.jpg
+(C)	JPG	src\main\webapp\img\flecha.jpg
+(C)	JPG	src\main\webapp\img\fondo.jpg
+(C)	JPG	src\main\webapp\img\footer.jpg
+(C)	GIF	src\main\webapp\img\footer1.gif
+(C)	JPG	src\main\webapp\img\iconoCorreo.jpg
+(C)	Paquete	src\main\webapp\img\iconospq
+(C)	JPG	src\main\webapp\img\iconoTeclado.jpg
+(C)	JPG	src\main\webapp\img\iconoTelefono.jpg
+(C)	JPG	src\main\webapp\img\icono_requisitos.jpg
+(C)	JPG	src\main\webapp\img\icono_solicitud.jpg
+(C)	PNG	src\main\webapp\img\ico_contrasenia.png
+(C)	JPG	src\main\webapp\img\ico_usuario.jpg
+(C)	PNG	src\main\webapp\img\ico_usuario.png
+(C)	JPG	src\main\webapp\img\impresora.jpg
+(C)	JPG	src\main\webapp\img\information.jpg
+(C)	GIF	src\main\webapp\img\interes.gif
+(C)	Paquete	src\main\webapp\img\left
+(C)	GIF	src\main\webapp\img\logo.gif
+(C)	JPG	src\main\webapp\img\logo.jpg
+(C)	JPG	src\main\webapp\img\logo1.jpg
+(C)	GIF	src\main\webapp\img\logocomp.gif
+(C)	JPG	src\main\webapp\img\logocomp.jpg
+(C)	Paquete	src\main\webapp\img\manual
+(C)	Paquete	src\main\webapp\img\menu
+(C)	Paquete	src\main\webapp\img\menu_horizontal
+(C)	JPG	src\main\webapp\img\mostrarMenu.jpg
+(C)	PSD	src\main\webapp\img\newcabcecera.psd
+(C)	PNG	src\main\webapp\img\no.png
+(C)	Paquete	src\main\webapp\img\numeros
+(C)	JPG	src\main\webapp\img\ocultarMenu.jpg
+(C)	JPG	src\main\webapp\img\ok.jpg
+(C)	GIF	src\main\webapp\img\okay.gif
+(C)	GIF	src\main\webapp\img\okay2.gif
+(C)	Paquete	src\main\webapp\img\panel
+(C)	JPG	src\main\webapp\img\planilla.jpg
+(C)	JPG	src\main\webapp\img\planillas.jpg
+(C)	GIF	src\main\webapp\img\pregunta.gif
+(C)	JPG	src\main\webapp\img\pregunta.jpg
+(C)	JPG	src\main\webapp\img\quiro.jpg
+(C)	Paquete	src\main\webapp\img\quirografario
+(C)	GIF	src\main\webapp\img\remodelacion.gif
+(C)	JPG	src\main\webapp\img\remodelacion.jpg
+(C)	Paquete	src\main\webapp\img\report
+(C)	Paquete	src\main\webapp\img\right
+(C)	JPG	src\main\webapp\img\rosa.jpg
+(C)	GIF	src\main\webapp\img\rosa.gif
+(C)	GIF	src\main\webapp\img\r_hand.gif
+(C)	PNG	src\main\webapp\img\separador.png
+(C)	JPG	src\main\webapp\img\sistema.jpg
+(C)	JPG	src\main\webapp\img\solicitud.jpg
+(C)	GIF	src\main\webapp\img\spacer.gif
+(C)	GIF	src\main\webapp\img\stripe1.gif
+(C)	GIF	src\main\webapp\img\subir.gif
+(C)	GIF	src\main\webapp\img\teclado.gif
+(C)	JPG	src\main\webapp\img\telAyuda.jpg
+(C)	GIF	src\main\webapp\img\terminado.gif
+(C)	JPG	src\main\webapp\img\titcreditos.jpg
+(C)	JPG	src\main\webapp\img\tit_iess.jpg
+(C)	GIF	src\main\webapp\img\tit_informacion.gif
+(C)	PNG	src\main\webapp\img\tit_panel.png
+(C)	GIF	src\main\webapp\img\tit_res_creditos.gif
+(C)	Paquete	src\main\webapp\img\tree
+(C)	GIF	src\main\webapp\img\txt_cambio.gif
+(C)	JPG	src\main\webapp\img\txt_cambio.jpg
+(C)	GIF	src\main\webapp\img\txt_solicitud.gif
+(C)	GIF	src\main\webapp\img\vineta.gif
+(C)	JPG	src\main\webapp\img\vinetamenu.jpg
+(C)	Paquete	src\main\webapp\img\vinetas
+(C)	PNG	src\main\webapp\img\vineta_menu.png
+(C)	JPG	src\main\webapp\img\vivterminada.jpg
+(C)	JPG	src\main\webapp\img\warning.jpg
+(C)	PNG	src\main\webapp\img\yes.png
+(C)	GIF	src\main\webapp\img\ajax\cargando.gif
+(C)	JPG	src\main\webapp\img\autentificacion\backleft.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\backprincipal.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\backright.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\back_left.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\back_right.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottomcenter.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottomleft.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottomright.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottom_center.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottom_left.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\bottom_right.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\nota.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\topcenter.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\topleft.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\topright.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_center.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_left.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_left_errror.jpg
+(C)	JPG	src\main\webapp\img\autentificacion\top_right.jpg
+(C)	JPG	src\main\webapp\img\botones\advertencia.jpg
+(C)	PNG	src\main\webapp\img\botones\back_boton.png
+(C)	PNG	src\main\webapp\img\botones\back_botones.png
+(C)	PNG	src\main\webapp\img\botones\back_botonOn.png
+(C)	JPG	src\main\webapp\img\botones\bloqueo.jpg
+(C)	JPG	src\main\webapp\img\botones\ingresar.jpg
+(C)	JPG	src\main\webapp\img\botones\regresar.jpg
+(C)	JPG	src\main\webapp\img\botones\salir.jpg
+(C)	JPG	src\main\webapp\img\botones\siguiente.jpg
+(C)	GIF	src\main\webapp\img\common\error.gif
+(C)	JPG	src\main\webapp\img\common\information.jpg
+(C)	JPG	src\main\webapp\img\common\no.png
+(C)	JPG	src\main\webapp\img\common\nota.jpg
+(C)	GIF	src\main\webapp\img\common\okay.gif
+(C)	JPG	src\main\webapp\img\common\warning.jpg
+(C)	PNG	src\main\webapp\img\common\yes.png
+(C)	PNG	src\main\webapp\img\estilos\back_boton.png
+(C)	GIF	src\main\webapp\img\estilos\error.gif
+(C)	PNG	src\main\webapp\img\estilos\tablaerror.png
+(C)	PNG	src\main\webapp\img\estilos\tit_datagrid.png
+(C)	PNG	src\main\webapp\img\estilos\tit_panel.png
+(C)	PNG	src\main\webapp\img\estilos\tit_panel_inactive.png
+(C)	PNG	src\main\webapp\img\iconospq\eliminar.png
+(C)	JPG	src\main\webapp\img\left\back.jpg
+(C)	JPG	src\main\webapp\img\left\back_text.jpg
+(C)	JPG	src\main\webapp\img\left\cedula.jpg
+(C)	GIF	src\main\webapp\img\left\impar.gif
+(C)	GIF	src\main\webapp\img\left\num.gif
+(C)	PNG	src\main\webapp\img\manual\close.png
+(C)	PNG	src\main\webapp\img\manual\left.png
+(C)	PNG	src\main\webapp\img\manual\leftDisabled.png
+(C)	GIF	src\main\webapp\img\manual\loader.gif
+(C)	PNG	src\main\webapp\img\manual\right.png
+(C)	PNG	src\main\webapp\img\manual\rightDisabled.png
+(C)	PNG	src\main\webapp\img\menu\back_contenido.png
+(C)	PNG	src\main\webapp\img\menu\back_menu.png
+(C)	PNG	src\main\webapp\img\menu\mostrar.png
+(C)	PNG	src\main\webapp\img\menu\ocultar.png
+(C)	GIF	src\main\webapp\img\menu_horizontal\arrow-on.gif
+(C)	JPG	src\main\webapp\img\menu_horizontal\back.jpg
+(C)	JPG	src\main\webapp\img\menu_horizontal\backfinal.jpg
+(C)	PNG	src\main\webapp\img\menu_horizontal\back_boton.png
+(C)	JPG	src\main\webapp\img\menu_horizontal\back_cabecera.jpg
+(C)	JPG	src\main\webapp\img\menu_horizontal\back_footer.jpg
+(C)	JPG	src\main\webapp\img\menu_horizontal\back_sol.jpg
+(C)	PNG	src\main\webapp\img\menu_horizontal\back_usuario.png
+(C)	JPG	src\main\webapp\img\menu_horizontal\cab3.jpg
+(C)	JPG	src\main\webapp\img\menu_horizontal\elcambio.jpg
+(C)	JPG	src\main\webapp\img\menu_horizontal\fondo.jpg
+(C)	JPG	src\main\webapp\img\menu_horizontal\footer.jpg
+(C)	GIF	src\main\webapp\img\menu_horizontal\footer1.gif
+(C)	Paquete	src\main\webapp\img\menu_horizontal\iconos
+(C)	JPG	src\main\webapp\img\menu_horizontal\information.jpg
+(C)	GIF	src\main\webapp\img\menu_horizontal\logocomp.gif
+(C)	Paquete	src\main\webapp\img\menu_horizontal\menu
+(C)	Paquete	src\main\webapp\img\menu_horizontal\panel
+(C)	GIF	src\main\webapp\img\menu_horizontal\rosa.gif
+(C)	PNG	src\main\webapp\img\menu_horizontal\separador.png
+(C)	GIF	src\main\webapp\img\menu_horizontal\spacer.gif
+(C)	GIF	src\main\webapp\img\menu_horizontal\stripe1.gif
+(C)	GIF	src\main\webapp\img\menu_horizontal\txt_cambio.gif
+(C)	JPG	src\main\webapp\img\menu_horizontal\vinetamenu.jpg
+(C)	PNG	src\main\webapp\img\menu_horizontal\iconos\ayuda.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\iconos\linea.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\iconos\salir.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\iconos\tutorial.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\menu\back_contenido.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\menu\back_menu.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\menu\fondo.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\menu\fondo_menu.png
+(C)	PNG	src\main\webapp\img\menu_horizontal\panel\titulo_botones.png
+(C)	JPG	src\main\webapp\img\numeros\ayuda.jpg
+(C)	JPG	src\main\webapp\img\numeros\back.jpg
+(C)	JPG	src\main\webapp\img\numeros\backon.jpg
+(C)	JPG	src\main\webapp\img\numeros\back_der.jpg
+(C)	JPG	src\main\webapp\img\numeros\back_left.jpg
+(C)	JPG	src\main\webapp\img\numeros\back_teclado.jpg
+(C)	JPG	src\main\webapp\img\numeros\borrar.jpg
+(C)	JPG	src\main\webapp\img\numeros\btn_bs.jpg
+(C)	JPG	src\main\webapp\img\numeros\informacion.jpg
+(C)	JPG	src\main\webapp\img\numeros\l0.jpg
+(C)	JPG	src\main\webapp\img\numeros\l1.jpg
+(C)	JPG	src\main\webapp\img\numeros\l10.jpg
+(C)	JPG	src\main\webapp\img\numeros\l11.jpg
+(C)	JPG	src\main\webapp\img\numeros\l12.jpg
+(C)	JPG	src\main\webapp\img\numeros\l13.jpg
+(C)	JPG	src\main\webapp\img\numeros\l14.jpg
+(C)	JPG	src\main\webapp\img\numeros\l15.jpg
+(C)	JPG	src\main\webapp\img\numeros\l16.jpg
+(C)	JPG	src\main\webapp\img\numeros\l17.jpg
+(C)	JPG	src\main\webapp\img\numeros\l18.jpg
+(C)	JPG	src\main\webapp\img\numeros\l19.jpg
+(C)	JPG	src\main\webapp\img\numeros\l2.jpg
+(C)	JPG	src\main\webapp\img\numeros\l20.jpg
+(C)	JPG	src\main\webapp\img\numeros\l21.jpg
+(C)	JPG	src\main\webapp\img\numeros\l22.jpg
+(C)	JPG	src\main\webapp\img\numeros\l23.jpg
+(C)	JPG	src\main\webapp\img\numeros\l24.jpg
+(C)	JPG	src\main\webapp\img\numeros\l25.jpg
+(C)	JPG	src\main\webapp\img\numeros\l3.jpg
+(C)	JPG	src\main\webapp\img\numeros\l4.jpg
+(C)	JPG	src\main\webapp\img\numeros\l5.jpg
+(C)	JPG	src\main\webapp\img\numeros\l6.jpg
+(C)	JPG	src\main\webapp\img\numeros\l7.jpg
+(C)	JPG	src\main\webapp\img\numeros\l8.jpg
+(C)	JPG	src\main\webapp\img\numeros\l9.jpg
+(C)	JPG	src\main\webapp\img\numeros\mayuscula.jpg
+(C)	JPG	src\main\webapp\img\numeros\minuscula.jpg
+(C)	JPG	src\main\webapp\img\numeros\n0.jpg
+(C)	JPG	src\main\webapp\img\numeros\n1.jpg
+(C)	JPG	src\main\webapp\img\numeros\n2.jpg
+(C)	JPG	src\main\webapp\img\numeros\n3.jpg
+(C)	JPG	src\main\webapp\img\numeros\n4.jpg
+(C)	JPG	src\main\webapp\img\numeros\n5.jpg
+(C)	JPG	src\main\webapp\img\numeros\n6.jpg
+(C)	JPG	src\main\webapp\img\numeros\n7.jpg
+(C)	JPG	src\main\webapp\img\numeros\n8.jpg
+(C)	JPG	src\main\webapp\img\numeros\n9.jpg
+(C)	JPG	src\main\webapp\img\numeros\tcmayuscula.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl0.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl1.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl10.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl11.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl12.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl13.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl14.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl15.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl16.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl17.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl18.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl19.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl2.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl20.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl21.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl22.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl23.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl24.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl25.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl3.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl4.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl5.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl6.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl7.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl8.jpg
+(C)	JPG	src\main\webapp\img\numeros\xl9.jpg
+(C)	PNG	src\main\webapp\img\panel\titulo.png
+(C)	JPG	src\main\webapp\img\panel\titulo1.jpg
+(C)	PNG	src\main\webapp\img\panel\titulo_botones.png
+(C)	JPG	src\main\webapp\img\quirografario\afiliados.jpg
+(C)	JPG	src\main\webapp\img\quirografario\backmensajenew.jpg
+(C)	PNG	src\main\webapp\img\quirografario\back_login.png
+(C)	GIF	src\main\webapp\img\quirografario\bot_teclado.gif
+(C)	GIF	src\main\webapp\img\quirografario\bot_tecladoOn.gif
+(C)	JPG	src\main\webapp\img\quirografario\comprobante_individual.jpg
+(C)	JPG	src\main\webapp\img\quirografario\consultar_liquidacion.jpg
+(C)	JPG	src\main\webapp\img\quirografario\crucecuentas.JPG
+(C)	PNG	src\main\webapp\img\quirografario\cuadro_ingresar.png
+(C)	JPG	src\main\webapp\img\quirografario\detalle_prestamo.jpg
+(C)	JPG	src\main\webapp\img\quirografario\generar_comprobante.jpg
+(C)	JPG	src\main\webapp\img\quirografario\iconoZafreros.jpg
+(C)	JPG	src\main\webapp\img\quirografario\jubilado.jpg
+(C)	JPG	src\main\webapp\img\quirografario\liquidar_prestamo.jpg
+(C)	JPG	src\main\webapp\img\quirografario\logo_quirografarios.jpg
+(C)	JPG	src\main\webapp\img\quirografario\nuevo_login.jpg
+(C)	JPG	src\main\webapp\img\quirografario\pq.jpg
+(C)	JPG	src\main\webapp\img\quirografario\recaudacion.jpg
+(C)	GIF	src\main\webapp\img\quirografario\tit_informacion.gif
+(C)	JPG	src\main\webapp\img\quirografario\tit_requisitos.jpg
+(C)	JPG	src\main\webapp\img\quirografario\TXTREQUISITOS.jpg
+(C)	JPG	src\main\webapp\img\report\logo_iess.jpg
+(C)	PNG	src\main\webapp\img\report\pdf.png
+(C)	PNG	src\main\webapp\img\report\xls.png
+(C)	JPG	src\main\webapp\img\right\back-right.jpg
+(C)	JPG	src\main\webapp\img\right\back.jpg
+(C)	GIF	src\main\webapp\img\right\num.gif
+(C)	GIF	src\main\webapp\img\right\par.gif
+(C)	GIF	src\main\webapp\img\tree\iconLeaf.gif
+(C)	PNG	src\main\webapp\img\tree\splitterhc.png
+(C)	PNG	src\main\webapp\img\tree\splitterhr.png
+(C)	GIF	src\main\webapp\img\vinetas\vinetaexplicacion.gif
+(C)	PNG	src\main\webapp\img\vinetas\vineta_mensajepagina.png
+(C)	JPG	src\main\webapp\img\vinetas\vineta_menu.jpg
+(C)	JPG	src\main\webapp\img\vinetas\vineta_menuon.jpg
+(C)	PNG	src\main\webapp\img-biess\ayuda_valrc.png
+(C)	JPG	src\main\webapp\img-biess\bannerComputador.jpg
+(C)	PNG	src\main\webapp\img-biess\bannerComputador.png
+(C)	PNG	src\main\webapp\img-biess\biess-logo.png
+(C)	JPG	src\main\webapp\img-biess\dummy-pq.jpg
+(C)	PNG	src\main\webapp\img-biess\escudo.png
+(C)	JPG	src\main\webapp\img-biess\footer-bg.jpg
+(C)	JPG	src\main\webapp\img-biess\header-bg.jpg
+(C)	PNG	src\main\webapp\img-biess\image04.png
+(C)	JPG	src\main\webapp\img-biess\logo-pq.jpg
+(C)	GIF	src\main\webapp\img-biess\logoBiessImpresion.gif
+(C)	JPG	src\main\webapp\img-biess\logoBiessImpresion.jpg
+(C)	JPG	src\main\webapp\img-biess\logoComputadoras.jpg
+(C)	JPG	src\main\webapp\img-biess\logoNormal.jpg
+(C)	PNG	src\main\webapp\img-biess\marca-bg.png
+(C)	JPG	src\main\webapp\img-biess\pq1.jpg
+(C)	JPG	src\main\webapp\img-biess\pq2.jpg
+(C)	JPG	src\main\webapp\img-biess\superior-bg.jpg
+(C)	PNG	src\main\webapp\img-biess\x.png
+(C)	JS	src\main\webapp\js\AjaxHandler.js
+(C)	JS	src\main\webapp\js\gen_validatorv2.js
+(C)	JS	src\main\webapp\js\Jquery.js
+(C)	Paquete	src\main\webapp\js\manual
+(C)	Paquete	src\main\webapp\js\popUp
+(C)	Paquete	src\main\webapp\js\teclado
+(C)	JS	src\main\webapp\js\today.js
+(C)	JS	src\main\webapp\js\util.js
+(C)	JS	src\main\webapp\js\validador.js
+(C)	JS	src\main\webapp\js\manual\CreacionMultibox.js
+(C)	JS	src\main\webapp\js\manual\mootools.js
+(C)	JS	src\main\webapp\js\manual\multibox.js
+(C)	JS	src\main\webapp\js\manual\overlay.js
+(C)	JS	src\main\webapp\js\popUp\basic.js
+(C)	JS	src\main\webapp\js\popUp\jquery.simplemodal.js
+(C)	JS	src\main\webapp\js\teclado\TecladoVirtual.js
+(C)	Carpeta	src\main\webapp\pages
+(C)	Paquete	src\main\webapp\pages\concesion
+(C)	Paquete	src\main\webapp\pages\conozcasucliente
+(C)	Paquete	src\main\webapp\pages\consulta
+(C)	JSP	src\main\webapp\pages\index.jsp
+(C)	JSP	src\main\webapp\pages\login.jsp
+(C)	Paquete	src\main\webapp\pages\novacion
+(C)	HTML	src\main\webapp\pages\principal.xhtml
+(C)	HTML	src\main\webapp\pages\salir.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\autorizacionTransferencia.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\bloqueoFinSemana.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\bloqueoProceso.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\concesionCredito.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\datosSolicitante.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\detallePrestamo.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\detallePrestamoAnterior.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\errorDatosSolicitante.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\errorRegistroCivil.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\impDetallePrestamo.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\impResultadoPrestamo.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\infoCreditos.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\listaCreditos.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\productosVarios.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\proveedores.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\resultadoPrecalificacion.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\resultadoPrestamo.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\roles.xhtml
+(C)	HTML	src\main\webapp\pages\concesion\tipoProductos.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\confirmacion.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\datosDireccion.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\datosEconomica.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\datosIngresosEgresos.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\datosPersonales.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\datosReferencias.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\informacionExtranjeros.xhtml
+(C)	HTML	src\main\webapp\pages\conozcasucliente\informativo.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\calculoLiquidacion.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\calculoLiquidacionFondos.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\comprobantePago.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\comprobantePagoDividendos.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\comprobantesPago.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\creditos.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\impresionDividendos.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\impresionDividendosFinal.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\pagIndSeleccion.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\pagIndSeleccionSaldos.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\resultadoLiquidacion.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\resultadoLiquidacionFondos.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\resultadoPreCruceCuentas.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\seguimientoIndividualPrestamo.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\seguimientoPrestamoQuirografario.xhtml
+(C)	HTML	src\main\webapp\pages\consulta\tasaInteresVigente.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\autorizacionTransferencia.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\bloqueoNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\concesionCreditoNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\creditosNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\datosSolicitante.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\impResultadoNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\informacionNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\productosVariosNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\resultadoPrecalificacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\resultadoPrestamoNovacion.xhtml
+(C)	HTML	src\main\webapp\pages\novacion\tipoProductosNovacion.xhtml
+(C)	SWF		src\main\webapp\swf\flashTeclado.swf
+(C)	HTML	src\main\webapp\templates\base-panel-menu-vertical.xhtml
+(C)	HTML	src\main\webapp\templates\base-panel.xhtml
+(C)	HTML	src\main\webapp\templates\base.xhtml
+(C)	HTML	src\main\webapp\templates\baseSinSesion.xhtml
+(C)	HTML	src\main\webapp\templates\impresion.xhtml
+(C)	HTML	src\main\webapp\templates\impresionFormulario.xhtml
+(C)	JSP		src\main\webapp\unlock\emailUnlock.jsp
+(C)	JSP		src\main\webapp\unlock\onlineUnlock.jsp
+(C)	HTML	src\main\webapp\update\updatePersonalData.xhtml
+(C)	XML		src\main\webapp\WEB-INF\faces-config.xml
+(C)	XML		src\main\webapp\WEB-INF\jboss-web.xml
+(C)	XML		src\main\webapp\WEB-INF\web.xml
+
+======================================================================
+Version: 2.0.1
+Requerimiento: INC-2695 / Zona Cero.- Requerimiento de Cambio Préstamos Quirografarios Biess Emergente
+Cambios: ACCION/TIPO/NOMBRE
+(C)	Classpath	.classpath
+(M)	Clase	/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java
+(M)	Clase	/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java
+(M)	Clase	/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java
+(M)	Clase	/src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java
+(M)	Clase	/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java
+(M)	Clase	/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java
+(M)	Properties	/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties
+(M)	Properties	/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties
+(M)	Imagen	/src/main/webapp/files/images/content/product_emergente.png
+(M)	XHTML	/src/main/webapp/pages/concesion/concesionCredito.xhtml
+(M)	XHTML	/src/main/webapp/pages/concesion/resultadoPrestamo.xhtml
+(M)	XHTML	/src/main/webapp/pages/concesion/tipoProductos.xhtml
+(M)	XHTML	/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml
+(M)	XHTML	/src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml
+(M)	XHTML	/src/main/webapp/pages/novacion/tipoProductosNovacion.xhtml
+(M)	XML		/src/main/webapp/WEB-INF/faces-config.xml
+(M)	XML		/src/main/webapp/WEB-INF/web.xml
+(M)	XML		pom.xml
+(M)	Clase	src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java
+(M)	XHTML	src/main/webapp/pages/concesion/detallePrestamo.xhtml
+(M)	XHTML	Src/main/webapp/pages/concesion/impDetallePrestamo.xhtml
+(M)	XHTML	src/main/webapp/pages/concesion/impResultadoPrestamo.xhtml
+(M)	XHTML	src/main/webapp/pages/consulta/impresionDividendos.xhtml
+(M)	XHTML	src/main/webapp/pages/consulta/impresionDividendosFinal.xhtml
+(M)	XHTML	src/main/webapp/pages/novacion/impResultadoNovacion.xhtml
+
+
+======================================================================
+Version: 2.0.2
+Requerimiento: INC-2713 / BUG.- AJUSTE DE BUG PARA CORREGIR VALORES TOTALIZADOS EN LA CABECERA DEL CRÉDITO QUIROGRAFARIO EMERGENTE
+Cambios: ACCION/TIPO/NOMBRE
+(M)	Clase	src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java
+(M)	Clase	src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java
+(M)	XHTML	src/main/webapp/pages/concesion/detallePrestamo.xhtml
+(M)	XHTML	src/main/webapp/pages/concesion/resultadoPrestamo.xhtml
+(M)	XHTML	src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml
+
+======================================================================
+Version: 2.0.3
+Requerimiento: INC-2730 / Ajuste para validar que las cuentas bancarias registradas de los afiliados pertenezcan a instituciones financieras que se encuentren activas.
+Cambios: ACCION/TIPO/NOMBRE
+(M)	Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java
+(M)	Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties
+(M)	Xhtml		src/main/webapp/pages/concesion/datosSolicitante.xhtml
+(M)	Xhtml		src/main/webapp/pages/novacion/datosSolicitante.xhtml
+
+
+======================================================================
+Version: 2.0.4
+Requerimiento: INC-2737 e INC-2738 / Cambio en los mensajes en la concesi�n de un cr�dito quirografario.
+Cambio en mensaje para correcci�n de falta de ortograf�a.
+Cambios: ACCION/TIPO/NOMBRE
+
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties	(M)
+XHTML		src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml					(M)
+XHTML		src/main/webapp/pages/concesion/resultadoPrestamo.xhtml							(M)
+Java		src\main\java\ec\gov\iess\pq\concesion\web\backing\ConsultaCreditoBean.java		(M)
+
+
+======================================================================
+Version: 2.0.5
+Requerimiento: INC-2743 / Validaci�n para inhabilitar las opciones de generaci�n
+ de comprobantes y liquidaci�n de cr�ditos
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java		(M)
+
+
+======================================================================
+Version: 2.0.6
+Requerimiento: INC-2756 / Bug de inconsistencia en las tablas de amortizaci�n para cr�ditos de alivio econ�mico.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java				(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java		(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java					(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java								(M)
+xhtml		src/main/webapp/pages/concesion/concesionCredito.xhtml										(M)
+xhtml		src/main/webapp/pages/concesion/resultadoPrestamo.xhtml										(M)
+xhtml		src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml								(M)
+xhtml		src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml								(M)
+
+
+======================================================================
+Version: 2.0.7
+Requerimiento: INC-2769 / Consultar en l�nea el valor de cesant�a disponible de
+ un afiliado a trav�s del aplicativo web de pr�stamos quirografarios
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		(M)
+
+
+
+======================================================================
+Version: 2.0.7
+Requerimiento: INC-2773 / Ajuste en el c�lculo del inter�s del periodo de gracia para pr�stamos emergentes.
+Cambios: ACCION/TIPO/NOMBRE
+
+
+No se tuvo cambios en este pase por eso mantiene la misma versi�
+
+
+======================================================================
+Version: 2.0.8
+Requerimiento: INC-2790 Requerimiento de pq focalizados para créditos para cocinas de inducción.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase	src/main/java/ec/fin/biess/creditos/pq/filtros/BloqueosAccesosFilter.java	(M)
+Clase	src/main/java/ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	(M)
+Paquete	src/main/java/ec/gov/iess/pq/concesion/focalizados/backing	(C)
+Clase	src/main/java/ec/gov/iess/pq/concesion/focalizados/backing/OllasFocalizadosBacking.java	(C)
+Clase	src/main/java/ec/gov/iess/pq/concesion/focalizados/backing/PqFocalizadosBacking.java	(C)
+Paquete	src/main/java/ec/gov/iess/pq/concesion/focalizados/enumeration	(C)
+Enumeración		src/main/java/ec/gov/iess/pq/concesion/focalizados/enumeration/TipoProductoFocalizadoEnum.java							(C)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java											(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java											(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java									(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java														(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java											(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java												(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java															(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/util/EncriptacionUtil.java													(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/util/Utilities.java															(M)
+FTL				src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFocalizados.ftl	(C)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties										(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/errores.properties											(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties												(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties											(M)
+PNG				src/main/webapp/files/images/content/cocinas-induccion.png																(C)
+XHTML			src/main/webapp/pages/concesion/bloqueoAmaCasa.xhtml																	(C)
+XHTML			src/main/webapp/pages/concesion/concesionCredito.xhtml																	(M)
+XHTML			src/main/webapp/pages/concesion/datosSolicitante.xhtml																	(M)
+XHTML			src/main/webapp/pages/concesion/productosVarios.xhtml																	(M)
+XHTML			src/main/webapp/pages/concesion/resultadoPrestamo.xhtml																	(M)
+XHTML			src/main/webapp/pages/concesion/tipoProductos.xhtml																		(M)
+XHTML			src/main/webapp/pages/conozcasucliente/informativo.xhtml																(M)
+XHTML			src/main/webapp/pages/consulta/seguimientoPrestamoQuirografario.xhtml													(M)
+Carpeta			src/main/webapp/pages/focalizados																						(C)
+XHTML			src/main/webapp/pages/focalizados/catalogoCocinas.xhtml																	(C)
+XHTML			src/main/webapp/pages/focalizados/catalogoOllas.xhtml																	(C)
+XHTML			src/main/webapp/pages/focalizados/errorValidacionOtp.xhtml																(C)
+XHTML			src/main/webapp/pages/focalizados/establecimiento.xhtml																	(C)
+XHTML			src/main/webapp/pages/focalizados/informacion.xhtml																		(C)
+XML				src/main/webapp/WEB-INF/faces-config.xml																				(M)
+XML				src/main/webapp/WEB-INF/web.xml																							(M)
+
+======================================================================
+Version: 2.0.9
+Requerimiento: INC-2797 Ajuste en la consulta de tasa de inter�s para concesi�n de cr�ditos 
+quirografarios de tabla ya no utilizada.
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+XHTML			src/main/webapp/pages/concesion/concesionCredito.xhtml							(M)
+
+
+======================================================================
+Version: 2.0.10
+Requerimiento: INC-2799 Mensaje personalizado cuando existen problemas de integraci�n con servicios web del IESS, o por problemas de disponibilidad del servicio 
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java						(M)
+properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/errores.properties					(M)
+JSP				src/main/webapp/pages/login.jsp																	(M)
+
+======================================================================
+Version: 2.0.11
+Requerimiento: INC-2808 / Modificaci�n de condiciones PQ
+Cambios: ACCION/TIPO/NOMBRE 
+
+clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java						(M)
+clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+clase			src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java									(M)
+xhtml			src/main/webapp/pages/novacion/creditosNovacion.xhtml 											(M)
+clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java						(M)
+properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties					(M)
+xhtml			src/main/webapp/pages/concesion/concesionCredito.xhtml											(M)
+
+======================================================================
+Version: 2.0.12
+Requerimiento: INC-2824 / INCORPORACION DE CÓDIGO PARA IDENTIFICAR LA COCINA ESCOGIDA
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/focalizados/backing/OllasFocalizadosBacking.java									(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/focalizados/backing/PqFocalizadosBacking.java									(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java											(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java											(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java											(M)
+FTL			src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaFocalizados.ftl	(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/errores.properties											(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties												(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties											(M)
+JS			src/main/webapp/js/teclado/TecladoVirtual.js																			(M)
+XHTML		src/main/webapp/pages/focalizados/catalogoCocinas.xhtml																	(M)
+XHTML		src/main/webapp/pages/focalizados/establecimiento.xhtml																	(M)
+XHTML		src/main/webapp/pages/focalizados/informacion.xhtml																		(M)
+
+======================================================================
+Version: 2.0.13
+Requerimiento: INC-2821 / REQUERIMIENTO SRI
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java				(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java					(M)
+
+======================================================================
+Version: 2.0.14
+Requerimiento: INC-2827 / CAMBIO APLICATIVO PQ
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java				(M)
+
+======================================================================
+Version: 2.0.15
+Requerimiento: INC-2825 / Correción de inconsistencias de prestamos quirografarios
+Cambios: ACCION/TIPO/NOMBRE 
+
+xhml	src/main/webapp/pages/concesion/concesionCredito.xhtml											(M)
+xhml	src/main/webapp/pages/consulta/pagIndSeleccion.xhtml											(M)
+xhml	src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml									(M)
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java									(M)
+
+======================================================================
+Version: 2.0.16
+Requerimiento: INC-2856 / Banca Virtual e implementación de simulador
+Cambios: ACCION/TIPO/NOMBRE 
+
+paquete		src/main/java/ec/gov/iess/pq/concesion/simulador											(C)
+paquete		ec/gov/iess/pq/concesion/simulador/backing													(C)
+clase		ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java							(C)
+clase		ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java								(M)
+clase		ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java						(M)
+clase		ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java				(M)
+clase		ec/gov/iess/pq/concesion/web/util/BaseBean.java												(M)
+clase		ec/gov/iess/pq/concesion/web/util/SimulacionCreditoUtil.java								(C)
+properties	resources/ec/gov/iess/pq/concesion/web/resources/errores.properties							(M)
+properties	resources/ec/gov/iess/pq/concesion/web/resources/labels.properties							(M)
+properties	resources/ec/gov/iess/pq/concesion/web/resources/messages.properties						(M)
+xhtml		webapp/pages/concesion/concesionCredito.xhtml												(M)
+xhtml		webapp/pages/novacion/concesionCreditoNovacion.xhtml										(M)
+xhtml		webapp/pages/simulador																		(C)
+xhtml		webapp/pages/simulador/requisitosBloqueantesSimulador.xhtml									(C)
+xhtml		webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml							(C)
+xml			webapp/WEB-INF/faces-config.xml																(M)
+xml			pom.xml																						(M)
+clase		ec/gov/iess/pq/concesion/web/util/EstadosCredito											(E)
+clase		ec/gov/iess/pq/concesion/web/util/TiposCredito												(E)
+clase		ec/gov/iess/pq/concesion/web/util/TiposCreditoPh											(E)
+clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java					(M)
+clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java					(M)
+clase		src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java								(M)
+
+======================================================================
+Version: 2.0.17
+Requerimiento: INC-2863 / Referencia Historica INC-2856.
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java				(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java		(C)
+Clase		src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqRequestBacking.java			(C)
+Clase		src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqSesionBacking.java			(C)
+Carpeta		src/main/java/ec/gov/iess/pq/concesion/simulador/util											(C)
+Clase		src/main/java/ec/gov/iess/pq/concesion/simulador/util/SimuladorUtil.java						(C)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java						(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java					(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java								(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java						(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java									(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties					(M)
+XHTML		src/main/webapp/pages/concesion/concesionCredito.xhtml											(M)
+XHTML		src/main/webapp/pages/concesion/resultadoPrecalificacion.xhtml									(M)
+XHTML		src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml									(M)
+XHTML		src/main/webapp/pages/novacion/resultadoPrecalificacion.xhtml									(M)
+XHTML		src/main/webapp/pages/simulador/requisitosBloqueantesSimulador.xhtml							(M)
+XHTML		src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml					(M)
+XML			src/main/webapp/WEB-INF/faces-config.xml														(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties					(M)
+
+
+======================================================================
+Version: 2.0.18
+Requerimiento: INC-2877 / Cr�dito menor al 50% SBU en estado ELT
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java						(M)
+XML			src/main/webapp/WEB-INF/faces-config.xml														(M)
+XHTML		src/main/webapp/pages/concesion/resultadoPrestamo.xhtml											(M)
+XHTML		src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml									(M)
+
+
+======================================================================
+Version: 2.0.19
+Requerimiento: INC-2891 / CAMBIO WEB SERVICE REGISTRO CIVIL PQ
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/VerificacionRegCivilBean.java				(M)
+
+
+======================================================================
+Version: 2.0.20
+Requerimiento: INC-2880 / Aclaración mensaje aplicativo
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java				(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java					(M)
+
+
+======================================================================
+Version: 2.0.21
+Requerimiento: INC-2886 Eliminar y enmascarar telefono celular y correo electr�nico en formulario conozca a su cliente y en PQ
+Cambios: ACCION/TIPO/NOMBRE
+
+
+Clase		ec/gov/iess/pq/concesion/ conozcacliente/backing/ConozcaClienteBacking.java		(M)
+Clase		ec/gov/iess/pq/concesion/web/backing/ TipoProductosBean.java					(M)
+Clase		ec/gov/iess/pq/concesion/web/bean/DatosBean.java								(M)
+Clase		ec/gov/iess/pq/concesion/web/validator/EmailValidator.java						(M)
+xhtml		/src/main/webapp/pages/concesion/datosSolicitante.xhtml							(M)
+xhtml		/src/main/webapp/pages/conozcasucliente/datosDireccion.xhtml					(M)
+xhtml		/src/main/webapp/pages/conozcasucliente/datosEconomica.xhtml					(M)
+xhtml		/src/main/webapp/pages/conozcasucliente/datosPersonales.xhtml					(M)
+xhtml		/src/main/webapp/pages/novacion/datosSolicitante.xhtml							(M)
+carpeta		/src/main/webapp/update															(E)
+xml			/src/main/webapp/WEB-INF/web.xml												(M)
+
+
+======================================================================
+Version: 2.0.22
+Requerimiento: INC-2907 FUNCIONAMIENTO APLICATIVO WEB DIAS FERIADOS
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase			src/main/java/ec/fin/biess/creditos/pq/filtros/BloqueosAccesosFilter.java			(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java					(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/errores.properties		(M)
+
+
+======================================================================
+Version: 2.0.23
+Requerimiento: INC-2892 / Correcci�n de aportes afiliados
+Cambios: ACCION/TIPO/NOMBRE
+
+Clase	src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase	src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java	    (M)
+Clase	src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java	                (M)
+
+
+
+======================================================================
+Version: 2.0.24
+Requerimiento: INC-2794 / Implementaci�n de Requerimiento logs de auditoria-Proceso de Pr�stamos Quirografarios
+Cambios: ACCION/TIPO/NOMBRE 
+
+Clase	   src/main/java/ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java	             (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/focalizados/backing/PqFocalizadosBacking.java	                 (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java	                     (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java	             (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/ActualizarDatosPersonalesBean.java	             (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	                         (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java	                         (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/PrincipalBean.java	                             (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java	                 (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	         (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java	                                 (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java	                     (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/backing/VerificacionRegCivilBean.java	                     (M)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/helper/AuditoriaPqWebHelper.java	                         (C)
+Clase	   src/main/java/ec/gov/iess/pq/concesion/web/util/BaseBean.java	                                     (M)
+XML	       pom.xml	                                                                                             (M)
+
+======================================================================
+Version: 2.0.25
+Requerimiento: INC-2922 / Información incorrecta que se despliega en la opción de "Seguimiento de la solicitud de crédito" PQ
+Cambios: ACCION/TIPO/NOMBRE 
+XHTML		src/main/webapp/pages/consulta/seguimientoPrestamoQuirografario.xhtml	(M)
+
+======================================================================
+Version: 2.0.26
+Requerimiento: INC-2939 / Requerimiento Mejoras Solicitud PQ Discapacidad
+Cambios: TIPO/NOMBRE/ACCION 
+
+Clase   	ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		(M)
+Properties  ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+Properties  ec/gov/iess/pq/concesion/web/resources/errores.properties		(M)
+Properties  ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+
+
+
+======================================================================
+Version: 2.0.27
+Requerimiento: INC-2869 /  	Implementaci�n de OTP en sistema de pr�stamos Quirografarios
+Cambios: /TIPO/NOMBRE/ACCION
+
+
+Clase			ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java									(M)
+Clase			ec/gov/iess/pq/concesion/web/backing/VerificacionRegCivilBean.java								(M)
+Clase			ec/gov/iess/pq/concesion/focalizados/backing/PqFocalizadosBacking.java							(M)
+Properties		ec/gov/iess/pq/concesion/web/resources/labels.properties										(M)
+Properties		ec/gov/iess/pq/concesion/web/resources/messages.properties										(M)
+ftl				ec/fin/biess/creditos/pq/alertas/templates/email/otp.ftl										(C)
+xhtml			/src/main/webapp/pages/concesion/concesionCredito.xhtml											(M)
+xhtml			/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml									(M)
+xhtml			/src/main/webapp/pages/concesion/validacionOTP.xhtml											(C)
+xhtml			/src/main/webapp/pages/concesion/errorValidacionOTP.xhtml										(C)
+xml				/src/main/webapp/WEB-INF/faces-config.xml														(M)
+
+======================================================================
+Version: 2.0.28
+Requerimiento: INC-2948 / Inconsistencias en la capacidad de endeudamiento
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+xhtml	/src/main/webapp/pages/concesion/concesionCredito.xhtml			(M)
+xhtml	/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml	(M)
+
+======================================================================
+Version: 2.0.29
+Requerimiento:  INC-2940 /  	Requerimiento de Negocio Ecuador tu lugar en el mundo
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java																	(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java																	(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java															(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java																	(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java																		(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/helper/AuditoriaPqWebHelper.java																		(M)
+Clase			src/main/java/ec/gov/iess/pq/concesion/web/util/Utilities.java																					(M)
+FTL				src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaEcuadorTurismo.ftl							(C)
+FTL				src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaEcuadorTurismoCondiciones.ftl				(C)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties																(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/errores.properties																	(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties																		(M)
+Properties		src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties																	(M)
+CSS				src/main/webapp/files/css/styles.css																											(M)
+PNG				src/main/webapp/files/images/content/turismo_ecuador.png																						(C)
+XHTML			src/main/webapp/pages/concesion/concesionCredito.xhtml																							(M)
+XHTML			src/main/webapp/pages/concesion/datosSolicitante.xhtml																							(M)
+XHTML			src/main/webapp/pages/concesion/resultadoPrecalificacion.xhtml																					(M)
+XHTML			src/main/webapp/pages/concesion/resultadoPrestamo.xhtml																							(M)
+XHTML			src/main/webapp/pages/concesion/tipoProductos.xhtml																								(M)
+XHTML			src/main/webapp/pages/consulta/seguimientoPrestamoQuirografario.xhtml																			(M)
+XML				src/main/webapp/WEB-INF/faces-config.xml																										(M)
+XHTML			src/main/webapp/pages/concesion/impResultadoPrestamo.xhtml																						(M)
+
+=====================================================================
+Version: 2.0.30
+Requerimiento:  INC-2946 Soluci�n de indisponibilidad del aplicativo web de PQ
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java					(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties	(M)
+XHTML		src/main/webapp/pages/concesion/resultadoPrecalificacion.xhtml					(M)
+XHTML		src/main/webapp/pages/concesion/resultadoPrestamo.xhtml							(M)
+XHTML		src/main/webapp/pages/novacion/resultadoPrecalificacion.xhtml					(M)
+XHTML		src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml					(M)
+XML			src/main/webapp/WEB-INF/faces-config.xml										(M)
+
+
+=====================================================================
+Version: 2.0.31
+Requerimiento:  INC-2964 Caso inusual de concesi�n de cr�dito normal en fin de semana
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	    src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	    (M)
+Clase	    src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java	                (M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/errores.properties	    (M)
+XHTML	    src/main/webapp/pages/concesion/resultadoPrestamo.xhtml	                            (M)
+
+
+=====================================================================
+Version: 2.0.32
+Requerimiento:  REQ-15 PAR�METROS PRESTAMOS QUIROGRAFARIOS
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java	                        (M)
+Clase	ec/gov/iess/pq/concesion/web/backing/RolesBean.java	                                    (M)
+Xhtml	src/main/webapp/pages/concesion/concesionCredito.xhtml	                                (M)
+Xhtml	src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml	                        (M)
+Xhtml	src/main/webapp/pages/simulador/requisitosBloqueantesSimulador.xhtml	                (M)
+Xhtml	src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml	        (M)
+
+
+=====================================================================
+Version: 2.0.33
+Requerimiento:  REQ-29 Validaciones de ama de casa �nicamente a afiliados activos y no a jubilados
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java	                     (M)
+
+
+=====================================================================
+Version: 2.0.34
+Requerimiento:  REQ-52 Soluci�n de inconvenientes en la impresi�n de comprobantes de pago PQ
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase	src/main/webapp/pages/consulta/comprobantesPago.xhtml	(M)
+
+
+=====================================================================
+Version: 2.0.35
+Requerimiento:  REQ-69 Solicitud de Mantenimiento Quirografarios Productivos
+Cambios: TIPO/NOMBRE/ACCION
+
+
+Clase    /src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java                  	(M)
+Clase    /src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java			(M)
+Clase    /src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java		(M)
+xhtml    /src/main/webapp/pages/concesion/productosVarios.xhtml								(M)
+xhtml    /src/main/webapp/pages/concesion/tipoProductos.xhtml								(M)
+png      /src/main/webapp/files/images/content/productivo.png								(C)
+
+
+
+
+=====================================================================
+Version: 2.0.36
+Requerimiento:  REQ-90 Requerimiento de Negocio - PQ Mujer
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java				(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java					(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+Png			src/main/webapp/files/images/content/credito_mujer.png							(C)
+Xhtml		src/main/webapp/pages/concesion/tipoProductos.xhtml								(M)
+
+
+=====================================================================
+Version: 2.0.37
+Requerimiento:  REQ-117 Parametrizaci�n Pr�stamo Quirografario Gracias Mam�  
+Cambios: TIPO/NOMBRE/ACCION
+
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java				(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		(M)
+Clase		src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java					(M)
+Properties	src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+Png			src/main/webapp/files/images/content/credito_mama.png							(C)
+Xhtml		src/main/webapp/pages/concesion/tipoProductos.xhtml								(M)
+
+
+=====================================================================
+Version: 2.0.38
+Requerimiento: REQ-126 /  	Requerimiento Para ti Papá
+
+
+Clase    /src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java				(M)
+Clase    /src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		(M)
+Clase    /src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java				(M)
+Clase   /src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java		(M)
+properties    /src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties	(M)
+xhtml    /src/main/webapp/pages/concesion/tipoProductos.xhtml							(M)
+jpg      /src/main/webapp/files/images/content/pq_preferencial.jpg						(C)
+
+
+=====================================================================
+Version: 2.0.39
+Requerimiento: REQ-130 /  	Reorganizaci�n de la p�gina principal aplicativo web asegurados pr�stamos quirografarios
+
+Cambios: TIPO/NOMBRE/ACCION
+
+Properties	/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+Xhtml		/webapp/pages/concesion/tipoProductos.xhtml								(M)
+PNG			/webapp/files/images/content/produccion_ecuatoriana.png					(C)
+PNG			/webapp/files/images/content/viaja_ecuador.png							(C)
+XML			/webapp/WEB-INF/faces-config.xml										(M)
+
+
+
+=====================================================================
+Version: 2.0.40
+Requerimiento: REQ-131 /  	Requerimiento préstamo quirografario “Vive Ecuador� 1/3
+
+Cambios: TIPO/NOMBRE/ACCION
+
+Properties		/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties								M
+Xhtml			/webapp/pages/concesion/tipoProductos.xhtml														M
+PNG				/webapp/files/images/content/viaja_ecuador-req131.png											C
+Clase			/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java				M
+Clase			/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		M
+Clase			/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	M
+
+
+=====================================================================
+Version: 2.0.41
+Requerimiento: REQ-134 / Requerimiento préstamo quirografario “Vive Ecuador� 2/3
+carpeta      /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/pqdinamico    (C)
+carpeta     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/pqdinamico/util	(C)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/pqdinamico/util/DinamicoPqUtil.java	(C)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/helper/AuditoriaPqWebHelper.java		(M)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java					(M)
+clase      /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DataConsultaContrato.java		(C)
+clase      /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaContratoProvBean.java		(C)
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java		(M)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java			(M)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java					(M)
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java		(M)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java	(M)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java	(M)
+clase     /maven/pq/pq-concesion-web/src/main/java/ec/fin/biess/creditos/pq/filtros/BloqueosAccesosFilter.java	(M)
+properties    /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties		(M)
+properties    /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties		(M)
+properties    /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties	(M)       
+ftl /maven/pq/pq-concesion-web/src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaDinamicoCondiciones.ftl  (C)
+ftl     /maven/pq/pq-concesion-web/src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaDinamico.ftl   (C)
+xhtml   /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/concesionCredito.xhtml			(M)
+xhtml   /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/resultadoPrecalificacion.xhtml		(M)
+xhtml     /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/consultaContrato.xhtml			(C)
+xhtml    /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/datosSolicitante.xhtml			(M)
+xhtml    /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/resultadoPrestamo.xhtml			(M)
+xhtml   /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/tipoProductos.xhtml				(M)
+xml   /maven/pq/pq-concesion-web/src/main/webapp/WEB-INF/web.xml									(M)
+clase   /maven/comun/auditoria/auditoria-core-ejb/src/main/java/ec/fin/biess/auditoria/enumeraciones/OperacionEnum.java 		(M)
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java				(M)
+
+======================================================================
+Version: 2.0.42
+Requerimiento: REQ-142 / Requerimiento préstamo quirografario “Edúcate con BIESS"
+
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java    						  (M)
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/converter/DineroConverter.java				(M)
+clase   /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaContratoProvBean.java		(M)
+clase   /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/DatosSolicitanteBean.java			(M)
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java				(M)
+clase   /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java			(M)
+clase  	/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java	(M)
+clase   /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java			(M)
+ftl  	/maven/pq/pq-concesion-web/src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioReimpAutorizacionTransferenciaDinamico.ftl   (M)
+ftl 	/maven/pq/pq-concesion-web/src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaDinamicoCondiciones.ftl   (M)
+ftl   	/maven/pq/pq-concesion-web/src/main/resources/ec/fin/biess/creditos/pq/formularios/templates/formularioAutorizacionTransferenciaDinamico.ftl   (M)
+xhtml    /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/concesionCredito.xhtml									(M)			
+xhtml   /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/consultaContrato.xhtml									(M)
+xhtml    /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/tipoProductos.xhtml										(M)
+
+
+======================================================================
+Version: 2.0.43
+Requerimiento: REQ-161 / Incorporación de nuevos mecanismos de seguridad para la autenticación de usuarios en los aplicativos web de PQ y PH y eliminación de validación con el Registro Civil de PQ
+
+
+clase    /pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java    (M)
+xhtml   /pq/pq-concesion-web/src/main/webapp/pages/concesion/validacionOTP.xhtml							  (M)
+
+
+======================================================================
+Version: 2.0.44
+Requerimiento: REQ-171 / ACTUALIZACION, CONDICIONES DE NOVACION DE PRESTAMOS QUIROGRAFARIOS
+
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java    (M)
+clase    /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java					(M)
+clase   /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java					(M)
+xhtml    /maven/pq/pq-concesion-web/src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml				(M)
+
+
+
+======================================================================
+Version: 2.0.45
+Requerimiento: REQ-83 / DESARROLLO ACTUALIZACION BASE DE DATOS BIESS
+
+Cambios: ACCION/TIPO/NOMBRE
+
+
+java    	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java 		(M)
+java  		 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/validator/TelefonoValidator.java					(M)
+java    	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/util/Utilities.java								(M)
+properties   D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties					(M)
+properties   D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties					(M)
+xhtml    	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/conozcasucliente/datosPersonales.xhtml									(M)
+xhtml    	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/conozcasucliente/datosEconomica.xhtml									(M)
+xhtml    	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/conozcasucliente/datosDireccion.xhtml									(M)
+xhtml    	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/conozcasucliente/datosIngresosEgresos.xhtml								(M)
+xhtml   	 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/conozcasucliente/datosReferencias.xhtml									(M)
+js    		 D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/js/validador.js																(M)
+
+
+
+==================================================================================================================
+Version: 2.0.46
+Requerimiento: REQ-243 / NUEVA OPCION CREDITICIA APLICATIVO PQ PARA SOLVENTAR LA EMERGENCIA POR EL COVID-19
+
+
+clase        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java		(M)
+clase        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java				(M)
+clase        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java	(M)
+clase        /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties		(M)
+clase        /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/concesionCredito.xhtml							(M)
+clase        /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/tipoProductos.xhtml								(M)
+clase        /maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/tipoProductosNovacion.xhtml						(M)
+
+
+==================================================================================================================
+Version: 2.0.47
+Requerimiento: REQ-249 / SOLVENTAR ICONSISTENCIAS EN EL PRODUCTO PQ EMERGENTE POR COVID 19
+
+xhtml    /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/tipoProductos.xhtml		(M)
+
+
+==================================================================================================================
+Version: 2.0.48
+Requerimiento: REQ-250 / IMPLEMENTACION, MEDIDA ALTERNA MIENTRAS ENTRA EN PRODUCCION EL REQUERIMIENTO DE NEGOCIO �CONCESION DE PR�STAMOS QUIROGRAFARIOS EN FINES DE SEMANA Y FERIADOS
+
+
+properties     /pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties   (M)
+
+
+==================================================================================================================
+Version: 2.0.49
+Requerimiento: REQ-287 / ACTUALIZACION MENSAJES INFORMATIVOS APLICATIVOS WEB PH Y PQ
+Cambios: ACCION/TIPO/NOMBRE
+
+
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java   (M)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java								(M)
+clase		 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/enumeration/ParametrosGeneralesEnum.java			(A)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/util/Utilities.java								(M)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/EmailDesbloqueoBean.java					(M)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java							(M)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java				(M)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java				(M)
+clase   	 /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/DesbloqueoOnlineBean.java				(M)
+properties    /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties				(M)
+properties    /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties				(M)
+xhtml   	 /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/validacionOTP.xhtml											(M)
+xhtml   	 /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/resultadoPrestamo.xhtml										(M)
+xhtml  		 /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/impResultadoPrestamo.xhtml									(M)
+jsp    		 /maven/pq/pq-concesion-web/src/main/webapp/pages/login.jsp																(M)
+xhtml   	 /maven/pq/pq-concesion-web/src/main/webapp/pages/conozcasucliente/datosPersonales.xhtml								(M)
+xhtml   	 /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/seguimientoPrestamoQuirografario.xhtml						(M)
+xhtml   	 /maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/resultadoPrestamoNovacion.xhtml								(M)
+
+
+
+==================================================================================================================
+Version: 2.0.50
+
+Requerimiento: REQ-103 Centralizaci�n de Cartera - Pr�stamos Quirografarios WEB BIESS, Integraci�n SAC / Pr�stamos Quirografarios WEB BIESS Novaci�n, Integraci�n SAC
+
+
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java			(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java		(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/helper/PrestamoDataProvider.java					(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java									(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/converter/EstadoCreditoConverter.java				(A)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/converter/EstadoPrestamoPQConverter.java				(A)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/util/BaseBean.java									(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/util/SimulacionCreditoUtil.java						(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java								(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java	(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java			(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java					(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/SeguimientoCreditoBean.java					(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java						(M)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/exception/GeneracionComprobanteExcepcion.java		(A)
+clase                        /maven/pq/pq-concesion-web/src/main/java/ec/fin/biess/creditos/pq/filtros/ProcesoMigracionFilter.java						(A)
+properties                        /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties					(M)
+properties                        /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties				(M)
+properties                       /maven/pq/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties					(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml					(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/simulador/requisitosBloqueantesSimulador.xhtml							(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/detallePrestamo.xhtml											(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/concesionCredito.xhtml											(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/resultadoPrecalificacion.xhtml									(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/bloqueoProceso.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/datosSolicitante.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/resultadoPrestamo.xhtml										(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/tipoProductos.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/concesion/impResultadoPrestamo.xhtml										(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/resultadoLiquidacion.xhtml										(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/pagIndSeleccion.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/comprobantePagoDividendos.xhtml									(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/creditosCancelados.xhtml											(A)
+xhtml                      /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/resultadoLiquidacionFondos.xhtml								(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/seguimientoPrestamoQuirografario.xhtml							(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/comprobantesPago.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/calculoLiquidacion.xhtml										(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/licitudfondos.xhtml												(A)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/creditos.xhtml													(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/listaDividendosSac.xhtml											(A)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/calculoLiquidacionFondos.xhtml									(M)
+xhtml                       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/calculoLiquidacionSaldeb.xhtml									(A)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/comprobantePago.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml									(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/creditosNovacion.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/datosSolicitante.xhtml											(M)
+xhtml                        /maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/resultadoPrecalificacion.xhtml									(M)
+formularios                       /maven/pq/pq-concesion-web/src/main/webapp/files/formularios																(A)
+pdf                       /maven/pq/pq-concesion-web/src/main/webapp/files/formularios/licitudfondos.pdf												(A)
+xml                        /maven/pq/pq-concesion-web/src/main/webapp/WEB-INF/faces-config.xml														(M)
+xml                        /maven/pq/pq-concesion-web/src/main/webapp/WEB-INF/web.xml																(M)
+
+
+==================================================================================================================
+Version: 2.0.51
+
+Requerimiento: REQ-318 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB 
+
+
+clase         /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java					(M)
+clase         /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java			(M)
+clase         /pq-concesion-web/src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml						(M)
+
+======================================================================================================================
+
+Version: 2.0.52
+Requerimiento: REQ-320 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ- �Simulador Novaci�n� y �Novaci�n�
+
+clase	    D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java					(M)
+clase	    D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java	(M)
+clase	    D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java		(M)
+xhtml  		D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml	(M)
+xhtml	    D:/Espaciotrabajo1/maven/pq/pq-concesion-web/src/main/webapp/pages/novacion/creditosNovacion.xhtml							(M)
+
+
+======================================================================================================================
+
+Version: 2.0.53
+
+Requerimiento: REQ-329 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB
+
+clase                /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java		(M)
+clase                /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java			(M)
+clase                /pq-concesion-web/src/main/webapp/pages/consulta/comprobantePagoDividendos.xhtml						(M)
+
+
+======================================================================================================================
+
+Version: 2.0.54
+
+Requerimiento: REQ-335 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- PUNTOS VARIOS
+
+
+clase			/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java       (M)
+clase		    /pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java			(M)
+xhtml			/pq/pq-concesion-web/src/main/webapp/pages/concesion/concesionCredito.xhtml								(M)
+xhtml			/pq/pq-concesion-web/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml						(M)
+
+
+========================================================================================
+Version: 2.0.55
+Requerimiento: REQ-339 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- PUNTOS VARIOS
+
+clase            /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java   (M)
+clase            /pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties	  (M)
+
+
+========================================================================================
+Version: 2.0.56
+Requerimiento: REQ-341 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- PUNTOS VARIOS- SEGUND PARTE REQ 335
+
+
+clase		/pq/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java   (M)
+xhtml		/pq-concesion-web/src/main/webapp/pages/consulta/comprobantePagoDividendos.xhtml				 (M)
+xhtml		/pq-concesion-web/src/main/webapp/pages/consulta/comprobantesPago.xhtml							 (M)
+
+
+========================================================================================
+Version: 2.0.57
+Requerimiento: REQ-348 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB- PUNTOS VARIOS- TERCERA PARTE REQ 335 Y VARIOS
+
+
+clase		/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java	(M)
+xhtml		/pq-concesion-web/src/main/webapp/pages/consulta/creditosCancelados.xhtml					(M)
+
+========================================================================================
+Version: 2.0.58
+ 
+ Requerimiento: REQ-355 Error al momento de generar comprobantes de recaudacion PQ
+ 
+ clase       /maven/pq/pq-concesion-web/src/main/webapp/pages/consulta/creditos.xhtml	(M)
+ 
+ 
+ ========================================================================================
+Version: 2.0.59
+
+Requerimiento: REQ-364 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ
+
+
+clase     		/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java		(M)
+clase      		/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java								(M)
+clase      		/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java						(M)
+clase      		/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java					(M)
+clase      		/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java						(M)
+properties      /pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/messages.properties					(M)
+properties      /pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties				(M)
+xhtml     		/pq-concesion-web/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml									(M)
+xhtml      		/pq-concesion-web/src/main/webapp/pages/novacion/informacionNovacion.xhtml										(M)
+ 
+
+========================================================================================
+Version: 2.0.60
+
+Requerimiento: REQ-372   CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ- Cruce de Cuentas de Fondos de Reserva
+
+clase      /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java	(M)
+xhtml      /pq-concesion-web/src/main/webapp/pages/consulta/creditos.xhtml								(M)
+
+
+========================================================================================
+Version: 2.0.61
+Requerimiento: REQ-374 CORRECCION POST PRODUCCION CARTERA- APLICATIVO WEB PQ- COMPROMETIMIENTO DE GARANTIAS Y NOVACION
+
+
+clase      /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java		(M)
+clase      /pq-concesion-web/src/main/webapp/pages/consulta/calculoLiquidacionFondos.xhtml					(M)
+
+========================================================================================
+Version: 2.0.62
+Requerimiento: REQ-404 / CAMBIO DE MENSAJE APLICATIVO PQ- NOVACIONES
+
+M	/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties
+ 
+
+========================================================================================
+Version: 2.0.63
+Requerimiento: REQ-420 / CAMBIO DE MENSAJE APLICATIVO PQ- NOVACIONES
+
+Modified    /pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties
+
+
+========================================================================================
+Version: 2.0.64
+Requerimiento: REQ-399 	Control de Consultas Aplicativo Web de Pr�stamos Quirografarios
+ACCI�N / OBJETO
+
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqBacking.java
+	
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/simulador/backing/SimuladorPqNovacionBacking.java
+	
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConcesionCreditoBean.java
+	
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java
+	
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionBean.java
+	
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ResultadoPrecalificacionNovacionBean.java
+	
+M	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/bean/DatosBean.java
+	
+M	/pq-concesion-web/src/main/webapp/pages/concesion/datosSolicitante.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/concesion/resultadoPrecalificacion.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/concesion/roles.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/concesion/tipoProductos.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/novacion/creditosNovacion.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/novacion/datosSolicitante.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/novacion/productosVariosNovacion.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/novacion/tipoProductosNovacion.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/pages/principal.xhtml
+	
+M	/pq-concesion-web/src/main/webapp/templates/base-panel-menu-vertical.xhtml
+	
+M	pq-concesion-web/src/main/webapp/pages/concesion/concesionCredito.xhtml
+	
+M	pq-concesion-web/src/main/webapp/pages/novacion/concesionCreditoNovacion.xhtml
+
+========================================================================================
+Version: 2.0.65
+Requerimiento: REQ-431 	Control de Consultas Aplicativo Web de Pr�stamos Quirografarios
+ACCI�N / OBJETO
+
+M	\pq-concesion-web\src\main\resources\ec\gov\iess\pq\concesion\web\resources\messages.properties
+
+========================================================================================
+Version: 2.0.66
+Requerimiento: REQ-385 CORRECCION CONDICIONES NOVACION, OPERACIONES EN ESTADO GENERADO, GENERACION DE COMPROBANTES DE PAGO Y LIQUIDACION
+ACCI�N / OBJETO
+
+Modified    /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/ConsultaCreditoBean.java
+Modified    /pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java
+Modified    /pq-concesion-web/src/main/webapp/pages/simulador/requisitosBloqueantesSimuladorNovacion.xhtml
+Modified    /pq-concesion-web/src/main/webapp/pages/novacion/creditosNovacion.xhtml
+
+
+========================================================================================
+Version: 2.0.67
+Requerimiento: REQ-439 CAMBIO DE MENSAJE APLICATIVO PQ- NOVACIONES
+ACCI�N / OBJETO
+
+M	/pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties
+
+========================================================================================
+Version: 2.0.68
+Requerimiento: REQ-297 Requerimiento Control Sesiones PQ y PH
+ACCI�N / OBJETO
+
+M  pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/backing/PrincipalBean.java
+M  pq-concesion-web/src/main/resources/ec/gov/iess/pq/concesion/web/resources/labels.properties
+M  pq-concesion-web/src/main/webapp/pages/login.jsp
+A  pq-concesion-web/src/main/webapp/js/control-tabs.js
+A  pq-concesion-web/src/main/webapp/manifest.json
+M  pq-concesion-web/src/main/webapp/templates/baseSinSesion.xhtml
+M  pq-concesion-web/src/main/webapp/templates/base-panel.xhtml
+M  pq-concesion-web/src/main/webapp/templates/base.xhtml
+M  pq-concesion-web/src/main/webapp/templates/base-panel-menu-vertical.xhtml
+
+
+========*******************************************************************============
+Version: 2.0.69
+
+Requerimiento: REQ-440 	Requerimineto control de genero Registro Civil
+EMERGENTE
+Cambios: ACCION/NOMBRE
+
+M      \pq-concesion-web\src\main\java\ec\gov\iess\pq\concesion\conozcacliente\backing\ConozcaClienteBacking.java
+M      \pq-concesion-web\src\main\webapp\pages\concesion\datosSolicitante.xhtml
+
+
+========****************===============================================
+Version: 2.0.70
+
+Requerimiento: REQ-442 / Continuaci�n requerimineto 440 soluci�n de cambio de Genero
+EMERGENTE
+Cambios: ACCION/NOMBRE
+
+Modified    F:/Espaciotrabajo/TAG_REQ-442/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/conozcacliente/backing/ConozcaClienteBacking.java
+Modified    F:/Espaciotrabajo/TAG_REQ-442/pq-concesion-web/src/main/webapp/pages/novacion/datosSolicitante.xhtml
+
+
+========****************===============================================
+Version: 2.0.71
+
+Requerimiento: REQ-408 Parametrizaci�n PQ- Administrador de Par�metros- Fechas para Comprobantes de Pago y Novaciones
+
+Cambios: ACCION/NOMBRE 
+
+M 	/pq-concesionweb/src/main/java/ec/gov/iess/pq/concesion/web/backing/RolesBean.java
+M 	/pq-concesionweb/src/main/java/ec/gov/iess/pq/concesion/web/backing/CreditoAccionBean.java
+M 	/pq-concesionweb/src/main/java/ec/gov/iess/pq/concesion/web/backing/TipoProductosBean.java
+M 	/pq-concesionweb/src/main/java/ec/gov/iess/pq/concesion/web/util/BaseBean.java
+M 	/pq-concesion-web/src/main/java/ec/gov/iess/pq/concesion/web/util/Utilities.java
+M 	/pq-concesionweb/src/main/resources/ec/gov/iess/pq/concesion/web/resources/condiciones.properties
+M 	/pq-concesion-web/src/main/webapp/pages/principal.xhtml
+M 	/pq-concesion-web/src/main/webapp/templates/base-panel-menu-vertical.xhtml
+M 	/pq-concesion-web/src/main/webapp/pages/novacion/informacionNovacion.xhtml
+M 	/pq-concesion-web/src/main/webapp/pages/consulta/creditos.xhtml
+C 	/pq-concesionweb/src/main/webapp/img/quirografario/informacion_comprobante.jpg
+
+
+========****************===============================================
+Version: 2.0.72
+
+Requerimiento: REQ-476 REVISION CREDITOS QUIROGRAFARIOS PDA, PDV, PDC
+EMERGENTE
+Cambios: ACCION/NOMBRE 
+
+M	\pq-concesion-web\src\main\java\ec\gov\iess\pq\concesion\web\backing\ConcesionCreditoBean.java
+M	/pq-concesion-web/src/main/webapp/pages/consulta/seguimientoPrestamoQuirografario.xhtml

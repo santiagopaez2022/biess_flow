@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml" xmlns:rich="http://richfaces.ajax4jsf.org/rich" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax" xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<a4j:jsFunction action="#{roles.verificarDatos}" name="verificarDatos" ajaxSingle="true" limitToList="true" />
+			<a4j:jsFunction action="#{creditoAccion.cleanOptions}" name="cleanOptions" ajaxSingle="true" limitToList="true" reRender="pnlError" />
+		</h:form>
+
+		<div class="text_mensaje_pagina">
+			#{labels['titulo.consulta.creditos.cancelados']}
+			<a4j:status>
+				<f:facet name="start">
+					<rich:panel styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:panel>
+				</f:facet>
+			</a4j:status>
+		</div>
+
+		<a4j:outputPanel id="pnlError">
+			<rich:panel styleClass="errorPanel" rendered="#{creditoAccion.msjError!=null}">
+				<h:outputText value="#{creditoAccion.msjError}"></h:outputText>
+			</rich:panel>
+			<rich:panel rendered="#{creditoAccion.productos.mensajeInformativo != null}" styleClass="errorPanel">
+				<h:outputText value="#{creditoAccion.productos.mensajeInformativo}" id="lblMensajeInformativo" />
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:outputPanel id="pnlDatosGenerales">
+			<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody" rendered="${datos.solicitante!=null}">
+				<f:facet name="header">
+				#{labels['datos.generales']}
+				</f:facet>
+
+				<h:panelGrid columns="2" styleClass="panelInvisible">
+					<h:outputLabel value="#{labels.cedula}:" />
+					<h:outputLabel style="font-weight:bold;text-align:left;" value="#{datos.solicitante.datosPersonales.cedula}" />
+
+					<h:outputLabel value="#{labels.nombresApellidos}:" />
+					<h:outputLabel style="font-weight:bold;text-align:left;" value="#{datos.solicitante.datosPersonales.apellidosNombres}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" styleClass="panelInvisible">
+					<rich:panel id="uiSCNovacionesError" styleClass="errorPanel" rendered="#{consultaCredito.tieneNovaciones}">
+						<h:outputText value="#{consultaCredito.mensajeInformativoNovaciones}"></h:outputText>
+					</rich:panel>
+				</h:panelGrid>
+
+			</rich:panel>
+		</a4j:outputPanel>
+
+		<a4j:region id="regionTable">
+			<a4j:outputPanel id="pnlLista">
+				<h:form rendered="${datos.solicitante!=null}">
+					<rich:panel styleClass="panel" headerClass="pheader" bodyClass="pbody">
+						<f:facet name="header">
+							#{labels['titulo.lista.creditos.cancelados']}
+						</f:facet>
+
+
+						<a4j:status>
+							<f:facet name="start">
+								<rich:panel styleClass="panelInvisible">
+									<h:graphicImage value="/img/ajax/cargando.gif" />
+									<h:outputText value="#{messages.cargando}"></h:outputText>
+								</rich:panel>
+							</f:facet>
+						</a4j:status>
+
+						<h:panelGrid columns="1">
+							<a4j:outputPanel id="panelTablaCreditos" ajaxRendered="true" style="overflow:auto; width:612px;" layout="block">
+
+								<rich:dataTable  id="tablaCreditos" var="item" rows="10" value="#{consultaCredito.creditosCancelados}" styleClass="tablesinside" headerClass="dt_header"
+									rowClasses="prow1,prow2">
+
+									<rich:column style="text-align:center;" sortable="false" id="colPoducto">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.producto']}" />
+										</f:facet>
+										<h:outputText value="#{item.clasePrestamo.descripcion}" />
+									</rich:column>
+										<rich:column style="text-align:center;" sortable="false" id="colPrestamo">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.destino.comercial']}" />
+										</f:facet>
+										<h:outputText value="#{item.destinoComercial.descripcion}"  />
+									</rich:column>
+									<rich:column style="text-align:center;" sortable="false" id="colEstado">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.estado']}" />
+										</f:facet>
+										<h:outputText value="#{item.estadoPrestamo.desestpre}" />
+									</rich:column>
+									<rich:column style="text-align:center;" sortable="false" id="colNumero">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.numero']}" />
+										</f:facet>
+										<h:outputText value="#{item.prestamoPk.numpreafi}#{item.prestamoPk.ordpreafi}#{item.prestamoPk.codpretip}#{item.prestamoPk.codprecla}" />
+									</rich:column>
+									<rich:column style="text-align:center;" sortable="false" id="colNut">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.nut']}" />
+										</f:facet>
+										<h:outputText value="#{item.numOperacionSAC!=null?item.nut:'N/A'}" />
+									</rich:column>
+									<rich:column style="text-align:center;" sortable="false" id="colPlazo">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.plazo.meses']}" />
+										</f:facet>
+										<h:outputText value="#{item.plzmes}" />
+									</rich:column>
+									<rich:column style="text-align:center;" sortable="false" id="colFecha">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.fecha.concesion']}" />
+										</f:facet>
+										<h:outputText value="#{item.fecpreafi}">
+											<f:convertDateTime pattern="dd-MMM-yyyy" />
+										</h:outputText>
+									</rich:column>
+									<rich:column style="text-align:right;" sortable="false" id="colMonto">
+										<f:facet name="header">
+											<h:outputText value="#{labels['credito.monto.abrev']}" />
+										</f:facet>
+										<h:outputText value="#{item.valsalcap}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2" type="currency" />
+										</h:outputText>
+									</rich:column>
+
+									<rich:column style="text-align:center;">
+										<f:facet name="header">
+											<rich:spacer />
+										</f:facet>
+
+										<f:subview>
+											<a4j:commandButton styleClass="botonAmarillo" value="Ver" reRender="lblMensajeInformativo, pnlError"
+												action="#{consultaCredito.seleccionarCreditoCancelado}" />
+										</f:subview>
+									</rich:column>
+
+									<f:facet name="footer">
+										<rich:datascroller id="tablaCreditosScroller" for="tablaCreditos" reRender="pnlError" action="#{creditoAccion.resetear}" ajaxSingle="true"
+											limitToList="true" />
+									</f:facet>
+									</rich:dataTable>
+							</a4j:outputPanel>
+
+						</h:panelGrid>
+
+					</rich:panel>
+				</h:form>
+			</a4j:outputPanel>
+		</a4j:region>
+
+		<script type="text/javascript">
+			verificarDatos();
+			cleanOptions();
+			/* To disable drag-and-drop in the table columns */
+			DnD_ExtSimpleDraggable_colPrestamo.isDragEnabled=DnD_ExtSimpleDraggable_colEstado.isDragEnabled=
+			DnD_ExtSimpleDraggable_colNumero.isDragEnabled=DnD_ExtSimpleDraggable_colPlazo.isDragEnabled=
+			DnD_ExtSimpleDraggable_colFecha.isDragEnabled=DnD_ExtSimpleDraggable_colMonto.isDragEnabled=
+			function(){
+				return false;
+			}									
+		</script>
+	</ui:define>
+</ui:composition>

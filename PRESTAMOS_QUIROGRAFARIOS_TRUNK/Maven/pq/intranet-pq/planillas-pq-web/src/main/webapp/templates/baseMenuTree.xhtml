@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><ui:insert name="titulo">#{titulos['sistema.titulo']}</ui:insert>
+</title>
+<link rel="stylesheet" type="text/css"
+	href="${facesContext.externalContext.request.contextPath}/css/iess.css" />
+<link rel="stylesheet" type="text/css"
+	href="${facesContext.externalContext.request.contextPath}/css/fr-internet.css" />
+</head>
+<body>
+<f:view>
+	<ui:insert name="encabezado">
+		<div id="cabecera">
+		<div class="contenedor_logo"></div>
+		<div class="contenedor_titulo" style=" width : 196px; height : 37px;"></div>
+		<div class="contenedor_topder">
+		<h:form id="linksEncabezado">
+			<!-- TOP (MENU SUPERIOR DERECHO)  -->
+			<a style="cursor: help" href="mailto:ayudapq@iess.gov.ec">#{etiquetas['contactenos']}</a>
+			<b>|</b>
+			<a href="#" onclick="window.close()">#{botones['salir']}</a>
+			<rich:spacer width="10px" />
+		</h:form></div>
+		<div class="contenedor_topizq" />
+		<div id="fecha" class="contenedor_fecha"><h:outputText
+			value="#{hoy}">
+			<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" />
+		</h:outputText></div>
+		</div>
+		<div class="contenedor_titsistema">#{titulos['sistema.titulo']}
+		</div>
+		<div id="cont_subtitulo">#{etiquetas['encabezado.usuario']}:
+		${facesContext.externalContext.request.remoteUser}<rich:spacer
+			width="4px" />-<rich:spacer width="4px" />#{funcionario.nombreCompleto}<rich:spacer
+			width="10px" /></div>
+	</ui:insert>
+
+	<div id="principal">
+	
+	<span class="text_mensaje_pagina"><rich:spacer
+		height="15px;" /><ui:insert name="tituloPagina"></ui:insert></span> 
+		
+	<script>
+     function toggle(){
+     	var menu = document.getElementById('menu');
+		var contenido = document.getElementById('contenido');
+    	if (menu.style.display == 'none') {
+    		menu.style.display = 'block';
+			contenido.style.left = '298px'; /*'218px';*/
+    	} else {
+    		menu.style.display = 'none';
+			contenido.style.left = '10px';
+    	}
+    }
+    </script>
+	<h:panelGrid>
+	<a href='javascript: toggle()'>:::</a>
+		<h:form id="formTree">
+		<div id='menu' style='display:block'>
+		<h:panelGroup>
+			<rich:tree switchType="client" value="#{menuTree}"
+				adviseNodeOpened="#{estadoMenu.abrir}" var="item" nodeFace="node"
+				toggleOnClick="true" iconLeaf="/img/tree/iconLeaf.gif"
+				ajaxSubmitSelection="true" nodeSelectListener="#{menuTree.reset}">
+				<rich:treeNode type="node">
+					<f:subview rendered="#{item.urlOpcion!='#'}">
+						<a
+							href="#{facesContext.externalContext.request.contextPath}#{item.urlOpcion}"><h:outputText
+							value="#{item.etiquetaOpcionMenu}" /></a>
+					</f:subview>
+					<f:subview rendered="#{item.urlOpcion=='#'}">
+						<h:outputText value="#{item.etiquetaOpcionMenu}" />
+					</f:subview>
+				</rich:treeNode>
+			</rich:tree>
+		</h:panelGroup>
+		</div>
+		</h:form>
+	
+	</h:panelGrid>
+	
+	<div id="contenido">
+	<rich:messages showSummary="true" showDetail="true" errorClass="mensajeError" warnClass="mensajeAdvertencia"
+			infoClass="mensajeInfo" rendered="true" globalOnly="true" />
+	<ui:insert
+		name="contenido">Contenido</ui:insert></div>
+
+	</div>
+	<!-- principal -->
+	<!--<div id="pie"><hr/>#{etiquetas['copyright']}</div>-->
+</f:view>
+</body>
+</html>

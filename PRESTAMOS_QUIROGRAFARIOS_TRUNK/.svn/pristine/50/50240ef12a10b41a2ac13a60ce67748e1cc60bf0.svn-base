@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.height8 {
+	height: 8px;
+}
+
+.height0 tr td {
+	height: 0%
+}
+
+.navPanel {
+	position: absolute;
+	bottom: 0;
+	height: 23px;
+	margin: 0;
+	padding: 2px;
+}

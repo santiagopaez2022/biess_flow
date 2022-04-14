@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="contenido">
+
+		<div class="text_mensaje_pagina">
+		#{labels['titulo.precalificacion']}</div>
+		
+		<!-- mensajes de error -->
+		<a4j:outputPanel ajaxRendered="true">
+			<h:messages styleClass="errorPanel"
+				style="padding:10px 0px 15px 55px; margin: 0px;" />
+			<br />
+		</a4j:outputPanel>
+		
+		<rich:panel id="pnlDatosGenerales" styleClass="panel"
+			headerClass="pheader" bodyClass="pbody" rendered="#{datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}">
+			<f:facet name="header">
+				#{labels['datos.generales']}
+			</f:facet>
+			
+			<h:panelGrid columns="2" styleClass="panelInvisible">
+				<h:outputLabel for="txtCedula" value="#{labels.cedula}:" />
+				<h:inputText id="txtCedula"
+					value="#{datos.solicitante.datosPersonales.cedula}" readonly="true" />
+
+				<h:outputLabel for="txtApellidos"
+					value="#{labels.nombresApellidos}:" />
+				<h:inputText id="txtApellidos"
+					value="#{datos.solicitante.datosPersonales.apellidosNombres}"
+					readonly="true" size="50" />
+			</h:panelGrid>
+
+			<!--  Garantias  -->
+			
+			<!-- AFILIADO o ZAFRERO -->
+			<a4j:outputPanel
+				rendered="#{resultado.garantia != null and !empty resultado.garantia.detalleGarantiaList and (datos.solicitante.tipo=='AFILIADO' or datos.solicitante.tipo=='ZAFRERO_TEMPORAL')}">
+				
+				<table width="99%" border="0" cellpadding="0" cellspacing="0" class="tablesinside">
+					<tr>
+						<th>
+							<h:outputText value="#{labels['garantias']}" />
+						</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+					<c:forEach items="#{resultado.garantia.detalleGarantiaList}" var="item">
+						<tr>
+							<td><h:outputText value="#{item.nombreGarantia}:" style="text-align: left;width: 200;"/></td>
+							<td class="tdCampoNum" style="text-align: right;"><h:outputText
+								value="#{item.valorGarantia}" style="text-align: right;">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText></td>
+							<td><h:outputText value="#{item.observacion}" style="text-align: right;color: red" /></td>
+						</tr>
+					</c:forEach>					
+					<tr>
+						<td><h:outputLabel for="txtGarantia"
+							value="#{labels['total.garantia.prerrequisitos']}:" /></td>
+						<td class="tdCampoNum"><h:outputText id="txtGarantia"
+							value="#{resultado.garantia.totalGarantia}">
+							<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+								type="currency" />
+						</h:outputText></td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</a4j:outputPanel>
+			
+			<!-- JUBILADO -->
+			<a4j:outputPanel
+				rendered="#{resultado.garantia != null and datos.solicitante.tipo=='JUBILADO'}">
+				<table width="99%" border="0" cellpadding="0" cellspacing="0" class="tablesinside" >
+					<tr>
+						<th>
+							<h:outputText value="#{labels['pension.jubilacion']}" />
+						</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+					<c:forEach items="#{resultado.garantia.detalleGarantiaList}"
+						var="item">
+						<tr>
+							<td><h:outputText value="#{item.nombreGarantia}:" style="text-align: left;width: 200;"/></td>
+							<td class="tdCampoNum" style="text-align: right;"><h:outputText
+								value="#{item.valorGarantia}" style="text-align: right;">
+								<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+									type="currency" />
+							</h:outputText></td>
+							<td><h:outputText value="#{item.observacion}"
+								style="text-align: right;color: red" /></td>
+						</tr>
+					</c:forEach>
+
+					<c:if test="#{datos.mensajePrestacionJubilado!=null}">
+						<tr>
+							<td colspan="3">
+								<rich:panel styleClass="errorPanel"
+									rendered="#{datos.mensajePrestacionJubilado!=null}">
+									<h:outputText value="#{datos.mensajePrestacionJubilado}"></h:outputText>
+								</rich:panel>
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="#{datos.mensajePrestacionJubilado==null}">
+						<tr>
+							<td></td>
+							<td><b>
+							#{labels['prestaciones.ingresos']}
+							</b></td>
+							<td><b>
+							#{labels['prestaciones.egresos']}
+							</b></td>
+						</tr>
+						<c:forEach
+							items="#{datos.informacionIessServicio.informacionPrestacionPensionado.listaPrestaciones}"
+							var="_presta">
+							<tr>
+								<td>
+									<h:outputText value="#{_presta.descripcion}:" />
+								</td>
+								<td class="tdCampoNum">$<h:outputText
+										value="#{_presta.ingresos}"
+										style="text-align: right;">
+										<f:convertNumber groupingUsed="true"
+											maxFractionDigits="2" type="currency" />
+									</h:outputText>
+								</td>
+								<td class="tdCampoNum">$<h:outputText
+										value="#{_presta.egresos}"
+										style="text-align: right;">
+										<f:convertNumber groupingUsed="true"
+											maxFractionDigits="2" type="currency" />
+									</h:outputText>
+								</td>
+							</tr>
+						</c:forEach>
+							<tr>
+								<td><b>#{labels['prestaciones.total']}:</b></td>
+								<td class="tdCampoNum"><b>$#{datos.informacionIessServicio.informacionPrestacionPensionado.totalIngresos}</b></td>
+							<td class="tdCampoNum"><b>$#{datos.informacionIessServicio.informacionPrestacionPensionado.totalEgresos}</b></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<rich:panel styleClass="errorPanel"
+										rendered="#{datos.informacionIessServicio.informacionPrestacionPensionado.valorAComprometer lt 0}">
+										<h:outputText value="#{datos.mensajeValorNegativo}"></h:outputText>
+									</rich:panel>
+								</td>
+								</tr>
+					</c:if>
+				</table>
+			</a4j:outputPanel>
+		</rich:panel>
+		
+		<a4j:status id="cargandoRequisitos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+		</a4j:status>
+		<h:form>
+			<a4j:jsFunction action="#{resultado.cargarPrecalificacion}"
+					name="cargarRequisitos" status="cargandoRequisitos"
+					reRender="pnlRequisitos,pnlReqNoCumple,pnlRequisitosNoCumple,pnlResultado,pnlDatosGenerales,pnlContieneNoCumple"></a4j:jsFunction>
+			<rich:panel styleClass="panel" headerClass="pheader"
+				bodyClass="pbody" rendered="#{datos.tiposProductosPq != 'ECU_TUR'  and datos.tiposProductosPq != 'DINAMICO'}">
+				<f:facet name="header">
+					#{labels['resultado.precalificacion.requisitos']}
+				</f:facet>
+				<!-- <a4j:keepAlive beanName="resultado"></a4j:keepAlive> -->
+				
+				<a4j:outputPanel id="pnlRequisitos">
+					<h:dataTable var="item"
+						value="#{resultado.precalificacion.requisitos}"
+						rendered="#{resultado.cargado}" styleClass="tablesinside"
+						headerClass="dt_header" rowClasses="prow1,prow2">
+						<h:column>
+							<f:facet name="header">#{labels.requisito}</f:facet>
+							<h:outputText value="#{item.descripcion}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{labels.aprueba}</f:facet>
+							<div align="center"><h:graphicImage
+								value="/files/images/content/icon-check.png" rendered="#{item.aprobado}"></h:graphicImage>
+							<h:graphicImage value="/files/images/content/icon-uncheck.png"
+								rendered="#{!item.aprobado}"></h:graphicImage></div>
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{labels.observacion}</f:facet>
+							<h:outputText value="#{item.observacion}" />
+							<h:outputText value="#{item.url}" rendered="#{item.url!=null}" />
+						</h:column>
+					</h:dataTable>
+				</a4j:outputPanel>
+			</rich:panel>
+
+			<a4j:outputPanel id="pnlContieneNoCumple">
+				<a4j:outputPanel id="pnlRequisitosNoCumple" rendered="#{(datos.tiposProductosPq == 'ECU_TUR' or  datos.tiposProductosPq == 'DINAMICO') and fn:length(resultado.requisitosNoCumple) > 0}">
+					<rich:panel styleClass="panel" headerClass="pheader" id="pnlReqNoCumple" bodyClass="pbody">
+						<f:facet name="header">
+						#{labels['resultado.precalificacion.requisitos']}
+					</f:facet>
+
+						<h:dataTable var="item" value="#{resultado.requisitosNoCumple}" rendered="#{resultado.cargado}" styleClass="tablesinside" headerClass="dt_header" rowClasses="prow1,prow2">
+							<h:column>
+								<f:facet name="header">#{labels.requisito}</f:facet>
+								<h:outputText value="#{item.descripcion}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">#{labels.aprueba}</f:facet>
+								<div align="center">
+									<h:graphicImage value="/files/images/content/icon-check.png" rendered="#{item.aprobado}"></h:graphicImage>
+									<h:graphicImage value="/files/images/content/icon-uncheck.png" rendered="#{!item.aprobado}"></h:graphicImage>
+								</div>
+							</h:column>
+							<h:column>
+								<f:facet name="header">#{labels.observacion}</f:facet>
+								<h:outputText value="#{item.observacion}" />
+								<h:outputText value="#{item.url}" rendered="#{item.url!=null}" />
+							</h:column>
+						</h:dataTable>
+					</rich:panel>
+				</a4j:outputPanel>
+			</a4j:outputPanel>
+
+			<a4j:outputPanel id="pnlResultado">
+				<f:subview rendered="#{resultado.cargado}">
+					<rich:panel styleClass="panelResults" headerClass="pheader"
+						bodyClass="pbody">
+						<f:facet name="header">	#{labels['resultado.final']} </f:facet>
+						<rich:panel styleClass="okayPanel"
+							rendered="#{resultado.datos.solicitante.aprobado}">
+							<h:outputText value="#{messages['precalificacion.aceptada']}"
+								escape="false"></h:outputText>
+						</rich:panel>
+						<rich:panel styleClass="errorPanel"
+							rendered="#{!resultado.datos.solicitante.aprobado}">
+							<h:outputText value="#{messages['precalificacion.negada']}" rendered="#{datos.tiposProductosPq != 'ECU_TUR' and datos.tiposProductosPq != 'DINAMICO'}"
+								escape="false"></h:outputText>
+							<h:outputText value="#{messages['precalificacion.negada.no.cumple.requisitos']}" rendered="#{datos.tiposProductosPq == 'ECU_TUR' or datos.tiposProductosPq == 'DINAMICO'}"
+								escape="false"></h:outputText>
+						</rich:panel>
+					</rich:panel>
+					<br />
+					<div align="center">
+					<h:commandButton 
+						action="#{concesionCredito.aceptar}"
+						value="#{labels['button.aceptar.continuar']}"
+						disabled="#{!resultado.datos.solicitante.aprobado}"
+						styleClass="botonbarra"
+						 onclick="Richfaces.showModalPanel('pnl');" oncomplete="Richfaces.hideModalPanel('pnl');" ></h:commandButton>
+						<rich:spacer />
+						<h:commandButton action="regresar" value="#{labels['button.regresar']}"
+						styleClass="botonbarra" immediate="true"></h:commandButton> 
+						<rich:spacer />
+					<h:commandButton action="#{principal.logout}"
+						value="#{labels['button.salir']}" styleClass="botonbarra"
+						immediate="true"></h:commandButton></div>
+				</f:subview>
+			</a4j:outputPanel>
+		</h:form>
+ <a4j:form>
+
+					<rich:modalPanel id="pnl" autosized="true"
+						styleClass="panelInvisible">
+						<h:graphicImage value="/img/ajax/cargando.gif" />
+						<h:outputText value="#{messages.cargando}"></h:outputText>
+					</rich:modalPanel>
+
+				</a4j:form>
+		<script type="text/javascript">
+			document.onkeydown = function(e){
+				tecla = (document.all) ? e.keyCode : e.which;
+				if (tecla == 116) {
+					return false
+				}
+			}
+		
+			cargarRequisitos();
+		</script>
+	</ui:define>
+</ui:composition>

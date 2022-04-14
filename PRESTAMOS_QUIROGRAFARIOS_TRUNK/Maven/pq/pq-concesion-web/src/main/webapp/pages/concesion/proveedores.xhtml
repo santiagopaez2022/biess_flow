@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/base-panel-menu-vertical.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt">
+
+	<ui:define name="contenido">
+
+		<h1>#{labels['titulo.proveedor.seleccion']}</h1>
+		<a4j:status id="cargandoProductos">
+			<f:facet name="start">
+				<rich:panel styleClass="panelInvisible" id="pnlInvisible">
+					<h:graphicImage value="/img/ajax/cargando.gif" />
+					<h:outputText value="#{messages.cargando}"></h:outputText>
+				</rich:panel>
+			</f:facet>
+			<a4j:commandButton action="#{principal.logout}"
+				value="#{labels['button.salir']}" styleClass="botonbarra"
+				immediate="true">
+			</a4j:commandButton>
+		</a4j:status>
+
+		<a4j:region>
+			<h:form id="formProveedorSel">
+				<a4j:outputPanel id="pnlProductos">
+					<rich:panel style="width:100%;">
+						<rich:panel id="rchPnlError" styleClass="errorPanel" rendered="#{!empty productos.mensageProductos}">
+							#{productos.mensageProductos}
+						</rich:panel>
+						<f:facet name="header">
+							#{labels['creditur.agencia']}
+						</f:facet>
+						<h:panelGrid columns="3" styleClass="panelInvisible">
+							<h:outputText value="#{labels['creditur.agencia']}:" />
+							<h:selectOneMenu id="slProveedor" value="#{productos.idProveedorSeleccionado}" converter="#{proveedorConverter}"
+								required="true" requiredMessage="#{errores['agencia.requerido']}">
+								<f:selectItem itemValue="#{null}" itemLabel="Seleccione una isla Viaja Primero Ecuador" />
+								<f:selectItems value="#{productos.listaProveedorSelectItems}" />
+								<a4j:support event="onchange" action="#{productos.validarProveedor}" />
+							</h:selectOneMenu>
+							<a4j:outputPanel ajaxRendered="true">
+								<h:message errorClass="requerido" for="slProveedor" />
+							</a4j:outputPanel>							
+						</h:panelGrid>
+					</rich:panel>
+				</a4j:outputPanel>
+
+				<a4j:commandButton action="aceptarProductos" value="#{labels['button.aceptar.continuar']}" styleClass="botonbarra" />
+				<h:commandButton action="regresar" value="#{labels['button.regresar']}" styleClass="botonbarra" immediate="true" />
+			</h:form>
+		</a4j:region>
+
+		<script type="text/javascript">
+		   load();
+	    </script>
+	</ui:define>
+</ui:composition>

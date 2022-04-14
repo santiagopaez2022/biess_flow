@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><ui:insert name="titulo">#{titulos['sistema.titulo']}</ui:insert>
+</title>
+<link rel="stylesheet" type="text/css"
+	href="${facesContext.externalContext.request.contextPath}/css/iess.css" />
+<link rel="stylesheet" type="text/css"
+	href="${facesContext.externalContext.request.contextPath}/css/iess-internet.css" />
+</head>
+<body>
+<f:view>
+	<ui:insert name="encabezado">
+		<div id="head">
+		<div class="top_menu"><a style="cursor: help"
+			href="mailto:ayudarp@iess.gov.ec"><span
+			style="text-transform: uppercase">#{etiquetas['contactenos']}</span></a>
+		| <a
+			href="#{facesContext.externalContext.request.contextPath}/pages/index.jsp"><span
+			style="text-transform: uppercase">#{botones['salir']}</span></a></div>
+		<div class="logo">&nbsp;</div>
+		<div class="banner">&nbsp;</div>
+		</div>
+	</ui:insert>
+	<div id="main"><h:form id="formOpt">
+		<div id="area">
+		<div class="usuario"><span style="color: #000">#{etiquetas['encabezado.usuario']}:</span>
+		${facesContext.externalContext.request.remoteUser}<rich:spacer
+			width="4px" height="1" />-<rich:spacer width="4px" height="1" />#{funcionario.nombreCompleto}</div>
+		<div class="fecha"><h:outputText value="#{hoy}">
+			<f:convertDateTime pattern="dd-MMM-yyyy" locale="es" />
+		</h:outputText></div>
+		</div>
+		<div class="spacergr"></div>
+		<span class="text_mensaje_pagina"><rich:spacer height="0px;" /><ui:insert
+			name="tituloPagina"></ui:insert></span>
+	</h:form> <script>
+	function toggle(){
+        var menu = document.getElementById('menu');
+        var imagen = document.getElementById('ocultar');
+		var imagen2=document.getElementById('mostrar');
+	   var contenido = document.getElementById('contenido');
+       if (menu.style.display == 'none') {
+           menu.style.display = 'block';
+           contenido.style.left = '210px';
+           contenido.style.width = '746px';
+		   imagen.style.display = 'block';
+		   imagen2.style.display = 'none';
+       } else {
+		   menu.style.display ='none';
+           contenido.style.left = '0px';
+           contenido.style.width = '946px';
+           imagen.style.display = 'none';
+		   imagen2.style.display = 'block';
+       }
+   } 
+    </script> 
+		<h:form id="formTree">
+			<div id='menu' style='display:block;height:650px;'>
+			<h:panelGroup>
+				<!--  -->
+				<h:outputText value="#{errores['no.existe.opciones.menu']}"
+					rendered="#{empty panelMenuHandler.items}"
+					style="color: red;" />
+				<rich:panelMenu style="width:170px" mode="ajax" expandMode="none"
+					iconExpandedGroup="disc" iconCollapsedGroup="disc"
+					iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right"
+					iconCollapsedTopGroup="chevronDown">
+					<c:forEach items="#{panelMenuHandler.items}" var="item">
+						<rich:panelMenuGroup label="#{item.etiquetaOpcionMenu}"
+							expanded="true" rendered="#{item.urlOpcion == '#'}">
+							<c:forEach items="#{item.opcionMenuList}" var="child_0">
+								<rich:panelMenuItem label="#{child_0.etiquetaOpcionMenu}" 
+													rendered="#{child_0.urlOpcion!='#'}" 
+													action="#{principal.solicitarItem}">
+									<f:param value="#{child_0.urlOpcion}" name="url"/>
+								</rich:panelMenuItem>
+								<rich:panelMenuGroup label="#{child_0.etiquetaOpcionMenu}"
+													 rendered="#{child_0.urlOpcion == '#'}">
+									<c:forEach items="#{child_0.opcionMenuList}" var="child_1">
+										<rich:panelMenuItem label="#{child_1.etiquetaOpcionMenu}" 
+															rendered="#{child_1.urlOpcion!='#'}" 
+															action="#{principal.solicitarItem}">
+											<f:param value="#{child_1.urlOpcion}" name="url"/>
+										</rich:panelMenuItem>
+										<rich:panelMenuGroup label="#{child_1.etiquetaOpcionMenu}"
+											rendered="#{child_1.urlOpcion == '#'}">
+											<c:forEach items="#{child_1.opcionMenuList}" var="child_2">
+												<rich:panelMenuItem label="#{child_2.etiquetaOpcionMenu}" 
+																	rendered="#{child_2.urlOpcion!='#'}" 
+																	action="#{principal.solicitarItem}">
+													<f:param value="#{child_2.urlOpcion}" name="url"/>
+												</rich:panelMenuItem>
+												<h:outputText value="#{errores['nivel.menu.no.soportado']}"
+													rendered="#{child_2.urlOpcion == '#'}" style="color: red;"/>
+											</c:forEach>
+										</rich:panelMenuGroup>
+									</c:forEach>
+								</rich:panelMenuGroup>
+							</c:forEach>
+						</rich:panelMenuGroup>
+					</c:forEach>
+				</rich:panelMenu>
+				<!--  -->
+			</h:panelGroup></div>
+		</h:form>
+	<div id="contenido" style='height:850px;'>
+	<p><a href='javascript: toggle()'><h:graphicImage value="/img/menu/ocultar.png" id="ocultar" style="border:0;"/></a></p>
+	<p><a href='javascript: toggle()'><h:graphicImage value="/img/menu/mostrar.png" id="mostrar" style="border:0;display:none;"/></a></p>
+			<ui:insert name="contenido">Contenido</ui:insert>
+	</div>
+	<div id="footer">
+	<div id="linea_menu">&nbsp;</div>
+	<div style="float: left; padding: 10px 0px 0px 40px;"><ui:insert
+		name="pie">#{etiquetas['copyright']}</ui:insert></div>
+	</div>
+	</div>
+	<!-- principal -->
+</f:view>
+</body>
+</html>

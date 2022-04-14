@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/templates/base-panel-menu.xhtml">
+
+	<ui:define name="tituloPagina">
+	#{titulos['sistema.titulo']}
+	</ui:define>
+	<ui:define name="contenido">	
+	<h:panelGrid columns="1" width="100%" id="panel1">
+		<h:form>
+			<a4j:outputPanel layout="none">
+					<rich:panel styleClass="rich-panel" headerClass="rich-panel-header" bodyClass="rich-panel-body">
+						<f:facet name="header">
+					#{titulos['ajustehl']}
+						</f:facet>
+				<f:subview>
+					<fieldset style="sizefielsdet">
+					<legend><h:outputText value="#{titulos['datosplanilla']}:" styleClass="etiqueta3"/></legend>
+				<rich:spacer height="10" />
+				
+					<h:panelGrid columns="1" style=" width : 793px;">
+						<h:outputText value="#{etiquetas.empleador} #{planillahl.pla.nombreEmpleador}" styleClass="etiqueta2"/>
+					</h:panelGrid>
+					<h:panelGrid columns="4" style=" width : 793px;">
+						<h:outputText value="#{etiquetas.ruc}" styleClass="etiqueta2"/>
+						<h:outputText id="ruc" value="#{planillahl.pla.pk.rucemp}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.sucursal}" styleClass="etiqueta2"/>
+						<h:outputText id="suc" value="#{planillahl.pla.pk.codsuc}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.anio}" styleClass="etiqueta2"/>
+						<h:outputText id="ani" value="#{planillahl.pla.pk.aniper}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.mes}" styleClass="etiqueta2"/>
+						<h:outputText id="mes" value="#{planillahl.pla.pk.mesper}" styleClass="etiqueta"/>
+						<h:outputText value="#{etiquetas.estado}" styleClass="etiqueta2"/>
+						<h:outputText id="est" value="#{planillahl.pla.esttippla}" styleClass="etiqueta"/>
+					</h:panelGrid>
+					</fieldset>
+					</f:subview>
+				<br/>
+					
+				<f:subview>
+					<a4j:outputPanel id="det">					
+						<fieldset style="sizefielsdet">
+							<legend><h:outputText value="#{titulos['datosdetalle']}:" styleClass="etiqueta3"/></legend>
+				  			<br/>
+							<div align="center">
+										<div id="divTablahl">
+					
+							<rich:dataTable id="tabpla" value="#{planillahl.pladet}"
+							var="itemPla">
+								<rich:column style="color:#00FF00" sortBy="#{itemPla.numafi}">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas.cedula}"/>
+									</f:facet>
+			 						<h:outputText value="#{itemPla.numafi}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="" sortBy="#{itemPla.nombreAfiliado}">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['nombre']}"/>
+									</f:facet>
+			 						<h:outputText value="#{itemPla.nombreAfiliado}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['tipo']}"/>
+									</f:facet>
+									<h:outputText value="#{itemPla.pk.codprecla}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['numeroprestamo']}"/>
+									</f:facet>
+									<h:outputText value="#{itemPla.pk.numpreafi}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['numerodividendo']}"/>
+									</f:facet>
+									<h:outputText value="#{itemPla.pk.numdiv}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['valordividendo']}"/>
+									</f:facet>
+									<h:outputText value="#{itemPla.valtotdiv}"
+										style='color:black' />
+								</rich:column>
+								<rich:column style="">
+									<f:facet name="header">
+										<h:outputText value="#{etiquetas['seleccionar']}"/>
+									</f:facet>
+										<input type="checkbox" name="eliminados" value="#{itemPla.numafi},#{itemPla.pk.numdiv}" />
+								</rich:column>
+					</rich:dataTable>
+					</div>
+						<rich:spacer height="10" width="100%"/>
+								<fieldset style="width: 280px; height: 40px;">
+									<h:panelGrid id="sum" columns="2">
+										<h:outputText value="TOTAL DE REGISTROS: " styleClass="etiqueta2"/>
+										<h:outputText id="numregpla" value="#{planillahl.numregpladet} " styleClass="etiqueta2"/>
+										<h:outputText value="VALOR PLANILLA: " styleClass="etiqueta2"/>
+										<h:outputText id="valpla" value="#{planillahl.valorpladet}" styleClass="etiqueta2"/>
+									</h:panelGrid>
+								</fieldset>
+							</div>	
+							<br/>
+					</fieldset>
+			</a4j:outputPanel>					
+						<rich:spacer height="5" width="100%"/>
+				<a4j:outputPanel id="pie">					
+					<fieldset style="sizefielsdet">
+						<rich:spacer height="10" width="100%"/>
+						<h:panelGrid columns="3" rendered="#{planillahl.listoajustar or planillahl.pla.esttippla=='ECP'}">
+							<h:outputText value="OBSERVACION: "/>
+							<h:inputTextarea id="obs" value="#{planillahl.observacion}" style=" width : 529px;" required="true" requiredMessage="#{mensajes['campo.requerido']}" rows="3"/>
+							<a4j:outputPanel ajaxRendered="true">
+								<h:message errorClass="error" for="obs" />
+							</a4j:outputPanel>
+						</h:panelGrid>
+						
+						<a4j:outputPanel id="msgErrorselafi">
+							<rich:panel rendered="#{planillahl.nroafi!=null}">
+								<div class="requerido"> 
+								<h:graphicImage
+									value="/img/common/okay.gif" rendered="#{planillahl.okOperacion}"></h:graphicImage>
+								<h:graphicImage 
+									value="/img/common/error.gif" rendered="#{!planillahl.okOperacion}"></h:graphicImage>
+								<h:outputText
+									value="#{planillahl.nroafi}" styleClass="error" /></div>
+							</rich:panel>
+							<br />
+						</a4j:outputPanel>
+						
+						<a4j:outputPanel id="msgErrorcom">
+							<rich:panel rendered="#{planillahl.erroranucom!=null}">							
+								<div class="requerido">
+								<h:graphicImage
+									value="/img/common/okay.gif" rendered="#{planillahl.okOperacion}"></h:graphicImage>
+								<h:graphicImage 
+									value="/img/common/error.gif" rendered="#{!planillahl.okOperacion}"></h:graphicImage>
+								<h:outputText
+									value="#{planillahl.erroranucom}" styleClass="error"/></div>
+							</rich:panel>
+							<br />
+						</a4j:outputPanel> 
+						<a4j:outputPanel id="msgErrorpla">
+							<rich:panel rendered="#{planillahl.errorajupla!=null}">
+								<div class="requerido"> 
+								<h:graphicImage
+									value="/img/common/okay.gif" rendered="#{planillahl.okOperacion}"></h:graphicImage>
+								<h:graphicImage 
+									value="/img/common/error.gif" rendered="#{!planillahl.okOperacion}"></h:graphicImage>
+								<h:outputText
+									value="#{planillahl.errorajupla}" styleClass="error" /></div>
+							</rich:panel>
+							<br />
+						</a4j:outputPanel> 
+			<div align="center">
+						<a4j:commandButton id="btnanucom" styleClass="boton1" value="#{botones['anularcomp']}" action="#{planillahl.AnularComprobante}" disabled="#{planillahl.pla.esttippla!='ECP'}" reRender="est,pie"
+						onclick="if(!confirm('Esta seguro que desea anular el comprobante?')){this.disabled=false;return false};"/>
+						<a4j:commandButton id="btneliafi"  styleClass="boton1" value="#{botones['eliminar.detalle']}" action="#{planillahl.EliminarAfiliados}" disabled="#{planillahl.pla.esttippla=='ECP' || planillahl.listoajustar || planillahl.plaaju}" 
+						reRender="det,pie" />
+						<a4j:commandButton id="btnajupla"  styleClass="boton1" value="#{botones['ajustar']}" action="#{planillahl.AjustarPlanilla}" disabled="#{!planillahl.listoajustar}" reRender="pie"
+						onclick="if(!confirm('Esta seguro que desea realizar el ajuste de la planilla?')){this.disabled=false;return false};"/>
+						<h:commandButton id="btncan" styleClass="boton1" value="#{botones['cancelar']}" action="#{planillahl.Cancelar}" immediate="true" disabled="#{!planillahl.listoajustar}"/>
+						<h:commandButton id="btnsal" styleClass="boton1" value="#{botones['salir']}" action="#{planillahl.Salir}" immediate="true"/>
+			</div>			
+				</fieldset>
+			</a4j:outputPanel>					
+						<rich:spacer height="10" width="100%"/>
+				</f:subview>
+									</rich:panel>
+				
+			</a4j:outputPanel>
+		</h:form>
+	</h:panelGrid>
+
+	</ui:define>
+</ui:composition>

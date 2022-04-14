@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ <display-name>pq-concesion-web</display-name>
+ <!-- Aumentado para seguridades -->
+ <context-param>
+  <param-name>codigoAplicacion</param-name>
+  <param-value>PQ-VR-INTERNET</param-value>
+ </context-param>
+ <!-- Optional JSF-RI Parameters to Help Debug -->
+ <context-param>
+  <param-name>com.sun.faces.validateXml</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
+  <param-name>com.sun.faces.verifyObjects</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <!-- Special Debug Output for Development -->
+ <context-param>
+  <param-name>facelets.DEVELOPMENT</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
+  <param-name>facelets.REFRESH_PERIOD</param-name>
+  <param-value>0</param-value>
+ </context-param>
+ <!-- AREA DE PARAMETROS DE CONTEXTO -->
+ <context-param>
+  <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+  <param-value>.xhtml</param-value>
+ </context-param>
+ <context-param>
+  <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+  <param-value>client</param-value>
+ </context-param>
+ <context-param>
+  <param-name>muestraLetras</param-name>
+  <param-value>S</param-value>
+ </context-param>
+ <!-- Facelets -->
+ <context-param>
+  <param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+  <param-value>com.sun.facelets.FaceletViewHandler</param-value>
+ </context-param>
+ <!-- skin -->
+ <context-param>
+  <param-name>org.richfaces.SKIN</param-name>
+  <param-value>blueSky</param-value>
+ </context-param>
+ <!-- AREA DE PARAMETROS DE FILTROS 
+ Aumentado para utilizar componentes richFaces y ajax4jsf -->
+ <filter>
+  <display-name>Richfaces Filter</display-name>
+  <filter-name>richfaces</filter-name>
+  <filter-class>org.ajax4jsf.Filter</filter-class>
+ </filter>
+ <!-- Aumentado para seguridades -->
+ <filter>
+  <filter-name>MenuFilter</filter-name>
+  <filter-class>ec.fin.biess.seguridad.filter.MenuFilter</filter-class>
+  <!-- si se desea mas de un modulo separar con comas Ej: CRE,PEN -->
+  <init-param>
+   <param-name>paginasNoProtegidas</param-name>
+   <param-value>login.jsp,salir.jsf,error/login-error.jsp,error/403.jsf,error/404.jsf,error/error-aplicacion.jsf,pages/concesion/bloqueoProceso.jsf,pages/concesion/bloqueoFinSemana.jsf,pages/novacion/bloqueoNovacion.jsf,pages/comun/bloqueoProcesoCC.jsf</param-value>
+  </init-param>
+  <init-param>
+   <param-name>codigoAplicacion</param-name>
+   <param-value>PQ-VR-INTERNET</param-value>
+  </init-param>
+ </filter>
+ <filter>
+  <filter-name>ProcesoRunningFilter</filter-name>
+  <filter-class>ec.fin.biess.creditos.pq.filtros.ProcesoRunningFilter</filter-class>
+  <init-param>
+   <param-name>paginasBloqueadas</param-name>
+   <param-value>/pages/novacion/informacionNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/novacion/datosSolicitante.jsf,/pages/novacion/resultadoPrecalificacion.jsf,/pages/novacion/concesionCreditoNovacion.jsf,/pages/novacion/resultadoPrestamoNovacion.jsf,/pages/consulta/calculoLiquidacion.jsf,/pages/consulta/calculoLiquidacionFondos.jsf,/pages/consulta/comprobantePago.jsf,/pages/consulta/comprobantePagoDividendos.jsf,/pages/consulta/comprobantesPago.jsf,/pages/consulta/creditos.jsf,/pages/consulta/pagIndSeleccion.jsf,/pages/consulta/pagIndSeleccionSaldos.jsf,/pages/consulta/resultadoLiquidacion.jsf,/pages/consulta/resultadoLiquidacionFondos.jsf,/pages/consulta/resultadoPreCruceCuentas.jsf,/pages/concesion/detallePrestamo.jsf</param-value>
+  </init-param>
+ </filter>
+ 
+  <filter>
+  <filter-name>ProcesoMigracionFilter</filter-name>
+  <filter-class>ec.fin.biess.creditos.pq.filtros.ProcesoMigracionFilter</filter-class>
+  <init-param>
+   <param-name>paginasBloqueadas</param-name>
+   <param-value>/pages/novacion/informacionNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/novacion/datosSolicitante.jsf,/pages/novacion/resultadoPrecalificacion.jsf,/pages/novacion/concesionCreditoNovacion.jsf,/pages/novacion/resultadoPrestamoNovacion.jsf,/pages/consulta/calculoLiquidacion.jsf,/pages/consulta/calculoLiquidacionFondos.jsf,/pages/consulta/comprobantePago.jsf,/pages/consulta/comprobantePagoDividendos.jsf,/pages/consulta/comprobantesPago.jsf,/pages/consulta/creditos.jsf,/pages/consulta/pagIndSeleccion.jsf,/pages/consulta/pagIndSeleccionSaldos.jsf,/pages/consulta/resultadoLiquidacion.jsf,/pages/consulta/resultadoLiquidacionFondos.jsf,/pages/consulta/resultadoPreCruceCuentas.jsf,/pages/concesion/detallePrestamo.jsf,/pages/concesion/tipoProductos.jsf,/pages/concesion/datosSolicitante.jsf,/pages/simulador/requisitosBloqueantesSimuladorNovacion.jsf,/pages/simulador/requisitosBloqueantesSimulador.jsf</param-value>
+  </init-param>
+ </filter>
+ 
+  <filter>
+  <filter-name>BloqueoCastigadoFilter</filter-name>
+  <filter-class>ec.fin.biess.creditos.pq.filtros.BloqueoCastigadoFilter</filter-class>
+  <init-param>
+   <param-name>paginasBloqueadas</param-name>
+   <param-value>/pages/novacion/informacionNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/novacion/datosSolicitante.jsf,/pages/novacion/resultadoPrecalificacion.jsf,/pages/novacion/concesionCreditoNovacion.jsf,/pages/novacion/resultadoPrestamoNovacion.jsf,/pages/consulta/calculoLiquidacion.jsf,/pages/consulta/calculoLiquidacionFondos.jsf,/pages/consulta/comprobantePago.jsf,/pages/consulta/comprobantePagoDividendos.jsf,/pages/consulta/comprobantesPago.jsf,/pages/concesion/tipoProductos.jsf,/pages/concesion/datosSolicitante.jsf,/pages/simulador/requisitosBloqueantesSimuladorNovacion.jsf,/pages/simulador/requisitosBloqueantesSimulador.jsf</param-value>
+  </init-param>
+ </filter>
+ 
+<filter>
+	<filter-name>BloqueosAccesosFilter</filter-name>
+	<filter-class>ec.fin.biess.creditos.pq.filtros.BloqueosAccesosFilter</filter-class>
+	<init-param>
+		<param-name>paginasBloqueadas</param-name>
+		<param-value>/pages/novacion/informacionNovacion.jsf,/pages/novacion/tipoProductosNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/novacion/datosSolicitante.jsf,/pages/novacion/resultadoPrecalificacion.jsf,/pages/novacion/concesionCreditoNovacion.jsf,/pages/novacion/resultadoPrestamoNovacion.jsf,/pages/concesion/consultaContrato.jsf,/pages/concesion/tipoProductos.jsf</param-value>
+	</init-param>
+	<init-param>
+		<param-name>paginasBloqueadasNov</param-name>
+		<param-value>/pages/novacion/informacionNovacion.jsf,/pages/novacion/tipoProductosNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/novacion/datosSolicitante.jsf,/pages/novacion/resultadoPrecalificacion.jsf,/pages/novacion/concesionCreditoNovacion.jsf,/pages/novacion/resultadoPrestamoNovacion.jsf</param-value>
+	</init-param>
+	<init-param>
+		<param-name>paginasBloqueadasConCli</param-name>
+		<param-value>/pages/concesion/tipoProductos.jsf,/pages/concesion/datosSolicitante.jsf,/pages/concesion/resultadoPrecalificacion.jsf,/pages/novacion/informacionNovacion.jsf,/pages/novacion/tipoProductosNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/concesion/concesionCredito.jsf,/pages/novacion/resultadoPrecalificacion.jsf</param-value>
+	</init-param>
+	<init-param>
+		<param-name>paginasBloqueadasAmaCasa</param-name>
+		<param-value>/pages/concesion/tipoProductos.jsf,/pages/concesion/datosSolicitante.jsf,/pages/concesion/resultadoPrecalificacion.jsf,/pages/novacion/informacionNovacion.jsf,/pages/novacion/tipoProductosNovacion.jsf,/pages/novacion/creditosNovacion.jsf,/pages/concesion/concesionCredito.jsf,/pages/novacion/resultadoPrecalificacion.jsf,/pages/conozcasucliente/informativo.jsf,/pages/conozcasucliente/datosPersonales.jsf,/pages/conozcasucliente/datosDireccion.jsf,/pages/conozcasucliente/datosEconomica.jsf,/pages/conozcasucliente/datosReferencias.jsf,/pages/conozcasucliente/datosIngresosEgresos.jsf,/pages/conozcasucliente/confirmacion.jsf</param-value>
+	</init-param>
+</filter>
+ 
+ <!-- AREA DE PARAMETROS DE MAPEO DE FILTROS 
+ Aumentado para utilizar componentes richFaces y ajax4jsf -->
+ <filter-mapping>
+	<filter-name>richfaces</filter-name>
+	<servlet-name>Faces Servlet</servlet-name>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+</filter-mapping>
+<!-- Aumentado para manejo de seguridades -->
+<filter-mapping>
+	<filter-name>MenuFilter</filter-name>
+	<url-pattern>*.jsf</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+</filter-mapping>
+<filter-mapping>
+	<filter-name>MenuFilter</filter-name>
+	<servlet-name>Autenticador</servlet-name>
+	<dispatcher>FORWARD</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+	<dispatcher>REQUEST</dispatcher>
+</filter-mapping>
+<filter-mapping>
+	<filter-name>ProcesoRunningFilter</filter-name>
+	<url-pattern>/pages/*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+<filter-mapping>
+	<filter-name>ProcesoMigracionFilter</filter-name>
+	<url-pattern>/pages/*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+<filter-mapping>
+	<filter-name>BloqueosAccesosFilter</filter-name>
+	<url-pattern>/pages/*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+ 
+<filter-mapping>
+	<filter-name>BloqueoCastigadoFilter</filter-name>
+	<url-pattern>/pages/*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>INCLUDE</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+ 
+ 
+
+ <!-- AREA DE PARAMETROS DE LISTENER -->
+ <listener>
+  <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+ </listener>
+ <!-- AREA DE PARAMETROS DE SERVLET 
+ Faces Servlet -->
+ <servlet>
+  <servlet-name>Faces Servlet</servlet-name>
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <!-- AREA DE PARAMETROS DE MAPEO DE SERVLET 
+ Faces Servlet Mapping -->
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>*.jsf</url-pattern>
+ </servlet-mapping>
+ <session-config>
+  <session-timeout>5</session-timeout>
+ </session-config>
+ <welcome-file-list>
+  <welcome-file>/pages/index.jsp</welcome-file>
+ </welcome-file-list>
+ <error-page>
+  <error-code>403</error-code>
+  <location>/error/403.jsf</location>
+ </error-page>
+ <error-page>
+  <error-code>404</error-code>
+  <location>/error/404.jsf</location>
+ </error-page>
+ <!--+
+	|Configuración de seguridades.  Con esto se asegura que cualquier 
+	|solicitud sea atendida siempre y cuando se haya hecho login
+	+-->
+ <security-constraint>
+  <web-resource-collection>
+   <web-resource-name>All JSP Pages</web-resource-name>
+   <url-pattern>*.jsf</url-pattern>
+   <http-method>POST</http-method>
+   <http-method>GET</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+   <role-name>AF</role-name>
+   <role-name>JU</role-name>
+  </auth-constraint>
+ </security-constraint>
+ <security-constraint>
+  <web-resource-collection>
+   <web-resource-name>Archivos No Protegidos</web-resource-name>
+   <url-pattern>/login.jsp</url-pattern>
+   <url-pattern>/pages/salir.jsf</url-pattern>
+   <url-pattern>/error/*</url-pattern>
+   <url-pattern>/css/*</url-pattern>
+   <url-pattern>/img/*</url-pattern>
+   <url-pattern>/js/*</url-pattern>
+   <url-pattern>/a4j*</url-pattern>
+   <url-pattern>/a4j/*</url-pattern>
+   <http-method>GET</http-method>
+   <http-method>POST</http-method>
+  </web-resource-collection>
+ </security-constraint>
+	<security-constraint>
+		<display-name>Restrict access to Facelets source code.</display-name>
+		<web-resource-collection>
+			<web-resource-name>Facelets</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+ <login-config>
+  <auth-method>FORM</auth-method>
+  <realm-name>iessSecurity</realm-name>
+  <form-login-config>
+   <form-login-page>/pages/login.jsp</form-login-page>
+   <form-error-page>/error/login-error.jsp</form-error-page>
+  </form-login-config>
+ </login-config>
+ <security-role>
+  <description>Rol de Usuario del Sistema - Afiliado</description>
+  <role-name>AF</role-name>
+ </security-role>
+ <security-role>
+  <description>Rol de Usuario del Sistema - Jubilado</description>
+  <role-name>JU</role-name>
+ </security-role>
+ <!-- AREA DE PARAMETROS DE REFERENCIAS EJB 
+ Aumentado Referencias a EJB's  -->
+ <ejb-local-ref>
+  <ejb-ref-name>ejb/MenuServicio</ejb-ref-name>
+  <ejb-ref-type>Session</ejb-ref-type>
+  <local-home/>
+  <local>ec.gov.iess.seguridades.servicio.MenuServicio</local>
+ </ejb-local-ref>
+ <ejb-local-ref>
+  <ejb-ref-name>ejb/RolesPorUsuarioServicio</ejb-ref-name>
+  <ejb-ref-type>Session</ejb-ref-type>
+  <local-home/>
+  <local>ec.gov.iess.seguridades.servicio.RolesPorUsuarioServicio</local>
+ </ejb-local-ref>
+ <ejb-local-ref>
+  <ejb-ref-name>ejb/GenerarEmailDesbloqueoServicio</ejb-ref-name>
+  <ejb-ref-type>Entity</ejb-ref-type>
+  <local-home/>
+  <local>ec.fin.biess.unlock.servicio.GenerarEmailDesbloqueoServicio</local>
+ </ejb-local-ref>
+ <ejb-local-ref>
+  <ejb-ref-name>ejb/DesbloqueoCuentaOnlineServicio</ejb-ref-name>
+  <ejb-ref-type>Entity</ejb-ref-type>
+  <local-home/>
+  <local>ec.fin.biess.unlock.servicio.DesbloqueoCuentaOnlineServicio</local>
+ </ejb-local-ref>
+   <ejb-local-ref>
+  <ejb-ref-name>ejb/InstitucionFinancieraServicio</ejb-ref-name>
+  <ejb-ref-type>Entity</ejb-ref-type>
+  <local-home/>
+  <local>ec.gov.iess.cuentabancaria.servicio.InstitucionFinancieraServicio</local>
+ </ejb-local-ref>
+    <ejb-local-ref>
+  <ejb-ref-name>ejb/ProveedorServicio</ejb-ref-name>
+  <ejb-ref-type>Entity</ejb-ref-type>
+  <local-home/>
+  <local>ec.fin.biess.creditos.pq.servicio.ProveedorServicio</local>
+ </ejb-local-ref>
+</web-app>

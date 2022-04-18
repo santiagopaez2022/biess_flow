@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+ <localRepository>D:/L.A/PROYECTOS/PQ/Tools/repository</localRepository>
+    <servers>      
+        <server>
+            <id>nexus</id>
+            <username>desarrollo</username>
+            <password>desarrollo123</password>			
+        </server>
+    </servers>
+    <mirrors>
+        <mirror>
+            <id>nexus</id>
+            <name>nexus</name>
+            <url>http://192.168.249.38:8081/nexus/repository/BIESS_CENTRAL_DESARROLLO/</url>            
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+     <pluginGroups>
+    <!-- pluginGroup
+     | Specifies a further group identifier to use for plugin lookup.
+    <pluginGroup>com.your.plugins</pluginGroup>
+    -->
+	<pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+  </pluginGroups>
+
+    <profiles>
+        <profile>
+            <id>beProfile</id>
+            <repositories>
+                <repository>
+                    <id>nexus</id>
+                    <name>nexus</name>
+                    <url>http://192.168.249.38:8081/nexus/repository/BIESS_CENTRAL_DESARROLLO/</url>
+                    <releases>
+                        <enabled>true</enabled>
+						<updatePolicy>daily</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <properties>
+
+                <jboss.module.dir>D:\server_7.2\modules</jboss.module.dir>
+                <jboss.deploy.dir>D:\server_7.2\deployments</jboss.deploy.dir>
+			
+            </properties>
+        </profile>
+        <profile>
+        <id>sonar</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+       <properties>
+		<sonar.host.url>
+			http://sonarqube.biess.fin.ec/
+		</sonar.host.url>
+		<sonar.login>6b3a6971411382121b9d90708af69bb99effe9b7</sonar.login>
+	</properties>
+    </profile>
+	
+	<profile>
+        <id>compilador</id>
+        <properties>
+            <JAVA_1_8_HOME>
+				<!--D:\ProgramasInstalados\Java\jdk1.8.0_74-->
+				C:\Program Files\Java\jdk1.8.0_281
+			</JAVA_1_8_HOME>
+        </properties>
+    </profile>
+	
+
+
+    </profiles>
+    <activeProfiles>
+        <activeProfile>beProfile</activeProfile>
+    </activeProfiles>
+
+
+</settings>
